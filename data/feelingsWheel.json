@@ -1,0 +1,230 @@
+[
+  {
+    "base": {"name": "happy", "score": 4},
+    "secondRing": [
+      {
+        "feeling": {"name": "playful", "score": 4},
+        "sub_feelings": [{"name": "creative", "score": 6}, {"name": "cheeky", "score": 6}]
+      },
+			{
+        "feeling": {"name": "content", "score": 4},
+        "sub_feelings": [{"name": "free", "score": 6}, {"name": "joyful", "score": 6}]
+      },
+			{
+        "feeling": {"name": "interested", "score": 4},
+        "sub_feelings": [{"name": "curious", "score": 6}, {"name": "inquisitive", "score": 6}]
+      },
+			{
+        "feeling": {"name": "proud", "score": 4},
+        "sub_feelings": [{"name": "successful", "score": 6}, {"name": "confident", "score": 6}]
+      },
+			{
+			"feeling": {"name": "accepted", "score": 4},
+        "sub_feelings": [{"name": "respected", "score": 6}, {"name": "valued", "score": 6}]
+      },
+			{
+        "feeling": {"name": "powerful", "score": 4},
+        "sub_feelings": [{"name": "courageous", "score": 6}, {"name": "strong", "score": 6}]
+      },
+			{
+        "feeling": {"name": "peaceful", "score": 4},
+        "sub_feelings": [{"name": "calm", "score": 6}, {"name": "thankful", "score": 6}]
+      },
+			{
+        "feeling": {"name": "trusting", "score": 4},
+        "sub_feelings": [{"name": "sensitive", "score": 6}, {"name": "intimate", "score": 6}]
+      },
+			{
+        "feeling": {"name": "optomistic", "score": 4},
+        "sub_feelings": [{"name": "hopeful", "score": 6}, {"name": "inspired", "score": 6}]
+      },
+			{
+        "feeling": {"name": "loving", "score": 4},
+        "sub_feelings": [{"name": "intimate", "score": 6}, {"name": "generous", "score": 6}]
+      }
+    ]
+  },
+	{
+    "base": {"name": "anticipation", "score": 2},
+    "secondRing": [
+			{
+        "feeling": {"name": "excited", "score": 4},
+        "sub_feelings": [{"name" : "passionate", "score": 6}, {"name": "energetic", "score": 6}]
+      },
+			{
+        "feeling": {"name": "stressed", "score": -4},
+        "sub_feelings": [{"name": "overwhelmed", "score": -6}, {"name": "pressured", "score": -6}]
+      },
+			{
+        "feeling": {"name": "expectant", "score": 4},
+        "sub_feelings": [{"name": "hopeful", "score": 6}, {"name": "longing", "score": 3}]
+      },
+			{
+        "feeling": {"name": "eager", "score": 4},
+        "sub_feelings": [{"name": "motivated", "score": 6}, {"name": "enthusiastic", "score": 6}]
+      }
+    ]
+  },
+	{
+    "base": {"name": "surprised", "score": 2},
+    "secondRing": [
+      {
+        "feeling": {"name": "startled", "score": -4},
+        "sub_feelings": [{"name": "stunned", "score": -4}, {"name": "alarmed", "score": -6}]
+      },
+			{
+        "feeling": {"name": "confused", "score": -4},
+        "sub_feelings": [{"name": "distracted", "score": -4}, {"name": "perplexed", "score": -4}]
+      },
+			{
+        "feeling": {"name": "amazed", "score": 4},
+        "sub_feelings": [{"name": "astonished", "score": 4}, {"name": "in awe", "score": 6}]
+      },
+			{
+        "feeling": {"name": "disappointed", "score": -4},
+        "sub_feelings": [{"name": "contempt", "score": -6}, {"name": "disillusioned", "score": -6}]
+      }
+    ]
+  },
+	{
+    "base": {"name": "bad", "score": -2},
+    "secondRing": [
+      {
+        "feeling": {"name": "bored", "score": -2},
+        "sub_feelings": [{"name": "unfulfilled", "score": -6}, {"name": "apathetic", "score": -6}]
+      },
+			{
+        "feeling": {"name": "busy", "score": -2},
+        "sub_feelings": [{"name": "panicky", "score": -6}, {"name": "rushed", "score": -6}]
+      },
+			{
+        "feeling": {"name": "stressed", "score": -4},
+        "sub_feelings": [{"name": "overwhelmed", "score": -6}, {"name": "pressured", "score": -6}]
+      },
+			{
+        "feeling": {"name": "tired", "score": -4},
+        "sub_feelings": [{"name": "sleepy", "score": -4}, {"name": "drained", "score": -6}]
+      }
+    ]
+  },
+	{
+    "base": {"name": "fearful", "score": -4},
+    "secondRing": [
+      {
+        "feeling": {"name": "threatened", "score": -4},
+        "sub_feelings": [{"name": "nervous", "score": -6}, {"name": "exposed", "score": -6}]
+      },
+			{
+        "feeling": {"name": "rejected", "score": -6},
+        "sub_feelings": [{"name": "excluded", "score": -6}, {"name": "persecuted", "score": -6}]
+      },
+			{
+        "feeling": {"name": "weak", "score": -4},
+        "sub_feelings": [{"name": "insignificant", "score": -6}, {"name": "powerless", "score": -6}]
+      },
+			{
+        "feeling": {"name": "insecure", "score": -6},
+        "sub_feelings": [{"name": "inadequate", "score": -6}, {"name": "inferior", "score": -6}]
+      },
+			{
+        "feeling": {"name": "anxious", "score": -4},
+        "sub_feelings": [{"name": "worried", "score": -6}, {"name": "dread", "score": -6}]
+      },
+			{
+        "feeling": {"name": "scared", "score": -6},
+        "sub_feelings": [{"name": "helpless", "score": -6}, {"name": "frightened", "score": -6}]
+      },
+			{
+        "feeling": {"name": "cautious", "score": -2},
+        "sub_feelings": [{"name": "timid", "score": -4}, {"name": "apprehensive", "score": -4}]
+      }
+    ]
+  },
+	{
+    "base": {"name": "angry", "score": -4},
+    "secondRing": [
+      {
+        "feeling": {"name": "betrayed", "score": -6},
+        "sub_feelings": [{"name": "jealous", "score": -6}, {"name": "resentful", "score": -6}]
+      },
+			{
+        "feeling": {"name": "humiliated", "score": -6},
+        "sub_feelings": [{"name": "disrespected", "score": -6}, {"name": "ridiculed", "score": -6}]
+      },
+			{
+        "feeling": {"name": "bitter", "score": -6},
+        "sub_feelings": [{"name": "venegeful", "score": -6}, {"name": "violated", "score": -6}]
+      },
+			{
+        "feeling": {"name": "mad", "score": -4},
+        "sub_feelings": [{"name": "furious", "score": -6}, {"name": "spiteful", "score": -6}]
+      },
+			{
+        "feeling": {"name": "aggressive", "score": -6},
+        "sub_feelings": [{"name": "provoked", "score": -4}, {"name": "hostile", "score": -6}]
+      },
+			{
+        "feeling": {"name": "frustrated", "score": -4},
+        "sub_feelings": [{"name": "infuriated", "score": -6}, {"name": "irritated", "score": -4}]
+      },
+			{
+        "feeling": {"name": "distant", "score": -4},
+        "sub_feelings": [{"name": "withdrawn", "score": -6}, {"name": "numb", "score": -6}]
+      },
+			{
+        "feeling": {"name": "insulted", "score": -4},
+        "sub_feelings": [{"name": "provoked", "score": -6}, {"name": "ridiculed", "score": -6}]
+      }
+    ]
+  },
+	{
+    "base": {"name": "disgust", "score": -4},
+    "secondRing": [
+      {
+        "feeling": {"name": "disapproving", "score": -4},
+        "sub_feelings": [{"name": "judgemental", "score": -6}, {"name": "appalled", "score": -6}]
+      },
+			{
+        "feeling": {"name": "awful", "score": -6},
+        "sub_feelings": [{"name": "embarrassed", "score": -6}, {"name": "detestable", "score": -6}]
+      },
+			{
+        "feeling": {"name": "repelled", "score": -6},
+        "sub_feelings": [{"name": "hesitant", "score": -6}, {"name": "loathsome", "score": -6}]
+      },
+			{
+        "feeling": {"name": "critical", "score": -4},
+        "sub_feelings": [{"name": "skeptical", "score": -4}, {"name": "dismissive", "score": -6}]
+      }
+    ]
+  },
+	{
+    "base": {"name": "sad", "score": -4},
+    "secondRing": [
+      {
+        "feeling": {"name": "lonely", "score": -6},
+        "sub_feelings": [{"name": "isolated", "score": -6}, {"name": "abandoned", "score": -6}]
+      },
+			{
+        "feeling": {"name": "vulnerable", "score": -4},
+        "sub_feelings": [{"name": "deceived", "score": -6}, {"name": "fragile", "score": -6}]
+      },
+			{
+        "feeling": {"name": "despair", "score": -6},
+        "sub_feelings": [{"name": "grief", "score": -6}, {"name": "powerless", "score": -6}]
+      },
+			{
+        "feeling": {"name": "guilty", "score": -4},
+        "sub_feelings": [{"name": "ashamed", "score": -6}, {"name": "remorseful", "score": -4}]
+      },
+			{
+        "feeling": {"name": "depressed", "score": -6},
+        "sub_feelings": [{"name": "inferior", "score": -6}, {"name": "empty", "score": -6}]
+      },
+			{
+        "feeling": {"name": "hurt", "score": -2},
+        "sub_feelings": [{"name": "wronged", "score": -4}, {"name": "injured", "score": -4}]
+      }
+    ]
+  }
+]

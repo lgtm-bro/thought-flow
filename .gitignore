@@ -3,3 +3,5 @@
 *bundle.js
 config.js
 node_modules/
+env
+*.pyc

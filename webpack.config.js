@@ -1,9 +1,9 @@
 const path = require('path');
 
 module.exports = {
-  entry: path.resolve(__dirname, './client/src/index.jsx'),
+  entry: path.resolve(__dirname, './static/src/index.jsx'),
   output: {
-    path: path.resolve(__dirname, './client/dist'),
+    path: path.resolve(__dirname, './static/dist'),
     filename: 'bundle.js'
   },
   mode: 'development',
@@ -25,6 +25,8 @@ module.exports = {
         use: ['style-loader', 'css-loader'],
       }
     ]
-  }
-
+  },
+  // resolve: {
+  //   extensions: ['.js', '.json', '.wasm'], // Add your extensions here.
+  // }
 }
