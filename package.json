@@ -1,7 +1,7 @@
 {
-  "name": "base",
+  "name": "thought-flow",
   "version": "1.0.0",
-  "main": "server/index.js",
+  "main": "",
   "scripts": {
     "build": "webpack --progress --config webpack.config.js --watch"
   },

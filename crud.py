@@ -85,8 +85,6 @@ def create_user_session(user_id, post_id, date, score, milestone_id,
 
 
 
-
-
 if __name__ == '__main__':
     from server import app
     connect_to_db(app)
