@@ -1,5 +1,6 @@
 """CRUD operations"""
 
+from email.mime import base
 from model import User, BaseEmotion, SecondEmotion, ThirdEmotion, Post, Milestone, Prompt, UserSession, connect_to_db
 
 # ********USER********
@@ -21,6 +22,17 @@ def create_base_emotion(name, score):
     return emotion
 
 
+def get_all_base_emotions():
+    """Return all entries from the base_emotions table"""
+    result = []
+    for e in BaseEmotion.query.all():
+        curr = e.__dict__
+        del curr['_sa_instance_state']
+        result.append(e.__dict__)
+
+    return result
+
+
 # ********SECOND_EMOTION********
 
 def create_second_emotion(name, score, base_id):
@@ -31,6 +43,17 @@ def create_second_emotion(name, score, base_id):
     return emotion
 
 
+def get_all_second_emotions(base):
+    """Return all entries from the base_emotions table"""
+    result = []
+    for e in SecondEmotion.query.join(BaseEmotion).filter(BaseEmotion.name == base).all():
+        curr = e.__dict__
+        del curr['_sa_instance_state']
+        result.append(e.__dict__)
+
+    return result
+
+
 # ********THIRD_EMOTION********
 
 def create_third_emotion(name, score, second_id):
@@ -39,6 +62,17 @@ def create_third_emotion(name, score, second_id):
     emotion = ThirdEmotion(name=name, score=score, second_emotion_id=second_id)
 
     return emotion
+
+
+def get_all_third_emotions(second):
+    """Return all entries from the base_emotions table"""
+    result = []
+    for e in ThirdEmotion.query.join(SecondEmotion).filter(SecondEmotion.name == second).all():
+        curr = e.__dict__
+        del curr['_sa_instance_state']
+        result.append(e.__dict__)
+
+    return result
 
 
 # ********POST********
