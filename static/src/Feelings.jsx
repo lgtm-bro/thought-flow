@@ -9,8 +9,9 @@ const Feelings = (props) => {
 	const [secondChoice, setSecondChoice] = useState();
 	const [thirdChoice, setThirdChoice] = useState();
 
-	const second = React.useRef();
-	const third = React.useRef();
+	const second = useRef();
+	const third = useRef();
+
 
 	useEffect(() => {
 		getBaseEmotions();
@@ -18,11 +19,18 @@ const Feelings = (props) => {
 
 	useEffect(() => {
 		getSecondEmotions();
+		props.feeling(baseChoice);
 	}, [baseChoice])
 
 	useEffect(() => {
 		getThirdEmotions();
+		props.feeling(secondChoice);
 	}, [secondChoice])
+
+	useEffect(() => {
+		getThirdEmotions();
+		props.feeling(thirdChoice);
+	}, [thirdChoice])
 
   const getBaseEmotions = () => {
 		axios.get('/base_emotions')
@@ -30,8 +38,8 @@ const Feelings = (props) => {
 	}
 
 	const getBaseChoice = (e) => {
-		setBaseChoice(e.target.value)
-		second.current.classList.remove('hide')
+		setBaseChoice(e.target.value);
+		second.current.classList.remove('hide');
 	}
 
 	const getSecondEmotions = () => {
@@ -40,8 +48,8 @@ const Feelings = (props) => {
 	}
 
 	const getSecondChoice = (e) => {
-		setSecondChoice(e.target.value)
-		third.current.classList.remove('hide')
+		setSecondChoice(e.target.value);
+		third.current.classList.remove('hide');
 	}
 
 	const getThirdEmotions = () => {
@@ -51,8 +59,8 @@ const Feelings = (props) => {
 
 	const getThirdChoice = (e) => {
 		setThirdChoice(e.target.value)
-		props.hide()
-		props.show()
+		props.hide();
+		props.show();
 	}
 
   return (
@@ -60,6 +68,7 @@ const Feelings = (props) => {
 			<form action="#">
 				<label htmlFor="base"><h2>What is your main vibe right now?</h2></label>
 				<select name="base" id="base" onChange={(e) => getBaseChoice(e)}>
+					<option  value="default"></option>
 					{baseEmotions.map(e =>
 							<option key={e.id} value={e.name}>{e.name}</option>
 						)}
@@ -69,6 +78,7 @@ const Feelings = (props) => {
 						<h2>Because I am feeling:</h2>
 					</label>
 					<select name="second" id="second" onChange={(e) => getSecondChoice(e)}>
+						<option  value="default"></option>
 						{secondEmotions.map(e =>
 								<option key={e.id} value={e.name}>{e.name}</option>
 							)}
@@ -77,6 +87,7 @@ const Feelings = (props) => {
 				<div ref={third} className="hide">
 					<label htmlFor="third"><h2>And a little...</h2></label>
 					<select name="third" id="third" onChange={(e) => getThirdChoice(e)}>
+						<option  value="default"></option>
 						{thirdEmotions.map(e =>
 								<option key={e.id} value={e.name}>{e.name}</option>
 							)}
