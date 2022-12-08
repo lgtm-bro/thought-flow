@@ -19,12 +19,12 @@ const Feelings = (props) => {
 
 	useEffect(() => {
 		getSecondEmotions();
-		props.feeling(baseChoice);
+		// props.feeling(baseChoice);
 	}, [baseChoice])
 
 	useEffect(() => {
 		getThirdEmotions();
-		props.feeling(secondChoice);
+		// props.feeling(secondChoice);
 	}, [secondChoice])
 
 	useEffect(() => {

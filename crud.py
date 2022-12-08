@@ -75,6 +75,18 @@ def get_all_third_emotions(second):
     return result
 
 
+def get_third_emotion(name):
+    """Return one entry from the base_emotions table"""
+
+    res = ThirdEmotion.query.filter(ThirdEmotion.name == name).first()
+    if res:
+        e = res.__dict__
+        del e['_sa_instance_state']
+        return e
+
+    return {}
+
+
 # ********POST********
 
 def create_post(user_id, date, entry, guided):

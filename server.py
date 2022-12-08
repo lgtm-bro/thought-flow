@@ -44,6 +44,15 @@ def get_third_emotions(second_choice):
     return jsonify(third_emotions)
 
 
+@app.route('/third_emotion/<name>')
+def get_third_emotion(name):
+    print(stars, 'name', name)
+    emotion = crud.get_third_emotion(name)
+    print(stars, 'emotion', emotion)
+    return jsonify(emotion)
+
+
+
 
 if __name__ =='__main__':
     connect_to_db(app)

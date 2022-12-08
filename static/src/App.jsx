@@ -1,6 +1,7 @@
 import React, {useEffect, useState, useRef, Fragment} from 'react';
-import Entry from './Entry.jsx'
-import Feelings from './Feelings.jsx'
+import axios from 'axios';
+import Entry from './Entry.jsx';
+import Feelings from './Feelings.jsx';
 
 
 const App = () => {
@@ -9,7 +10,9 @@ const App = () => {
   const entry = useRef();
 
   useEffect(() => {
-    // console.log(feeling)
+    if(feeling){
+      console.log(feeling.name, feeling.score);
+    }
   }, [feeling])
 
   const hideFeels = () => {
@@ -21,21 +24,22 @@ const App = () => {
   }
 
   const getFeeling = (f) => {
-    console.log(f)
-    setFeeling(f)
+    axios.get(`/third_emotion/${f}`)
+      .then(results => setFeeling(results.data))
   }
+
 
   return (
     <div>
       <h1>ThoughtFlow</h1>
-      {/* <div ref={feels} id="feels_ref">
-        <Feelings
+      <div ref={feels} id="feels_ref">
+        {/* <Feelings
           hide={hideFeels}
           show={showEntryForm}
-          feeling={getFeeling}/>
-      </div> */}
+          feeling={getFeeling}/> */}
+      </div>
       <div ref={entry} id="entry_wrapper" className="hide">
-        <Entry />
+        <Entry feeling={feeling} />
       </div>
       <Entry />
     </div>

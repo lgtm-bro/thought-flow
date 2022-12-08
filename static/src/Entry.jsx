@@ -40,11 +40,13 @@ const Entry = (props) => {
         />
         <label htmlFor="solo">Solo</label>
         {isGuided && <div id="guided-entry-form">
-          <GuidedForm />
+          <GuidedForm emotion={props.emotion} />
         </div>}
         {isSolo && <div id="solo-entry-form">
           <SoloForm />
         </div>}
+        {(isGuided || isSolo) &&
+        <input type="submit" value="Let it go"/>}
       </form>
     </div>
   );
