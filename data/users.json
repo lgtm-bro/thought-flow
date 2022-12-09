@@ -1,0 +1,52 @@
+[
+	{
+		"name": "Fred",
+		"email": "fred@yahoo.com",
+		"password": "12345"
+	},
+	{
+		"name": "Sarah",
+		"email": "sarah@gmail.com",
+		"password": "Pass"
+	},
+	{
+		"name": "Bob",
+		"email": "bob@gmail.com",
+		"password": "pass123"
+	},
+	{
+		"name": "Jane",
+		"email": "jane@icloud.com",
+		"password": "abCpass"
+	},
+	{
+		"name": "Josh",
+		"email": "josh@gmail.com",
+		"password": "123aBc"
+	},
+	{
+		"name": "Lynn",
+		"email": "lynn@gmail.com",
+		"password": "tOugh"
+	},
+	{
+		"name": "Pam",
+		"email": "pam@gmail.com",
+		"password": "12wedd"
+	},
+	{
+		"name": "Chris",
+		"email": "chris@gmail.com",
+		"password": "hardPass"
+	},
+	{
+		"name": "Brenda",
+		"email": "brenda@gmail.com",
+		"password": "123Pass"
+	},
+	{
+		"name": "Jenny",
+		"email": "jenn@gmail.com",
+		"password": "Passit"
+	}
+]

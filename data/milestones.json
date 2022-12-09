@@ -1,0 +1,37 @@
+[
+    {
+        "user_id": 1,
+        "title": "Discussed my Feelings with a friend",
+        "msg": "message for milestone 1"
+    },
+    {
+        "user_id": 2,
+        "title": "Set Healthy Boundaries",
+        "msg": "message for milestone 2"
+    },
+    {
+        "user_id": 3,
+        "title": "Acknowledged my feelings in the moment",
+        "msg": "message for milestone 3"
+    },
+    {
+        "user_id": 4,
+        "title": "asserted myself at work",
+        "msg": "message for milestone 4"
+    },
+    {
+        "user_id": 2,
+        "title": "Had a good talk with my son",
+        "msg": "message for milestone 5"
+    },
+    {
+        "user_id": 8,
+        "title": "Stepped out of my comfort zone",
+        "msg": "message for milestone 6"
+    },
+    {
+        "user_id": 3,
+        "title": "Apologized to my sister",
+        "msg": "message for milestone 7"
+    }
+]

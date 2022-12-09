@@ -8,6 +8,8 @@ from model import User, BaseEmotion, SecondEmotion, ThirdEmotion, Post, Mileston
 def create_user(name, email, password):
     """Create and return a new user."""
 
+    name = name.lower()
+    email= email.lower()
     user = User(name=name, email=email, password=password)
 
     return user
