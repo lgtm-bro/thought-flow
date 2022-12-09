@@ -6,10 +6,7 @@ from model import connect_to_db, db
 import crud
 
 
-app = Flask(__name__
-# template_folder='../templates',
-# static_folder='../static'
-)
+app = Flask(__name__)
 app.secret_key = 'dev'
 app.jinja_env.undefined = StrictUndefined
 
@@ -49,9 +46,22 @@ def get_third_emotion(name):
     print(stars, 'name', name)
     emotion = crud.get_third_emotion(name)
     print(stars, 'emotion', emotion)
+
     return jsonify(emotion)
 
 
+@app.route('/milestones/<user>')
+def get_all_milestones(user):
+    milestones = crud.get_all_milestones(user)
+
+    return jsonify(milestones)
+
+
+@app.route('/posts/<user>')
+def get_all_posts(user):
+    posts = crud.get_all_posts(user)
+
+    return jsonify(posts)
 
 
 if __name__ =='__main__':

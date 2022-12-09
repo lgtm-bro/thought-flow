@@ -99,6 +99,17 @@ def create_post(user_id, date, entry, guided):
     return post
 
 
+def get_all_posts(user):
+    """Return all posts for a user"""
+    result = []
+    for p in Post.query.join(User).filter(User.name == user.lower()).all():
+        curr = p.__dict__
+        del curr['_sa_instance_state']
+        result.append(curr)
+
+    return result
+
+
 # ********MILESTONE********
 
 def create_milestone(user_id, title, msg):
@@ -107,6 +118,17 @@ def create_milestone(user_id, title, msg):
     milestone = Milestone(user_id=user_id, title=title, msg=msg)
 
     return milestone
+
+
+def get_all_milestones(user):
+    """Return all milestones for a user"""
+    result = []
+    for m in Milestone.query.join(User).filter(User.name == user.lower()).all():
+        curr = m.__dict__
+        del curr['_sa_instance_state']
+        result.append(curr)
+
+    return result
 
 
 # ********PROMPT********

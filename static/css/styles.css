@@ -1,3 +1,40 @@
+body,
+html,
+#root {
+  width: 100%;
+	height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+#root {
+	margin: 4% auto;
+}
+
+h1 {
+	text-align: center;
+}
+
 .hide {
-    display: none
+  display: none;
+}
+
+#progress-bar-wrapper {
+  float: left;
+	width: 25%;
+	margin: 1% 3%;
+}
+
+#entry-wrapper {
+	display: inline-block;
+	text-align: center;
+	width: 35%;
+  clear: both;
+	margin: auto;
+}
+
+#journal-wrapper {
+  float: right;
+  width: 28%;
+	margin: 3%;
 }

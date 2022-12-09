@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, Fragment } from "react";
 import GuidedForm from "./GuidedForm.jsx";
 import SoloForm from "./SoloForm.jsx";
 
@@ -18,7 +18,7 @@ const Entry = (props) => {
   };
 
   return (
-    <div className="entryContainer">
+    <Fragment >
       <h3>How would you like to flow today?</h3>
       <form>
         <input
@@ -39,16 +39,19 @@ const Entry = (props) => {
           onChange={getGuided}
         />
         <label htmlFor="solo">Solo</label>
-        {isGuided && <div id="guided-entry-form">
-          <GuidedForm emotion={props.emotion} />
-        </div>}
-        {isSolo && <div id="solo-entry-form">
-          <SoloForm />
-        </div>}
-        {(isGuided || isSolo) &&
-        <input type="submit" value="Let it go"/>}
+        {isGuided && (
+          <div id="guided-entry-form">
+            <GuidedForm emotion={props.emotion} />
+          </div>
+        )}
+        {isSolo && (
+          <div id="solo-entry-form">
+            <SoloForm />
+          </div>
+        )}
+        {(isGuided || isSolo) && <input type="submit" value="Let it go" />}
       </form>
-    </div>
+    </Fragment>
   );
 };
 
