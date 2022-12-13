@@ -7,6 +7,7 @@ const Entry = (props) => {
   const [isSolo, setIsSolo] = useState(false);
   const guided_btn = useRef();
   const solo_btn = useRef();
+  const form = useRef();
 
   useEffect(() => {
     console.log("guided:", isGuided);
@@ -20,7 +21,7 @@ const Entry = (props) => {
   return (
     <Fragment >
       <h3>How would you like to flow today?</h3>
-      <form>
+      <form ref={form}>
         <input
           type="radio"
           name="flow"

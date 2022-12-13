@@ -4,19 +4,15 @@ import axios from "axios";
 const ProgressBar = (props) => {
   const [milestones, setMilestones] = useState([]);
 
-  useEffect(() => {
-    getMilestones(props.user.name);
-  }, []);
-
   // useEffect(() => {
-  // 	console.log(milestones)
-  // }, [milestones])
+  //   getMilestones(props.user.name);
+  // }, []);
 
-  const getMilestones = () => {
-    axios
-      .get(`/milestones/${props.user.name}`)
-      .then((results) => setMilestones(results.data));
-  };
+  // const getMilestones = () => {
+  //   axios
+  //     .get(`/milestones/${props.user.name}`)
+  //     .then((results) => setMilestones(results.data));
+  // };
 
   return (
     <div id="progress-bar-wrapper">
@@ -25,7 +21,7 @@ const ProgressBar = (props) => {
         <br />
         So Far you have...
       </h4>
-      {milestones.map((m) => (
+      {props.milestones.map((m) => (
         <div key={m.id}>{m.title}</div>
       ))}
     </div>

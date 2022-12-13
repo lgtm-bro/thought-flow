@@ -1,14 +1,14 @@
 import React, {useState, useRef, Fragment} from 'react';
 
 const Login = (props) => {
-	const email =useRef()
-	const password =useRef()
+	const email = useRef();
+	const password = useRef();
+	const form = useRef();
 
 	const loginUser = (e) => {
 		e.preventDefault();
 		props.getUser(email.current.value, password.current.value);
-		email.current.value = '';
-    password.current.value = '';
+		form.current.reset();
 	}
 
 	return (
@@ -21,7 +21,7 @@ const Login = (props) => {
 					Sign Up
 				</a>
 			</h4>
-			<form action="#" onSubmit={loginUser}>
+			<form action="#" ref={form} onSubmit={loginUser}>
 				<label htmlFor="login-email">
 					<span className="login-label">Email: </span>
 					<input type="text"

@@ -12,6 +12,9 @@ import Nav from "./Nav.jsx";
 const App = (props) => {
   const [feeling, setFeeling] = useState();
   const [user, setUser] = useState();
+  const [milestones, setMilestones] = useState([]);
+  const [posts, setPosts] = useState([]);
+
   const feels = useRef();
   const entry = useRef();
   const login = useRef();
@@ -22,6 +25,14 @@ const App = (props) => {
       console.log(feeling.name, feeling.score);
     }
   }, [feeling]);
+
+  useEffect(() => {
+    getMilestones();
+  }, []);
+
+  useEffect(() => {
+    getPosts();
+  }, []);
 
   useEffect(() => {
       hideModal();
@@ -95,6 +106,24 @@ const App = (props) => {
       .catch(err => console.log(err))
   }
 
+  const getMilestones = () => {
+    const name = sessionStorage.getItem("user");
+    if (name) {
+      axios
+      .get(`/milestones/${name}`)
+      .then((results) => setMilestones(results.data));
+    }
+  };
+
+  const getPosts = () => {
+    const name = sessionStorage.getItem("user");
+    if (name){
+      axios
+      .get(`/posts/${name}`)
+      .then((results) => setPosts(results.data));
+    }
+  }
+
 
   return (
     <div id="app-wrapper">
@@ -103,7 +132,7 @@ const App = (props) => {
       </div>
       <br />
       <h1>ThoughtFlow</h1>
-      <ProgressBar />
+      <ProgressBar milestones={milestones}/>
       <div ref={feels} id="feelings_wrapper">
         <Feelings
           hide={hideFeels}
@@ -113,7 +142,7 @@ const App = (props) => {
       <div ref={entry} id="entry-wrapper" className="hide">
         <Entry feeling={feeling} />
       </div>
-      <Journal />
+      <Journal posts={posts}/>
       <div id="signup-wrapper" className="hide" ref={signup}>
         <Signup signupUser={signupUser} showLogin={showLogin}/>
       </div>
