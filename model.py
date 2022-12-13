@@ -89,7 +89,7 @@ class Post(db.Model):
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
-    date = db.Column(db.DateTime, nullable=False)
+    date = db.Column(db.String, nullable=False)
     entry = db.Column(db.Text, nullable=False)
     guided = db.Column(db.Boolean, nullable=False)
 

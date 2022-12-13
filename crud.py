@@ -14,6 +14,18 @@ def create_user(name, email, password):
 
     return user
 
+def get_user(email):
+    """Finds a user by email and returns it"""
+
+    res = User.query.filter(User.email == email).first()
+    if res:
+        u = res.__dict__
+        del u['_sa_instance_state']
+        return u
+
+    return False
+
+
 # ********BASE_EMOTION********
 
 def create_base_emotion(name, score):

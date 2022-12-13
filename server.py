@@ -1,6 +1,6 @@
 """Server for the thought flow app"""
 
-from flask import (Flask, render_template, redirect, request, jsonify, flash, session)
+from flask import (Flask, render_template, redirect, request, jsonify, flash, session, abort)
 from jinja2 import StrictUndefined
 from model import connect_to_db, db
 import crud
@@ -43,9 +43,7 @@ def get_third_emotions(second_choice):
 
 @app.route('/third_emotion/<name>')
 def get_third_emotion(name):
-    print(stars, 'name', name)
     emotion = crud.get_third_emotion(name)
-    print(stars, 'emotion', emotion)
 
     return jsonify(emotion)
 
@@ -62,6 +60,36 @@ def get_all_posts(user):
     posts = crud.get_all_posts(user)
 
     return jsonify(posts)
+
+
+@app.route('/users/<email>')
+def get_user(email):
+    user = crud.get_user(email)
+    if user:
+        if user['password'] == request.args.get('password'):
+            return jsonify(user)
+
+        # raise ValueError("Invalid Password")
+        return jsonify({"success": False, "msg": "Invalid password"}), 403
+
+    return jsonify({"success": False, "msg": "Invalid email"}), 404
+
+
+@app.route('/signup', methods=['POST'])
+def signup_user():
+    name = request.json.get('name')
+    email = request.json.get('email')
+    password = request.json.get('password')
+
+    if crud.get_user(email):
+        return jsonify({"success": False, "msg": "User already has an account"}), 400
+
+    new_user = crud.create_user(name, email, password)
+    db.session.add(new_user)
+    db.session.commit()
+
+    return jsonify({"success": True, "msg": "User successfully created"}), 201
+
 
 
 if __name__ =='__main__':

@@ -1,79 +1,79 @@
 [
     {
         "user_id": 1,
-        "date": "2022-05-02 21:19:21",
+        "date": "2022-05-02T21:19:21",
         "entry": "Pellentesque felis nisl, varius vitae justo finibus, interdum semper risus. Nullam lacinia nulla velit, quis ullamcorper nunc suscipit quis. Etiam varius erat augue, eu tempus ligula tempor ut. Sed eu euismod neque. In interdum leo non consequat tristique. Quisque porttitor sed sapien eget semper. Vestibulum molestie ligula quis nisi varius, quis ultricies diam sodales.",
         "guided": true
     },
     {
         "user_id": 3,
-        "date": "2022-01-28 21:19:21",
+        "date": "2022-01-28T21:19:21",
         "entry": "Vivamus nulla nunc, efficitur a egestas a, placerat sed est. Morbi bibendum, eros ultrices molestie cursus, justo dui luctus velit, hendrerit bibendum quam quam ut tellus. Sed tincidunt sapien in odio lacinia tempus. Vivamus cursus mauris felis, porta tristique turpis egestas laoreet. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aenean vel semper leo. Quisque fermentum a felis eu convallis. Quisque ornare nisl maximus posuere fringilla. Etiam efficitur libero turpis. In vitae sollicitudin nisi, faucibus molestie turpis. Etiam sit amet tincidunt ex.",
         "guided": false
     },
     {
         "user_id": 6,
-        "date": "2022-09-14 11:15:21",
+        "date": "2022-09-14T11:15:21",
         "entry": "Vivamus nulla nunc, efficitur a egestas a, placerat sed est. Morbi bibendum, eros ultrices molestie cursus, justo dui luctus velit, hendrerit bibendum quam quam ut tellus. Sed tincidunt sapien in odio lacinia tempus. Vivamus cursus mauris felis, porta tristique turpis egestas laoreet. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aenean vel semper leo. Quisque fermentum a felis eu convallis. Quisque ornare nisl maximus posuere fringilla. Etiam efficitur libero turpis. In vitae sollicitudin nisi, faucibus molestie turpis. Etiam sit amet tincidunt ex.",
         "guided": false
     },
     {
         "user_id": 2,
-        "date": "2022-06-23 10:19:21",
+        "date": "2022-06-23T10:19:21",
         "entry": "Suspendisse laoreet ipsum vel ante sodales, aliquet pellentesque turpis congue. Ut ac justo elit. Proin ac dapibus lorem, vitae bibendum dui. Pellentesque tristique efficitur euismod. Sed semper, justo eget lobortis commodo, magna odio interdum urna, vitae fringilla arcu neque et orci. Cras consequat metus lacus, non tempus tellus feugiat vitae. Quisque egestas eleifend neque, eget ullamcorper magna mollis quis. Nunc malesuada risus sit amet consectetur tempor. Mauris ut pulvinar mi. Fusce consequat efficitur dui vel pharetra. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Morbi hendrerit accumsan aliquet. Suspendisse varius aliquet nisl eu imperdiet. Nam nec arcu eu nisi gravida tempor.",
         "guided": false
     },
     {
         "user_id": 1,
-        "date": "2022-02-18 21:19:21",
+        "date": "2022-02-18T21:19:21",
         "entry": "orem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam in est nec leo efficitur posuere et at neque. Mauris molestie luctus fermentum. Curabitur sagittis augue ut lacus condimentum, eget tempor justo tincidunt. Ut hendrerit sed arcu quis feugiat. Duis magna velit, tempor in placerat quis, euismod a erat. Proin tristique vestibulum est. Vestibulum vitae elit faucibus sem viverra facilisis.",
         "guided": true
     },
     {
         "user_id": 2,
-        "date": "2022-03-18 21:19:21",
+        "date": "2022-03-18T21:19:21",
         "entry": "Mauris non tellus risus. Donec gravida urna a augue semper maximus. Praesent tristique bibendum augue, ut maximus est dapibus nec. Fusce efficitur, libero et laoreet facilisis, diam quam vehicula tellus, in sodales lacus lectus in sem. In aliquam, dui quis suscipit rutrum, elit felis molestie libero, sit amet facilisis ipsum elit sed nulla. Fusce dignissim nulla ut convallis malesuada. Nullam faucibus justo in interdum hendrerit. Nullam gravida luctus neque vel lobortis. Vivamus eget libero lorem. Donec sit amet quam ac lorem dapibus dictum. Praesent egestas consequat eros ac tincidunt. Aliquam vestibulum ex vel nisl egestas interdum. Aliquam erat volutpat. Vestibulum quis magna ut lectus rutrum volutpat.",
         "guided": true
     },
     {
         "user_id": 2,
-        "date": "2022-01-19 21:19:21",
+        "date": "2022-01-19T21:19:21",
         "entry": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi eu interdum turpis. Donec ac nisi magna. Fusce porta, neque vitae varius bibendum, est magna varius mauris, nec elementum eros erat sit amet quam. Phasellus iaculis lorem sed diam lacinia blandit. Aenean vel massa nibh. Vestibulum mattis efficitur nibh, a elementum sem ullamcorper et. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Nulla maximus mattis sem ornare porta. Vivamus eros ipsum, pretium non ultricies non, pellentesque at ligula.",
         "guided": true
     },
     {
         "user_id": 2,
-        "date": "2022-11-22 21:19:21",
+        "date": "2022-11-22T21:19:21",
         "entry": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi eu interdum turpis. Donec ac nisi magna. Fusce porta, neque vitae varius bibendum, est magna varius mauris, nec elementum eros erat sit amet quam. Phasellus iaculis lorem sed diam lacinia blandit. Aenean vel massa nibh. Vestibulum mattis efficitur nibh, a elementum sem ullamcorper et. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Nulla maximus mattis sem ornare porta. Vivamus eros ipsum, pretium non ultricies non, pellentesque at ligula.",
         "guided": false
     },
     {
         "user_id": 5,
-        "date": "2022-08-05 10:19:21",
+        "date": "2022-08-05T10:19:21",
         "entry": "Pellentesque pellentesque, purus vel elementum auctor, est nisi elementum dolor, vehicula pulvinar turpis enim nec magna. Donec dapibus sapien at libero mollis, nec varius dolor finibus. Curabitur ornare placerat urna, at convallis mauris vulputate ac. Praesent vitae risus quam. Phasellus rhoncus fringilla mauris. Integer auctor arcu quis est tempus molestie. Etiam finibus sodales massa, vitae suscipit massa tristique nec. Proin sed mollis mi, sit amet faucibus odio. Sed ultricies metus diam, mattis bibendum tortor cursus quis. Etiam dictum imperdiet laoreet.",
         "guided": true
     },
     {
         "user_id": 7,
-        "date": "2022-04-18 21:10:01",
+        "date": "2022-04-18T21:10:01",
         "entry": "Nam tempor euismod magna sit amet scelerisque. Nulla fringilla pellentesque commodo. Etiam massa arcu, interdum quis scelerisque in, euismod nec velit. Nulla mattis quam a dolor lacinia tincidunt. Nulla facilisi. Nullam a rhoncus turpis. Sed et aliquam magna, ut porttitor sem. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut nec nulla enim. Nam suscipit urna vel velit vehicula bibendum. Vivamus fermentum massa a mi rhoncus, id rhoncus metus mattis. Nunc commodo risus suscipit, mollis eros eu, faucibus justo.",
         "guided": false
     },
     {
         "user_id": 3,
-        "date": "2022-07-06 11:19:31",
+        "date": "2022-07-06T11:19:31",
         "entry": "Cras ultricies eros est, ac vulputate ligula tempus at. Sed risus enim, maximus ut ex vitae, aliquet ultrices mi. In bibendum risus molestie nisl venenatis lacinia. Nullam augue dolor, commodo eget dolor volutpat, rutrum iaculis mauris. Integer ullamcorper quam sit amet sapien ornare sodales. Integer sodales, magna sit amet interdum efficitur, leo ex facilisis dolor, pulvinar faucibus dolor ante in nisl. Integer augue sem, condimentum id eros eget, sagittis scelerisque neque.",
         "guided": true
     },
     {
         "user_id": 1,
-        "date": "2022-02-08 21:09:21",
+        "date": "2022-02-08T01:09:21",
         "entry": "Praesent aliquet, ante id aliquam convallis, sapien enim posuere turpis, non ullamcorper metus enim nec justo. Suspendisse vitae mi euismod, dapibus urna sit amet, varius erat. Aliquam porta sem turpis. Etiam commodo arcu ut ligula vulputate, id scelerisque nunc bibendum. Aliquam erat volutpat. Nullam sit amet nisl dictum, eleifend erat sed, molestie augue. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Aliquam erat volutpat.",
         "guided": false
     },
     {
         "user_id": 8,
-        "date": "2022-12-08 21:19:21",
+        "date": "2022-12-08T21:19:21",
         "entry": "Praesent aliquet, ante id aliquam convallis, sapien enim posuere turpis, non ullamcorper metus enim nec justo. Suspendisse vitae mi euismod, dapibus urna sit amet, varius erat. Aliquam porta sem turpis. Etiam commodo arcu ut ligula vulputate, id scelerisque nunc bibendum. Aliquam erat volutpat. Nullam sit amet nisl dictum, eleifend erat sed, molestie augue. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Aliquam erat volutpat.",
         "guided": false
     }

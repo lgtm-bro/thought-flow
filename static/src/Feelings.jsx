@@ -9,6 +9,7 @@ const Feelings = (props) => {
   const [secondChoice, setSecondChoice] = useState();
   const [thirdChoice, setThirdChoice] = useState();
 
+  const base = useRef();
   const second = useRef();
   const third = useRef();
 
@@ -63,6 +64,10 @@ const Feelings = (props) => {
     setThirdChoice(e.target.value);
     props.hide();
     props.show();
+    console.log(base.current);
+    base.current.selectedIndex = 0;
+    second.current.classList.add("hide");
+    third.current.classList.add("hide");
   };
 
   return (
@@ -71,7 +76,7 @@ const Feelings = (props) => {
         <label htmlFor="base">
           <h2>What is your main vibe right now?</h2>
         </label>
-        <select name="base" id="base" onChange={(e) => getBaseChoice(e)}>
+        <select name="base" id="base" ref={base} onChange={(e) => getBaseChoice(e)}>
           <option value="default"></option>
           {baseEmotions.map((e) => (
             <option key={e.id} value={e.name}>
