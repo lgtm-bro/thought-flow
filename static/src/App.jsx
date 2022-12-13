@@ -91,7 +91,7 @@ const App = (props) => {
       .then(results => {
         console.log(results.data)
         sessionStorage.setItem("user", name)
-      }
+      })
       .catch(err => console.log(err))
   }
 
