@@ -19,7 +19,7 @@ const App = (props) => {
   const feels = useRef();
   const entry = useRef();
   const login = useRef();
-  const signup = useRef();
+  // const signup = useRef();
 
   useEffect(() => {
     if (user) {
@@ -66,28 +66,28 @@ const App = (props) => {
 
   const clickOffModal = () => {
     document.getElementById('root').addEventListener('click', (e) => {
-      if (((!login.current.contains(e.target)) && (!signup.current.contains(e.target)))
+      if ((!login.current.contains(e.target))
       && (!e.target.classList.contains('login'))) {
         login.current.classList.add("hide");
-        signup.current.classList.add("hide");
+        // signup.current.classList.add("hide");
       }
     })
   }
 
   const showLogin = () => {
     login.current.classList.remove('hide');
-    signup.current.classList.add('hide');
+    // signup.current.classList.add('hide');
 
     clickOffModal();
 
   }
 
-  const showSignup = () => {
-    login.current.classList.add('hide');
-    signup.current.classList.remove('hide');
+  // const showSignup = () => {
+  //   login.current.classList.add('hide');
+  //   signup.current.classList.remove('hide');
 
-    // clickOffModal();
-  }
+  //   // clickOffModal();
+  // }
 
   const showHome = () => {
     feels.current.classList.remove("hide");
@@ -135,7 +135,6 @@ const App = (props) => {
   }
 
   const getMilestones = (name) => {
-    console.log('milestones', user, name)
     if (name) {
       axios
       .get(`/milestones/${name}`)
@@ -147,7 +146,6 @@ const App = (props) => {
   };
 
   const getPosts = (name) => {
-    console.log('posts', user, name)
     if (name) {
       axios
       .get(`/posts/${name}`)
@@ -160,7 +158,7 @@ const App = (props) => {
 
   const hideModal = () => {
     login.current.classList.add("hide");
-    signup.current.classList.add("hide");
+    // signup.current.classList.add("hide");
   }
 
 
@@ -191,17 +189,17 @@ const App = (props) => {
       <div id="journal-wrapper">
         <Journal posts={posts}/>
       </div>
-      <div id="signup-wrapper" className="hide" ref={signup}>
+      {/* <div id="signup-wrapper" className="hide" ref={signup}>
         <Signup signupUser={signupUser}
                 showLogin={showLogin}
                 hide={hideModal}
         />
-      </div>
-      <div id="login-wrapper" className="hide" ref={login} login={login}>
+      </div> */}
+      <div id="login-wrapper" className="hide" ref={login}>
         <Login user={user}
                getUser={getUser}
                updateUser={updateUser}
-               showSignup={showSignup}
+               signupUser={signupUser}
                hide={hideModal}
                clear = {signOut}
         />
