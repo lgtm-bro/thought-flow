@@ -3,8 +3,11 @@ import React, { Fragment, useState, useEffect, useRef } from "react";
 const GuidedForm = (props) => {
   const embracing = useRef();
   const resisting = useRef();
-	const [isEmbracing, setIsEmbracing] = useState()
-	const [showPrompt2, setShowPrompt2] = useState(false)
+  const [prompt1, setPrompt1] = useState('');
+  const [prompt2, setPrompt2] = useState('');
+  const [prompt3, setPrompt3] = useState('');
+	const [isEmbracing, setIsEmbracing] = useState();
+	const [showPrompt2, setShowPrompt2] = useState(false);
 
 	useEffect(() => {
 		if (isEmbracing !== undefined) setShowPrompt2(true)
@@ -14,8 +17,13 @@ const GuidedForm = (props) => {
 		setIsEmbracing(embracing.current.checked)
 	}
 
+  const getPrompt = (e, func) => {
+    func(e.target.value)
+    console.log(prompt1)
+  }
+
   const prompt1Key = props.feeling.score > 0 ? "helped" : "caused";
-  const prompt2 = isEmbracing ?
+  const prompt2_question = isEmbracing ?
 	"How do you think embracing these feelings is impacting this experience for you?":
 		"What would it feel like to embrace them?";
 
@@ -25,7 +33,10 @@ const GuidedForm = (props) => {
       <label htmlFor="prompt1">
         What experience or event {prompt1Key} you to feel {props.feeling.name}?
         <br />
-        <input type="textbox" id="prompt1" />
+        <input type="textbox"
+               id="prompt1"
+               onChange={(e) => getPrompt(e, setPrompt1)}
+        />
       </label>
 			<br /><br />
       <label htmlFor="posture">
@@ -53,7 +64,7 @@ const GuidedForm = (props) => {
 			<br /><br />
       {showPrompt2 && <div id="guided-form-part2">
 				<label htmlFor="prompt2">
-				<span className="prompt">{prompt2}</span>
+				<span className="prompt">{prompt2_question}</span>
 				<br />
 					<input type="textbox" id="prompt2" />
 				</label>

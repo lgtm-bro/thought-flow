@@ -5,6 +5,7 @@ import SoloForm from "./SoloForm.jsx";
 const Entry = (props) => {
   const [isGuided, setIsGuided] = useState(false);
   const [isSolo, setIsSolo] = useState(false);
+  const [entry, setEntry] = useState('');
   const guided_btn = useRef();
   const solo_btn = useRef();
   const form = useRef();
