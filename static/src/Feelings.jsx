@@ -84,7 +84,7 @@ const Feelings = (props) => {
             </option>
           ))}
         </select>
-        <div ref={second} className="hide">
+        <div ref={second} id="second-container" className="hide">
           <label htmlFor="second">
             <h2>Because I am feeling:</h2>
           </label>
@@ -101,7 +101,7 @@ const Feelings = (props) => {
             ))}
           </select>
         </div>
-        <div ref={third} className="hide">
+        <div ref={third} id="third-container" className="hide">
           <label htmlFor="third">
             <h2>And a little...</h2>
           </label>

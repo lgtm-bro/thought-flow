@@ -39,6 +39,7 @@ const Signup = (props) => {
         </label>
         <br />
         <br />
+				<button onClick={props.hide}>Cancel</button>
         <input type="submit" value="Sign Up" id="signup-btn" />
       </form>
     </Fragment>

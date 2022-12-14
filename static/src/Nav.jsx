@@ -1,7 +1,8 @@
 import React from "react";
 
 const Nav = (props) => {
-  let status = sessionStorage.getItem("user") ? "Sign Out" : "Log In";
+
+  let status = props.user ? "Sign Out" : "Log In";
 
   const changeStatus = () => {
     props.showLogin();

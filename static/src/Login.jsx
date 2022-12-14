@@ -22,13 +22,14 @@ const Login = (props) => {
     signout.current.classList.add("hide");
     setMsg("You have signed out");
 		props.hide();
+		props.clear();
   };
 
   const cancelSignout = () => {
     props.hide();
   };
 
-  if (sessionStorage.getItem("user")) {
+  if (props.user) {
     return (
       <Fragment>
         <h2>Are you sure that you want to sign out?</h2>
@@ -62,6 +63,7 @@ const Login = (props) => {
           </label>
           <br />
           <br />
+					<button onClick={props.hide}>Cancel</button>
           <input type="submit" value="Log in" id="login-btn" />
         </form>
       </Fragment>

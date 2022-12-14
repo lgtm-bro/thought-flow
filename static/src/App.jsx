@@ -22,8 +22,9 @@ const App = (props) => {
   const signup = useRef();
 
   useEffect(() => {
-    sessionStorage.setItem("user", user);
-    console.log('user', user)
+    if (user) {
+      sessionStorage.setItem("user", user);
+    }
     getMilestones(user);
     getPosts(user);
   }, [user])
@@ -35,11 +36,11 @@ const App = (props) => {
   }, [feeling]);
 
   useEffect(() => {
-    getMilestones();
+    getMilestones(user);
   }, []);
 
   useEffect(() => {
-    getPosts();
+    getPosts(user);
   }, []);
 
   useEffect(() => {
@@ -91,6 +92,14 @@ const App = (props) => {
   const showHome = () => {
     feels.current.classList.remove("hide");
     entry.current.classList.add("hide");
+    document.getElementById("base").selectedIndex = 0;
+    document.getElementById("second-container").classList.add("hide");
+    document.getElementById("third-container").classList.add("hide");
+  }
+
+  const signOut = () => {
+    showHome();
+    setFeeling('');
   }
 
   const getUser = (email, password) => {
@@ -102,8 +111,13 @@ const App = (props) => {
     .catch(err => console.log(err.response.data.msg))
   }
 
-  const updateUser = async (user) => {
-    await setUser(user);
+  const updateUser = (user) => {
+    if (user) {
+      setUser(user);
+    } else {
+      sessionStorage.removeItem("user");
+      setUser(sessionStorage.getItem('user'));
+    }
   }
 
   const signupUser = (name, email, password) => {
@@ -153,12 +167,14 @@ const App = (props) => {
   return (
     <div id="app-wrapper">
       <div id="nav-wrapper">
-        <Nav showLogin={showLogin} showHome={showHome}/>
+        <Nav user={user} showLogin={showLogin}
+             showHome={showHome}
+        />
       </div>
       <br />
       <h1>ThoughtFlow</h1>
       <div id="greet-wrapper">
-        <Greet feeling={feeling}/>
+        <Greet feeling={feeling} user={user}/>
       </div>
       {milestones[0] && <div id="progress-bar-wrapper">
         <ProgressBar milestones={milestones}/>
@@ -176,10 +192,19 @@ const App = (props) => {
         <Journal posts={posts}/>
       </div>
       <div id="signup-wrapper" className="hide" ref={signup}>
-        <Signup signupUser={signupUser} showLogin={showLogin} hide={hideModal}/>
+        <Signup signupUser={signupUser}
+                showLogin={showLogin}
+                hide={hideModal}
+        />
       </div>
       <div id="login-wrapper" className="hide" ref={login} login={login}>
-        <Login getUser={getUser} updateUser={updateUser} showSignup={showSignup} hide={hideModal}/>
+        <Login user={user}
+               getUser={getUser}
+               updateUser={updateUser}
+               showSignup={showSignup}
+               hide={hideModal}
+               clear = {signOut}
+        />
       </div>
     </div>
   );
