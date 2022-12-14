@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, Fragment } from "react";
 import axios from "axios";
 
 const ProgressBar = (props) => {
@@ -15,7 +15,7 @@ const ProgressBar = (props) => {
   // };
 
   return (
-    <div id="progress-bar-wrapper">
+    <Fragment>
       <h4>
         You have great days ahead!
         <br />
@@ -24,7 +24,7 @@ const ProgressBar = (props) => {
       {props.milestones.map((m) => (
         <div key={m.id}>{m.title}</div>
       ))}
-    </div>
+    </Fragment>
   );
 };
 

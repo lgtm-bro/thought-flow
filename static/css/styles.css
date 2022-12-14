@@ -2,22 +2,22 @@ body,
 html,
 #root {
   width: 100%;
-	height: 100%;
+  height: 100%;
   margin: 0;
   padding: 0;
-	overflow: hidden;
+  overflow: hidden;
 }
 
 #root {
-	margin: 4% auto;
+  margin: 4% auto;
 }
 
 h1 {
-	text-align: center;
+  text-align: center;
 }
 
 a {
-	margin: 0 15px;
+  margin: 0 15px;
 }
 
 .hide {
@@ -25,66 +25,79 @@ a {
 }
 
 #app-wrapper {
-	margin: 0 auto;
+  margin: 0 auto;
+	height: 100%;
 }
 
 #nav-wrapper {
-	float: right;
-	margin: 0 35px;
+  float: right;
+  margin: 0 35px;
 }
 
 #progress-bar-wrapper {
   float: left;
-	width: 0 35%;
-	margin: 1% 3%;
+  width: 0 35%;
+  margin: 1% 3%;
 }
 
 #entry-wrapper {
-	display: inline-block;
-	text-align: center;
-	width: 35%;
+  display: inline-block;
+  text-align: center;
+  width: 35%;
   clear: both;
-	margin: auto;
+  margin: auto;
 }
 
 #journal-wrapper {
   float: right;
+	margin: 0 5% 0 0;
   width: 28%;
-	margin: 3%;
+	height: 60%;
+  overflow-y: scroll;
+}
+
+#journal-wrapper::-webkit-scrollbar {
+  display: none;
+}
+
+#journal-wrapper {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
 .post-wrapper {
-	margin: 20px;
+  margin: 20px;
 }
 
 .post-date {
-	display: block;
-	margin: 5px;
+  display: block;
+  margin: 5px;
 }
 
 .post-entry {
-	margin: 0;
+  margin: 0;
 }
 
 /* *******LOGIN******* */
-#login-wrapper, #signup-wrapper {
-	background-color: white;
-	text-align: center;
-	z-index: 5;
+#login-wrapper,
+#signup-wrapper {
+  background-color: white;
+  text-align: center;
+  z-index: 5;
   position: fixed;
-	top: 30%;
+  top: 30%;
   /* right: 35%; */
-	left: 30%;
-	margin: 0 auto;
+  left: 30%;
+  margin: 0 auto;
   width: 450px;
   height: 350px;
-	border: 1px solid black;
+  border: 1px solid black;
 }
 
 .login-label {
-	align-self: left;
- }
+  align-self: left;
+}
 
 #login-btn {
-	/* margin: 0 40%; */
+  /* margin: 0 40%; */
 }

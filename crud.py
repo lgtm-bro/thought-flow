@@ -8,7 +8,7 @@ from model import User, BaseEmotion, SecondEmotion, ThirdEmotion, Post, Mileston
 def create_user(name, email, password):
     """Create and return a new user."""
 
-    name = name.lower()
+    name = name.lower().capitalize()
     email= email.lower()
     user = User(name=name, email=email, password=password)
 
@@ -114,7 +114,7 @@ def create_post(user_id, date, entry, guided):
 def get_all_posts(user):
     """Return all posts for a user"""
     result = []
-    for p in Post.query.join(User).filter(User.name == user.lower()).all():
+    for p in Post.query.join(User).filter(User.name == user.lower().capitalize()).all():
         curr = p.__dict__
         del curr['_sa_instance_state']
         result.append(curr)
@@ -135,7 +135,7 @@ def create_milestone(user_id, title, msg):
 def get_all_milestones(user):
     """Return all milestones for a user"""
     result = []
-    for m in Milestone.query.join(User).filter(User.name == user.lower()).all():
+    for m in Milestone.query.join(User).filter(User.name == user.lower().capitalize()).all():
         curr = m.__dict__
         del curr['_sa_instance_state']
         result.append(curr)

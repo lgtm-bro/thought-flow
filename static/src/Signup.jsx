@@ -11,6 +11,7 @@ const Signup = (props) => {
     e.preventDefault();
     props.signupUser(name.current.value, email.current.value, password.current.value);
 		form.current.reset();
+		props.hide();
   };
 
   return (

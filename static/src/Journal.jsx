@@ -5,7 +5,7 @@ import Post from "./Post.jsx"
 const Journal = (props) => {
 
   return (
-    <div id="journal-wrapper">
+    <div id="journal-container">
 			{props.posts.map(p =>
 				<Post post={p} key={p.id} />
 				)}

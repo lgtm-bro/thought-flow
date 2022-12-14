@@ -7,11 +7,12 @@ import Journal from "./Journal.jsx";
 import Login from "./Login.jsx";
 import Signup from "./Signup.jsx";
 import Nav from "./Nav.jsx";
-
+import Greet from "./Greet.jsx";
 
 const App = (props) => {
   const [feeling, setFeeling] = useState();
-  const [user, setUser] = useState();
+  const [feelingScore, setFeelingScore] = useState();
+  const [user, setUser] = useState(sessionStorage.getItem('user'));
   const [milestones, setMilestones] = useState([]);
   const [posts, setPosts] = useState([]);
 
@@ -21,8 +22,15 @@ const App = (props) => {
   const signup = useRef();
 
   useEffect(() => {
+    sessionStorage.setItem("user", user);
+    console.log('user', user)
+    getMilestones(user);
+    getPosts(user);
+  }, [user])
+
+  useEffect(() => {
     if (feeling) {
-      console.log(feeling.name, feeling.score);
+      console.log(feeling);
     }
   }, [feeling]);
 
@@ -35,7 +43,7 @@ const App = (props) => {
   }, []);
 
   useEffect(() => {
-      hideModal();
+    clickOffModal();
   }, []);
 
   const hideFeels = () => {
@@ -49,10 +57,13 @@ const App = (props) => {
   const getFeeling = (f) => {
     axios
       .get(`/third_emotion/${f}`)
-      .then((results) => setFeeling(results.data));
+      .then((results) => {
+        setFeeling(results.data.name);
+        setFeelingScore(results.data.score);
+      })
   };
 
-  const hideModal = () => {
+  const clickOffModal = () => {
     document.getElementById('root').addEventListener('click', (e) => {
       if (((!login.current.contains(e.target)) && (!signup.current.contains(e.target)))
       && (!e.target.classList.contains('login'))) {
@@ -66,7 +77,7 @@ const App = (props) => {
     login.current.classList.remove('hide');
     signup.current.classList.add('hide');
 
-    hideModal();
+    clickOffModal();
 
   }
 
@@ -74,7 +85,7 @@ const App = (props) => {
     login.current.classList.add('hide');
     signup.current.classList.remove('hide');
 
-    // hideModal();
+    // clickOffModal();
   }
 
   const showHome = () => {
@@ -85,11 +96,14 @@ const App = (props) => {
   const getUser = (email, password) => {
     axios.get(`/users/${email}?password=${password}`)
       .then(result => {
-        sessionStorage.setItem("user", result.data.name);
-        setUser(result.data)
+        setUser(result.data.name);
       }
     )
     .catch(err => console.log(err.response.data.msg))
+  }
+
+  const updateUser = async (user) => {
+    await setUser(user);
   }
 
   const signupUser = (name, email, password) => {
@@ -101,27 +115,38 @@ const App = (props) => {
     axios.post("/signup", user, config)
       .then(results => {
         console.log(results.data)
-        sessionStorage.setItem("user", name)
+        setUser(name);
       })
       .catch(err => console.log(err))
   }
 
-  const getMilestones = () => {
-    const name = sessionStorage.getItem("user");
+  const getMilestones = (name) => {
+    console.log('milestones', user, name)
     if (name) {
       axios
       .get(`/milestones/${name}`)
-      .then((results) => setMilestones(results.data));
+      .then((results) => setMilestones(results.data))
+      .catch((err) => console.log(err))
+    } else {
+      setMilestones([]);
     }
   };
 
-  const getPosts = () => {
-    const name = sessionStorage.getItem("user");
-    if (name){
+  const getPosts = (name) => {
+    console.log('posts', user, name)
+    if (name) {
       axios
       .get(`/posts/${name}`)
-      .then((results) => setPosts(results.data));
+      .then((results) => setPosts(results.data))
+      .catch((err) => console.log(err))
+    } else {
+      setPosts([]);
     }
+  }
+
+  const hideModal = () => {
+    login.current.classList.add("hide");
+    signup.current.classList.add("hide");
   }
 
 
@@ -132,7 +157,12 @@ const App = (props) => {
       </div>
       <br />
       <h1>ThoughtFlow</h1>
-      <ProgressBar milestones={milestones}/>
+      <div id="greet-wrapper">
+        <Greet feeling={feeling}/>
+      </div>
+      {milestones[0] && <div id="progress-bar-wrapper">
+        <ProgressBar milestones={milestones}/>
+      </div>}
       <div ref={feels} id="feelings_wrapper">
         <Feelings
           hide={hideFeels}
@@ -142,12 +172,14 @@ const App = (props) => {
       <div ref={entry} id="entry-wrapper" className="hide">
         <Entry feeling={feeling} />
       </div>
-      <Journal posts={posts}/>
+      <div id="journal-wrapper">
+        <Journal posts={posts}/>
+      </div>
       <div id="signup-wrapper" className="hide" ref={signup}>
-        <Signup signupUser={signupUser} showLogin={showLogin}/>
+        <Signup signupUser={signupUser} showLogin={showLogin} hide={hideModal}/>
       </div>
       <div id="login-wrapper" className="hide" ref={login} login={login}>
-        <Login getUser={getUser} showSignup={showSignup} />
+        <Login getUser={getUser} updateUser={updateUser} showSignup={showSignup} hide={hideModal}/>
       </div>
     </div>
   );
