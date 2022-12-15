@@ -25,6 +25,15 @@ def get_user(email):
 
     return False
 
+def get_user_id(name):
+    user = User.query.filter(User.name == name).first()
+
+    if user:
+        return user.id
+
+    return None
+
+
 
 # ********BASE_EMOTION********
 

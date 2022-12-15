@@ -91,7 +91,7 @@ class Post(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     date = db.Column(db.String, nullable=False)
     entry = db.Column(db.Text, nullable=False)
-    guided = db.Column(db.Boolean, nullable=False)
+    guided = db.Column(db.Boolean)
 
     user = db.relationship("User", back_populates="posts")
     user_session = db.relationship("UserSession", back_populates="post")

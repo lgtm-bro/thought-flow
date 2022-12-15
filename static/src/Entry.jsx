@@ -8,21 +8,24 @@ const Entry = (props) => {
   const [entry, setEntry] = useState('');
   const guided_btn = useRef();
   const solo_btn = useRef();
-  const form = useRef();
-
-  useEffect(() => {
-    console.log("guided:", isGuided);
-  }, [isGuided]);
 
   const getGuided = () => {
     setIsGuided(guided_btn.current.checked);
     setIsSolo(solo_btn.current.checked);
   };
 
+  const reset = (e) => {
+    e.preventDefault();
+    setIsGuided(false);
+    setIsSolo(false);
+    solo_btn.current.checked = false;
+    guided_btn.current.checked = false;
+  }
+
   return (
     <Fragment >
       <h3>How would you like to flow today?</h3>
-      <form ref={form}>
+      <form action="#">
         <input
           type="radio"
           name="flow"
@@ -41,18 +44,27 @@ const Entry = (props) => {
           onChange={getGuided}
         />
         <label htmlFor="solo">Solo</label>
+      </form>
         {isGuided && (
           <div id="guided-entry-form">
-            <GuidedForm emotion={props.emotion} />
+            <GuidedForm feeling={props.feeling}
+                        feelingScore={props.feelingScore}
+                        reset={reset}
+                        submitEntry={props.submitEntry}
+                        showHome={props.showHome}
+            />
           </div>
         )}
         {isSolo && (
           <div id="solo-entry-form">
-            <SoloForm />
+            <SoloForm reset={reset}
+                      submitEntry={props.submitEntry}
+                      showHome={props.showHome}
+            />
           </div>
         )}
-        {(isGuided || isSolo) && <input type="submit" value="Let it go" />}
-      </form>
+        {/* {(isGuided || isSolo) && <button onClick={reset} >Cancel</button>}
+        {(isGuided || isSolo) && <input type="submit" value="Let it go" />} */}
     </Fragment>
   );
 };

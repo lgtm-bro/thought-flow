@@ -39,8 +39,13 @@ const Feelings = (props) => {
   };
 
   const getBaseChoice = (e) => {
-    setBaseChoice(e.target.value);
-    second.current.classList.remove("hide");
+    if (!props.user) {
+      base.current.selectedIndex = 0;
+      alert(`Please Log In to create an entry`);
+    } else {
+      setBaseChoice(e.target.value);
+      second.current.classList.remove("hide");
+    }
   };
 
   const getSecondEmotions = () => {
@@ -64,7 +69,6 @@ const Feelings = (props) => {
     setThirdChoice(e.target.value);
     props.hide();
     props.show();
-    console.log(base.current);
     base.current.selectedIndex = 0;
     second.current.classList.add("hide");
     third.current.classList.add("hide");

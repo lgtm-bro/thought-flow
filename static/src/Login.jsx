@@ -1,5 +1,5 @@
 import React, { useState, useRef, Fragment } from "react";
-import Signup from "./signup.jsx";
+import Signup from "./Signup.jsx";
 
 const Login = (props) => {
   const email = useRef();

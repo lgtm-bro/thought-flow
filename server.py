@@ -91,6 +91,25 @@ def signup_user():
     return jsonify({"success": True, "msg": "User successfully created"}), 201
 
 
+@app.route('/posts', methods=['POST'])
+def submit_post():
+    user = request.json.get('user')
+    date= request.json.get('date')
+    entry= request.json.get('entry')
+    guided = request.json.get('guided')
+
+    user_id = crud.get_user_id(user)
+
+    if user_id:
+        new_post = crud.create_post(user_id, date, entry, guided)
+        db.session.add(new_post)
+        db.session.commit()
+
+        return jsonify({"success": True, "msg": "Post successfully saved"}), 201
+
+    return jsonify({"success": False, "msg": "The user is not in our system"}), 400
+
+
 
 if __name__ =='__main__':
     connect_to_db(app)

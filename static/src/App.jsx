@@ -1,5 +1,7 @@
 import React, { useEffect, useState, useRef, Fragment } from "react";
 import axios from "axios";
+import { DateTime } from "luxon";
+
 import Entry from "./Entry.jsx";
 import Feelings from "./Feelings.jsx";
 import ProgressBar from "./ProgressBar.jsx";
@@ -29,11 +31,11 @@ const App = (props) => {
     getPosts(user);
   }, [user])
 
-  useEffect(() => {
-    if (feeling) {
-      console.log(feeling);
-    }
-  }, [feeling]);
+  // useEffect(() => {
+  //   if (feeling) {
+  //     console.log(feeling);
+  //   }
+  // }, [feeling]);
 
   useEffect(() => {
     getMilestones(user);
@@ -69,25 +71,16 @@ const App = (props) => {
       if ((!login.current.contains(e.target))
       && (!e.target.classList.contains('login'))) {
         login.current.classList.add("hide");
-        // signup.current.classList.add("hide");
       }
     })
   }
 
   const showLogin = () => {
     login.current.classList.remove('hide');
-    // signup.current.classList.add('hide');
 
     clickOffModal();
 
   }
-
-  // const showSignup = () => {
-  //   login.current.classList.add('hide');
-  //   signup.current.classList.remove('hide');
-
-  //   // clickOffModal();
-  // }
 
   const showHome = () => {
     feels.current.classList.remove("hide");
@@ -158,7 +151,26 @@ const App = (props) => {
 
   const hideModal = () => {
     login.current.classList.add("hide");
-    // signup.current.classList.add("hide");
+  }
+
+  const submitEntry = (e, entry, guided) => {
+    e.preventDefault();
+    console.log(entry);
+
+    const config = { headers: {
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*'}
+    }
+
+    const post = {
+      user: user,
+      date: DateTime.now().toISO(),
+      entry: entry,
+      guided: guided
+    }
+    axios.post("/posts", post, config)
+    .then(results => getPosts(user))
+    .catch(err => console.log(err))
   }
 
 
@@ -179,22 +191,21 @@ const App = (props) => {
       </div>}
       <div ref={feels} id="feelings_wrapper">
         <Feelings
+          user={user}
           hide={hideFeels}
           show={showEntryForm}
           feeling={getFeeling}/>
       </div>
       <div ref={entry} id="entry-wrapper" className="hide">
-        <Entry feeling={feeling} />
+        <Entry feeling={feeling}
+               feelingScore={feelingScore}
+               submitEntry={submitEntry}
+               showHome={showHome}
+        />
       </div>
       <div id="journal-wrapper">
         <Journal posts={posts}/>
       </div>
-      {/* <div id="signup-wrapper" className="hide" ref={signup}>
-        <Signup signupUser={signupUser}
-                showLogin={showLogin}
-                hide={hideModal}
-        />
-      </div> */}
       <div id="login-wrapper" className="hide" ref={login}>
         <Login user={user}
                getUser={getUser}
