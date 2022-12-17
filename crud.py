@@ -1,6 +1,6 @@
 """CRUD operations"""
 
-from email.mime import base
+from sqlalchemy import desc
 from model import User, BaseEmotion, SecondEmotion, ThirdEmotion, Post, Milestone, Prompt, UserSession, connect_to_db
 
 # ********USER********
@@ -8,7 +8,7 @@ from model import User, BaseEmotion, SecondEmotion, ThirdEmotion, Post, Mileston
 def create_user(name, email, password):
     """Create and return a new user."""
 
-    name = name.lower().capitalize()
+    name = name.strip().lower().capitalize()
     email= email.lower()
     user = User(name=name, email=email, password=password)
 
@@ -123,7 +123,7 @@ def create_post(user_id, date, entry, guided):
 def get_all_posts(user):
     """Return all posts for a user"""
     result = []
-    for p in Post.query.join(User).filter(User.name == user.lower().capitalize()).all():
+    for p in Post.query.join(User).filter(User.name == user.lower().capitalize()).order_by(desc(Post.date)).all():
         curr = p.__dict__
         del curr['_sa_instance_state']
         result.append(curr)

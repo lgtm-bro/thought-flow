@@ -113,6 +113,22 @@ const App = (props) => {
     }
   }
 
+  const signupClick = () => {
+    login.current.classList.add('signup-click');
+  }
+
+  const loginClick = () => {
+    login.current.classList.remove('signup-click');
+    login.current.classList.remove('signout-click');
+  }
+
+  const signoutClick = () => {
+    // document.getElementById('#login-wrapper').classList.add('signout-click');
+    if (login.current) {
+      login.current.classList.add('signout-click');
+    }
+  }
+
   const signupUser = (name, email, password) => {
     const user = {"name": name, "email": email, "password": password};
     const config = { headers: {
@@ -122,7 +138,7 @@ const App = (props) => {
     axios.post("/signup", user, config)
       .then(results => {
         console.log(results.data)
-        setUser(name);
+        setUser(results.data.user);
       })
       .catch(err => console.log(err))
   }
@@ -155,7 +171,6 @@ const App = (props) => {
 
   const submitEntry = (e, entry, guided) => {
     e.preventDefault();
-    console.log(entry);
 
     const config = { headers: {
       'Content-Type': 'application/json',
@@ -213,6 +228,9 @@ const App = (props) => {
                signupUser={signupUser}
                hide={hideModal}
                clear = {signOut}
+               signupClick={signupClick}
+               loginClick={loginClick}
+               signoutClick={signoutClick}
         />
       </div>
     </div>

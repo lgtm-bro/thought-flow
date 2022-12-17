@@ -1,5 +1,6 @@
 import React, { useState, useRef, Fragment } from "react";
 import Signup from "./Signup.jsx";
+import { BiShow } from "react-icons/bi";
 
 const Login = (props) => {
   const email = useRef();
@@ -24,6 +25,7 @@ const Login = (props) => {
     cancel.current.classList.add("hide");
     signout.current.classList.add("hide");
     setMsg("You have signed out");
+    props.loginClick();
     props.hide();
     props.clear();
   };
@@ -33,19 +35,31 @@ const Login = (props) => {
   };
 
 	const showSignup = () => {
+    form.current.reset();
     login.current.classList.add('hide');
     signup.current.classList.remove('hide');
+    props.signupClick();
   }
 
 	const showLogin = () => {
     login.current.classList.remove('hide');
     signup.current.classList.add('hide');
+    props.loginClick();
+  }
+
+  const showPassword = () => {
+    if (password.current.type === 'password') {
+      password.current.type = 'text';
+    } else {
+      password.current.type = 'password';
+    }
   }
 
   if (props.user) {
+    props.signoutClick();
     return (
       <Fragment>
-        <h2>Are you sure that you want to sign out?</h2>
+        <h3>Are you sure you want to sign out?</h3>
         <button ref={cancel} onClick={props.hide}>
           Cancel
         </button>
@@ -69,13 +83,24 @@ const Login = (props) => {
           <form action="#" ref={form} onSubmit={loginUser}>
             <label htmlFor="login-email">
               <span className="login-label">Email: </span>
-              <input type="text" name="login-email" ref={email} />
+              <input type="text"
+                     name="login-email"
+                     required
+                     ref={email}
+              />
             </label>
             <br />
             <br />
             <label htmlFor="login-password">
               <span className="login-label">Password: </span>
-              <input type="password" name="login-password" ref={password} />
+              <input type="password"
+                     name="login-password"
+                     required
+                     ref={password}
+              />
+              <span className="eye" onClick={showPassword}>
+                <BiShow />
+              </span>
             </label>
             <br />
             <br />

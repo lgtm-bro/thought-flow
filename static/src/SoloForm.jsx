@@ -23,7 +23,7 @@ const SoloForm = (props) => {
         <label htmlFor="solo_text">
         <span className="prompt">Tell us about it...</span>
           <br/>
-          <textarea id="solo_text" onChange={getEntry}></textarea>
+          <textarea id="solo_text" required onChange={getEntry}></textarea>
         </label>
         <br /><br />
         {<button onClick={props.reset} >Cancel</button>}

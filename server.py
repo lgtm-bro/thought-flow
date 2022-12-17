@@ -88,7 +88,9 @@ def signup_user():
     db.session.add(new_user)
     db.session.commit()
 
-    return jsonify({"success": True, "msg": "User successfully created"}), 201
+    print(stars, new_user.name)
+
+    return jsonify({"success": True, "user": new_user.name, "msg": "User successfully created"}), 201
 
 
 @app.route('/posts', methods=['POST'])

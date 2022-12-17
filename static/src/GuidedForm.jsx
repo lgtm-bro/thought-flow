@@ -55,6 +55,7 @@ const GuidedForm = (props) => {
         <br />
         <textarea
           id="prompt1"
+          required
           onChange={(e) => getPrompt(e, setPrompt1)}
         ></textarea>
       </label>
