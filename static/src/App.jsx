@@ -93,6 +93,8 @@ const App = (props) => {
   const signOut = () => {
     showHome();
     setFeeling('');
+    updateUser('');
+    loginClick();
   }
 
   const getUser = (email, password) => {
@@ -227,7 +229,7 @@ const App = (props) => {
                updateUser={updateUser}
                signupUser={signupUser}
                hide={hideModal}
-               clear = {signOut}
+               clear={signOut}
                signupClick={signupClick}
                loginClick={loginClick}
                signoutClick={signoutClick}

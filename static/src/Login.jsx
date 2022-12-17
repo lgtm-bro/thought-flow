@@ -11,8 +11,6 @@ const Login = (props) => {
 	const login = useRef();
   const signup = useRef();
 
-  const [msg, setMsg] = useState("");
-
   const loginUser = (e) => {
     e.preventDefault();
     props.getUser(email.current.value, password.current.value);
@@ -21,11 +19,8 @@ const Login = (props) => {
   };
 
   const signoutUser = () => {
-    props.updateUser("");
     cancel.current.classList.add("hide");
     signout.current.classList.add("hide");
-    setMsg("You have signed out");
-    props.loginClick();
     props.hide();
     props.clear();
   };
@@ -66,7 +61,6 @@ const Login = (props) => {
         <button ref={signout} onClick={signoutUser}>
           Sign Out
         </button>
-        {msg && <div>{msg}</div>}
       </Fragment>
     );
   } else {

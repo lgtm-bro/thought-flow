@@ -9,13 +9,19 @@ const Entry = (props) => {
   const guided_btn = useRef();
   const solo_btn = useRef();
 
+  useEffect(() => {
+    if (!props.feeling){
+      reset();
+    }
+  }, [props.feeling])
+
   const getGuided = () => {
     setIsGuided(guided_btn.current.checked);
     setIsSolo(solo_btn.current.checked);
   };
 
   const reset = (e) => {
-    e.preventDefault();
+    if (e) e.preventDefault();
     setIsGuided(false);
     setIsSolo(false);
     solo_btn.current.checked = false;
