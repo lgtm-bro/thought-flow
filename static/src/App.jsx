@@ -101,9 +101,12 @@ const App = (props) => {
     axios.get(`/users/${email}?password=${password}`)
       .then(result => {
         setUser(result.data.name);
-      }
-    )
-    .catch(err => console.log(err.response.data.msg))
+        hideModal();
+      })
+      .catch(err => {
+        alert(err.response.data.msg);
+        return err;
+      })
   }
 
   const updateUser = (user) => {
@@ -139,7 +142,7 @@ const App = (props) => {
     }
     axios.post("/signup", user, config)
       .then(results => {
-        console.log(results.data)
+        console.log(results.data);
         setUser(results.data.user);
       })
       .catch(err => console.log(err))

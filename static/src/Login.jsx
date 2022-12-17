@@ -8,14 +8,12 @@ const Login = (props) => {
   const form = useRef();
   const cancel = useRef();
   const signout = useRef();
-	const login = useRef();
+  const login = useRef();
   const signup = useRef();
 
   const loginUser = (e) => {
     e.preventDefault();
-    props.getUser(email.current.value, password.current.value);
-    form.current.reset();
-    props.hide();
+    props.getUser(email.current.value, password.current.value)
   };
 
   const signoutUser = () => {
@@ -29,26 +27,26 @@ const Login = (props) => {
     props.hide();
   };
 
-	const showSignup = () => {
+  const showSignup = () => {
     form.current.reset();
-    login.current.classList.add('hide');
-    signup.current.classList.remove('hide');
+    login.current.classList.add("hide");
+    signup.current.classList.remove("hide");
     props.signupClick();
-  }
+  };
 
-	const showLogin = () => {
-    login.current.classList.remove('hide');
-    signup.current.classList.add('hide');
+  const showLogin = () => {
+    login.current.classList.remove("hide");
+    signup.current.classList.add("hide");
     props.loginClick();
-  }
+  };
 
   const showPassword = () => {
-    if (password.current.type === 'password') {
-      password.current.type = 'text';
+    if (password.current.type === "password") {
+      password.current.type = "text";
     } else {
-      password.current.type = 'password';
+      password.current.type = "password";
     }
-  }
+  };
 
   if (props.user) {
     props.signoutClick();
@@ -77,20 +75,17 @@ const Login = (props) => {
           <form action="#" ref={form} onSubmit={loginUser}>
             <label htmlFor="login-email">
               <span className="login-label">Email: </span>
-              <input type="text"
-                     name="login-email"
-                     required
-                     ref={email}
-              />
+              <input type="text" name="login-email" required ref={email} />
             </label>
             <br />
             <br />
             <label htmlFor="login-password">
               <span className="login-label">Password: </span>
-              <input type="password"
-                     name="login-password"
-                     required
-                     ref={password}
+              <input
+                type="password"
+                name="login-password"
+                required
+                ref={password}
               />
               <span className="eye" onClick={showPassword}>
                 <BiShow />
@@ -103,10 +98,11 @@ const Login = (props) => {
           </form>
         </div>
         <div id="signup-container" ref={signup} className="hide">
-          <Signup showLogin={showLogin}
-									signupUser={props.signupUser}
-									hide={props.hide}
-					/>
+          <Signup
+            showLogin={showLogin}
+            signupUser={props.signupUser}
+            hide={props.hide}
+          />
         </div>
       </Fragment>
     );

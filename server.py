@@ -70,9 +70,15 @@ def get_user(email):
             return jsonify(user)
 
         # raise ValueError("Invalid Password")
-        return jsonify({"success": False, "msg": "Invalid password"}), 403
+        return jsonify({
+                        "success": False,
+                        "msg": "That password does not match our records.\nPlease try again."
+                        }), 403
 
-    return jsonify({"success": False, "msg": "Invalid email"}), 404
+    return jsonify({
+                    "success": False,
+                    "msg": "That email is not in our system.\nPlease create an account."
+                    }), 404
 
 
 @app.route('/signup', methods=['POST'])
