@@ -4,7 +4,8 @@ import { DateTime } from "luxon";
 
 import Entry from "./Entry.jsx";
 import Feelings from "./Feelings.jsx";
-import ProgressBar from "./ProgressBar.jsx";
+import Hub from "./Hub.jsx";
+import MilestoneBar from "./MilestoneBar.jsx";
 import Journal from "./Journal.jsx";
 import Login from "./Login.jsx";
 import Signup from "./Signup.jsx";
@@ -12,6 +13,7 @@ import Nav from "./Nav.jsx";
 import Greet from "./Greet.jsx";
 import Milestone from "./Milestone.jsx";
 import Quote from "./Quote.jsx";
+
 
 const App = (props) => {
   const [feeling, setFeeling] = useState();
@@ -24,7 +26,7 @@ const App = (props) => {
   const entry = useRef();
   const milestone = useRef();
   const login = useRef();
-  // const signup = useRef();
+
 
   useEffect(() => {
     if (user) {
@@ -34,12 +36,6 @@ const App = (props) => {
     getPosts(user);
   }, [user]);
 
-  // useEffect(() => {
-  //   if (feeling) {
-  //     console.log(feeling);
-  //   }
-  // }, [feeling]);
-
   useEffect(() => {
     getMilestones(user);
   }, []);
@@ -52,12 +48,105 @@ const App = (props) => {
     clickOffModal();
   }, []);
 
+
+/******** CHANGE DISPLAY ********/
+const clickOffModal = () => {
+  document.getElementById("root").addEventListener("click", (e) => {
+    if (
+      !login.current.contains(e.target) &&
+      !e.target.classList.contains("login")
+    ) {
+      login.current.classList.add("hide");
+    }
+  });
+};
+
+const showHome = () => {
+  feels.current.classList.remove("hide");
+  entry.current.classList.add("hide");
+  milestone.current.classList.add('hide');
+  document.getElementById("base").selectedIndex = 0;
+  document.getElementById("second-container").classList.add("hide");
+  document.getElementById("third-container").classList.add("hide");
+};
+
+const hideModal = () => {
+  login.current.classList.add("hide");
+};
+
+/********** USER ***********/
+const getUser = (email, password) => {
+  axios
+    .get(`/users/${email}?password=${password}`)
+    .then((result) => {
+      setUser(result.data.name);
+      hideModal();
+    })
+    .catch((err) => {
+      alert(err.response.data.msg);
+      return err;
+    });
+};
+
+const updateUser = (user) => {
+  if (user) {
+    setUser(user);
+  } else {
+    sessionStorage.removeItem("user");
+    setUser(sessionStorage.getItem("user"));
+  }
+};
+
+/******** LOGIN / SIGNUP ********/
+const showLogin = () => {
+  login.current.classList.remove("hide");
+
+  clickOffModal();
+};
+
+const signupClick = () => {
+  login.current.classList.add("signup-click");
+};
+
+const loginClick = () => {
+  login.current.classList.remove("signup-click");
+  login.current.classList.remove("signout-click");
+};
+
+const signupUser = (name, email, password) => {
+  const user = { name: name, email: email, password: password };
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+      "Access-Control-Allow-Origin": "*",
+    },
+  };
+  axios
+    .post("/signup", user, config)
+    .then((results) => {
+      console.log(results.data);
+      setUser(results.data.user);
+    })
+    .catch((err) => console.log(err));
+};
+
+/********** SIGNOUT ***********/
+const signOut = () => {
+  showHome();
+  setFeeling("");
+  updateUser("");
+  loginClick();
+};
+
+const signoutClick = () => {
+  if (login.current) {
+    login.current.classList.add("signout-click");
+  }
+};
+
+/********** FEELINGS ***********/
   const hideFeels = () => {
     feels.current.classList.add("hide");
-  };
-
-  const showEntryForm = (el) => {
-    entry.current.classList.remove("hide");
   };
 
   const getFeeling = (f) => {
@@ -67,103 +156,9 @@ const App = (props) => {
     });
   };
 
-  const clickOffModal = () => {
-    document.getElementById("root").addEventListener("click", (e) => {
-      if (
-        !login.current.contains(e.target) &&
-        !e.target.classList.contains("login")
-      ) {
-        login.current.classList.add("hide");
-      }
-    });
-  };
-
-  const showLogin = () => {
-    login.current.classList.remove("hide");
-
-    clickOffModal();
-  };
-
-  const showHome = () => {
-    feels.current.classList.remove("hide");
-    entry.current.classList.add("hide");
-    milestone.current.classList.add('hide');
-    document.getElementById("base").selectedIndex = 0;
-    document.getElementById("second-container").classList.add("hide");
-    document.getElementById("third-container").classList.add("hide");
-  };
-
-  const signOut = () => {
-    showHome();
-    setFeeling("");
-    updateUser("");
-    loginClick();
-  };
-
-  const getUser = (email, password) => {
-    axios
-      .get(`/users/${email}?password=${password}`)
-      .then((result) => {
-        setUser(result.data.name);
-        hideModal();
-      })
-      .catch((err) => {
-        alert(err.response.data.msg);
-        return err;
-      });
-  };
-
-  const updateUser = (user) => {
-    if (user) {
-      setUser(user);
-    } else {
-      sessionStorage.removeItem("user");
-      setUser(sessionStorage.getItem("user"));
-    }
-  };
-
-  const signupClick = () => {
-    login.current.classList.add("signup-click");
-  };
-
-  const loginClick = () => {
-    login.current.classList.remove("signup-click");
-    login.current.classList.remove("signout-click");
-  };
-
-  const signoutClick = () => {
-    // document.getElementById('#login-wrapper').classList.add('signout-click');
-    if (login.current) {
-      login.current.classList.add("signout-click");
-    }
-  };
-
-  const signupUser = (name, email, password) => {
-    const user = { name: name, email: email, password: password };
-    const config = {
-      headers: {
-        "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": "*",
-      },
-    };
-    axios
-      .post("/signup", user, config)
-      .then((results) => {
-        console.log(results.data);
-        setUser(results.data.user);
-      })
-      .catch((err) => console.log(err));
-  };
-
-  const getMilestones = (name) => {
-    if (name) {
-      axios
-        .get(`/milestones/${name}`)
-        .then((results) => setMilestones(results.data))
-        .catch((err) => console.log(err));
-    } else {
-      setMilestones([]);
-    }
+  /********** POST ENTRY ***********/
+  const showEntryForm = (el) => {
+    entry.current.classList.remove("hide");
   };
 
   const getPosts = (name) => {
@@ -175,15 +170,6 @@ const App = (props) => {
     } else {
       setPosts([]);
     }
-  };
-
-  const hideModal = () => {
-    login.current.classList.add("hide");
-  };
-
-  const showMilestone = () => {
-    entry.current.classList.add("hide");
-    milestone.current.classList.remove("hide");
   };
 
   const submitEntry = (e, entry, guided) => {
@@ -212,6 +198,7 @@ const App = (props) => {
       .catch((err) => console.log('POST err', err));
   };
 
+    /********** MILESTONES ***********/
   const submitMilestone = (title, details = null) => {
     const milestone = {
       title: title,
@@ -234,6 +221,22 @@ const App = (props) => {
       .catch((err) => console.log(err));
   };
 
+  const getMilestones = (name) => {
+    if (name) {
+      axios
+        .get(`/milestones/${name}`)
+        .then((results) => setMilestones(results.data))
+        .catch((err) => console.log(err));
+    } else {
+      setMilestones([]);
+    }
+  };
+
+  const showMilestone = () => {
+    entry.current.classList.add("hide");
+    milestone.current.classList.remove("hide");
+  };
+
   const getQuote = async (keyword = "inspirational") => {
     return await axios
       .get(`/quote/${keyword}`)
@@ -251,11 +254,11 @@ const App = (props) => {
       <div id="greet-wrapper">
         <Greet feeling={feeling} user={user} />
       </div>
-      {milestones[0] && (
-        <div id="progress-bar-wrapper">
-          <ProgressBar milestones={milestones} />
+      {/* {milestones[0] && (
+        <div id="milestone-bar-wrapper">
+          <MilestoneBar milestones={milestones} />
         </div>
-      )}
+      )} */}
       <div ref={feels} id="feelings-wrapper">
         <Feelings
           user={user}
@@ -272,8 +275,8 @@ const App = (props) => {
           showHome={showHome}
         />
       </div>
-      <div id="journal-wrapper">
-        <Journal posts={posts} />
+      <div id="hub-wrapper">
+        <Hub posts={posts} milestones={milestones}/>
       </div>
       <div id="milestone-wrapper" ref={milestone} className={"hide"}>
         <Milestone getQuote={getQuote} submitMilestone={submitMilestone} />

@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef, Fragment } from "react";
 import axios from "axios";
 
-const ProgressBar = (props) => {
+const MilestoneBar = (props) => {
   const [milestones, setMilestones] = useState([]);
 
   // useEffect(() => {
@@ -28,9 +28,9 @@ const ProgressBar = (props) => {
   );
 };
 
-export default ProgressBar;
+export default MilestoneBar;
 
-ProgressBar.defaultProps = {
+MilestoneBar.defaultProps = {
   user: {
     name: "Sarah",
     email: "sarah@gmail.com",

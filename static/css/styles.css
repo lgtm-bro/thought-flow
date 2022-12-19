@@ -1,3 +1,4 @@
+/* *******ELEMENTS******* */
 body,
 html,
 #root {
@@ -29,31 +30,45 @@ a {
 	height: 100%;
 }
 
+/* *******NAV******* */
 #nav-wrapper {
   float: right;
   margin: 0 35px;
 }
 
-#progress-bar-wrapper {
-  float: left;
-  width: 0 35%;
-  height:80%;
-  margin: 1% 3%;
-}
-
+/* *******FEELINGS******* */
 #feelings-wrapper, #entry-wrapper {
   display: inline-block;
   text-align: center;
-  width: 33%;
+  width: 60%;
   clear: both;
   margin: auto;
 }
 
-#journal-wrapper {
+/* *******ENTRY******* */
+.post-wrapper {
+  margin: 20px;
+}
+
+.post-date {
+  display: block;
+  margin: 5px;
+}
+
+.post-entry {
+  margin: 0;
+}
+
+/* *******SIDEBAR******* */
+#hub-wrapper {
   float: right;
 	margin: 0 5% 0 0;
-  width: 28%;
-	height: 75%;
+  width:35%;
+  height: 100%;
+}
+
+#journal-wrapper {
+  height: 75%;
   overflow-y: scroll;
 }
 
@@ -66,17 +81,11 @@ a {
   scrollbar-width: none;
 }
 
-.post-wrapper {
-  margin: 20px;
-}
-
-.post-date {
-  display: block;
-  margin: 5px;
-}
-
-.post-entry {
-  margin: 0;
+#progress-bar-wrapper {
+  float: left;
+  width: 0 35%;
+  height:80%;
+  margin: 1% 3%;
 }
 
 /* *******LOGIN******* */
