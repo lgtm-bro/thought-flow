@@ -9,7 +9,7 @@ const SoloForm = (props) => {
     e.preventDefault();
     props.submitEntry(e, entry, false);
     form.current.reset();
-    props.showHome();
+    // props.showHome();
   }
 
   const getEntry = (e) => {

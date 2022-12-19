@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "",
   "scripts": {
-    "build": "webpack --progress --config webpack.config.js --watch"
+    "build": "webpack --watch --progress --config webpack.config.js"
   },
   "dependencies": {
     "@babel/core": "^7.18.10",

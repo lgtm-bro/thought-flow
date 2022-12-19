@@ -12,7 +12,14 @@ const GuidedForm = (props) => {
   let entry = "";
 
   useEffect(() => {
-    if (isEmbracing !== undefined) setShowPrompt2(true);
+    if (isEmbracing !== undefined){
+      setShowPrompt2(true);
+    }
+    if (isEmbracing) {
+      setPrompt2('Embracing this feeling ')
+    } else {
+      setPrompt2('Resisting this feeling ')
+    }
   }, [isEmbracing]);
 
   useEffect(() => {
@@ -24,15 +31,23 @@ const GuidedForm = (props) => {
     setIsEmbracing(embracing.current.checked);
   };
 
-  const getPrompt = (e, func) => {
-    func(e.target.value);
+  const getPrompt = (e, prompt, func) => {
+    if (prompt === prompt2) {
+      if (isEmbracing) {
+        func('Embracing this feeling ' + e.target.value)
+      } else {
+        func('Resisting this feeling ' + e.target.value)
+      }
+    } else {
+      func(e.target.value)
+    }
   };
 
   const submitPost = (e) => {
     e.preventDefault();
     props.submitEntry(e, entry, true);
     // form.current.reset();
-    props.showHome();
+    // props.showHome();
   }
 
   const checkKey = (e) => {
@@ -56,7 +71,7 @@ const GuidedForm = (props) => {
         <textarea
           id="prompt1"
           required
-          onChange={(e) => getPrompt(e, setPrompt1)}
+          onChange={(e) => getPrompt(e, prompt1, setPrompt1)}
         ></textarea>
       </label>
 
@@ -104,7 +119,7 @@ const GuidedForm = (props) => {
             <br />
             <textarea
               id="prompt2"
-              onChange={(e) => getPrompt(e, setPrompt2)}
+              onChange={(e) => getPrompt(e, prompt2, setPrompt2)}
             ></textarea>
           </label>
           <br />
@@ -117,7 +132,7 @@ const GuidedForm = (props) => {
             <br />
             <textarea
               id="prompt3"
-              onChange={(e) => getPrompt(e, setPrompt3)}
+              onChange={(e) => getPrompt(e, prompt3, setPrompt3)}
             ></textarea>
           </label>
         </div>

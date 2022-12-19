@@ -108,7 +108,7 @@ class Milestone(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     title = db.Column(db.String(100), nullable=False)
-    msg = db.Column(db.Text, nullable=False)
+    msg = db.Column(db.Text)
 
     user = db.relationship("User", back_populates="milestones")
     user_session = db.relationship("UserSession", back_populates="milestone")

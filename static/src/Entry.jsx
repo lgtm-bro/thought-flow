@@ -5,15 +5,15 @@ import SoloForm from "./SoloForm.jsx";
 const Entry = (props) => {
   const [isGuided, setIsGuided] = useState(false);
   const [isSolo, setIsSolo] = useState(false);
-  const [entry, setEntry] = useState('');
+  const [entry, setEntry] = useState("");
   const guided_btn = useRef();
   const solo_btn = useRef();
 
   useEffect(() => {
-    if (!props.feeling){
+    if (!props.feeling) {
       reset();
     }
-  }, [props.feeling])
+  }, [props.feeling]);
 
   const getGuided = () => {
     setIsGuided(guided_btn.current.checked);
@@ -26,10 +26,10 @@ const Entry = (props) => {
     setIsSolo(false);
     solo_btn.current.checked = false;
     guided_btn.current.checked = false;
-  }
+  };
 
   return (
-    <Fragment >
+    <Fragment>
       <h3>How would you like to flow today?</h3>
       <form action="#">
         <input
@@ -51,25 +51,27 @@ const Entry = (props) => {
         />
         <label htmlFor="solo">Solo</label>
       </form>
-        {isGuided && (
-          <div id="guided-entry-form">
-            <GuidedForm feeling={props.feeling}
-                        feelingScore={props.feelingScore}
-                        reset={reset}
-                        submitEntry={props.submitEntry}
-                        showHome={props.showHome}
-            />
-          </div>
-        )}
-        {isSolo && (
-          <div id="solo-entry-form">
-            <SoloForm reset={reset}
-                      submitEntry={props.submitEntry}
-                      showHome={props.showHome}
-            />
-          </div>
-        )}
-        {/* {(isGuided || isSolo) && <button onClick={reset} >Cancel</button>}
+      {isGuided && (
+        <div id="guided-entry-form">
+          <GuidedForm
+            feeling={props.feeling}
+            feelingScore={props.feelingScore}
+            reset={reset}
+            submitEntry={props.submitEntry}
+            showHome={props.showHome}
+          />
+        </div>
+      )}
+      {isSolo && (
+        <div id="solo-entry-form">
+          <SoloForm
+            reset={reset}
+            submitEntry={props.submitEntry}
+            showHome={props.showHome}
+          />
+        </div>
+      )}
+      {/* {(isGuided || isSolo) && <button onClick={reset} >Cancel</button>}
         {(isGuided || isSolo) && <input type="submit" value="Let it go" />} */}
     </Fragment>
   );

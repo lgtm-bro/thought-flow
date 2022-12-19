@@ -2,6 +2,9 @@
 
 from flask import (Flask, render_template, redirect, request, jsonify, flash, session, abort)
 from jinja2 import StrictUndefined
+from random import choice
+import requests
+import os
 from model import connect_to_db, db
 import crud
 
@@ -116,6 +119,37 @@ def submit_post():
         return jsonify({"success": True, "msg": "Post successfully saved"}), 201
 
     return jsonify({"success": False, "msg": "The user is not in our system"}), 400
+
+
+@app.route('/milestones/<user>', methods=['POST'])
+def addMilestone(user):
+    user_id = crud.get_user_id(user)
+    title = request.json.get('title')
+    msg = request.json.get('details')
+
+    if user_id:
+      new_milestone = crud.create_milestone(user_id, title, msg)
+      db.session.add(new_milestone)
+      db.session.commit()
+
+      return jsonify({"success": True, "msg": "Milestone successfully saved"}), 201
+
+    return jsonify({"success": False, "msg": "The user is not in our system"}), 400
+
+
+@app.route('/quote/<keyword>')
+def getQuote(keyword):
+    token = os.environ['API_TOKEN']
+
+    headers = {'Authorization': f'Token token={token}',
+              'Content-Type': 'application/json'
+              }
+    res = requests.get(f'https://favqs.com/api/quotes/?filter={keyword}&type=tag', headers=headers)
+    quotes = res.json()['quotes']
+    quote = choice(quotes)
+
+    return jsonify(quote)
+
 
 
 
