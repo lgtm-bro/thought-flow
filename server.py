@@ -23,59 +23,7 @@ def show_home():
     return render_template('index.html')
 
 
-@app.route('/base_emotions')
-def get_base_emotions():
-    """Retrieves all base emotion names from the db and return them to the client"""
-
-    base_emotions = crud.get_all_base_emotions()
-
-    return jsonify(base_emotions)
-
-
-@app.route('/second_emotions/<base_choice>')
-def get_second_emotions(base_choice):
-    """Retrieves all sub emotion names for a given base emotion from the db and returns them to the client"""
-
-    second_emotions = crud.get_all_second_emotions(base_choice)
-
-    return jsonify(second_emotions)
-
-
-@app.route('/third_emotions/<second_choice>')
-def get_third_emotions(second_choice):
-    """Retrieves all sub emotion names for a given second emotion from the db and returns them to the client"""
-
-    third_emotions = crud.get_all_third_emotions(second_choice)
-
-    return jsonify(third_emotions)
-
-
-@app.route('/third_emotion/<name>')
-def get_third_emotion(name):
-    """Retrieves all fields of a given third emotion from the db and returns them to the client"""
-
-    emotion = crud.get_third_emotion(name)
-
-    return jsonify(emotion)
-
-
-@app.route('/milestones/<user>')
-def get_all_milestones(user):
-    """Retrieves all milestone titles for a given user from the db and return them to the client"""
-
-    milestones = crud.get_all_milestones(user)
-
-    return jsonify(milestones)
-
-
-@app.route('/posts/<user>')
-def get_all_posts(user):
-    """Retrieves all fields for all posts for a given user from the db and return them to the client"""
-
-    posts = crud.get_all_posts(user)
-
-    return jsonify(posts)
-
+#********************USER********************
 
 @app.route('/users/<email>')
 def get_user(email):
@@ -121,6 +69,55 @@ def signup_user():
     return jsonify({"success": True, "user": new_user.name, "msg": "User successfully created"}), 201
 
 
+#********************EMOTIONS********************
+
+@app.route('/base_emotions')
+def get_base_emotions():
+    """Retrieves all base emotion names from the db and return them to the client"""
+
+    base_emotions = crud.get_all_base_emotions()
+
+    return jsonify(base_emotions)
+
+
+@app.route('/second_emotions/<base_choice>')
+def get_second_emotions(base_choice):
+    """Retrieves all sub emotion names for a given base emotion from the db and returns them to the client"""
+
+    second_emotions = crud.get_all_second_emotions(base_choice)
+
+    return jsonify(second_emotions)
+
+
+@app.route('/third_emotions/<second_choice>')
+def get_third_emotions(second_choice):
+    """Retrieves all sub emotion names for a given second emotion from the db and returns them to the client"""
+
+    third_emotions = crud.get_all_third_emotions(second_choice)
+
+    return jsonify(third_emotions)
+
+
+@app.route('/third_emotion/<name>')
+def get_third_emotion(name):
+    """Retrieves all fields of a given third emotion from the db and returns them to the client"""
+
+    emotion = crud.get_third_emotion(name)
+
+    return jsonify(emotion)
+
+
+#********************POSTS********************
+
+@app.route('/posts/<user>')
+def get_all_posts(user):
+    """Retrieves all fields for all posts for a given user from the db and return them to the client"""
+
+    posts = crud.get_all_posts(user)
+
+    return jsonify(posts)
+
+
 @app.route('/posts', methods=['POST'])
 def submit_post():
     """Creates a new post record in the db for a given user"""
@@ -140,6 +137,17 @@ def submit_post():
         return jsonify({"success": True, "msg": "Post successfully saved"}), 201
 
     return jsonify({"success": False, "msg": "The user is not in our system"}), 400
+
+
+#********************MILESTONES********************
+
+@app.route('/milestones/<user>')
+def get_all_milestones(user):
+    """Retrieves all milestone titles for a given user from the db and return them to the client"""
+
+    milestones = crud.get_all_milestones(user)
+
+    return jsonify(milestones)
 
 
 @app.route('/milestones/<user>', methods=['POST'])
