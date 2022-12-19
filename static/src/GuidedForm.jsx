@@ -15,11 +15,6 @@ const GuidedForm = (props) => {
     if (isEmbracing !== undefined){
       setShowPrompt2(true);
     }
-    if (isEmbracing) {
-      setPrompt2('Embracing this feeling ')
-    } else {
-      setPrompt2('Resisting this feeling ')
-    }
   }, [isEmbracing]);
 
   useEffect(() => {
@@ -32,11 +27,17 @@ const GuidedForm = (props) => {
   };
 
   const getPrompt = (e, prompt, func) => {
-    if (prompt === prompt2) {
+    let input = e.target.value.substring(0, 2) !== 'I ' ?
+      e.target.value[0].toLowerCase() + e.target.value.substring(1) :
+      e.target.value
+
+    if (prompt === prompt1) {
+      func(`I am feeling ${props.feeling} because ` + input);
+    } else if (prompt === prompt2) {
       if (isEmbracing) {
-        func('Embracing this feeling ' + e.target.value)
+        func('I am embracing this, so ' + input);
       } else {
-        func('Resisting this feeling ' + e.target.value)
+        func('If I embraced this feeling, ' + input);
       }
     } else {
       func(e.target.value)
@@ -46,7 +47,8 @@ const GuidedForm = (props) => {
   const submitPost = (e) => {
     e.preventDefault();
     props.submitEntry(e, entry, true);
-    // form.current.reset();
+    form.current.reset();
+    setShowPrompt2(false);
     // props.showHome();
   }
 

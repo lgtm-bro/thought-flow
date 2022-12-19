@@ -202,13 +202,14 @@ const App = (props) => {
       entry: entry,
       guided: guided,
     };
+
     axios
       .post("/posts", post, config)
       .then((results) => {
         getPosts(user);
         showMilestone();
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.log('POST err', err));
   };
 
   const submitMilestone = (title, details = null) => {
