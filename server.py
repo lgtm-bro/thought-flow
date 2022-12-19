@@ -18,13 +18,15 @@ stars = '*' * 10
 
 @app.route('/')
 def show_home():
-    """View homepage."""
+    """Renders root JSX component"""
 
     return render_template('index.html')
 
 
 @app.route('/base_emotions')
 def get_base_emotions():
+    """Retrieves all base emotion names from the db and return them to the client"""
+
     base_emotions = crud.get_all_base_emotions()
 
     return jsonify(base_emotions)
@@ -32,6 +34,8 @@ def get_base_emotions():
 
 @app.route('/second_emotions/<base_choice>')
 def get_second_emotions(base_choice):
+    """Retrieves all sub emotion names for a given base emotion from the db and returns them to the client"""
+
     second_emotions = crud.get_all_second_emotions(base_choice)
 
     return jsonify(second_emotions)
@@ -39,6 +43,8 @@ def get_second_emotions(base_choice):
 
 @app.route('/third_emotions/<second_choice>')
 def get_third_emotions(second_choice):
+    """Retrieves all sub emotion names for a given second emotion from the db and returns them to the client"""
+
     third_emotions = crud.get_all_third_emotions(second_choice)
 
     return jsonify(third_emotions)
@@ -46,6 +52,8 @@ def get_third_emotions(second_choice):
 
 @app.route('/third_emotion/<name>')
 def get_third_emotion(name):
+    """Retrieves all fields of a given third emotion from the db and returns them to the client"""
+
     emotion = crud.get_third_emotion(name)
 
     return jsonify(emotion)
@@ -53,6 +61,8 @@ def get_third_emotion(name):
 
 @app.route('/milestones/<user>')
 def get_all_milestones(user):
+    """Retrieves all milestone titles for a given user from the db and return them to the client"""
+
     milestones = crud.get_all_milestones(user)
 
     return jsonify(milestones)
@@ -60,6 +70,8 @@ def get_all_milestones(user):
 
 @app.route('/posts/<user>')
 def get_all_posts(user):
+    """Retrieves all fields for all posts for a given user from the db and return them to the client"""
+
     posts = crud.get_all_posts(user)
 
     return jsonify(posts)
@@ -67,6 +79,8 @@ def get_all_posts(user):
 
 @app.route('/users/<email>')
 def get_user(email):
+    """Retrieves all fields for a user with the given email"""
+
     user = crud.get_user(email)
     if user:
         if user['password'] == request.args.get('password'):
@@ -86,6 +100,11 @@ def get_user(email):
 
 @app.route('/signup', methods=['POST'])
 def signup_user():
+    """Check that the user email does not exist in the db and creates a new user record in the db
+
+       Returns the user name field as user
+    """
+
     name = request.json.get('name')
     email = request.json.get('email')
     password = request.json.get('password')
@@ -104,6 +123,8 @@ def signup_user():
 
 @app.route('/posts', methods=['POST'])
 def submit_post():
+    """Creates a new post record in the db for a given user"""
+
     user = request.json.get('user')
     date= request.json.get('date')
     entry= request.json.get('entry')
@@ -123,6 +144,8 @@ def submit_post():
 
 @app.route('/milestones/<user>', methods=['POST'])
 def addMilestone(user):
+    """Creates a new milestone record in the db for a given user"""
+
     user_id = crud.get_user_id(user)
     title = request.json.get('title')
     msg = request.json.get('details')
@@ -139,6 +162,8 @@ def addMilestone(user):
 
 @app.route('/quote/<keyword>')
 def getQuote(keyword):
+    """Retrieves a quote from an external API based on a keyword"""
+
     token = os.environ['API_TOKEN']
 
     headers = {'Authorization': f'Token token={token}',
@@ -149,8 +174,6 @@ def getQuote(keyword):
     quote = choice(quotes)
 
     return jsonify(quote)
-
-
 
 
 if __name__ =='__main__':
