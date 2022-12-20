@@ -9,12 +9,13 @@ html,
   overflow: hidden;
 }
 
-#root {
+/* #root {
   margin: 4% auto;
-}
+} */
 
 h1 {
   text-align: center;
+  clear: both;
 }
 
 a {
@@ -33,7 +34,12 @@ a {
 /******** NAV ********/
 #nav-wrapper {
   float: right;
-  margin: 0 35px;
+  margin: 4% 35px 4% 0;
+}
+
+/******** GREET ********/
+#greet-wrapper {
+  margin: 1% 5%;
 }
 
 /******** FEELINGS ********/
@@ -119,6 +125,11 @@ a {
 }
 
 /******** SIGNUP ********/
+#signup-form {
+  display: inline-block;
+  text-align: left;
+}
+
 .signup-click {
   height: 400px !important;
 }
@@ -154,4 +165,28 @@ a {
   text-align: center;
   /* position: relative; */
   /* top: 15%; */
+}
+
+#profile-form {
+  display: inline-block;
+  text-align: left;
+  width: 50%;
+  margin: 5% 20%;
+}
+
+#profile-form > input[type=text], #profile-form > input[type=password] {
+  width: 75%;
+}
+
+#profile-form > #profile-form input, #profile-form label {
+  margin: 1% auto;
+}
+
+#profile-btns button {
+  margin: 0 1em;
+}
+
+#profile-btns {
+  width: 75%;
+  text-align: center;
 }

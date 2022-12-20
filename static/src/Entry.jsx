@@ -3,8 +3,8 @@ import GuidedForm from "./GuidedForm.jsx";
 import SoloForm from "./SoloForm.jsx";
 
 const Entry = (props) => {
-  const [isGuided, setIsGuided] = useState(false);
-  const [isSolo, setIsSolo] = useState(false);
+  const [isGuided, setIsGuided] = useState();
+  const [isSolo, setIsSolo] = useState();
   const [entry, setEntry] = useState("");
   const guided_btn = useRef();
   const solo_btn = useRef();
@@ -14,6 +14,13 @@ const Entry = (props) => {
       reset();
     }
   }, [props.feeling]);
+
+  useEffect(() => {
+    guided_btn.current.checked
+    getGuided();
+    console.log("guided", guided_btn.current.checked)
+    console.log("solo", solo_btn.current.checked)
+  }, [])
 
   const getGuided = () => {
     setIsGuided(guided_btn.current.checked);
@@ -31,7 +38,7 @@ const Entry = (props) => {
   return (
     <Fragment>
       <h3>How would you like to flow today?</h3>
-      <form action="#">
+      <form action="#" id="entry-form">
         <input
           type="radio"
           name="flow"

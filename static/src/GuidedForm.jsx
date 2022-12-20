@@ -65,7 +65,7 @@ const GuidedForm = (props) => {
     : "What would it feel like to embrace them?";
 
   return (
-    <form onSubmit={submitPost} ref={form}>
+    <form id="guided-form" onSubmit={submitPost} ref={form}>
       <br />
       <label htmlFor="prompt1">
         What experience or event {prompt1Key} you to feel {props.feeling}?

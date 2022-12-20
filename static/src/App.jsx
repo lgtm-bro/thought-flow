@@ -19,7 +19,7 @@ const App = (props) => {
   const [feeling, setFeeling] = useState();
   const [feelingScore, setFeelingScore] = useState();
   const [user, setUser] = useState(sessionStorage.getItem("user"));
-  const [email, setEmail] = useState();
+  const [email, setEmail] = useState(sessionStorage.getItem("email"));
   const [milestones, setMilestones] = useState([]);
   const [posts, setPosts] = useState([]);
 
@@ -34,6 +34,7 @@ const App = (props) => {
   useEffect(() => {
     if (user) {
       sessionStorage.setItem("user", user);
+      sessionStorage.setItem("email", email);
     }
     getMilestones(user);
     getPosts(user);
@@ -63,6 +64,10 @@ const App = (props) => {
     });
   };
 
+  const clearProfile = () => {
+    document.getElementById("profile-form").reset();
+  }
+
   const showHome = () => {
     feels.current.classList.remove("hide");
     hub.current.classList.remove("hide");
@@ -73,6 +78,7 @@ const App = (props) => {
     document.getElementById("base").selectedIndex = 0;
     document.getElementById("second-container").classList.add("hide");
     document.getElementById("third-container").classList.add("hide");
+    clearProfile();
   };
 
   const hideModal = () => {
@@ -99,7 +105,8 @@ const App = (props) => {
       setUser(user);
     } else {
       sessionStorage.removeItem("user");
-      setUser(sessionStorage.getItem("user"));
+      sessionStorage.removeItem("email");
+      setUser(null);
       setEmail(null);
     }
   };
@@ -170,17 +177,6 @@ const App = (props) => {
     entry.current.classList.remove("hide");
   };
 
-  const getPosts = (name) => {
-    if (name) {
-      axios
-        .get(`/posts/${name}`)
-        .then((results) => setPosts(results.data))
-        .catch((err) => console.log(err));
-    } else {
-      setPosts([]);
-    }
-  };
-
   const submitEntry = (e, entry, guided) => {
     e.preventDefault();
 
@@ -206,6 +202,29 @@ const App = (props) => {
       })
       .catch((err) => console.log("POST err", err));
   };
+
+  const getPosts = (name) => {
+    if (name) {
+      axios
+        .get(`/posts/${name}`)
+        .then((results) => setPosts(results.data))
+        .catch((err) => console.log(err));
+    } else {
+      setPosts([]);
+    }
+  };
+
+  const clearEntry = () => {
+    if (entry.current) {
+      if (entry.current.classList.contains('hide')) {
+        document.getElementById("entry-form").reset();
+        // document.getElementById("guided-form").reset();
+        // document.getElementById("solo-form").reset();
+        // document.getElementById("guided-entry-form").classList.add('hide');
+        // document.getElementById("solo-entry-form").classList.add('hide');
+      }
+    }
+  }
 
   /********** MILESTONES ***********/
   const submitMilestone = (title, details = null) => {
@@ -257,9 +276,11 @@ const App = (props) => {
   const showProfile = () => {
     profile.current.classList.remove("hide");
     feels.current.classList.add("hide");
+    entry.current.classList.add("hide");
     hub.current.classList.add("hide");
     login.current.classList.add("hide");
     greet.current.classList.add("hide");
+    clearEntry();
   };
 
 
@@ -273,7 +294,7 @@ const App = (props) => {
           showProfile={showProfile}
         />
       </div>
-      <br />
+      <br /><br />
       <h1>ThoughtFlow</h1>
       <div id="greet-wrapper" ref={greet}>
         <Greet feeling={feeling} user={user} />
@@ -297,6 +318,7 @@ const App = (props) => {
           feelingScore={feelingScore}
           submitEntry={submitEntry}
           showHome={showHome}
+          // hidden={entry.current.classList.contains('hide')}
         />
       </div>
       <div id="hub-wrapper" ref={hub}>
