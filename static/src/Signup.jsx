@@ -111,7 +111,7 @@ const Signup = (props) => {
 			<h4>Already have an account?
 				<a href="#login-wrapper" onClick={showLogin}>Log In</a>
 			</h4>
-      <form action="#" ref={form} onSubmit={(e) => signupUser(e)}>
+      <form action="#" id="signup-form" ref={form} onSubmit={(e) => signupUser(e)}>
 				<label htmlFor="signup-email">
           <span className="signup-name">First Name: </span>
           <input type="text" name="signup-name" required ref={name} />

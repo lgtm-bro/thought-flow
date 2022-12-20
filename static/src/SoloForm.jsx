@@ -18,7 +18,7 @@ const SoloForm = (props) => {
 
   return (
     <Fragment>
-      <form onSubmit={submitPost} ref={form}>
+      <form id="solo-form" onSubmit={submitPost} ref={form}>
         <br />
         <label htmlFor="solo_text">
         <span className="prompt">Tell us about it...</span>

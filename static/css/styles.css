@@ -1,4 +1,4 @@
-/* *******ELEMENTS******* */
+/******** ELEMENTS ********/
 body,
 html,
 #root {
@@ -9,12 +9,13 @@ html,
   overflow: hidden;
 }
 
-#root {
+/* #root {
   margin: 4% auto;
-}
+} */
 
 h1 {
   text-align: center;
+  clear: both;
 }
 
 a {
@@ -30,13 +31,18 @@ a {
 	height: 100%;
 }
 
-/* *******NAV******* */
+/******** NAV ********/
 #nav-wrapper {
   float: right;
-  margin: 0 35px;
+  margin: 4% 35px 4% 0;
 }
 
-/* *******FEELINGS******* */
+/******** GREET ********/
+#greet-wrapper {
+  margin: 1% 5%;
+}
+
+/******** FEELINGS ********/
 #feelings-wrapper, #entry-wrapper {
   display: inline-block;
   text-align: center;
@@ -59,7 +65,7 @@ a {
   margin: 0;
 }
 
-/* *******SIDEBAR******* */
+/******** SIDEBAR ********/
 #hub-wrapper {
   float: right;
 	margin: 0 5% 0 0;
@@ -88,7 +94,7 @@ a {
   margin: 1% 3%;
 }
 
-/* *******LOGIN******* */
+/******** LOGIN ********/
 #login-wrapper,
 #signup-wrapper {
   background-color: white;
@@ -118,7 +124,12 @@ a {
   /* margin: 0 40%; */
 }
 
-/* *******SIGNUP******* */
+/******** SIGNUP ********/
+#signup-form {
+  display: inline-block;
+  text-align: left;
+}
+
 .signup-click {
   height: 400px !important;
 }
@@ -143,8 +154,39 @@ a {
   color: green;
 }
 
-/* *******SIGNOUT******* */
+/******** SIGNOUT ********/
 .signout-click {
   width: 375px !important;
   height: 200px !important;
+}
+
+/******** PROFILE ********/
+#profile-wrapper {
+  text-align: center;
+  /* position: relative; */
+  /* top: 15%; */
+}
+
+#profile-form {
+  display: inline-block;
+  text-align: left;
+  width: 50%;
+  margin: 5% 20%;
+}
+
+#profile-form > input[type=text], #profile-form > input[type=password] {
+  width: 75%;
+}
+
+#profile-form > #profile-form input, #profile-form label {
+  margin: 1% auto;
+}
+
+#profile-btns button {
+  margin: 0 1em;
+}
+
+#profile-btns {
+  width: 75%;
+  text-align: center;
 }
