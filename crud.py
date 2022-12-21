@@ -1,7 +1,7 @@
 """CRUD operations"""
 
 from sqlalchemy import desc
-from model import User, BaseEmotion, SecondEmotion, ThirdEmotion, Post, Milestone, Prompt, UserSession, connect_to_db
+from model import User, BaseEmotion, SecondEmotion, ThirdEmotion, Post, Milestone, Prompt, UserSession, connect_to_db, db
 
 # ********USER********
 
@@ -33,6 +33,17 @@ def get_user_id(name):
 
     return None
 
+def update_user_info(name, email, newEmail, newPassword, currentPassword):
+    user = User.query.filter(User.email == email).update({
+            User.name: name,
+            User.email: newEmail or email,
+            User.password: newPassword or currentPassword
+        })
+
+    if user:
+        return user
+
+    return False
 
 
 # ********BASE_EMOTION********

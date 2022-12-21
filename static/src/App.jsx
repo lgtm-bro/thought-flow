@@ -283,6 +283,43 @@ const App = (props) => {
     clearEntry();
   };
 
+  const updateProfile = (name, profEmail, cp, np) => {
+    let userInfo;
+
+    if (profEmail === email) {
+      userInfo = {
+        name: name,
+        currentPassword: cp,
+        newPassword: np,
+        newEmail: null
+      }
+    } else {
+      userInfo = {
+        name: name,
+        currentPassword: cp,
+        newPassword: np,
+        newEmail: profEmail
+      }
+    }
+
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+      },
+    };
+
+    axios.post(`/update_user/${email}`, userInfo, config)
+      .then(res => {
+        console.log(res);
+        setUser(name);
+        if (profEmail) {
+          setEmail(profEmail);
+        }
+      })
+      .catch((err) => console.log(err));
+  }
+
 
   return (
     <div id="app-wrapper">
@@ -345,6 +382,7 @@ const App = (props) => {
           user={user}
           email={email}
           hide={showHome}
+          updateProfile={updateProfile}
         />
       </div>
     </div>

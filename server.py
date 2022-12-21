@@ -69,6 +69,30 @@ def signup_user():
     return jsonify({"success": True, "user": new_user.name, "email": new_user.email, "msg": "User successfully created"}), 201
 
 
+@app.route('/update_user/<email>', methods=['POST'])
+def update_user(email):
+    """Updates user info with input from the profile page"""
+
+    name = request.json.get('name')
+    currentPassword = request.json.get('currentPassword')
+    newPassword = request.json.get('newPassword')
+    newEmail = request.json.get('newEmail')
+
+    # print(stars, name, email, currentPassword, newPassword, newEmail, stars)
+
+    user = crud.get_user(email)
+    if currentPassword != user['password']:
+        return jsonify({"success": False, "msg": "The password you've entered is incorrect."}), 401
+
+    updated_user = crud.update_user_info(name, email, newEmail, newPassword, currentPassword)
+    db.session.commit()
+
+    if updated_user:
+        return jsonify({"success": True, "msg": "User successfully update"}), 201
+
+    return jsonify({"success": False, "msg": "There is no account with that email"}), 401
+
+
 #********************EMOTIONS********************
 
 @app.route('/base_emotions')
