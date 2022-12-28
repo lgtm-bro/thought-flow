@@ -163,6 +163,19 @@ def submit_post():
     return jsonify({"success": False, "msg": "The user is not in our system"}), 400
 
 
+@app.route('/posts/delete/<id>', methods=['DELETE'])
+def delete_post(id):
+    """Deletes a post record with the given id"""
+
+    res = crud.delete_post(id)
+
+    if res:
+        db.session.commit()
+        return jsonify({"success": True, "msg": "Post successfully deleted"}), 200
+
+    return jsonify({"success": False, "msg": "The post is not in our system"}), 400
+
+
 #********************MILESTONES********************
 
 @app.route('/milestones/<user>')

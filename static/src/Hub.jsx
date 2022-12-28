@@ -34,10 +34,10 @@ const Hub = (props) => {
 				{/* <a>Progress</a> */}
 			</nav>
 			<div id="journal-wrapper" ref={journalEntries}>
-				<Journal posts={props.posts} />
+				<Journal posts={props.posts} deletePost={props.deletePost}/>
 			</div>
 			<div id="milestone-bar-wrapper" ref={milestoneEntries} className="hide">
-				<MilestoneBar milestones={props.milestones} />
+				<MilestoneBar milestones={props.milestones} addMilestoneClick={props.addMilestoneClick}/>
 			</div>
 		</Fragment>
 	)

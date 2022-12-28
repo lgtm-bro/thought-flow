@@ -7,7 +7,7 @@ const Journal = (props) => {
   return (
     <div id="journal-container">
 			{props.posts.map(p =>
-				<Post post={p} key={p.id} />
+				<Post post={p} key={p.id} id={p.id} deletePost={props.deletePost} />
 				)}
     </div>
   );

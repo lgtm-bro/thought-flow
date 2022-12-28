@@ -1,9 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { DateTime } from "luxon";
+import { IoRemoveOutline, IoPencil } from "react-icons/io5";
 
+//need to handle case when page reloads with edited entry
 const Post = (props) => {
   const [post, setPost] = useState(props.post.entry);
   const date = DateTime.fromISO(props.post.date).toLocaleString("ff");
+
+  const postDiv = useRef();
+  const done = useRef();
   let entryArr = post.split('\n\n');
 
   useEffect(() => {
@@ -21,22 +26,55 @@ const Post = (props) => {
                 props.post.entry.slice(0, 250) + "..." :
                 props.post.entry;
 
-  const expandEntry = () => {
+  const expandEntry = (e) => {
     if (post.length < 254) {
       setPost(props.post.entry);
-    } else {
+    } else if (!postDiv.current.isContentEditable) {
       setPost(entry);
     }
-    console.log(post)
   };
+
+  const editPost = (e) => {
+    postDiv.current.contentEditable = true;
+    expandEntry();
+    done.current.classList.remove("hide")
+
+    // postDiv.current.contentEditable = !postDiv.current.contentEditable;
+  }
+
+  const saveEdit = () => {
+    console.log(postDiv.current.innerText)
+    setPost(postDiv.current.innerText);
+    postDiv.current.contentEditable = false;
+    done.current.classList.add("hide");
+  }
 
 
   return (
-    <div className="post-wrapper" onClick={expandEntry}>
+    <div className="post-wrapper" >
       <span className="post-date">{date}</span>
-      {entryArr.map((p, i) =>
-        <p key={i}>{p}</p>
-      )}
+      <span className="icon-container">
+        <span className="delete-icon icon"><IoRemoveOutline className="icon" onClick={() => props.deletePost(props.post.id)}/></span>
+        <span className="edit-icon icon" onClick={editPost}><IoPencil className="icon"/></span>
+      </span>
+      <div
+        id={`post-${props.post.id}`}
+        contentEditable="false"
+        ref={postDiv}
+        onClick={expandEntry}
+      >
+        {entryArr.map((p, i) =>
+          <p key={i}>{p}</p>
+        )}
+        <button
+          value="Done"
+          ref={done}
+          className="hide"
+          onClick={saveEdit}
+        >
+          Done
+        </button>
+      </div>
     </div>
   );
 };

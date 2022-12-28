@@ -78,6 +78,7 @@ const Milestone = (props) => {
               name="milestone-title"
               id="milestone-title"
               maxLength="100"
+              required
               onChange={e => getInput(e, setTitle)}
               // ref={title}
             />
@@ -102,6 +103,8 @@ const Milestone = (props) => {
       </div>
       <div id="quote-wrapper" className="hide" ref={quoteContainer}>
         <Quote getQuote={props.getQuote}/>
+        <a href="#">Add an entry</a>
+        <a href="#">Add a milestone</a>
       </div>
     </Fragment>
   );

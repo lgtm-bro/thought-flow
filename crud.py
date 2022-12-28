@@ -142,6 +142,10 @@ def get_all_posts(user):
     return result
 
 
+def delete_post(id):
+    return Post.query.filter(Post.id == id).delete()
+
+
 # ********MILESTONE********
 
 def create_milestone(user_id, title, msg):

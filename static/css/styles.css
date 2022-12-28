@@ -52,6 +52,9 @@ a {
 }
 
 /* *******ENTRY******* */
+
+
+/******** POST ********/
 .post-wrapper {
   margin: 20px;
 }
@@ -63,6 +66,14 @@ a {
 
 .post-entry {
   margin: 0;
+}
+
+.icon-container {
+  margin-top: 100px;
+}
+
+.post-wrapper p:first-of-type {
+  margin-top: 0;
 }
 
 /******** SIDEBAR ********/

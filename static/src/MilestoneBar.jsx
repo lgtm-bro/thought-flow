@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef, Fragment } from "react";
 import axios from "axios";
+import { AiOutlinePlus } from "react-icons/ai";
 
 const MilestoneBar = (props) => {
   const [milestones, setMilestones] = useState([]);
@@ -21,6 +22,9 @@ const MilestoneBar = (props) => {
         <br />
         So Far you have...
       </h4>
+      <h5> Add a milestone
+        <span onClick={props.addMilestoneClick}><AiOutlinePlus/></span>
+      </h5>
       {props.milestones.map((m) => (
         <div key={m.id}>{m.title}</div>
       ))}

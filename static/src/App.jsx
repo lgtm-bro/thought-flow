@@ -73,6 +73,7 @@ const App = (props) => {
     hub.current.classList.remove("hide");
     greet.current.classList.remove("hide");
     entry.current.classList.add("hide");
+    milestone.current.classList.add("hide");
     profile.current.classList.add("hide");
     // milestone.current.classList.add("hide");
     document.getElementById("base").selectedIndex = 0;
@@ -226,6 +227,17 @@ const App = (props) => {
     }
   }
 
+  /********** JOURNAL ***********/
+  const deletePost = (id) => {
+    // const data = { data: { id } }
+    axios.delete(`/posts/delete/${id}`)
+    .then((results) => {
+      console.log(results);
+      getPosts(user);
+    })
+    .catch((err) => console.log(err));
+  }
+
   /********** MILESTONES ***********/
   const submitMilestone = (title, details = null) => {
     const milestone = {
@@ -271,6 +283,11 @@ const App = (props) => {
       .then((res) => res.data)
       .catch((err) => console.log(err));
   };
+
+  const addMilestoneClick = () => {
+    feels.current.classList.add('hide');
+    showMilestone();
+  }
 
   /********** PROFILE ***********/
   const showProfile = () => {
@@ -359,10 +376,18 @@ const App = (props) => {
         />
       </div>
       <div id="hub-wrapper" ref={hub}>
-        <Hub posts={posts} milestones={milestones} />
+        <Hub
+          posts={posts}
+          milestones={milestones}
+          addMilestoneClick={addMilestoneClick}
+          deletePost={deletePost}
+        />
       </div>
       <div id="milestone-wrapper" ref={milestone} className={"hide"}>
-        <Milestone getQuote={getQuote} submitMilestone={submitMilestone} />
+        <Milestone
+          getQuote={getQuote}
+          submitMilestone={submitMilestone}
+        />
       </div>
       <div id="login-wrapper" className="hide" ref={login}>
         <Login
