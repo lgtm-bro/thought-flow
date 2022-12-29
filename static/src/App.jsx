@@ -377,7 +377,6 @@ const App = (props) => {
           feelingScore={feelingScore}
           submitEntry={submitEntry}
           showHome={showHome}
-          // hidden={entry.current.classList.contains('hide')}
         />
       </div>
       <div id="hub-wrapper" ref={hub}>
