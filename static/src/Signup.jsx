@@ -16,17 +16,12 @@ const Signup = (props) => {
 
   const emailCheck = /^[a-zA-Z]\w+@\w+\.\w{2,4}/;
 
-  // useEffect(() => {
-  //   console.log('pw', pw)
-  //   console.log('pw2', pw2)
-  // }, [pw, pw2])
-
   const getPw = (e, method) => {
     method(e.target.value);
   }
 
   const verifyPw = (res) => {
-    setPwVerified(res)
+    setPwVerified(res);
   }
 
   const showLogin = () => {
