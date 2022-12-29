@@ -88,6 +88,7 @@ const App = (props) => {
     document.getElementById("base").selectedIndex = 0;
     document.getElementById("second-container").classList.add("hide");
     document.getElementById("third-container").classList.add("hide");
+    setFeeling();
     clearProfile();
   };
 
