@@ -5,6 +5,9 @@ const Nav = (props) => {
   let status = props.user ? "Sign Out" : "Log In";
 
   const changeStatus = () => {
+    if (status === "Log In") {
+      props.loginClick();
+    }
     props.showLogin();
   }
 

@@ -48,20 +48,30 @@ const App = (props) => {
     getPosts(user);
   }, []);
 
-  useEffect(() => {
-    clickOffModal();
-  }, []);
 
   /******** CHANGE DISPLAY ********/
-  const clickOffModal = () => {
-    document.getElementById("root").addEventListener("click", (e) => {
+  const loginClick = () => {
+    login.current.classList.remove("signup-click");
+    login.current.classList.remove("signout-click");
+    document.getElementById('signup-container').classList.add('hide');
+    document.getElementById('login-container').classList.remove('hide');
+  };
+
+  const hideModal = () => {
+    loginClick();
+    login.current.classList.add("hide");
+  };
+
+  const clickOffModal = (e) => {
+    console.log('app click')
+    if (e) {
       if (
         !login.current.contains(e.target) &&
         !e.target.classList.contains("login")
       ) {
         login.current.classList.add("hide");
       }
-    });
+    }
   };
 
   const clearProfile = () => {
@@ -75,15 +85,10 @@ const App = (props) => {
     entry.current.classList.add("hide");
     milestone.current.classList.add("hide");
     profile.current.classList.add("hide");
-    // milestone.current.classList.add("hide");
     document.getElementById("base").selectedIndex = 0;
     document.getElementById("second-container").classList.add("hide");
     document.getElementById("third-container").classList.add("hide");
     clearProfile();
-  };
-
-  const hideModal = () => {
-    login.current.classList.add("hide");
   };
 
   /********** USER ***********/
@@ -118,15 +123,8 @@ const App = (props) => {
     login.current.classList.add("signup-click");
   };
 
-  const loginClick = () => {
-    login.current.classList.remove("signup-click");
-    login.current.classList.remove("signout-click");
-  };
-
   const showLogin = () => {
     login.current.classList.remove("hide");
-    loginClick();
-    clickOffModal();
   };
 
   const signupUser = (name, email, password) => {
@@ -344,13 +342,14 @@ const App = (props) => {
 
 
   return (
-    <div id="app-wrapper">
+    <div id="app-wrapper" onClick={clickOffModal}>
       <div id="nav-wrapper">
         <Nav
           user={user}
           showLogin={showLogin}
           showHome={showHome}
           showProfile={showProfile}
+          loginClick={loginClick}
         />
       </div>
       <br /><br />
