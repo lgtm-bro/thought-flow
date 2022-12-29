@@ -113,11 +113,6 @@ const App = (props) => {
   };
 
   /******** LOGIN / SIGNUP ********/
-  const showLogin = () => {
-    login.current.classList.remove("hide");
-
-    clickOffModal();
-  };
 
   const signupClick = () => {
     login.current.classList.add("signup-click");
@@ -126,6 +121,12 @@ const App = (props) => {
   const loginClick = () => {
     login.current.classList.remove("signup-click");
     login.current.classList.remove("signout-click");
+  };
+
+  const showLogin = () => {
+    login.current.classList.remove("hide");
+    loginClick();
+    clickOffModal();
   };
 
   const signupUser = (name, email, password) => {
@@ -139,9 +140,9 @@ const App = (props) => {
     axios
       .post("/signup", user, config)
       .then((results) => {
-        console.log(results.data);
+        console.log('results', results.data);
         setUser(results.data.user);
-        setEmail(result.data.email);
+        setEmail(results.data.email);
       })
       .catch((err) => console.log(err));
   };
@@ -291,13 +292,17 @@ const App = (props) => {
 
   /********** PROFILE ***********/
   const showProfile = () => {
-    profile.current.classList.remove("hide");
-    feels.current.classList.add("hide");
-    entry.current.classList.add("hide");
-    hub.current.classList.add("hide");
-    login.current.classList.add("hide");
-    greet.current.classList.add("hide");
-    clearEntry();
+    if (user) {
+      profile.current.classList.remove("hide");
+      feels.current.classList.add("hide");
+      entry.current.classList.add("hide");
+      hub.current.classList.add("hide");
+      login.current.classList.add("hide");
+      greet.current.classList.add("hide");
+      clearEntry();
+    } else {
+      alert("You must Login to view Profile")
+    }
   };
 
   const updateProfile = (name, profEmail, cp, np) => {

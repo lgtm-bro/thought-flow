@@ -34,6 +34,12 @@ const Login = (props) => {
     props.signupClick();
   };
 
+  const hideSignup = () => {
+    signup.current.classList.add('hide');
+    login.current.classList.remove("hide");
+    props.hide();
+  }
+
   const showLogin = () => {
     login.current.classList.remove("hide");
     signup.current.classList.add("hide");
@@ -101,7 +107,7 @@ const Login = (props) => {
           <Signup
             showLogin={showLogin}
             signupUser={props.signupUser}
-            hide={props.hide}
+            hide={hideSignup}
           />
         </div>
       </Fragment>

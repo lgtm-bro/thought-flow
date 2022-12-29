@@ -1,108 +1,78 @@
 import React, { useState, useEffect, useRef, Fragment } from "react";
 import { BiShow } from "react-icons/bi";
+import Password from "./Password.jsx";
 
 const Signup = (props) => {
-  const [isUpper, setIsUpper] = useState(false);
-  const [isLower, setIsLower] = useState(false);
-  const [isNum, setIsNum] = useState(false);
-  const [isSymbol, setIsSymbol] = useState(false);
-  const [isLen, setIsLen] = useState(false);
+  const [pw, setPw] = useState('');
+  const [pw2, setPw2] = useState('');
+  const [pwVerified, setPwVerified] = useState(false);
 
 
 	const name = useRef();
   const email = useRef();
   const password = useRef();
+  const password2 = useRef();
 	const form = useRef();
-  let upperBox = useRef();
-  let lowerBox = useRef();
-  let numBox = useRef();
-  let symbolBox = useRef();
-  let lenBox = useRef();
-
-  useEffect(() => {
-    if (isUpper) {
-      upperBox.current.classList.add('checked');
-    } else {
-      upperBox.current.classList.remove('checked');
-    }
-  }, [isUpper])
-
-  useEffect(() => {
-    if (isLower) {
-      lowerBox.current.classList.add('checked');
-    } else {
-      lowerBox.current.classList.remove('checked');
-    }
-  }, [isLower])
-
-  useEffect(() => {
-    if (isNum) {
-      numBox.current.classList.add('checked');
-    } else {
-      numBox.current.classList.remove('checked');
-    }
-  }, [isNum])
-
-  useEffect(() => {
-    if (isSymbol) {
-      symbolBox.current.classList.add('checked');
-    } else {
-      symbolBox.current.classList.remove('checked');
-    }
-  }, [isSymbol])
-
-  useEffect(() => {
-    if (isLen) {
-      lenBox.current.classList.add('checked');
-    } else {
-      lenBox.current.classList.remove('checked');
-    }
-  }, [isLen])
-
 
   const emailCheck = /^[a-zA-Z]\w+@\w+\.\w{2,4}/;
-  const checkUpper = /(?=.*[A-Z]).+/;
-  const checkLower = /(?=.*[a-z]).+/;
-  const checkNum = /(?=.*\d).+/;
-  const checkSymbol = /(?=.*[!@#$%^&*]).+/;
 
+  // useEffect(() => {
+  //   console.log('pw', pw)
+  //   console.log('pw2', pw2)
+  // }, [pw, pw2])
+
+  const getPw = (e, method) => {
+    method(e.target.value);
+  }
+
+  const verifyPw = (res) => {
+    setPwVerified(res)
+  }
 
   const showLogin = () => {
     form.current.reset();
+    password.current.value = '';
     props.showLogin();
   }
 
-  const setReqs = (e) => {
-    let pw = e.target.value;
-    setIsUpper(checkUpper.test(pw));
-    setIsLower(checkLower.test(pw));
-    setIsNum(checkNum.test(pw));
-    setIsSymbol(checkSymbol.test(pw));
-    setIsLen( pw.length > 7);
+  const showPassword = (el) => {
+    if (el.current.type === 'password') {
+      el.current.type = 'text';
+    } else {
+      el.current.type = 'password';
+    }
+  }
+
+  const cancelSignup = (e) => {
+    setPw('');
+    form.current.reset();
+    props.hide();
   }
 
   const signupUser = (e) => {
     e.preventDefault();
-    if(!emailCheck.test(email.current.value)){
+    e.stopPropagation();
+
+    if(name.current.value === '') {
+      return alert("Please enter a name")
+    }
+
+    if(!emailCheck.test(email.current.value)) {
       return alert("Please enter a valid email")
     }
 
-    if(!(isUpper && isLower && isNum && isSymbol & isLen)){
+    if (!pwVerified) {
       return alert("Please enter a valid password")
+    }
+
+    if (pw !== pw2) {
+      return alert("Passwords do not match")
     }
 
     props.signupUser(name.current.value, email.current.value, password.current.value);
 		form.current.reset();
 		props.hide();
   };
-
-  const showPassword = () => {
-    if (password.current.type === 'password') {
-      password.current.type = 'text';
-    } else {
-      password.current.type = 'password';
-    }
-  }
 
 
   return (
@@ -114,39 +84,43 @@ const Signup = (props) => {
       <form action="#" id="signup-form" ref={form} onSubmit={(e) => signupUser(e)}>
 				<label htmlFor="signup-email">
           <span className="signup-name">First Name: </span>
-          <input type="text" name="signup-name" required ref={name} />
+          <input type="text" name="signup-name" ref={name} />
         </label>
         <br />
         <br />
         <label htmlFor="signup-email">
           <span className="signup-label">Email: </span>
-          <input type="text" name="signup-email" required ref={email} />
+          <input type="text" name="signup-email" ref={email} />
         </label>
         <br />
         <br />
-        <label htmlFor="signup-password">
+         <label htmlFor="signup-password">
           <span className="signup-label">Password: </span>
           <input type="password"
                  name="signup-password"
-                 required ref={password}
-                 onChange={setReqs}
+                 ref={password}
+                 onChange={(e) => getPw(e, setPw)}
           />
-          <span className="eye" onClick={showPassword}>
+          <span className="eye" onClick={() => showPassword(password)}>
             <BiShow />
           </span>
         </label>
         <br />
         <br />
-        <div>Your password should contain:</div>
-        <ul id="pass-reqs">
-          <li ref={lowerBox}>at least one lowercase letter</li>
-          <li ref={upperBox}>at least one uppercase letter</li>
-          <li ref={numBox}>at least one number</li>
-          <li ref={symbolBox}>at least one special character</li>
-          <li ref={lenBox}>at least eight characters</li>
-        </ul>
+        <label htmlFor="signup-password-confirm">
+          <span className="signup-label">Confirm Password: </span>
+          <input type="password"
+                 name="signup-password-confirm"
+                 ref={password2}
+                 onChange={(e) => getPw(e, setPw2)}
+          />
+          <span className="eye" onClick={() => showPassword(password2)}>
+            <BiShow />
+          </span>
+        </label>
+        <Password pw={pw} verify={verifyPw}/>
         <div>
-          <button onClick={props.hide}>Cancel</button>
+          <button type="button" onClick={cancelSignup}>Cancel</button>
           <input type="submit" value="Sign Up" id="signup-btn" />
         </div>
       </form>
