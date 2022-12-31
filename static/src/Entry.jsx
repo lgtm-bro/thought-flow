@@ -18,8 +18,6 @@ const Entry = (props) => {
   useEffect(() => {
     guided_btn.current.checked
     getGuided();
-    console.log("guided", guided_btn.current.checked)
-    console.log("solo", solo_btn.current.checked)
   }, [])
 
   const getGuided = () => {

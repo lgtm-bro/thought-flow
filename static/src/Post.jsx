@@ -67,6 +67,7 @@ const Post = (props) => {
           contentEditable="false"
           ref={postDiv}
           onClick={expandEntry}
+          suppressContentEditableWarning={true}
         >
           {entryArr.map((p, i) =>
             <p key={i}>{p}</p>
