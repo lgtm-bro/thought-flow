@@ -33,7 +33,9 @@ const Profile = (props) => {
   };
 
   const checkPasswords = () => {
-    return (password.current.value = passwordConfirm.current.value);
+	console.log('passwords checked')
+	console.log(newPassword.current.value, passwordConfirm.current.value)
+    return newPassword.current.value === passwordConfirm.current.value
   };
 
   const validateEmail = (e) => {
@@ -43,15 +45,19 @@ const Profile = (props) => {
 
   const submitChanges = (e) => {
     e.preventDefault();
+
     if (!validateEmail(email)) {
-      alert("Please enter a valid email");
-    } else if (!checkPasswords) {
-      alert("The new passwords don't match");
-    } else {
-      if (newPw) {
+      return alert("Please enter a valid email");
+    }
+
+	if (newPw) {
 		if (!pwVerified) {
 			return alert("Please make sure that your new password meets all requirements")
 		}
+
+		if (!checkPasswords()) {
+			return alert("The new passwords don't match");
+		  }
 
         props.updateProfile(
           name,
@@ -62,8 +68,9 @@ const Profile = (props) => {
       } else {
         props.updateProfile(name, email, password.current.value, null);
       }
+
+	  setNewPw('');
       form.current.reset();
-    }
   };
 
   return (
@@ -127,7 +134,7 @@ const Profile = (props) => {
         <br />
         <br />
         <div id="profile-btns">
-          <button onClick={cancelForm}>Cancel</button>
+          <button type="button" onClick={cancelForm}>Cancel</button>
           <input type="submit" value="Update Info" />
         </div>
       </form>

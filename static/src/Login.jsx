@@ -17,8 +17,8 @@ const Login = (props) => {
   };
 
   const signoutUser = () => {
-    cancel.current.classList.add("hide");
-    signout.current.classList.add("hide");
+
+    if (signout.current) signout.current.classList.add("hide");
     props.hide();
     props.clear();
   };
@@ -59,7 +59,7 @@ const Login = (props) => {
     return (
       <Fragment>
         <h3>Are you sure you want to sign out?</h3>
-        <button ref={cancel} onClick={props.hide}>
+        <button type="button" ref={cancel} onClick={props.hide}>
           Cancel
         </button>
         <button ref={signout} onClick={signoutUser}>

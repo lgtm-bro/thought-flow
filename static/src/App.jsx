@@ -53,17 +53,21 @@ const App = (props) => {
   const loginClick = () => {
     login.current.classList.remove("signup-click");
     login.current.classList.remove("signout-click");
-    document.getElementById('signup-container').classList.add('hide');
-    document.getElementById('login-container').classList.remove('hide');
+
+    if (document.getElementById('signup-container')) {
+      document.getElementById('login-container').classList.remove('hide');
+    }
+
+    if (document.getElementById('signup-container')) {
+      document.getElementById('signup-container').classList.add('hide');
+    }
   };
 
   const hideModal = () => {
-    loginClick();
     login.current.classList.add("hide");
   };
 
   const clickOffModal = (e) => {
-    console.log('app click')
     if (e) {
       if (
         !login.current.contains(e.target) &&
@@ -119,7 +123,6 @@ const App = (props) => {
   };
 
   /******** LOGIN / SIGNUP ********/
-
   const signupClick = () => {
     login.current.classList.add("signup-click");
   };
@@ -227,6 +230,22 @@ const App = (props) => {
     }
   }
 
+  const updateEntry = (id, newEntry) => {
+    const entry = { newEntry }
+
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+      },
+    };
+
+    axios.put(`/posts/update/${id}`, entry, config)
+      .then(res => console.log(res.data))
+      .catch((err) => alert(err.response.data.msg))
+
+  }
+
   /********** JOURNAL ***********/
   const deletePost = (id) => {
     // const data = { data: { id } }
@@ -330,7 +349,7 @@ const App = (props) => {
       },
     };
 
-    axios.post(`/update_user/${email}`, userInfo, config)
+    axios.put(`/update_user/${email}`, userInfo, config)
       .then(res => {
         console.log(res);
         setUser(name);
@@ -338,7 +357,7 @@ const App = (props) => {
           setEmail(profEmail);
         }
       })
-      .catch((err) => console.log(err));
+      .catch((err) => alert(err.response.data.msg))
   }
 
 
@@ -385,6 +404,7 @@ const App = (props) => {
           milestones={milestones}
           addMilestoneClick={addMilestoneClick}
           deletePost={deletePost}
+          updateEntry={updateEntry}
         />
       </div>
       <div id="milestone-wrapper" ref={milestone} className={"hide"}>

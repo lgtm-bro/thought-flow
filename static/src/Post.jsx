@@ -8,6 +8,7 @@ const Post = (props) => {
   const date = DateTime.fromISO(props.post.date).toLocaleString("ff");
 
   const postDiv = useRef();
+  const postContainer = useRef();
   const done = useRef();
   let entryArr = post.split('\n\n');
 
@@ -43,8 +44,9 @@ const Post = (props) => {
   }
 
   const saveEdit = () => {
-    console.log(postDiv.current.innerText)
-    setPost(postDiv.current.innerText);
+    console.log(postDiv.current.value)
+    props.updateEntry(props.post.id, postDiv.current.innerText);
+    setPost(props.post.entry);
     postDiv.current.contentEditable = false;
     done.current.classList.add("hide");
   }
@@ -58,14 +60,18 @@ const Post = (props) => {
         <span className="edit-icon icon" onClick={editPost}><IoPencil className="icon"/></span>
       </span>
       <div
-        id={`post-${props.post.id}`}
-        contentEditable="false"
-        ref={postDiv}
-        onClick={expandEntry}
+        ref={postContainer}
       >
-        {entryArr.map((p, i) =>
-          <p key={i}>{p}</p>
-        )}
+        <div
+          id={`post-${props.post.id}`}
+          contentEditable="false"
+          ref={postDiv}
+          onClick={expandEntry}
+        >
+          {entryArr.map((p, i) =>
+            <p key={i}>{p}</p>
+          )}
+        </div>
         <button
           value="Done"
           ref={done}

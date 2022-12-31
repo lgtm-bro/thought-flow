@@ -142,6 +142,14 @@ def get_all_posts(user):
     return result
 
 
+def update_post(id, entry):
+    post = Post.query.filter(Post.id == id).update({
+        Post.entry: entry
+        })
+
+    return post
+
+
 def delete_post(id):
     return Post.query.filter(Post.id == id).delete()
 

@@ -69,7 +69,7 @@ def signup_user():
     return jsonify({"success": True, "user": new_user.name, "email": new_user.email, "msg": "User successfully created"}), 201
 
 
-@app.route('/update_user/<email>', methods=['POST'])
+@app.route('/update_user/<email>', methods=['PUT'])
 def update_user(email):
     """Updates user info with input from the profile page"""
 
@@ -82,7 +82,7 @@ def update_user(email):
 
     user = crud.get_user(email)
     if currentPassword != user['password']:
-        return jsonify({"success": False, "msg": "The password you've entered is incorrect."}), 401
+        return jsonify({"success": False, "msg": "The current password you've entered is incorrect."}), 401
 
     updated_user = crud.update_user_info(name, email, newEmail, newPassword, currentPassword)
     db.session.commit()
@@ -161,6 +161,19 @@ def submit_post():
         return jsonify({"success": True, "msg": "Post successfully saved"}), 201
 
     return jsonify({"success": False, "msg": "The user is not in our system"}), 400
+
+
+@app.route('/posts/update/<id>', methods=['PUT'])
+def updatePost(id):
+
+    entry = request.json.get('newEntry')
+    res = crud.update_post(id, entry)
+
+    if res:
+        db.session.commit()
+        return jsonify({"success": True, "msg": "Post successfully updated"}), 200
+
+    return jsonify({"success": False, "msg": "The post is not in our system"}), 400
 
 
 @app.route('/posts/delete/<id>', methods=['DELETE'])

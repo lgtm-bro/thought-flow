@@ -1,14 +1,19 @@
 import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
-import Post from "./Post.jsx"
+import Post from "./Post.jsx";
 
 const Journal = (props) => {
-
   return (
     <div id="journal-container">
-			{props.posts.map(p =>
-				<Post post={p} key={p.id} id={p.id} deletePost={props.deletePost} />
-				)}
+      {props.posts.map((p) => (
+        <Post
+          post={p}
+          key={p.id}
+          id={p.id}
+          deletePost={props.deletePost}
+          updateEntry={props.updateEntry}
+        />
+      ))}
     </div>
   );
 };
