@@ -1,15 +1,19 @@
 import React, { useEffect, useState, useRef, Fragment } from "react";
 import axios from "axios";
 import { DateTime } from "luxon";
+import { Route, Link, Routes, Navigate } from "react-router-dom";
 
+import index from "./index.jsx";
+import Home from "./Home.jsx";
 import Entry from "./Entry.jsx";
 import Feelings from "./Feelings.jsx";
 import Hub from "./Hub.jsx";
 import MilestoneBar from "./MilestoneBar.jsx";
 import Journal from "./Journal.jsx";
 import Login from "./Login.jsx";
+import UserAuth from "./UserAuth.jsx";
 import Signup from "./Signup.jsx";
-import Nav from "./Nav.jsx";
+import NavBar from "./NavBar.jsx";
 import Greet from "./Greet.jsx";
 import Milestone from "./Milestone.jsx";
 import Quote from "./Quote.jsx";
@@ -48,52 +52,51 @@ const App = (props) => {
     getPosts(user);
   }, []);
 
-
   /******** CHANGE DISPLAY ********/
   const loginClick = () => {
-    login.current.classList.remove("signup-click");
-    login.current.classList.remove("signout-click");
+    // login.current.classList.remove("signup-click");
+    // login.current.classList.remove("signout-click");
 
-    if (document.getElementById('signup-container')) {
-      document.getElementById('login-container').classList.remove('hide');
+    if (document.getElementById("signup-container")) {
+      document.getElementById("login-container").classList.remove("hide");
     }
 
-    if (document.getElementById('signup-container')) {
-      document.getElementById('signup-container').classList.add('hide');
+    if (document.getElementById("signup-container")) {
+      document.getElementById("signup-container").classList.add("hide");
     }
   };
 
   const hideModal = () => {
-    login.current.classList.add("hide");
+    // login.current.classList.add("hide");
   };
 
   const clickOffModal = (e) => {
-    if (e) {
-      if (
-        !login.current.contains(e.target) &&
-        !e.target.classList.contains("login")
-      ) {
-        login.current.classList.add("hide");
-      }
-    }
+    // if (e) {
+    //   if (
+    //     !login.current.contains(e.target) &&
+    //     !e.target.classList.contains("login")
+    //   ) {
+    //     login.current.classList.add("hide");
+    //   }
+    // }
   };
 
   const clearProfile = () => {
     document.getElementById("profile-form").reset();
-  }
+  };
 
   const showHome = () => {
-    feels.current.classList.remove("hide");
-    hub.current.classList.remove("hide");
-    greet.current.classList.remove("hide");
-    entry.current.classList.add("hide");
-    milestone.current.classList.add("hide");
-    profile.current.classList.add("hide");
-    document.getElementById("base").selectedIndex = 0;
-    document.getElementById("second-container").classList.add("hide");
-    document.getElementById("third-container").classList.add("hide");
+    // feels.current.classList.remove("hide");
+    // hub.current.classList.remove("hide");
+    // greet.current.classList.remove("hide");
+    // entry.current.classList.add("hide");
+    // milestone.current.classList.add("hide");
+    // profile.current.classList.add("hide");
+    // document.getElementById("base").selectedIndex = 0;
+    // document.getElementById("second-container").classList.add("hide");
+    // document.getElementById("third-container").classList.add("hide");
     setFeeling();
-    clearProfile();
+    // clearProfile();
   };
 
   /********** USER ***********/
@@ -103,7 +106,6 @@ const App = (props) => {
       .then((result) => {
         setUser(result.data.name);
         setEmail(email);
-        hideModal();
       })
       .catch((err) => {
         alert(err.response.data.msg);
@@ -124,11 +126,11 @@ const App = (props) => {
 
   /******** LOGIN / SIGNUP ********/
   const signupClick = () => {
-    login.current.classList.add("signup-click");
+    // login.current.classList.add("signup-click");
   };
 
   const showLogin = () => {
-    login.current.classList.remove("hide");
+    // login.current.classList.remove("hide");
   };
 
   const signupUser = (name, email, password) => {
@@ -142,7 +144,7 @@ const App = (props) => {
     axios
       .post("/signup", user, config)
       .then((results) => {
-        console.log('results', results.data);
+        console.log("results", results.data);
         setUser(results.data.user);
         setEmail(results.data.email);
       })
@@ -151,23 +153,23 @@ const App = (props) => {
 
   /********** SIGNOUT ***********/
   const signOut = () => {
-    showHome();
+    // showHome();
     setFeeling("");
     updateUser("");
     setEmail("");
-    loginClick();
+    // loginClick();
   };
 
   const signoutClick = () => {
-    if (login.current) {
-      login.current.classList.add("signout-click");
-    }
+    // if (login.current) {
+    //   login.current.classList.add("signout-click");
+    // }
   };
 
   /********** FEELINGS ***********/
-  const hideFeels = () => {
-    feels.current.classList.add("hide");
-  };
+  // const hideFeels = () => {
+  //   feels.current.classList.add("hide");
+  // };
 
   const getFeeling = (f) => {
     axios.get(`/third_emotion/${f}`).then((results) => {
@@ -177,13 +179,12 @@ const App = (props) => {
   };
 
   /********** POST ENTRY ***********/
-  const showEntryForm = (el) => {
-    entry.current.classList.remove("hide");
-  };
+  // const showEntryForm = (el) => {
+  //   entry.current.classList.remove("hide");
+  // };
 
   const submitEntry = (e, entry, guided) => {
     e.preventDefault();
-
     const config = {
       headers: {
         "Content-Type": "application/json",
@@ -218,20 +219,20 @@ const App = (props) => {
     }
   };
 
-  const clearEntry = () => {
-    if (entry.current) {
-      if (entry.current.classList.contains('hide')) {
-        document.getElementById("entry-form").reset();
-        // document.getElementById("guided-form").reset();
-        // document.getElementById("solo-form").reset();
-        // document.getElementById("guided-entry-form").classList.add('hide');
-        // document.getElementById("solo-entry-form").classList.add('hide');
-      }
-    }
-  }
+  // const clearEntry = () => {
+  //   if (entry.current) {
+  //     if (entry.current.classList.contains("hide")) {
+  //       document.getElementById("entry-form").reset();
+  //       // document.getElementById("guided-form").reset();
+  //       // document.getElementById("solo-form").reset();
+  //       // document.getElementById("guided-entry-form").classList.add('hide');
+  //       // document.getElementById("solo-entry-form").classList.add('hide');
+  //     }
+  //   }
+  // };
 
   const updateEntry = (id, newEntry) => {
-    const entry = { newEntry }
+    const entry = { newEntry };
 
     const config = {
       headers: {
@@ -240,22 +241,23 @@ const App = (props) => {
       },
     };
 
-    axios.put(`/posts/update/${id}`, entry, config)
-      .then(res => console.log(res.data))
-      .catch((err) => alert(err.response.data.msg))
-
-  }
+    axios
+      .put(`/posts/update/${id}`, entry, config)
+      .then((res) => console.log(res.data))
+      .catch((err) => alert(err.response.data.msg));
+  };
 
   /********** JOURNAL ***********/
   const deletePost = (id) => {
     // const data = { data: { id } }
-    axios.delete(`/posts/delete/${id}`)
-    .then((results) => {
-      console.log(results);
-      getPosts(user);
-    })
-    .catch((err) => console.log(err));
-  }
+    axios
+      .delete(`/posts/delete/${id}`)
+      .then((results) => {
+        console.log(results);
+        getPosts(user);
+      })
+      .catch((err) => console.log(err));
+  };
 
   /********** MILESTONES ***********/
   const submitMilestone = (title, details = null) => {
@@ -291,10 +293,10 @@ const App = (props) => {
     }
   };
 
-  const showMilestone = () => {
-    entry.current.classList.add("hide");
-    milestone.current.classList.remove("hide");
-  };
+  // const showMilestone = () => {
+  //   entry.current.classList.add("hide");
+  //   milestone.current.classList.remove("hide");
+  // };
 
   const getQuote = async (keyword = "inspirational") => {
     return await axios
@@ -303,23 +305,23 @@ const App = (props) => {
       .catch((err) => console.log(err));
   };
 
-  const addMilestoneClick = () => {
-    feels.current.classList.add('hide');
-    showMilestone();
-  }
+  // const addMilestoneClick = () => {
+  //   feels.current.classList.add("hide");
+  //   showMilestone();
+  // };
 
   /********** PROFILE ***********/
   const showProfile = () => {
     if (user) {
-      profile.current.classList.remove("hide");
-      feels.current.classList.add("hide");
-      entry.current.classList.add("hide");
-      hub.current.classList.add("hide");
-      login.current.classList.add("hide");
-      greet.current.classList.add("hide");
-      clearEntry();
+      // profile.current.classList.remove("hide");
+      // feels.current.classList.add("hide");
+      // entry.current.classList.add("hide");
+      // hub.current.classList.add("hide");
+      // login.current.classList.add("hide");
+      // greet.current.classList.add("hide");
+      // clearEntry();
     } else {
-      alert("You must Login to view Profile")
+      return alert("You must Login to view Profile");
     }
   };
 
@@ -331,15 +333,15 @@ const App = (props) => {
         name: name,
         currentPassword: cp,
         newPassword: np,
-        newEmail: null
-      }
+        newEmail: null,
+      };
     } else {
       userInfo = {
         name: name,
         currentPassword: cp,
         newPassword: np,
-        newEmail: profEmail
-      }
+        newEmail: profEmail,
+      };
     }
 
     const config = {
@@ -349,39 +351,89 @@ const App = (props) => {
       },
     };
 
-    axios.put(`/update_user/${email}`, userInfo, config)
-      .then(res => {
+    axios
+      .put(`/update_user/${email}`, userInfo, config)
+      .then((res) => {
         console.log(res);
         setUser(name);
         if (profEmail) {
           setEmail(profEmail);
         }
       })
-      .catch((err) => alert(err.response.data.msg))
-  }
+      .catch((err) => alert(err.response.data.msg));
+  };
 
+  // let profilePath = user ? "/profile" : "/";
+  let profileElement = user ? Profile : Home;
 
   return (
     <div id="app-wrapper" onClick={clickOffModal}>
       <div id="nav-wrapper">
-        <Nav
+        <NavBar
           user={user}
           showLogin={showLogin}
-          showHome={showHome}
           showProfile={showProfile}
           loginClick={loginClick}
         />
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <Home
+              user={user}
+              milestones={milestones}
+              posts={posts}
+              setPosts={setPosts}
+              setMilestones={setMilestones}
+              />
+            }
+          />
+          <Route
+            path="/profile"
+            element={
+              <Profile
+                user={user}
+                email={email}
+                hide={showHome}
+                updateProfile={updateProfile}
+              />
+            }
+          />
+          <Route path="/about" element={<Navigate to="/" />} />
+          <Route
+            path="/auth/*"
+            element={
+              <UserAuth
+                user={user}
+                getUser={getUser}
+                updateUser={updateUser}
+                clear={signOut}
+                // signupClick={signupClick}
+                // loginClick={loginClick}
+                signupUser={signupUser}
+                signoutClick={signoutClick}
+              />
+            }
+          >
+            {/* <Route
+              path="/auth/login"
+              element={<Login getUser={getUser}/>}
+            />
+            <Route
+              path="/auth/signup"
+              element={<Signup signupUser={signupUser} />}
+            /> */}
+          </Route>
+          {/* <Route path="/*" element={<index />} /> */}
+        </Routes>
       </div>
-      <br /><br />
-      <h1>ThoughtFlow</h1>
+      <br />
+      <br />
+      {/* <h1>ThoughtFlow</h1>
+      <br />
       <div id="greet-wrapper" ref={greet}>
         <Greet feeling={feeling} user={user} />
       </div>
-      {/* {milestones[0] && (
-        <div id="milestone-bar-wrapper">
-          <MilestoneBar milestones={milestones} />
-        </div>
-      )} */}
       <div ref={feels} id="feelings-wrapper">
         <Feelings
           user={user}
@@ -406,34 +458,7 @@ const App = (props) => {
           deletePost={deletePost}
           updateEntry={updateEntry}
         />
-      </div>
-      <div id="milestone-wrapper" ref={milestone} className={"hide"}>
-        <Milestone
-          getQuote={getQuote}
-          submitMilestone={submitMilestone}
-        />
-      </div>
-      <div id="login-wrapper" className="hide" ref={login}>
-        <Login
-          user={user}
-          getUser={getUser}
-          updateUser={updateUser}
-          signupUser={signupUser}
-          hide={hideModal}
-          clear={signOut}
-          signupClick={signupClick}
-          loginClick={loginClick}
-          signoutClick={signoutClick}
-        />
-      </div>
-      <div id="profile-wrapper" ref={profile} className="hide">
-        <Profile
-          user={user}
-          email={email}
-          hide={showHome}
-          updateProfile={updateProfile}
-        />
-      </div>
+      </div>*/}
     </div>
   );
 };

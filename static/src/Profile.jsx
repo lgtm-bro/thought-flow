@@ -1,11 +1,14 @@
-import React, { useState, useRef, Fragment } from "react";
-import Password from "./Password.jsx";
+import React, { useState, useEffect, useRef, Fragment } from "react";
+import { useNavigate } from "react-router-dom";
 import { BiShow } from "react-icons/bi";
+
+import Password from "./Password.jsx";
+
 
 const Profile = (props) => {
   const [name, setName] = useState(props.user);
   const [email, setEmail] = useState(props.email);
-  const [newPw, setNewPw] = useState('');
+  const [newPw, setNewPw] = useState("");
   const [pwVerified, setPwVerified] = useState(false);
 
   const password = useRef();
@@ -13,6 +16,14 @@ const Profile = (props) => {
   const passwordConfirm = useRef();
   const form = useRef();
 
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!props.user) {
+      alert('You must Login to view Profile');
+      navigate('/');
+    }
+  }, [])
 
   const showPassword = (fieldRef) => {
     if (fieldRef.current.type === "password") {
@@ -24,18 +35,18 @@ const Profile = (props) => {
 
   const verifyPw = (res) => {
     setPwVerified(res);
-  }
+  };
 
   const cancelForm = () => {
-	setNewPw('');
+    setNewPw("");
     form.current.reset();
-    props.hide();
+    navigate('/');
   };
 
   const checkPasswords = () => {
-	console.log('passwords checked')
-	console.log(newPassword.current.value, passwordConfirm.current.value)
-    return newPassword.current.value === passwordConfirm.current.value
+    console.log("passwords checked");
+    console.log(newPassword.current.value, passwordConfirm.current.value);
+    return newPassword.current.value === passwordConfirm.current.value;
   };
 
   const validateEmail = (e) => {
@@ -50,31 +61,29 @@ const Profile = (props) => {
       return alert("Please enter a valid email");
     }
 
-	if (newPw) {
-		if (!pwVerified) {
-			return alert("Please make sure that your new password meets all requirements")
-		}
-
-		if (!checkPasswords()) {
-			return alert("The new passwords don't match");
-		  }
-
-        props.updateProfile(
-          name,
-          email,
-          password.current.value,
-          newPw
+    if (newPw) {
+      if (!pwVerified) {
+        return alert(
+          "Please make sure that your new password meets all requirements"
         );
-      } else {
-        props.updateProfile(name, email, password.current.value, null);
       }
 
-	  setNewPw('');
-      form.current.reset();
+      if (!checkPasswords()) {
+        return alert("The new passwords don't match");
+      }
+
+      props.updateProfile(name, email, password.current.value, newPw);
+    } else {
+      props.updateProfile(name, email, password.current.value, null);
+    }
+
+    setNewPw("");
+    form.current.reset();
+    navigate('/');
   };
 
   return (
-    <Fragment>
+    <div id="profile-wrapper">
       <h2>Edit Profile</h2>
       <form id="profile-form" ref={form} onSubmit={submitChanges}>
         <label htmlFor="profile-name">Name</label>
@@ -113,7 +122,7 @@ const Profile = (props) => {
           id="profile-new-password"
           ref={newPassword}
           placeholder="optional"
-		  onChange={(e) => setNewPw(e.target.value)}
+          onChange={(e) => setNewPw(e.target.value)}
         />
         <span className="eye" onClick={() => showPassword(newPassword)}>
           <BiShow />
@@ -130,15 +139,17 @@ const Profile = (props) => {
         <span className="eye" onClick={() => showPassword(passwordConfirm)}>
           <BiShow />
         </span>
-		<Password pw={newPw} verify={verifyPw}/>
+        <Password pw={newPw} verify={verifyPw} />
         <br />
         <br />
         <div id="profile-btns">
-          <button type="button" onClick={cancelForm}>Cancel</button>
+          <button type="button" onClick={cancelForm}>
+            Cancel
+          </button>
           <input type="submit" value="Update Info" />
         </div>
       </form>
-    </Fragment>
+    </div>
   );
 };
 

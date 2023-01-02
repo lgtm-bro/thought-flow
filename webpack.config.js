@@ -8,6 +8,10 @@ module.exports = {
   },
   mode: 'development',
   target: "web",
+  // devServer: {
+  //   /* Telling the server to fallback to index.html if the route is not found at the backend server */
+  //     historyApiFallback: true,
+  //   },
   // devtool: "source-map",
   module: {
     rules: [

@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef, Fragment } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { BiShow } from "react-icons/bi";
 import Password from "./Password.jsx";
 
@@ -15,6 +16,7 @@ const Signup = (props) => {
 	const form = useRef();
 
   const emailCheck = /^[a-zA-Z]\w+@\w+\.\w{2,4}/;
+  const navigate = useNavigate();
 
   const getPw = (e, method) => {
     method(e.target.value);
@@ -41,7 +43,8 @@ const Signup = (props) => {
   const cancelSignup = (e) => {
     setPw('');
     form.current.reset();
-    props.hide();
+    // props.hide();
+    navigate('/');
   }
 
   const signupUser = (e) => {
@@ -66,15 +69,15 @@ const Signup = (props) => {
 
     props.signupUser(name.current.value, email.current.value, password.current.value);
 		form.current.reset();
-		props.hide();
+		navigate('/');
   };
 
 
   return (
-    <Fragment>
+    <div id="signup-wrapper">
       <h2>Sign Up</h2>
 			<h4>Already have an account?
-				<a href="#login-wrapper" onClick={showLogin}>Log In</a>
+      <Link to="/auth/login" >Login</Link>
 			</h4>
       <form action="#" id="signup-form" ref={form} onSubmit={(e) => signupUser(e)}>
 				<label htmlFor="signup-email">
@@ -119,7 +122,7 @@ const Signup = (props) => {
           <input type="submit" value="Sign Up" id="signup-btn" />
         </div>
       </form>
-    </Fragment>
+    </div>
   );
 };
 

@@ -1,10 +1,14 @@
-import React, {useRef} from 'react';
-import {createRoot} from 'react-dom/client';
-import App from './App.jsx';
-import Login from './Login.jsx';
+import React from "react";
+import { createRoot } from "react-dom/client";
+import { HashRouter } from "react-router-dom";
 
-const root = document.getElementById('root');
-const app = createRoot(root);
+import App from "./App.jsx";
 
+const app = document.getElementById("root");
+const root = createRoot(app);
 
-app.render( <App /> );
+root.render(
+  <HashRouter>
+    <App />
+  </HashRouter>
+);
