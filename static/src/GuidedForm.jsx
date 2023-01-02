@@ -49,7 +49,6 @@ const GuidedForm = (props) => {
     props.submitEntry(e, entry, true);
     form.current.reset();
     setShowPrompt2(false);
-    // props.showHome();
   }
 
   const checkKey = (e) => {

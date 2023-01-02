@@ -14,9 +14,11 @@ import Greet from "./Greet.jsx";
 import Quote from "./Quote.jsx";
 
 
-const Home = ({user, milestones, posts}) => {
+const Home = ({user}) => {
   const [feeling, setFeeling] = useState();
   const [feelingScore, setFeelingScore] = useState();
+  const [posts, setPosts] = useState([]);
+  const [milestones, setMilestones] = useState([]);
 
 
   const feels = useRef();
@@ -26,18 +28,11 @@ const Home = ({user, milestones, posts}) => {
   const milestone = useRef();
 
 
-  // useEffect(() => {
-  //   getMilestones(user);
-  //   getPosts(user);
-  // }, [user]);
+  useEffect(() => {
+    getPosts(user);
+    getMilestones(user);
+  }, [])
 
-  // useEffect(() => {
-  //   getMilestones(user);
-  // }, []);
-
-  // useEffect(() => {
-  //   getPosts(user);
-  // }, []);
 
   /******** CHANGE DISPLAY ********/
 
@@ -86,10 +81,10 @@ const Home = ({user, milestones, posts}) => {
     if (name) {
       axios
         .get(`/posts/${name}`)
-        .then((results) => props.setPosts(results.data))
+        .then((results) => setPosts(results.data))
         .catch((err) => console.log(err));
     } else {
-      props.setPosts([]);
+      setPosts([]);
     }
   };
 
@@ -165,7 +160,7 @@ const Home = ({user, milestones, posts}) => {
     if (name) {
       axios
         .get(`/milestones/${name}`)
-        .then((results) => props.setMilestones(results.data))
+        .then((results) => setMilestones(results.data))
         .catch((err) => console.log(err));
     } else {
       setMilestones([]);
@@ -238,7 +233,6 @@ const Home = ({user, milestones, posts}) => {
           feeling={feeling}
           feelingScore={feelingScore}
           submitEntry={submitEntry}
-          showHome={showHome}
         />
       </div>
       <div id="hub-wrapper" ref={hub}>

@@ -63,7 +63,7 @@ const Entry = (props) => {
             feelingScore={props.feelingScore}
             reset={reset}
             submitEntry={props.submitEntry}
-            showHome={props.showHome}
+
           />
         </div>
       )}
@@ -72,7 +72,6 @@ const Entry = (props) => {
           <SoloForm
             reset={reset}
             submitEntry={props.submitEntry}
-            showHome={props.showHome}
           />
         </div>
       )}
