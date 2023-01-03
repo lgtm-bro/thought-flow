@@ -27,9 +27,14 @@ const GuidedForm = (props) => {
   };
 
   const getPrompt = (e, prompt, func) => {
-    let input = e.target.value.substring(0, 2) !== 'I ' ?
+    console.log("props.feeling", props.feeling)
+    let input = '';
+
+    if (e.target.value) {
+      input = e.target.value.substring(0, 2) !== 'I ' ?
       e.target.value[0].toLowerCase() + e.target.value.substring(1) :
-      e.target.value
+      e.target.value;
+    }
 
     if (prompt === prompt1) {
       func(`I am feeling ${props.feeling} because ` + input);
@@ -151,8 +156,8 @@ const GuidedForm = (props) => {
   );
 };
 
-GuidedForm.defaultProps = {
-  feeling: { name: "creative", score: 6 },
-};
+// GuidedForm.defaultProps = {
+//   feeling: { name: "creative", score: 6 },
+// };
 
 export default GuidedForm;

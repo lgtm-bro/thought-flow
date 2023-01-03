@@ -10,15 +10,7 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 const NavBar = (props) => {
 
   let status = props.user ? "Sign Out" : "Log In";
-  let profilePath = props.user ? "/profile" : "/";
-  // let profileElement = props.user ? <Profile /> : <App />;
 
-  const changeStatus = () => {
-    if (status === "Log In") {
-      props.loginClick();
-    }
-    props.showLogin();
-  }
 
   return (
     // <nav className="topnav">

@@ -39,6 +39,7 @@ const Hub = (props) => {
       <div id="journal-wrapper" ref={journalEntries}>
         <Journal
           posts={props.posts}
+          feeling={props.feeling}
           deletePost={props.deletePost}
           updateEntry={props.updateEntry}
         />
@@ -46,7 +47,7 @@ const Hub = (props) => {
       <div id="milestone-bar-wrapper" ref={milestoneEntries} className="hide">
         <MilestoneBar
           milestones={props.milestones}
-          addMilestoneClick={props.addMilestoneClick}
+          showMilestone={props.showMilestone}
         />
       </div>
     </Fragment>

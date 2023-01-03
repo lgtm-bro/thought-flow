@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from "react";
+// import { Link, useNavigate } from "react-router-dom";
 
 const Quote = (props) => {
   const [quote, setQuote] = useState({body: '', author: ''});
@@ -16,9 +17,12 @@ const Quote = (props) => {
 
 
 	return (
-    <div>
+    <div id="quote-wrapper">
       <h5>{quote.body}</h5>
 			<h6>{quote.author}</h6>
+		<br /><br />
+		{/* <a href="#">Add an entry</a>
+        <a href="#">Add a milestone</a> */}
     </div>
   );
 };

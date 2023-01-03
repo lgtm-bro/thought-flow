@@ -2,69 +2,41 @@ import React, { useEffect, useState, useRef, Fragment } from "react";
 import axios from "axios";
 import { DateTime } from "luxon";
 import { BrowserRouter } from "react-router-dom";
-import { Route, Link, Routes } from "react-router-dom";
+import {
+  Route,
+  Link,
+  Routes,
+  useNavigate,
+  useLocation,
+} from "react-router-dom";
 
-import Entry from "./Entry.jsx";
-import Feelings from "./Feelings.jsx";
-import Hub from "./Hub.jsx";
-import MilestoneBar from "./MilestoneBar.jsx";
-import Milestone from "./Milestone.jsx";
-import Journal from "./Journal.jsx";
 import Greet from "./Greet.jsx";
+import Feelings from "./Feelings.jsx";
+import Entry from "./Entry.jsx";
+import Hub from "./Hub.jsx";
+import Milestone from "./Milestone.jsx";
 import Quote from "./Quote.jsx";
 
-
-const Home = ({user}) => {
+const Home = ({ user }) => {
   const [feeling, setFeeling] = useState();
   const [feelingScore, setFeelingScore] = useState();
   const [posts, setPosts] = useState([]);
   const [milestones, setMilestones] = useState([]);
 
-
-  const feels = useRef();
-  const greet = useRef();
-  const entry = useRef();
-  const hub = useRef();
-  const milestone = useRef();
-
+  const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     getPosts(user);
     getMilestones(user);
-  }, [])
+  }, []);
 
+  useEffect(() => {
+    getPosts(user);
+  }, [user]);
 
-  /******** CHANGE DISPLAY ********/
-
-  const clearProfile = () => {
-    document.getElementById("profile-form").reset();
-  };
-
-  const showHome = () => {
-  //   feels.current.classList.remove("hide");
-  //   hub.current.classList.remove("hide");
-  //   greet.current.classList.remove("hide");
-  //   entry.current.classList.add("hide");
-  //   milestone.current.classList.add("hide");
-  //   // profile.current.classList.add("hide");
-  //   document.getElementById("base").selectedIndex = 0;
-  //   document.getElementById("second-container").classList.add("hide");
-  //   document.getElementById("third-container").classList.add("hide");
-  //   setFeeling();
-  //   clearProfile();
-  };
-
-  /********** USER ***********/
-
-  /******** LOGIN / SIGNUP ********/
-
-  /********** SIGNOUT ***********/
 
   /********** FEELINGS ***********/
-  const hideFeels = () => {
-    feels.current.classList.add("hide");
-  };
-
   const getFeeling = (f) => {
     axios.get(`/third_emotion/${f}`).then((results) => {
       setFeeling(results.data.name);
@@ -73,8 +45,8 @@ const Home = ({user}) => {
   };
 
   /********** POST ENTRY ***********/
-  const showEntryForm = (el) => {
-    entry.current.classList.remove("hide");
+  const showHome = (el) => {
+    navigate("/");
   };
 
   const getPosts = (name) => {
@@ -109,22 +81,9 @@ const Home = ({user}) => {
       .post("/posts", post, config)
       .then((results) => {
         getPosts(user);
-        showMilestone();
+        navigate("/")
       })
       .catch((err) => console.log("POST err", err));
-  };
-
-
-  const clearEntry = () => {
-    if (entry.current) {
-      if (entry.current.classList.contains("hide")) {
-        document.getElementById("entry-form").reset();
-        // document.getElementById("guided-form").reset();
-        // document.getElementById("solo-form").reset();
-        // document.getElementById("guided-entry-form").classList.add('hide');
-        // document.getElementById("solo-entry-form").classList.add('hide');
-      }
-    }
   };
 
   const updateEntry = (id, newEntry) => {
@@ -185,14 +144,13 @@ const Home = ({user}) => {
       .then((res) => {
         console.log(res.data);
         getMilestones(user);
+        navigate("/");
       })
       .catch((err) => console.log(err));
   };
 
-
   const showMilestone = () => {
-    entry.current.classList.add("hide");
-    milestone.current.classList.remove("hide");
+    navigate("/milestone");
   };
 
   const getQuote = async (keyword = "inspirational") => {
@@ -202,51 +160,72 @@ const Home = ({user}) => {
       .catch((err) => console.log(err));
   };
 
-  const addMilestoneClick = () => {
-    feels.current.classList.add("hide");
-    showMilestone();
-  };
-
-  /********** PROFILE ***********/
-
-
-
-
 
   return (
     <div id="home-wrapper">
-      <h1>ThoughtFlow</h1>
+      {location.pathname === "/" && <h1>ThoughtFlow</h1>}
       <br />
-      <div id="greet-wrapper" ref={greet}>
-        <Greet feeling={feeling} user={user} />
-      </div>
-      <div ref={feels} id="feelings-wrapper">
+      {location.pathname === "/" && (
+        <div id="greet-wrapper" >
+          <Greet feeling={feeling} user={user} />
+        </div>
+      )}
+      {!feeling && <div id="feelings-wrapper">
         <Feelings
           user={user}
-          hide={hideFeels}
-          show={showEntryForm}
+          // hide={hideFeels}
+          showHome={showHome}
           feeling={getFeeling}
         />
-      </div>
-      <div ref={entry} id="entry-wrapper" className="hide">
-        <Entry
-          feeling={feeling}
-          feelingScore={feelingScore}
-          submitEntry={submitEntry}
-        />
-      </div>
-      <div id="hub-wrapper" ref={hub}>
-        <Hub
-          posts={posts}
-          milestones={milestones}
-          addMilestoneClick={addMilestoneClick}
-          deletePost={deletePost}
-          updateEntry={updateEntry}
-        />
-      </div>
-      <div id="milestone-wrapper" ref={milestone} className={"hide"}>
-        <Milestone getQuote={getQuote} submitMilestone={submitMilestone} />
-      </div>
+      </div>}
+      {location.pathname === "/" && feeling && <Quote getQuote={getQuote}/>}
+      {location.pathname === "/" && (
+        <div id="hub-wrapper" >
+          <Hub
+            feeling={feeling}
+            posts={posts}
+            milestones={milestones}
+            showMilestone={showMilestone}
+            deletePost={deletePost}
+            updateEntry={updateEntry}
+          />
+        </div>
+      )}
+
+      <Routes>
+        <Route
+          path="feelings"
+          element={
+            <Feelings
+              user={user}
+              showHome={showHome}
+              feeling={getFeeling}
+            />
+          }
+        ></Route>
+        <Route
+          path="entry"
+          element={
+            feeling && <Entry
+              feeling={feeling}
+              feelingScore={feelingScore}
+              submitEntry={submitEntry}
+            />
+          }
+        ></Route>
+        <Route
+          path="milestone"
+          element={
+            <Milestone getQuote={getQuote} submitMilestone={submitMilestone} />
+          }
+        ></Route>
+        <Route
+          path="quote"
+          element={
+            <Quote />
+          }
+        ></Route>
+      </Routes>
     </div>
   );
 };

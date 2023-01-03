@@ -23,7 +23,7 @@ const MilestoneBar = (props) => {
         So Far you have...
       </h4>
       <h5> Add a milestone
-        <span onClick={props.addMilestoneClick}><AiOutlinePlus/></span>
+        <span onClick={props.showMilestone}><AiOutlinePlus/></span>
       </h5>
       {props.milestones.map((m) => (
         <div key={m.id}>{m.title}</div>

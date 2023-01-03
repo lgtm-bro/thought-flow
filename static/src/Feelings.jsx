@@ -67,8 +67,8 @@ const Feelings = (props) => {
 
   const getThirdChoice = (e) => {
     setThirdChoice(e.target.value);
-    props.hide();
-    props.show();
+    // props.hide();
+    props.showHome();
     base.current.selectedIndex = 0;
     second.current.classList.add("hide");
     third.current.classList.add("hide");

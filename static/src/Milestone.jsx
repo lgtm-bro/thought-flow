@@ -1,4 +1,6 @@
 import React, { useState, useEffect, useRef, Fragment } from "react";
+import { Link, useNavigate } from "react-router-dom";
+
 import Quote from './Quote.jsx';
 
 const Milestone = (props) => {
@@ -15,12 +17,13 @@ const Milestone = (props) => {
   // const title = useRef();
   // const details = useRef();
 
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (haveMilestone) {
       milestoneText.current.classList.remove("hide");
     } else if (no.current.checked) {
-      showQuote();
+      navigate('/');
     }
   }, [haveMilestone]);
 
@@ -42,7 +45,7 @@ const Milestone = (props) => {
   const saveMilestone = (e) => {
     e.preventDefault();
     props.submitMilestone(title, details)
-    showQuote();
+    // showQuote();
   }
 
 
@@ -103,8 +106,8 @@ const Milestone = (props) => {
       </div>
       <div id="quote-wrapper" className="hide" ref={quoteContainer}>
         <Quote getQuote={props.getQuote}/>
-        <a href="#">Add an entry</a>
-        <a href="#">Add a milestone</a>
+        {/* <a href="#">Add an entry</a>
+        <a href="#">Add a milestone</a> */}
       </div>
     </Fragment>
   );

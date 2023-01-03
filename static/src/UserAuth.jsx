@@ -34,15 +34,13 @@ const UserAuth = (props) => {
   if (props.user) {
     return (
 			<Fragment>
-				<Signout cancelForm={cancelForm} clear={props.clear} signoutClick={props.signoutClick} />
+				<Signout cancelForm={cancelForm} clear={props.clear} />
 			<Routes>
 				<Route path="signout" element={<Signout cancelForm={cancelForm} clear={props.clear} signoutClick={props.signoutClick} />}/>
 			</Routes>
 			</Fragment>
     );
   }
-
-console.log('Auth props', props)
 
 	return (
 		<Fragment>
