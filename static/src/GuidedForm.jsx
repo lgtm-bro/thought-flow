@@ -3,7 +3,7 @@ import React, { Fragment, useState, useEffect, useRef } from "react";
 const GuidedForm = (props) => {
   const embracing = useRef();
   const resisting = useRef();
-  const form = useRef();
+
   const [prompt1, setPrompt1] = useState("");
   const [prompt2, setPrompt2] = useState("");
   const [prompt3, setPrompt3] = useState("");
@@ -18,7 +18,7 @@ const GuidedForm = (props) => {
   }, [isEmbracing]);
 
   useEffect(() => {
-    entry = `${prompt1.trim()}\n\n${prompt2.trim()}\n\n${prompt3.trim()}`;
+    props.getEntry(`${prompt1.trim()}\n\n${prompt2.trim()}\n\n${prompt3.trim()}`);
 
   }, [prompt1, prompt2, prompt3]);
 
@@ -48,12 +48,10 @@ const GuidedForm = (props) => {
     }
   };
 
-  const submitPost = (e) => {
-    e.preventDefault();
-    props.submitEntry(e, entry, true);
-    form.current.reset();
-    setShowPrompt2(false);
-  }
+  // const submitPost = (e, entry) => {
+  //   e.preventDefault();
+  //   props.submitEntry(e, entry, isGuided);
+  // }
 
   const checkKey = (e) => {
     if (e.key === "Enter") {
@@ -68,7 +66,7 @@ const GuidedForm = (props) => {
     : "What would it feel like to embrace them?";
 
   return (
-    <form id="guided-form" onSubmit={submitPost} ref={form}>
+    <Fragment>
       <br />
       <label htmlFor="prompt1">
         What experience or event {prompt1Key} you to feel {props.feeling}?
@@ -147,12 +145,8 @@ const GuidedForm = (props) => {
       <br />
       <br />
 
-      <button type="button" onClick={props.reset} >Cancel</button>
-
-      <input
-        type="submit"
-        value="Let it go"/>
-    </form>
+      {/* <button type="button" onClick={props.reset} >Cancel</button> */}
+    </Fragment>
   );
 };
 

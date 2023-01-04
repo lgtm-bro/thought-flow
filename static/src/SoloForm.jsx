@@ -1,33 +1,28 @@
 import React, { Fragment, useState, useEffect, useRef } from "react";
 
-
-const SoloForm = (props) => {
-  const [entry, setEntry] = useState("");
+const SoloForm = ({ getEntry, submitEntry }) => {
   const form = useRef();
 
-  const submitPost = (e) => {
+  const submitPost = (e, entry, isGuided) => {
     e.preventDefault();
-    props.submitEntry(e, entry, false);
-    form.current.reset();
-  }
+    props.submitEntry(e, entry, isGuided);
+  };
 
-  const getEntry = (e) => {
-    setEntry(e.target.value)
-  }
+  const setEntry = (e) => {
+    getEntry(e.target.value);
+  };
 
   return (
     <Fragment>
-      <form id="solo-form" onSubmit={submitPost} ref={form}>
-        <br />
-        <label htmlFor="solo_text">
+      <br />
+      <label htmlFor="solo_text">
         <span className="prompt">Tell us about it...</span>
-          <br/>
-          <textarea id="solo_text" required onChange={getEntry}></textarea>
-        </label>
-        <br /><br />
-        {<button onClick={props.reset} >Cancel</button>}
-        {<input type="submit" value="Let it go"/>}
-      </form>
+        <br />
+        <textarea id="solo_text" required onChange={setEntry}></textarea>
+      </label>
+      <br />
+      <br />
+      {/* <button onClick={props.reset} >Cancel</button> */}
     </Fragment>
   );
 };

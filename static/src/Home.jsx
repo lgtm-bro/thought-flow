@@ -17,7 +17,7 @@ import Hub from "./Hub.jsx";
 import MilestoneForm from "./MilestoneForm.jsx";
 import Quote from "./Quote.jsx";
 
-const Home = ({ user }) => {
+const Home = ({ user, showAlert }) => {
   const [feeling, setFeeling] = useState();
   const [feelingScore, setFeelingScore] = useState();
   const [posts, setPosts] = useState([]);
@@ -68,15 +68,7 @@ const Home = ({ user }) => {
     }
   };
 
-  const submitEntry = (e, entry, guided) => {
-    e.preventDefault();
-
-    // const config = {
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //     "Access-Control-Allow-Origin": "*",
-    //   },
-    // };
+  const submitEntry = (entry, guided) => {
 
     const post = {
       user: user,
@@ -109,7 +101,7 @@ const Home = ({ user }) => {
     axios
       .put(`/posts/update/${id}`, entry, config)
       .then((res) => console.log(res.data))
-      .catch((err) => alert(err.response.data.msg));
+      .catch((err) => showAlert(err.response.data.msg));
   };
 
   /********** JOURNAL ***********/

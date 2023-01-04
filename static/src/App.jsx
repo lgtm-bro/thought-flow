@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef, Fragment } from "react";
 import axios from "axios";
 import { DateTime } from "luxon";
-import { Route, Link, Routes, Navigate } from "react-router-dom";
+import { Route, Link, Routes, useNavigate } from "react-router-dom";
 
 
 import NavBar from "./NavBar.jsx";
@@ -19,6 +19,9 @@ const App = (props) => {
 
   const login = useRef();
   const profile = useRef();
+  const alerts = useRef();
+
+  const navigate = useNavigate();
 
   useEffect(() => {
 
@@ -32,6 +35,23 @@ const App = (props) => {
   }, [user]);
 
 
+  /********** ALERT ***********/
+  const showAlert = (msg, time=2000, page) => {
+    if (alerts.current) {
+      alerts.current.classList.remove('hide');
+      alerts.current.textContent = msg;
+    }
+
+    setTimeout(() => {
+      if (alerts.current) {
+        alerts.current.textContent = '';
+        alerts.current.classList.add('hide');
+        if (page) navigate(page);
+      }
+    }, 2000)
+  }
+
+
   /********** USER ***********/
   const getUser = (email, password) => {
     axios
@@ -39,11 +59,9 @@ const App = (props) => {
       .then((result) => {
         setUser(result.data.name);
         setEmail(email);
+        navigate("/");
       })
-      .catch((err) => {
-        alert(err.response.data.msg);
-        return err;
-      });
+      .catch((err) => showAlert(err.response.data.msg, 6000));
   };
 
   const updateUser = (user) => {
@@ -74,7 +92,10 @@ const App = (props) => {
         setUser(results.data.user);
         setEmail(results.data.email);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        navigate("/auth/login");
+        showAlert(err.response.data.msg);
+      });
   };
 
   /********** SIGNOUT ***********/
@@ -124,7 +145,7 @@ const App = (props) => {
           setEmail(profEmail);
         }
       })
-      .catch((err) => alert(err.response.data.msg));
+      .catch((err) => showAlert(err.response.data.msg));
   };
 
   // const submitSession = () => {
@@ -146,6 +167,7 @@ const App = (props) => {
       <div id="nav-wrapper">
         <NavBar
           user={user}
+          showAlert={showAlert}
         />
         <Routes>
           <Route
@@ -153,8 +175,7 @@ const App = (props) => {
             element={
               <Home
               user={user}
-              // posts={posts}
-              // setPosts={retrievePosts}
+              showAlert={showAlert}
               />
             }
           />
@@ -165,6 +186,7 @@ const App = (props) => {
                 user={user}
                 email={email}
                 updateProfile={updateProfile}
+                showAlert={showAlert}
               />
             }
           />
@@ -175,7 +197,7 @@ const App = (props) => {
               <UserAuth
                 user={user}
                 getUser={getUser}
-                // updateUser={updateUser}
+                showAlert={showAlert}
                 clear={signOut}
                 signupUser={signupUser}
               />
@@ -184,6 +206,7 @@ const App = (props) => {
           </Route>
         </Routes>
       </div>
+      <div id="user-alerts" ref={alerts} className="hide"></div>
     </div>
   );
 };

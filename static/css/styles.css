@@ -43,11 +43,24 @@ a {
 	height: 100%;
 }
 
+/******** ALERTS ********/
+#user-alerts {
+  font-size: 16px;
+  width: 70%;
+  padding: 1% 0;
+  top: 15%;
+  left: 15%;
+  text-align: center;
+  background-color: #ffdacc;
+  /* border: 1px solid black; */
+  position: fixed;
+  z-index: 10;
+}
+
 /******** NAV ********/
 #nav-wrapper {
   float: right;
   margin: 4% 35px 4% 0;
-  height: 100%;
 }
 
 /******** GREET ********/

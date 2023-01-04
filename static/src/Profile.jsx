@@ -4,7 +4,6 @@ import { BiShow } from "react-icons/bi";
 
 import Password from "./Password.jsx";
 
-
 const Profile = (props) => {
   const [name, setName] = useState(props.user);
   const [email, setEmail] = useState(props.email);
@@ -18,12 +17,6 @@ const Profile = (props) => {
 
   const navigate = useNavigate();
 
-  useEffect(() => {
-    if (!props.user) {
-      alert('You must Login to view Profile');
-      navigate('/');
-    }
-  }, [])
 
   const showPassword = (fieldRef) => {
     if (fieldRef.current.type === "password") {
@@ -40,12 +33,10 @@ const Profile = (props) => {
   const cancelForm = () => {
     setNewPw("");
     form.current.reset();
-    navigate('/');
+    navigate("/");
   };
 
   const checkPasswords = () => {
-    console.log("passwords checked");
-    console.log(newPassword.current.value, passwordConfirm.current.value);
     return newPassword.current.value === passwordConfirm.current.value;
   };
 
@@ -58,18 +49,18 @@ const Profile = (props) => {
     e.preventDefault();
 
     if (!validateEmail(email)) {
-      return alert("Please enter a valid email");
+      return props.showAlert("Please enter a valid email");
     }
 
     if (newPw) {
       if (!pwVerified) {
-        return alert(
+        return props.showAlert(
           "Please make sure that your new password meets all requirements"
         );
       }
 
       if (!checkPasswords()) {
-        return alert("The new passwords don't match");
+        return props.showAlert("The new passwords don't match");
       }
 
       props.updateProfile(name, email, password.current.value, newPw);
@@ -79,7 +70,7 @@ const Profile = (props) => {
 
     setNewPw("");
     form.current.reset();
-    navigate('/');
+    navigate("/");
   };
 
   return (

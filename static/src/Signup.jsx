@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { BiShow } from "react-icons/bi";
 import Password from "./Password.jsx";
 
-const Signup = (props) => {
+const Signup = ({signupUser, showAlert}) => {
   const [pw, setPw] = useState("");
   const [pw2, setPw2] = useState("");
   const [pwVerified, setPwVerified] = useState(false);
@@ -25,12 +25,6 @@ const Signup = (props) => {
     setPwVerified(res);
   };
 
-  const showLogin = () => {
-    form.current.reset();
-    password.current.value = "";
-    props.showLogin();
-  };
-
   const showPassword = (el) => {
     if (el.current.type === "password") {
       el.current.type = "text";
@@ -42,31 +36,30 @@ const Signup = (props) => {
   const cancelSignup = (e) => {
     setPw("");
     form.current.reset();
-    // props.hide();
     navigate("/");
   };
 
-  const signupUser = (e) => {
+  const submitUserSignup = (e) => {
     e.preventDefault();
     e.stopPropagation();
 
     if (name.current.value === "") {
-      return alert("Please enter a name");
+      return showAlert("Please enter a name");
     }
 
     if (!emailCheck.test(email.current.value)) {
-      return alert("Please enter a valid email");
+      return showAlert("Please enter a valid email");
     }
 
     if (!pwVerified) {
-      return alert("Please enter a valid password");
+      return showAlert("Please enter a valid password");
     }
 
     if (pw !== pw2) {
-      return alert("Passwords do not match");
+      return showAlert("Passwords do not match");
     }
 
-    props.signupUser(
+    signupUser(
       name.current.value,
       email.current.value,
       password.current.value
@@ -88,7 +81,7 @@ const Signup = (props) => {
         action="#"
         id="signup-form"
         ref={form}
-        onSubmit={(e) => signupUser(e)}
+        onSubmit={(e) => submitUserSignup(e)}
       >
         <label htmlFor="signup-email">
           <span className="signup-name">First Name: </span>

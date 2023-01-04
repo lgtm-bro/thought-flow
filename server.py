@@ -58,7 +58,7 @@ def signup_user():
     password = request.json.get('password')
 
     if crud.get_user(email):
-        return jsonify({"success": False, "msg": "User already has an account"}), 400
+        return jsonify({"success": False, "msg": "There is an account associated with that email.\nPlease login."}), 400
 
     new_user = crud.create_user(name, email, password)
     db.session.add(new_user)

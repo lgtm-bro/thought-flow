@@ -21,7 +21,6 @@ const Login = (props) => {
   const loginUser = (e) => {
     e.preventDefault();
     props.getUser(email.current.value, password.current.value);
-    navigate("/");
   };
 
 
