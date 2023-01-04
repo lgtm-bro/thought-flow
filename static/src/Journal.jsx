@@ -4,23 +4,23 @@ import { AiOutlinePlus } from "react-icons/ai";
 
 import Post from "./Post.jsx";
 
-const Journal = (props) => {
+const Journal = ({posts, feeling, deletePost, updateEntry}) => {
 
   const navigate = useNavigate();
 
 
   return (
     <div id="journal-container">
-      {props.feeling && <h5> Add a new entry
+      {feeling && <h5> Add a new entry
         <span><Link to="/entry"><AiOutlinePlus/></Link></span>
       </h5>}
-      {props.posts.map((p) => (
+      {posts.map((p) => (
         <Post
           post={p}
           key={p.id}
           id={p.id}
-          deletePost={props.deletePost}
-          updateEntry={props.updateEntry}
+          deletePost={deletePost}
+          updateEntry={updateEntry}
         />
       ))}
     </div>

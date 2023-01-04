@@ -108,7 +108,7 @@ class Milestone(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     title = db.Column(db.String(100), nullable=False)
-    msg = db.Column(db.Text)
+    # msg = db.Column(db.Text)
 
     user = db.relationship("User", back_populates="milestones")
     user_session = db.relationship("UserSession", back_populates="milestone")
@@ -117,18 +117,18 @@ class Milestone(db.Model):
         return f"<Milestone id={self.id} name={self.title}>"
 
 
-class Prompt(db.Model):
-    """A guiding prompt for the user"""
+# class Prompt(db.Model):
+#     """A guiding prompt for the user"""
 
-    __tablename__ = "prompts"
+#     __tablename__ = "prompts"
 
-    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    level = db.Column(db.Integer, nullable=False)
-    category = db.Column(db.String(30), nullable=False)
-    msg = db.Column(db.String(250), nullable=False)
+#     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+#     level = db.Column(db.Integer, nullable=False)
+#     category = db.Column(db.String(30), nullable=False)
+#     msg = db.Column(db.String(250), nullable=False)
 
-    def __repr__(self):
-        return f"<Prompt id={self.id}>"
+#     def __repr__(self):
+#         return f"<Prompt id={self.id}>"
 
 
 class UserSession(db.Model):
@@ -141,10 +141,10 @@ class UserSession(db.Model):
     base_emotion_id = db.Column(db.Integer, db.ForeignKey('base_emotions.id'))
     second_emotion_id = db.Column(db.Integer, db.ForeignKey('second_emotions.id'))
     third_emotion_id = db.Column(db.Integer, db.ForeignKey('third_emotions.id'))
-    post_id = db.Column(db.Integer, db.ForeignKey('posts.id'), nullable=False)
+    post_id = db.Column(db.Integer, db.ForeignKey('posts.id'))
     milestone_id = db.Column(db.Integer, db.ForeignKey('milestones.id'))
     date = db.Column(db.DateTime, nullable=False)
-    score = db.Column(db.Integer, nullable=False)
+    score = db.Column(db.Integer)
 
 
     user = db.relationship("User", back_populates="user_sessions")

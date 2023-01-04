@@ -1,19 +1,31 @@
 import React, { useState, useEffect, useRef, Fragment } from "react";
-import axios from "axios";
 import { AiOutlinePlus } from "react-icons/ai";
+import { IoRemoveOutline, IoPencil } from "react-icons/io5";
 
-const MilestoneBar = (props) => {
-  const [milestones, setMilestones] = useState([]);
+import Milestone from "./Milestone.jsx";
 
-  // useEffect(() => {
-  //   getMilestones(props.user.name);
-  // }, []);
 
-  // const getMilestones = () => {
-  //   axios
-  //     .get(`/milestones/${props.user.name}`)
-  //     .then((results) => setMilestones(results.data));
-  // };
+const MilestoneBar = ({
+  milestones,
+  showMilestone,
+  feeling,
+  updateMilestone,
+  deleteMilestone,
+}) => {
+  const milestoneText = useRef();
+  const done = useRef();
+
+  const editMilestone = (e) => {
+    milestoneText.current.contentEditable = true;
+    done.current.classList.remove("hide");
+  };
+
+  const saveEdit = (id) => {
+    console.log(milestoneText.current.innerText);
+    updateMilestone(id, milestoneText.current.innerText);
+    milestoneText.current.contentEditable = false;
+    done.current.classList.add("hide");
+  };
 
   return (
     <Fragment>
@@ -22,22 +34,22 @@ const MilestoneBar = (props) => {
         <br />
         So Far you have...
       </h4>
-      <h5> Add a milestone
-        <span onClick={props.showMilestone}><AiOutlinePlus/></span>
-      </h5>
-      {props.milestones.map((m) => (
-        <div key={m.id}>{m.title}</div>
+      {feeling && (
+        <h5>
+          {" "}
+          Add a milestone
+          <span onClick={showMilestone}>
+            <AiOutlinePlus />
+          </span>
+        </h5>
+      )}
+      {milestones.map((m) => (
+        <Milestone key={m.id} milestone={m} updateMilestone={updateMilestone}
+        deleteMilestone={deleteMilestone}/>
+
       ))}
     </Fragment>
   );
 };
 
 export default MilestoneBar;
-
-MilestoneBar.defaultProps = {
-  user: {
-    name: "Sarah",
-    email: "sarah@gmail.com",
-    password: "Pass",
-  },
-};

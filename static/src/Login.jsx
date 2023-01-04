@@ -25,14 +25,14 @@ const Login = (props) => {
   };
 
 
-  console.log('login props', props)
-
   return (
     <div id="login-wrapper" ref={login}>
       <h2>Please Log in</h2>
       <h4>
         Don't have account?
-        <Link to="/auth/signup" >Sign Up</Link>
+        <span className="form-link">
+          <Link to="/auth/signup" > Sign Up</Link>
+        </span>
       </h4>
       <form action="#" ref={form} onSubmit={loginUser}>
         <label htmlFor="login-email">

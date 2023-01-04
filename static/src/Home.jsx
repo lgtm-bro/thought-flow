@@ -14,7 +14,7 @@ import Greet from "./Greet.jsx";
 import Feelings from "./Feelings.jsx";
 import Entry from "./Entry.jsx";
 import Hub from "./Hub.jsx";
-import Milestone from "./Milestone.jsx";
+import MilestoneForm from "./MilestoneForm.jsx";
 import Quote from "./Quote.jsx";
 
 const Home = ({ user }) => {
@@ -25,6 +25,13 @@ const Home = ({ user }) => {
 
   const navigate = useNavigate();
   const location = useLocation();
+
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+      "Access-Control-Allow-Origin": "*",
+    },
+  };
 
   useEffect(() => {
     getPosts(user);
@@ -41,6 +48,7 @@ const Home = ({ user }) => {
     axios.get(`/third_emotion/${f}`).then((results) => {
       setFeeling(results.data.name);
       setFeelingScore(results.data.score);
+      sessionStorage.setItem('score', results.data.score)
     });
   };
 
@@ -63,12 +71,12 @@ const Home = ({ user }) => {
   const submitEntry = (e, entry, guided) => {
     e.preventDefault();
 
-    const config = {
-      headers: {
-        "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": "*",
-      },
-    };
+    // const config = {
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //     "Access-Control-Allow-Origin": "*",
+    //   },
+    // };
 
     const post = {
       user: user,
@@ -80,8 +88,10 @@ const Home = ({ user }) => {
     axios
       .post("/posts", post, config)
       .then((results) => {
+        console.log(results.data);
+        sessionStorage.setItem('postId', results.data.post_id);
         getPosts(user);
-        navigate("/")
+        navigate("/");
       })
       .catch((err) => console.log("POST err", err));
   };
@@ -89,12 +99,12 @@ const Home = ({ user }) => {
   const updateEntry = (id, newEntry) => {
     const entry = { newEntry };
 
-    const config = {
-      headers: {
-        "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": "*",
-      },
-    };
+    // const config = {
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //     "Access-Control-Allow-Origin": "*",
+    //   },
+    // };
 
     axios
       .put(`/posts/update/${id}`, entry, config)
@@ -126,23 +136,13 @@ const Home = ({ user }) => {
     }
   };
 
-  const submitMilestone = (title, details = null) => {
-    const milestone = {
-      title: title,
-      details: details,
-    };
-
-    const config = {
-      headers: {
-        "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": "*",
-      },
-    };
+  const submitMilestone = (title) => {
 
     axios
-      .post(`/milestones/${user}`, milestone, config)
+      .post(`/milestones/${user}`, {title}, config)
       .then((res) => {
         console.log(res.data);
+        sessionStorage.setItem('milestoneId', res.data.milestone_id);
         getMilestones(user);
         navigate("/");
       })
@@ -160,6 +160,24 @@ const Home = ({ user }) => {
       .catch((err) => console.log(err));
   };
 
+  const updateMilestone = (id, text) => {
+    axios.put(`/milestone/${id}`, {text}, config)
+      .then((res) => {
+        console.log(res.data);
+        getMilestones(user);
+      })
+      .catch((err) => console.log(err));
+  }
+
+  const deleteMilestone = (id) => {
+    axios.delete(`/milestone/${id}`)
+      .then((res) => {
+        console.log(res.data)
+        getMilestones(user);
+      })
+      .catch((err) => console.log(err));
+  }
+
 
   return (
     <div id="home-wrapper">
@@ -173,7 +191,6 @@ const Home = ({ user }) => {
       {!feeling && <div id="feelings-wrapper">
         <Feelings
           user={user}
-          // hide={hideFeels}
           showHome={showHome}
           feeling={getFeeling}
         />
@@ -188,6 +205,8 @@ const Home = ({ user }) => {
             showMilestone={showMilestone}
             deletePost={deletePost}
             updateEntry={updateEntry}
+            updateMilestone={updateMilestone}
+            deleteMilestone={deleteMilestone}
           />
         </div>
       )}
@@ -216,7 +235,7 @@ const Home = ({ user }) => {
         <Route
           path="milestone"
           element={
-            <Milestone getQuote={getQuote} submitMilestone={submitMilestone} />
+            <MilestoneForm getQuote={getQuote} submitMilestone={submitMilestone} />
           }
         ></Route>
         <Route

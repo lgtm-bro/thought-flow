@@ -1,37 +1,30 @@
 [
     {
         "user_id": 1,
-        "title": "Discussed my Feelings with a friend",
-        "msg": "message for milestone 1"
+        "title": "Discussed my Feelings with a friend"
     },
     {
         "user_id": 2,
-        "title": "Set Healthy Boundaries",
-        "msg": "message for milestone 2"
+        "title": "Set Healthy Boundaries"
     },
     {
         "user_id": 3,
-        "title": "Acknowledged my feelings in the moment",
-        "msg": "message for milestone 3"
+        "title": "Acknowledged my feelings in the moment"
     },
     {
         "user_id": 4,
-        "title": "asserted myself at work",
-        "msg": "message for milestone 4"
+        "title": "asserted myself at work"
     },
     {
         "user_id": 2,
-        "title": "Had a good talk with my son",
-        "msg": "message for milestone 5"
+        "title": "Had a good talk with my son"
     },
     {
         "user_id": 8,
-        "title": "Stepped out of my comfort zone",
-        "msg": "message for milestone 6"
+        "title": "Stepped out of my comfort zone"
     },
     {
         "user_id": 3,
-        "title": "Apologized to my sister",
-        "msg": "message for milestone 7"
+        "title": "Apologized to my sister"
     }
 ]

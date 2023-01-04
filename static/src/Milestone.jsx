@@ -1,115 +1,46 @@
 import React, { useState, useEffect, useRef, Fragment } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { AiOutlinePlus } from "react-icons/ai";
+import { IoRemoveOutline, IoPencil } from "react-icons/io5";
 
-import Quote from './Quote.jsx';
-
-const Milestone = (props) => {
-  const [haveMilestone, setHaveMilestone] = useState();
-  const [title, setTitle] = useState();
-  const [details, setDetails] = useState();
-
-  const yes = useRef();
-  const no = useRef();
-  const milestoneContainer = useRef();
-  const milestoneForm = useRef();
+const Milestone = ({ milestone, updateMilestone, deleteMilestone }) => {
   const milestoneText = useRef();
-  const quoteContainer = useRef();
-  // const title = useRef();
-  // const details = useRef();
+  const done = useRef();
 
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    if (haveMilestone) {
-      milestoneText.current.classList.remove("hide");
-    } else if (no.current.checked) {
-      navigate('/');
-    }
-  }, [haveMilestone]);
-
-  const hasMilestone = (e) => {
-    setHaveMilestone(yes.current.checked);
+  const editMilestone = (e) => {
+    milestoneText.current.contentEditable = true;
+    done.current.classList.remove("hide");
   };
 
-  const getInput = (e, method) => {
-    method(e.target.value)
-  }
-
-  const showQuote = () => {
-    milestoneContainer.current.classList.add("hide");
-    milestoneForm.current.reset();
-    milestoneText.current.classList.add("hide");
-    quoteContainer.current.classList.remove("hide");
-  }
-
-  const saveMilestone = (e) => {
-    e.preventDefault();
-    props.submitMilestone(title, details)
-    // showQuote();
-  }
-
-
+  const saveEdit = (id) => {
+    console.log(milestoneText.current.innerText);
+    updateMilestone(id, milestoneText.current.innerText);
+    milestoneText.current.contentEditable = false;
+    done.current.classList.add("hide");
+  };
 
   return (
-    <Fragment >
-      <div id="milestone-container" ref={milestoneContainer}>
-        <h3>Do you have any milestones to record?</h3>
-        <form action="#" ref={milestoneForm} onSubmit={saveMilestone}>
-          <input
-            type="radio"
-            name="record-milestone"
-            value="yes"
-            id="milestone-yes"
-            ref={yes}
-            onChange={hasMilestone}
+    <div className="milestone-wrapper">
+      <span className="icon-container">
+        <span className="delete-icon icon">
+          <IoRemoveOutline
+            className="icon"
+            onClick={() => deleteMilestone(milestone.id)}
           />
-          <label htmlFor="milestone-yes">yes</label>
-          <input
-            type="radio"
-            name="record-milestone"
-            value="no"
-            id="no-milestone"
-            ref={no}
-            onChange={hasMilestone}
-          />
-          <label htmlFor="milestone-no">no</label>
-          <br /><br />
-          <div id="milestone-text" ref={milestoneText} className="hide">
-            <label htmlFor="milestone-title">Milestone </label>
-            <input
-              type="text"
-              name="milestone-title"
-              id="milestone-title"
-              maxLength="100"
-              required
-              onChange={e => getInput(e, setTitle)}
-              // ref={title}
-            />
-            <br /><br />
-            <label htmlFor="milestone-details">
-              Do you have any extra details to include?
-            </label>
-            <br />
-            <textarea
-              name="milestone-details"
-              id="milestone-details"
-              cols="30"
-              rows="3"
-              onChange={e => getInput(e, setDetails)}
-              // ref={details}
-            ></textarea>
-            <br />
-            <br />
-            <input type="submit" value="Save Milestone" />
-          </div>
-        </form>
-      </div>
-      <div id="quote-wrapper" className="hide" ref={quoteContainer}>
-        <Quote getQuote={props.getQuote}/>
-        {/* <a href="#">Add an entry</a>
-        <a href="#">Add a milestone</a> */}
-      </div>
-    </Fragment>
+        </span>
+        <span className="edit-icon icon" onClick={editMilestone}>
+          <IoPencil className="icon" />
+        </span>
+      </span>
+      <div className="milestone_text" ref={milestoneText}>{milestone.title}</div>
+      <button
+        value="Done"
+        ref={done}
+        className="done_btn hide"
+        onClick={() => saveEdit(milestone.id)}
+      >
+        Done
+      </button>
+    </div>
   );
 };
 

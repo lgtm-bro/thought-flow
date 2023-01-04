@@ -7,7 +7,7 @@ const Post = (props) => {
   const [post, setPost] = useState(props.post.entry);
   const date = DateTime.fromISO(props.post.date).toLocaleString("ff");
 
-  const postDiv = useRef();
+  const postText = useRef();
   const postContainer = useRef();
   const done = useRef();
   let entryArr = post.split('\n\n');
@@ -30,24 +30,22 @@ const Post = (props) => {
   const expandEntry = (e) => {
     if (post.length < 254) {
       setPost(props.post.entry);
-    } else if (!postDiv.current.isContentEditable) {
+    } else if (!postText.current.isContentEditable) {
       setPost(entry);
     }
   };
 
   const editPost = (e) => {
-    postDiv.current.contentEditable = true;
+    postText.current.contentEditable = true;
     expandEntry();
     done.current.classList.remove("hide")
-
-    // postDiv.current.contentEditable = !postDiv.current.contentEditable;
   }
 
   const saveEdit = () => {
-    console.log(postDiv.current.value)
-    props.updateEntry(props.post.id, postDiv.current.innerText);
+    console.log(postText.current.value)
+    props.updateEntry(props.post.id, postText.current.innerText);
     setPost(props.post.entry);
-    postDiv.current.contentEditable = false;
+    postText.current.contentEditable = false;
     done.current.classList.add("hide");
   }
 
@@ -65,7 +63,7 @@ const Post = (props) => {
         <div
           id={`post-${props.post.id}`}
           contentEditable="false"
-          ref={postDiv}
+          ref={postText}
           onClick={expandEntry}
           suppressContentEditableWarning={true}
         >

@@ -43,6 +43,7 @@ const Feelings = (props) => {
       base.current.selectedIndex = 0;
       alert(`Please Log In to create an entry`);
     } else {
+      sessionStorage.setItem('baseEmotionId', e.target.options[e.target.selectedIndex].id)
       setBaseChoice(e.target.value);
       second.current.classList.remove("hide");
     }
@@ -55,6 +56,7 @@ const Feelings = (props) => {
   };
 
   const getSecondChoice = (e) => {
+    sessionStorage.setItem('secondEmotionId', e.target.options[e.target.selectedIndex].id)
     setSecondChoice(e.target.value);
     third.current.classList.remove("hide");
   };
@@ -66,8 +68,8 @@ const Feelings = (props) => {
   };
 
   const getThirdChoice = (e) => {
+    sessionStorage.setItem('thirdEmotionId', e.target.options[e.target.selectedIndex].id)
     setThirdChoice(e.target.value);
-    // props.hide();
     props.showHome();
     base.current.selectedIndex = 0;
     second.current.classList.add("hide");
@@ -83,7 +85,7 @@ const Feelings = (props) => {
         <select name="base" id="base" ref={base} onChange={(e) => getBaseChoice(e)}>
           <option value="default"></option>
           {baseEmotions.map((e) => (
-            <option key={e.id} value={e.name}>
+            <option key={e.id} value={e.name} id={e.id}>
               {e.name}
             </option>
           ))}
@@ -99,7 +101,7 @@ const Feelings = (props) => {
           >
             <option value="default"></option>
             {secondEmotions.map((e) => (
-              <option key={e.id} value={e.name}>
+              <option key={e.id} value={e.name} id={e.id}>
                 {e.name}
               </option>
             ))}
@@ -112,7 +114,7 @@ const Feelings = (props) => {
           <select name="third" id="third" onChange={(e) => getThirdChoice(e)}>
             <option value="default"></option>
             {thirdEmotions.map((e) => (
-              <option key={e.id} value={e.name}>
+              <option key={e.id} value={e.name} id={e.id}>
                 {e.name}
               </option>
             ))}

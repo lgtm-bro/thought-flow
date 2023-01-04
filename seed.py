@@ -54,8 +54,8 @@ def seed_users(user_data):
 
 def seed_milestones(milestone_data):
     for m in milestone_data:
-        user_id, title, msg = m.values()
-        ms = crud.create_milestone(user_id, title, msg)
+        user_id, title = m.values()
+        ms = crud.create_milestone(user_id, title)
         model.db.session.add(ms)
 
     model.db.session.commit()

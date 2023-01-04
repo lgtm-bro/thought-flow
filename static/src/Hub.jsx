@@ -28,13 +28,21 @@ const Hub = (props) => {
   return (
     <Fragment>
       <nav id="hub-nav">
-        <a href="#" onClick={showJournal}>
-          Journal
-        </a>
-        <a href="#" onClick={showMilestones}>
-          Milestones
-        </a>
-        {/* <a>Progress</a> */}
+        <span className="nav-link">
+          <a href="#" onClick={showJournal}>
+            Journal
+          </a>
+        </span>
+        <span className="nav-link">
+          <a href="#" onClick={showMilestones}>
+            Milestones
+          </a>
+        </span>
+        {/* <span className="nav-link">
+          <a href="#">
+            Progress
+          </a>
+        </span> */}
       </nav>
       <div id="journal-wrapper" ref={journalEntries}>
         <Journal
@@ -47,7 +55,10 @@ const Hub = (props) => {
       <div id="milestone-bar-wrapper" ref={milestoneEntries} className="hide">
         <MilestoneBar
           milestones={props.milestones}
+          feeling={props.feeling}
           showMilestone={props.showMilestone}
+          updateMilestone={props.updateMilestone}
+          deleteMilestone={props.deleteMilestone}
         />
       </div>
     </Fragment>

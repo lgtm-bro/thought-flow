@@ -1,7 +1,7 @@
 """CRUD operations"""
 
 from sqlalchemy import desc
-from model import User, BaseEmotion, SecondEmotion, ThirdEmotion, Post, Milestone, Prompt, UserSession, connect_to_db, db
+from model import User, BaseEmotion, SecondEmotion, ThirdEmotion, Post, Milestone, UserSession, connect_to_db, db
 
 # ********USER********
 
@@ -156,10 +156,10 @@ def delete_post(id):
 
 # ********MILESTONE********
 
-def create_milestone(user_id, title, msg):
+def create_milestone(user_id, title):
     """Create and return a user's milestone."""
 
-    milestone = Milestone(user_id=user_id, title=title, msg=msg)
+    milestone = Milestone(user_id=user_id, title=title)
 
     return milestone
 
@@ -167,7 +167,7 @@ def create_milestone(user_id, title, msg):
 def get_all_milestones(user):
     """Return all milestones for a user"""
     result = []
-    for m in Milestone.query.join(User).filter(User.name == user.lower().capitalize()).all():
+    for m in Milestone.query.join(User).filter(User.name == user.lower().capitalize()).order_by(Milestone.id).all():
         curr = m.__dict__
         del curr['_sa_instance_state']
         result.append(curr)
@@ -175,14 +175,32 @@ def get_all_milestones(user):
     return result
 
 
+def update_milestone(id, text):
+    """Updates a milestone record in the db"""
+
+    milestone = Milestone.query.filter(Milestone.id == id).update({
+        Milestone.title: text
+        })
+
+    return milestone
+
+
+def delete_milestone(id):
+    """Deletes a milestone record from the db"""
+
+    return Milestone.query.filter(Milestone.id == id).delete()
+
+
+
+
 # ********PROMPT********
 
-def create_prompt(level, category, msg):
-    """Create and return a guiding prompt."""
+# def create_prompt(level, category, msg):
+#     """Create and return a guiding prompt."""
 
-    prompt = Prompt(level=level, category=category, msg=msg)
+#     prompt = Prompt(level=level, category=category, msg=msg)
 
-    return prompt
+#     return prompt
 
 
 # ********USER_SESSION********

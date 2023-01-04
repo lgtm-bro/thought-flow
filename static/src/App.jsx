@@ -7,6 +7,7 @@ import { Route, Link, Routes, Navigate } from "react-router-dom";
 import NavBar from "./NavBar.jsx";
 import Home from "./Home.jsx";
 import Profile from "./Profile.jsx";
+import About from "./About.jsx";
 import UserAuth from "./UserAuth.jsx";
 import Login from "./Login.jsx";
 import Signup from "./Signup.jsx";
@@ -19,6 +20,9 @@ const App = (props) => {
   const login = useRef();
   const profile = useRef();
 
+  useEffect(() => {
+
+  })
 
   useEffect(() => {
     if (user) {
@@ -46,8 +50,9 @@ const App = (props) => {
     if (user) {
       setUser(user);
     } else {
-      sessionStorage.removeItem("user");
-      sessionStorage.removeItem("email");
+      // sessionStorage.removeItem("user");
+      // sessionStorage.removeItem("email");
+      sessionStorage.clear();
       setUser(null);
       setEmail(null);
     }
@@ -122,6 +127,19 @@ const App = (props) => {
       .catch((err) => alert(err.response.data.msg));
   };
 
+  // const submitSession = () => {
+  //   session = {
+  //   user: user,
+  //   base_emotion_id: sessionStorage.getItem("baseEmotionId"),
+  //   second_emotion_id: sessionStorage.getItem("secondEmotionId"),
+  //   third_emotion_id: sessionStorage.getItem("thirdEmotionId"),
+  //   post_id: sessionStorage.getItem("postId"),
+  //   milestone_id = sessionStorage.getItem("milestoneId"),
+  //   date = DateTime.now().toISO();
+  //   score = sessionStorage.getItem("score"),
+  //  }
+  // }
+
 
   return (
     <div id="app-wrapper">
@@ -150,7 +168,7 @@ const App = (props) => {
               />
             }
           />
-          <Route path="/about" element={<Navigate to="/" />} />
+          <Route path="/about" element={<About />} />
           <Route
             path="/auth/*"
             element={

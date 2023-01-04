@@ -21,16 +21,16 @@ const NavBar = (props) => {
     // </nav>
     <Fragment>
       <nav className="topnav">
-          <span>
+          <span className="nav-link">
             <Link to="/" >Home</Link>
           </span>
-          <span>
+          <span className="nav-link">
             <Link to="/profile" >Profile</Link>
           </span>
-          <span>
+          <span className="nav-link">
             <Link to="/about" >About</Link>
           </span>
-          <span>
+          <span className="nav-link">
             <Link to="/auth" >{status}</Link>
           </span>
     </nav>

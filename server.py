@@ -158,13 +158,14 @@ def submit_post():
         db.session.add(new_post)
         db.session.commit()
 
-        return jsonify({"success": True, "msg": "Post successfully saved"}), 201
+        return jsonify({"success": True, "post_id": new_post.id, "msg": "Post successfully saved"}), 201
 
     return jsonify({"success": False, "msg": "The user is not in our system"}), 400
 
 
 @app.route('/posts/update/<id>', methods=['PUT'])
 def updatePost(id):
+    """Updates a post record in the db"""
 
     entry = request.json.get('newEntry')
     res = crud.update_post(id, entry)
@@ -206,16 +207,48 @@ def addMilestone(user):
 
     user_id = crud.get_user_id(user)
     title = request.json.get('title')
-    msg = request.json.get('details')
 
     if user_id:
-      new_milestone = crud.create_milestone(user_id, title, msg)
+      new_milestone = crud.create_milestone(user_id, title)
       db.session.add(new_milestone)
       db.session.commit()
 
-      return jsonify({"success": True, "msg": "Milestone successfully saved"}), 201
+      return jsonify({"success": True, "milestone_id": new_milestone.id, "msg": "Milestone successfully saved"}), 201
 
     return jsonify({"success": False, "msg": "The user is not in our system"}), 400
+
+
+@app.route('/milestone/<id>',methods=['PUT'])
+def update_milestone(id):
+    """Updates a milestone record in the db"""
+
+    print(stars, 'update id', id)
+    text = request.json.get('text')
+    print(stars, 'update text', text)
+
+    milestone = crud.update_milestone(id, text)
+
+
+    if milestone:
+        db.session.commit()
+        return jsonify({"success": True, "msg": "Milestone successfully updated"}), 200
+
+    return jsonify({"success": False, "msg": "Please create a new milestone"}), 400
+
+
+@app.route('/milestone/<id>',methods=['DELETE'])
+def delete_milestone(id):
+    """Deletes a milestone record from the db"""
+
+    print(stars, 'delete id', id)
+    res = crud.delete_milestone(id)
+
+    if res:
+        db.session.commit()
+        return jsonify({"success": True, "msg": "Milestone successfully deleted"}), 200
+
+    return jsonify({"success": False, "msg": "That milestone cannot be found"}), 400
+
 
 
 @app.route('/quote/<keyword>')

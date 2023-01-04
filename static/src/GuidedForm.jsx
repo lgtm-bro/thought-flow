@@ -27,7 +27,6 @@ const GuidedForm = (props) => {
   };
 
   const getPrompt = (e, prompt, func) => {
-    console.log("props.feeling", props.feeling)
     let input = '';
 
     if (e.target.value) {
@@ -125,6 +124,7 @@ const GuidedForm = (props) => {
             <br />
             <textarea
               id="prompt2"
+              required
               onChange={(e) => getPrompt(e, prompt2, setPrompt2)}
             ></textarea>
           </label>
@@ -147,7 +147,7 @@ const GuidedForm = (props) => {
       <br />
       <br />
 
-      <button onClick={props.reset} >Cancel</button>
+      <button type="button" onClick={props.reset} >Cancel</button>
 
       <input
         type="submit"
