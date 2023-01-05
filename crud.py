@@ -205,13 +205,11 @@ def delete_milestone(id):
 
 # ********USER_SESSION********
 
-def create_user_session(user_id, post_id, date, score, milestone_id,
-                        base_id=None, second_id=None, third_id=None):
+def create_user_session(user_id, base_id, second_id, third_id, date):
     """Create and return a user session."""
 
-    user_session = UserSession(user_id=user_id, post_id=post_id,
-                date=date, score=score, milestone_id=milestone_id,
-                base_id=base_id, second_id=second_id, third_id=third_id)
+    user_session = UserSession(user_id=user_id, base_emotion_id=base_id, second_emotion_id=second_id,
+    third_emotion_id=third_id, date=date)
 
     return user_session
 

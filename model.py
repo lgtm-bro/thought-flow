@@ -94,7 +94,6 @@ class Post(db.Model):
     guided = db.Column(db.Boolean)
 
     user = db.relationship("User", back_populates="posts")
-    user_session = db.relationship("UserSession", back_populates="post")
 
     def __repr__(self):
         return f"<Post id={self.id} name={self.date}>"
@@ -108,27 +107,11 @@ class Milestone(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     title = db.Column(db.String(100), nullable=False)
-    # msg = db.Column(db.Text)
 
     user = db.relationship("User", back_populates="milestones")
-    user_session = db.relationship("UserSession", back_populates="milestone")
 
     def __repr__(self):
         return f"<Milestone id={self.id} name={self.title}>"
-
-
-# class Prompt(db.Model):
-#     """A guiding prompt for the user"""
-
-#     __tablename__ = "prompts"
-
-#     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-#     level = db.Column(db.Integer, nullable=False)
-#     category = db.Column(db.String(30), nullable=False)
-#     msg = db.Column(db.String(250), nullable=False)
-
-#     def __repr__(self):
-#         return f"<Prompt id={self.id}>"
 
 
 class UserSession(db.Model):
@@ -141,18 +124,13 @@ class UserSession(db.Model):
     base_emotion_id = db.Column(db.Integer, db.ForeignKey('base_emotions.id'))
     second_emotion_id = db.Column(db.Integer, db.ForeignKey('second_emotions.id'))
     third_emotion_id = db.Column(db.Integer, db.ForeignKey('third_emotions.id'))
-    post_id = db.Column(db.Integer, db.ForeignKey('posts.id'))
-    milestone_id = db.Column(db.Integer, db.ForeignKey('milestones.id'))
     date = db.Column(db.DateTime, nullable=False)
-    score = db.Column(db.Integer)
 
 
     user = db.relationship("User", back_populates="user_sessions")
     base_emotion = db.relationship("BaseEmotion", back_populates="user_sessions")
     second_emotion = db.relationship("SecondEmotion", back_populates="user_sessions")
     third_emotion = db.relationship("ThirdEmotion", back_populates="user_sessions")
-    post = db.relationship("Post", back_populates="user_session")
-    milestone = db.relationship("Milestone", back_populates="user_session")
 
     def __repr__(self):
         return f"<UserSession id={self.id} date={self.date}>"

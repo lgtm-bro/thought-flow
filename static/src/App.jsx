@@ -3,7 +3,6 @@ import axios from "axios";
 import { DateTime } from "luxon";
 import { Route, Link, Routes, useNavigate } from "react-router-dom";
 
-
 import NavBar from "./NavBar.jsx";
 import Home from "./Home.jsx";
 import Profile from "./Profile.jsx";
@@ -11,7 +10,6 @@ import About from "./About.jsx";
 import UserAuth from "./UserAuth.jsx";
 import Login from "./Login.jsx";
 import Signup from "./Signup.jsx";
-
 
 const App = (props) => {
   const [user, setUser] = useState(sessionStorage.getItem("user"));
@@ -23,9 +21,20 @@ const App = (props) => {
 
   const navigate = useNavigate();
 
-  useEffect(() => {
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+      "Access-Control-Allow-Origin": "*",
+    },
+  };
 
-  })
+  // useEffect(() => {
+  //   window.addEventListener("beforeunload", submitSession);
+
+  //   return () => {
+  //     window.removeEventListener("beforeunload", submitSession);
+  //   };
+  // }, []);
 
   useEffect(() => {
     if (user) {
@@ -34,23 +43,21 @@ const App = (props) => {
     }
   }, [user]);
 
-
   /********** ALERT ***********/
-  const showAlert = (msg, time=2000, page) => {
+  const showAlert = (msg, time = 2000, page) => {
     if (alerts.current) {
-      alerts.current.classList.remove('hide');
+      alerts.current.classList.remove("hide");
       alerts.current.textContent = msg;
     }
 
     setTimeout(() => {
       if (alerts.current) {
-        alerts.current.textContent = '';
-        alerts.current.classList.add('hide');
+        alerts.current.textContent = "";
+        alerts.current.classList.add("hide");
         if (page) navigate(page);
       }
-    }, 2000)
-  }
-
+    }, 2000);
+  };
 
   /********** USER ***********/
   const getUser = (email, password) => {
@@ -58,6 +65,7 @@ const App = (props) => {
       .get(`/users/${email}?password=${password}`)
       .then((result) => {
         setUser(result.data.name);
+        sessionStorage.setItem("userId", result.data.id);
         setEmail(email);
         navigate("/");
       })
@@ -68,8 +76,6 @@ const App = (props) => {
     if (user) {
       setUser(user);
     } else {
-      // sessionStorage.removeItem("user");
-      // sessionStorage.removeItem("email");
       sessionStorage.clear();
       setUser(null);
       setEmail(null);
@@ -79,12 +85,7 @@ const App = (props) => {
   /******** LOGIN / SIGNUP ********/
   const signupUser = (name, email, password) => {
     const user = { name: name, email: email, password: password };
-    const config = {
-      headers: {
-        "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": "*",
-      },
-    };
+
     axios
       .post("/signup", user, config)
       .then((results) => {
@@ -100,14 +101,14 @@ const App = (props) => {
 
   /********** SIGNOUT ***********/
   const signOut = () => {
+    submitSession();
     updateUser("");
-    setEmail("");
   };
 
-    /********** POSTS ***********/
-    const retrievePosts = (posts) => {
-      setPosts(posts)
-    }
+  /********** POSTS ***********/
+  const retrievePosts = (posts) => {
+    setPosts(posts);
+  };
 
   /********** PROFILE ***********/
   const updateProfile = (name, profEmail, cp, np) => {
@@ -129,13 +130,6 @@ const App = (props) => {
       };
     }
 
-    const config = {
-      headers: {
-        "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": "*",
-      },
-    };
-
     axios
       .put(`/update_user/${email}`, userInfo, config)
       .then((res) => {
@@ -148,64 +142,61 @@ const App = (props) => {
       .catch((err) => showAlert(err.response.data.msg));
   };
 
-  // const submitSession = () => {
-  //   session = {
-  //   user: user,
-  //   base_emotion_id: sessionStorage.getItem("baseEmotionId"),
-  //   second_emotion_id: sessionStorage.getItem("secondEmotionId"),
-  //   third_emotion_id: sessionStorage.getItem("thirdEmotionId"),
-  //   post_id: sessionStorage.getItem("postId"),
-  //   milestone_id = sessionStorage.getItem("milestoneId"),
-  //   date = DateTime.now().toISO();
-  //   score = sessionStorage.getItem("score"),
-  //  }
-  // }
+  const submitSession = () => {
+    if (!sessionStorage.getItem("baseEmotionId")) {
+      console.log("not enough session data");
+      return;
+    }
 
+    const session = {
+      user_id: sessionStorage.getItem("userId"),
+      base_emotion_id: sessionStorage.getItem("baseEmotionId"),
+      second_emotion_id: sessionStorage.getItem("secondEmotionId"),
+      third_emotion_id: sessionStorage.getItem("thirdEmotionId"),
+      date: DateTime.now().toISO()
+    };
+
+    axios
+      .post(`/sessions`, session, config)
+      .then((results) => {
+        console.log("results", results.data);
+      })
+      .catch((err) => console.log(err));
+  };
 
   return (
     <div id="app-wrapper">
       <div id="nav-wrapper">
-        <NavBar
-          user={user}
-          showAlert={showAlert}
-        />
-        <Routes>
-          <Route
-            path="/*"
-            element={
-              <Home
-              user={user}
-              showAlert={showAlert}
-              />
-            }
-          />
-          <Route
-            path="/profile"
-            element={
-              <Profile
-                user={user}
-                email={email}
-                updateProfile={updateProfile}
-                showAlert={showAlert}
-              />
-            }
-          />
-          <Route path="/about" element={<About />} />
-          <Route
-            path="/auth/*"
-            element={
-              <UserAuth
-                user={user}
-                getUser={getUser}
-                showAlert={showAlert}
-                clear={signOut}
-                signupUser={signupUser}
-              />
-            }
-          >
-          </Route>
-        </Routes>
+        <NavBar user={user} showAlert={showAlert} />
       </div>
+      <Routes>
+        <Route path="/*" element={<Home user={user} showAlert={showAlert} />} />
+        <Route
+          path="/profile"
+          element={
+            <Profile
+              user={user}
+              email={email}
+              updateProfile={updateProfile}
+              showAlert={showAlert}
+            />
+          }
+        />
+        <Route path="/about" element={<About />} />
+        <Route
+          path="/auth/*"
+          element={
+            <UserAuth
+              user={user}
+              getUser={getUser}
+              showAlert={showAlert}
+              clear={signOut}
+              signupUser={signupUser}
+            />
+          }
+        ></Route>
+      </Routes>
+
       <div id="user-alerts" ref={alerts} className="hide"></div>
     </div>
   );

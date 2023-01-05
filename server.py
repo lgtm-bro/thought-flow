@@ -267,6 +267,27 @@ def getQuote(keyword):
     return jsonify(quote)
 
 
+    #********************SESSIONS********************
+
+@app.route('/sessions', methods=['POST'])
+def createSession():
+    """Creates a record of all user data in a browser session"""
+
+    session = request.get_json()
+    user_id, base_id, second_id, third_id, date = session.values()
+
+    new_sess = crud.create_user_session(user_id, base_id, second_id, third_id, date)
+
+    if new_sess:
+        db.session.add(new_sess)
+        db.session.commit()
+
+        return jsonify({"success": True, "msg": "Session successfully created"}), 201
+
+    return jsonify({"success": False, "msg": "Unable to create session"}), 400
+
+
+
 if __name__ =='__main__':
     connect_to_db(app)
     app.run(host='0.0.0.0', debug=True)

@@ -32,7 +32,6 @@ const UserAuth = ({ user, getUser, showAlert, clear, signupUser }) => {
               <Signout
                 cancelForm={cancelForm}
                 clear={clear}
-                signoutClick={signoutClick}
               />
             }
           />

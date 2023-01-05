@@ -1,6 +1,7 @@
 import React from "react";
 
 const Signout = (props) => {
+
   const signoutUser = () => {
     props.clear();
     props.cancelForm();

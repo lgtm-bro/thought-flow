@@ -1,7 +1,6 @@
 import React, { useEffect, useState, useRef, Fragment } from "react";
 import axios from "axios";
 import { DateTime } from "luxon";
-import { BrowserRouter } from "react-router-dom";
 import {
   Route,
   Link,
@@ -42,13 +41,11 @@ const Home = ({ user, showAlert }) => {
     getPosts(user);
   }, [user]);
 
-
   /********** FEELINGS ***********/
   const getFeeling = (f) => {
     axios.get(`/third_emotion/${f}`).then((results) => {
       setFeeling(results.data.name);
       setFeelingScore(results.data.score);
-      sessionStorage.setItem('score', results.data.score)
     });
   };
 
@@ -69,7 +66,6 @@ const Home = ({ user, showAlert }) => {
   };
 
   const submitEntry = (entry, guided) => {
-
     const post = {
       user: user,
       date: DateTime.now().toISO(),
@@ -81,7 +77,6 @@ const Home = ({ user, showAlert }) => {
       .post("/posts", post, config)
       .then((results) => {
         console.log(results.data);
-        sessionStorage.setItem('postId', results.data.post_id);
         getPosts(user);
         navigate("/");
       })
@@ -90,13 +85,6 @@ const Home = ({ user, showAlert }) => {
 
   const updateEntry = (id, newEntry) => {
     const entry = { newEntry };
-
-    // const config = {
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //     "Access-Control-Allow-Origin": "*",
-    //   },
-    // };
 
     axios
       .put(`/posts/update/${id}`, entry, config)
@@ -129,12 +117,10 @@ const Home = ({ user, showAlert }) => {
   };
 
   const submitMilestone = (title) => {
-
     axios
-      .post(`/milestones/${user}`, {title}, config)
+      .post(`/milestones/${user}`, { title }, config)
       .then((res) => {
         console.log(res.data);
-        sessionStorage.setItem('milestoneId', res.data.milestone_id);
         getMilestones(user);
         navigate("/");
       })
@@ -153,89 +139,95 @@ const Home = ({ user, showAlert }) => {
   };
 
   const updateMilestone = (id, text) => {
-    axios.put(`/milestone/${id}`, {text}, config)
+    axios
+      .put(`/milestone/${id}`, { text }, config)
       .then((res) => {
         console.log(res.data);
         getMilestones(user);
       })
       .catch((err) => console.log(err));
-  }
+  };
 
   const deleteMilestone = (id) => {
-    axios.delete(`/milestone/${id}`)
+    axios
+      .delete(`/milestone/${id}`)
       .then((res) => {
-        console.log(res.data)
+        console.log(res.data);
         getMilestones(user);
       })
       .catch((err) => console.log(err));
-  }
-
+  };
 
   return (
     <div id="home-wrapper">
-      {location.pathname === "/" && <h1>ThoughtFlow</h1>}
+      <h1>ThoughtFlow</h1>
       <br />
-      {location.pathname === "/" && (
-        <div id="greet-wrapper" >
-          <Greet feeling={feeling} user={user} />
+      <div id="greet-wrapper">
+        <Greet feeling={feeling} user={user} />
+      </div>
+      {!feeling && (
+        <div id="feelings-wrapper">
+          <Feelings user={user} showHome={showHome} feeling={getFeeling} />
         </div>
       )}
-      {!feeling && <div id="feelings-wrapper">
-        <Feelings
-          user={user}
-          showHome={showHome}
-          feeling={getFeeling}
+      {location.pathname === "/" && feeling && <Quote getQuote={getQuote} />}
+      <div id="hub-wrapper">
+        <Hub
+          feeling={feeling}
+          posts={posts}
+          milestones={milestones}
+          showMilestone={showMilestone}
+          deletePost={deletePost}
+          updateEntry={updateEntry}
+          updateMilestone={updateMilestone}
+          deleteMilestone={deleteMilestone}
         />
-      </div>}
-      {location.pathname === "/" && feeling && <Quote getQuote={getQuote}/>}
-      {location.pathname === "/" && (
-        <div id="hub-wrapper" >
-          <Hub
-            feeling={feeling}
-            posts={posts}
-            milestones={milestones}
-            showMilestone={showMilestone}
-            deletePost={deletePost}
-            updateEntry={updateEntry}
-            updateMilestone={updateMilestone}
-            deleteMilestone={deleteMilestone}
-          />
-        </div>
-      )}
+      </div>
 
       <Routes>
         <Route
           path="feelings"
           element={
-            <Feelings
-              user={user}
-              showHome={showHome}
-              feeling={getFeeling}
-            />
+            <Feelings user={user} showHome={showHome} feeling={getFeeling} />
           }
         ></Route>
         <Route
           path="entry"
           element={
-            feeling && <Entry
+            feeling && (
+              <Entry
+                feeling={feeling}
+                feelingScore={feelingScore}
+                submitEntry={submitEntry}
+              />
+            )
+          }
+        />
+        {/* <Route
+          path="/hub/"
+          element={
+            <Hub
               feeling={feeling}
-              feelingScore={feelingScore}
-              submitEntry={submitEntry}
+              posts={posts}
+              milestones={milestones}
+              showMilestone={showMilestone}
+              deletePost={deletePost}
+              updateEntry={updateEntry}
+              updateMilestone={updateMilestone}
+              deleteMilestone={deleteMilestone}
             />
           }
-        ></Route>
+        /> */}
         <Route
           path="milestone"
           element={
-            <MilestoneForm getQuote={getQuote} submitMilestone={submitMilestone} />
+            <MilestoneForm
+              getQuote={getQuote}
+              submitMilestone={submitMilestone}
+            />
           }
-        ></Route>
-        <Route
-          path="quote"
-          element={
-            <Quote />
-          }
-        ></Route>
+        />
+        <Route path="quote" element={<Quote />} />
       </Routes>
     </div>
   );
