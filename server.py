@@ -287,6 +287,17 @@ def createSession():
     return jsonify({"success": False, "msg": "Unable to create session"}), 400
 
 
+@app.route('/sessions/<user_id>')
+def get_user_sessions(user_id):
+    """returns all sessions of the user with the given id grouped by base_emotion_id"""
+
+    sessions = crud.get_user_sessions(user_id)
+
+    if sessions:
+        return jsonify(dict(sessions))
+
+    return jsonify({"success": False, "msg": "Cannot find sessions for that user"}), 400
+
 
 if __name__ =='__main__':
     connect_to_db(app)

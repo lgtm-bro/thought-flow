@@ -28,6 +28,7 @@ const Home = ({ user, showAlert }) => {
   const [userMsgPath, setUserMsgPath] = useState();
   const [userMsgLinkText, setUserMsgLinkText] = useState();
 
+
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -41,10 +42,12 @@ const Home = ({ user, showAlert }) => {
   useEffect(() => {
     getPosts(user);
     getMilestones(user);
-  }, []);
-
-  useEffect(() => {
     checkMsgStatus();
+
+    getUserSessions(sessionStorage.getItem("userId"))
+      .then(res => console.log(res.data))
+      .catch(err => console.log(err));
+
   }, []);
 
   useEffect(() => {
@@ -197,9 +200,18 @@ const Home = ({ user, showAlert }) => {
       .catch((err) => console.log(err));
   };
 
+  /********** USER SESSIONS ***********/
+  const getUserSessions = async (userId) => {
+    try {
+      return await axios.get(`/sessions/${userId}`)
+    } catch(e) {
+      console.log(e)
+    }
+  }
+
+
   return (
     <div id="home-wrapper">
-      <br />
       <div id="greet-wrapper">
         <Greet feeling={feeling} user={user} sendFeeling={sendFeeling} />
       </div>

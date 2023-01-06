@@ -9,10 +9,6 @@ html,
   overflow: hidden;
 }
 
-/* #root {
-  margin: 4% auto;
-} */
-
 h1 {
   text-align: center;
   clear: both;
@@ -28,10 +24,6 @@ a {
 
 .nav-link {
   margin: 0 15px;
-}
-
-.form-link {
-  /* margin: 0 .3rem; */
 }
 
 .done_btn {

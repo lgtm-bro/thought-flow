@@ -1,6 +1,6 @@
 """CRUD operations"""
 
-from sqlalchemy import desc
+from sqlalchemy import desc, func
 from model import User, BaseEmotion, SecondEmotion, ThirdEmotion, Post, Milestone, UserSession, connect_to_db, db
 
 # ********USER********
@@ -212,6 +212,18 @@ def create_user_session(user_id, base_id, second_id, third_id, date):
     third_emotion_id=third_id, date=date)
 
     return user_session
+
+
+def get_user_sessions(user_id):
+
+    sessions = UserSession.query.join(BaseEmotion).with_entities(BaseEmotion.name, func.count(UserSession.user_id))\
+    .filter(UserSession.user_id == user_id).group_by(BaseEmotion.name).all()
+
+
+    return sessions
+    # return {list(x) for x in sessions}
+
+    # select base_emotion_id, count(user_id) from user_sessions where user_id = 2 group by base_emotion_id
 
 
 
