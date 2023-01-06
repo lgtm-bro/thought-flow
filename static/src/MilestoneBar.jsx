@@ -1,4 +1,6 @@
 import React, { useState, useEffect, useRef, Fragment } from "react";
+import { Link, useNavigate } from "react-router-dom";
+
 import { AiOutlinePlus } from "react-icons/ai";
 import { IoRemoveOutline, IoPencil } from "react-icons/io5";
 
@@ -7,7 +9,6 @@ import Milestone from "./Milestone.jsx";
 
 const MilestoneBar = ({
   milestones,
-  showMilestone,
   feeling,
   updateMilestone,
   deleteMilestone,
@@ -30,19 +31,16 @@ const MilestoneBar = ({
   return (
     <Fragment>
       <h4>
-        You have great days ahead!
-        <br />
         So Far you have...
       </h4>
-      {feeling && (
-        <h5>
-          {" "}
-          Add a milestone
-          <span onClick={showMilestone}>
-            <AiOutlinePlus />
+        {!!sessionStorage.getItem('user') && <h5>
+          <span>
+            <Link to="/milestone">
+              <AiOutlinePlus />
+              add a milestone
+            </Link>
           </span>
-        </h5>
-      )}
+        </h5>}
       {milestones.map((m) => (
         <Milestone key={m.id} milestone={m} updateMilestone={updateMilestone}
         deleteMilestone={deleteMilestone}/>

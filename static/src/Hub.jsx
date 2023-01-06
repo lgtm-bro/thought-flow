@@ -1,4 +1,4 @@
-import React, { useState, useRef, Fragment } from "react";
+import React, { useState, useRef, useEffect, Fragment } from "react";
 import {
   Route,
   Link,
@@ -12,47 +12,62 @@ import MilestoneBar from "./MilestoneBar.jsx";
 import Trends from "./Trends.jsx";
 
 const Hub = (props) => {
+  const [tab, setTab] = useState("journal");
+
   const journalEntries = useRef();
   const milestoneEntries = useRef();
 
-  const [tab, setTab] = useState("journal");
+  const navigate = useNavigate();
+  const defaultMsg =
+    "First, let's indentify how you feel about this experience ";
 
-  const showJournal = () => {
-    if (tab !== "journal") {
-      journalEntries.current.classList.remove("hide");
-      milestoneEntries.current.classList.add("hide");
-      setTab("journal");
-    }
-  };
+  useEffect(() => {
+    navigate("/");
+  }, []);
 
-  const showMilestones = () => {
-    if (tab !== "milestones") {
-      milestoneEntries.current.classList.remove("hide");
-      journalEntries.current.classList.add("hide");
-      setTab("milestones");
-    }
+  // const showJournal = () => {
+  //   if (tab !== "journal") {
+  //     journalEntries.current.classList.remove("hide");
+  //     milestoneEntries.current.classList.add("hide");
+  //     setTab("journal");
+  //   }
+  // };
+
+  // const showMilestones = () => {
+  //   if (tab !== "milestones") {
+  //     milestoneEntries.current.classList.remove("hide");
+  //     journalEntries.current.classList.add("hide");
+  //     setTab("milestones");
+  //   }
+  // };
+
+  const sendFeelingMsg = (msg, hasQ, path = "/") => {
+    props.changeMsg(msg, hasQ, path);
   };
 
   return (
     <Fragment>
       <nav id="hub-nav">
-        <span id="hub-journal" className="nav-link">
-          <Link to="/" >Journal</Link>
-          {/* <a href="#" onClick={showJournal}>
-            Journal
-          </a> */}
+        <span
+          id="hub-journal"
+          className="nav-link"
+          onClick={props.checkMsgStatus}
+        >
+          <Link to="/">Journal</Link>
         </span>
-        <span id="hub-milestones" className="nav-link">
-          <Link to="/milestones" >Milestones</Link>
-          {/* <a href="#" onClick={showMilestones}>
-            Milestones
-          </a> */}
+        <span
+          id="hub-milestones"
+          className="nav-link"
+          onClick={props.checkMsgStatus}
+        >
+          <Link to="/hub-milestones">Milestones</Link>
         </span>
-        <span id="hub-trends" className="nav-link">
-          <Link to="/trends">Trends</Link>
-          {/* <a href="#">
-            Trends
-          </a> */}
+        <span
+          id="hub-trends"
+          className="nav-link"
+          onClick={props.checkMsgStatus}
+        >
+          <Link to="/hub-trends">Trends</Link>
         </span>
       </nav>
       {/* <div id="journal-wrapper" ref={journalEntries}>
@@ -83,24 +98,24 @@ const Hub = (props) => {
             <Journal
               posts={props.posts}
               feeling={props.feeling}
-              deletePost={props.deletePost}
               updateEntry={props.updateEntry}
+              deletePost={props.deletePost}
+              changeMsg={props.changeMsg}
             />
           }
         />
         <Route
-          path="/milestones"
+          path="/hub-milestones"
           element={
             <MilestoneBar
               milestones={props.milestones}
               feeling={props.feeling}
-              showMilestone={props.showMilestone}
               updateMilestone={props.updateMilestone}
               deleteMilestone={props.deleteMilestone}
             />
           }
         />
-        <Route path="/trends" element={<Trends />} />
+        <Route path="/hub-trends" element={<Trends />} />
       </Routes>
     </Fragment>
   );

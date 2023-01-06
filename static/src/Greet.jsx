@@ -1,14 +1,28 @@
-import React, {Fragment} from "react";
+import React, { Fragment } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
-const Greet = (props) => {
-	const feeling = props.feeling;
+const Greet = ({ user, feeling }) => {
+	const navigate = useNavigate();
+
+	const getNewFeeling = () => {
+		document.getElementById("confirm-wrapper").classList.remove("hide")
+	}
 
 	return (
-		<Fragment>
-			{props.user && <span className="greet-span" >Hi {props.user}. </span>}
-			{feeling && <span className="greet-span" >Today's vibe is {feeling[0].toUpperCase() + feeling.substring(1)}</span>}
-		</Fragment>
-	)
-}
+    <Fragment>
+      {user && <span className="greet-span">Hi {user}. </span>}
+      {feeling && (
+        <span className="greet-span">
+          <span>Today's vibe is </span>
+          <span onClick={getNewFeeling}>
+            <a href="#">
+              {feeling[0].toUpperCase() + feeling.substring(1)}
+            </a>
+          </span>
+        </span>
+      )}
+    </Fragment>
+  );
+};
 
 export default Greet;

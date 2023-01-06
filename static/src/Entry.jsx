@@ -1,21 +1,23 @@
 import React, { useState, useEffect, useRef, Fragment } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, redirect } from "react-router-dom";
 
 import GuidedForm from "./GuidedForm.jsx";
 import SoloForm from "./SoloForm.jsx";
 
-const Entry = (props) => {
+const Entry = ({feeling, feelingScore, submitEntry}) => {
   const [isGuided, setIsGuided] = useState();
   const [isSolo, setIsSolo] = useState();
   const [entry, setEntry] = useState("");
   const guided_btn = useRef();
   const solo_btn = useRef();
 
+  const navigate = useNavigate();
+
   useEffect(() => {
-    if (!props.feeling) {
+    if (!feeling) {
       reset();
     }
-  }, [props.feeling]);
+  }, [feeling]);
 
   useEffect(() => {
     guided_btn.current.checked;
@@ -42,7 +44,7 @@ const Entry = (props) => {
 
   const submitPost = (e) => {
     e.preventDefault();
-    props.submitEntry(entry, isGuided);
+    submitEntry(entry, isGuided);
     setEntry();
   };
 
@@ -72,14 +74,14 @@ const Entry = (props) => {
       <form id="entry-form" onSubmit={submitPost}>
         {isGuided && (
           <GuidedForm
-            feeling={props.feeling}
-            feelingScore={props.feelingScore}
+            feeling={feeling}
+            feelingScore={feelingScore}
             reset={reset}
             getEntry={getEntry}
-            submitEntry={props.submitEntry}
+            submitEntry={submitEntry}
           />
         )}
-        {isSolo && <SoloForm reset={reset} getEntry={getEntry} submitEntry={props.submitEntry} />}
+        {isSolo && <SoloForm reset={reset} getEntry={getEntry} submitEntry={submitEntry} />}
         <br />
         <Link to="/">
           <button type="button" onClick={reset}>

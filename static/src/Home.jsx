@@ -10,6 +10,8 @@ import {
 } from "react-router-dom";
 
 import Greet from "./Greet.jsx";
+import Message from "./Message.jsx";
+import ConfirmModal from "./ConfirmModal.jsx";
 import Feelings from "./Feelings.jsx";
 import Entry from "./Entry.jsx";
 import Hub from "./Hub.jsx";
@@ -17,10 +19,14 @@ import MilestoneForm from "./MilestoneForm.jsx";
 import Quote from "./Quote.jsx";
 
 const Home = ({ user, showAlert }) => {
-  const [feeling, setFeeling] = useState();
+  const [feeling, setFeeling] = useState(sessionStorage.getItem("feeling"));
   const [feelingScore, setFeelingScore] = useState();
   const [posts, setPosts] = useState([]);
   const [milestones, setMilestones] = useState([]);
+  const [userMsg, setUserMsg] = useState();
+  const [userMsgQuestion, setUserMsgQuestion] = useState(false);
+  const [userMsgPath, setUserMsgPath] = useState();
+  const [userMsgLinkText, setUserMsgLinkText] = useState();
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -38,16 +44,49 @@ const Home = ({ user, showAlert }) => {
   }, []);
 
   useEffect(() => {
+    checkMsgStatus();
+  }, []);
+
+  useEffect(() => {
     getPosts(user);
+    checkMsgStatus();
   }, [user]);
+
+  /******** USER MESSAGES *********/
+  const changeMsg = (
+    msg,
+    hasQuestion = false,
+    path = "!",
+    linkText = "Yes"
+  ) => {
+    setUserMsg(msg);
+    setUserMsgQuestion(hasQuestion);
+    setUserMsgLinkText(linkText);
+    setUserMsgPath(path);
+  };
+
+  const checkMsgStatus = () => {
+    if (feeling) {
+      changeMsg("Would like to write about it? ", true, "/entry")
+    } else if (user) {
+      changeMsg("First things, first. How are you feeling?");
+    } else {
+      changeMsg("Please create an account or login to get started");
+    }
+  }
 
   /********** FEELINGS ***********/
   const getFeeling = (f) => {
     axios.get(`/third_emotion/${f}`).then((results) => {
+      changeMsg("Would like to write about it? ", true, "/entry");
       setFeeling(results.data.name);
       setFeelingScore(results.data.score);
     });
   };
+
+  const sendFeeling = (feeling) => {
+    setFeeling(feeling);
+  }
 
   /********** POST ENTRY ***********/
   const showHome = (el) => {
@@ -127,9 +166,9 @@ const Home = ({ user, showAlert }) => {
       .catch((err) => console.log(err));
   };
 
-  const showMilestone = () => {
-    navigate("/milestone");
-  };
+  // const showMilestone = () => {
+  //   navigate("/milestone");
+  // };
 
   const getQuote = async (keyword = "inspirational") => {
     return await axios
@@ -160,64 +199,66 @@ const Home = ({ user, showAlert }) => {
 
   return (
     <div id="home-wrapper">
-      <h1>ThoughtFlow</h1>
       <br />
       <div id="greet-wrapper">
-        <Greet feeling={feeling} user={user} />
+        <Greet feeling={feeling} user={user} sendFeeling={sendFeeling} />
       </div>
-      {!feeling && (
-        <div id="feelings-wrapper">
-          <Feelings user={user} showHome={showHome} feeling={getFeeling} />
-        </div>
-      )}
-      {location.pathname === "/" && feeling && <Quote getQuote={getQuote} />}
+      <div id="user-msg-wrapper">
+        {userMsg && (
+          <Message
+            msg={userMsg}
+            hasQuestion={userMsgQuestion}
+            linkText={userMsgLinkText}
+            path={userMsgPath}
+          />
+        )}
+      </div>
+      {(location.pathname.includes("hub") || location.pathname === "/") &&
+        user &&
+        !feeling && (
+          <div id="feelings-wrapper">
+            <Feelings user={user} showHome={showHome} feeling={getFeeling} />
+          </div>
+        )}
+      {/* {location.pathname === "/" && feeling && <Quote getQuote={getQuote} />} */}
       <div id="hub-wrapper">
         <Hub
           feeling={feeling}
           posts={posts}
           milestones={milestones}
-          showMilestone={showMilestone}
+          checkMsgStatus={checkMsgStatus}
+          changeMsg={changeMsg}
           deletePost={deletePost}
           updateEntry={updateEntry}
           updateMilestone={updateMilestone}
           deleteMilestone={deleteMilestone}
         />
       </div>
+        <ConfirmModal sendFeeling={sendFeeling} />
 
       <Routes>
+        <Route path="/confirm" element={<ConfirmModal sendFeeling={sendFeeling} />}/>
         <Route
           path="feelings"
           element={
-            <Feelings user={user} showHome={showHome} feeling={getFeeling} />
+            <Feelings
+              user={user}
+              feeling={getFeeling}
+              showAlert={showAlert}
+              showHome={showHome}
+            />
           }
-        ></Route>
+        />
         <Route
           path="entry"
           element={
-            feeling && (
-              <Entry
-                feeling={feeling}
-                feelingScore={feelingScore}
-                submitEntry={submitEntry}
-              />
-            )
-          }
-        />
-        {/* <Route
-          path="/hub/"
-          element={
-            <Hub
+            <Entry
               feeling={feeling}
-              posts={posts}
-              milestones={milestones}
-              showMilestone={showMilestone}
-              deletePost={deletePost}
-              updateEntry={updateEntry}
-              updateMilestone={updateMilestone}
-              deleteMilestone={deleteMilestone}
+              feelingScore={feelingScore}
+              submitEntry={submitEntry}
             />
           }
-        /> */}
+        />
         <Route
           path="milestone"
           element={

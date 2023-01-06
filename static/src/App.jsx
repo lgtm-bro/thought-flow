@@ -1,7 +1,13 @@
 import React, { useEffect, useState, useRef, Fragment } from "react";
 import axios from "axios";
 import { DateTime } from "luxon";
-import { Route, Link, Routes, useNavigate } from "react-router-dom";
+import {
+  Route,
+  Link,
+  Routes,
+  useNavigate,
+  useLocation,
+} from "react-router-dom";
 
 import NavBar from "./NavBar.jsx";
 import Home from "./Home.jsx";
@@ -14,12 +20,14 @@ import Signup from "./Signup.jsx";
 const App = (props) => {
   const [user, setUser] = useState(sessionStorage.getItem("user"));
   const [email, setEmail] = useState(sessionStorage.getItem("email"));
+  // const [userMsg, setUserMsg] = useState();
 
   const login = useRef();
   const profile = useRef();
   const alerts = useRef();
 
   const navigate = useNavigate();
+  const location = useLocation();
 
   const config = {
     headers: {
@@ -28,13 +36,17 @@ const App = (props) => {
     },
   };
 
-  // useEffect(() => {
-  //   window.addEventListener("beforeunload", submitSession);
+  useEffect(() => {
+    window.addEventListener("beforeunload", submitSession);
 
-  //   return () => {
-  //     window.removeEventListener("beforeunload", submitSession);
-  //   };
-  // }, []);
+    return () => {
+      window.removeEventListener("beforeunload", submitSession);
+    };
+  }, []);
+
+  // useEffect(() => {
+  //   if (!user) setUserMsg("Please create an account or login to get started")
+  // }, [])
 
   useEffect(() => {
     if (user) {
@@ -42,6 +54,11 @@ const App = (props) => {
       sessionStorage.setItem("email", email);
     }
   }, [user]);
+
+  // /******** USER MESSAGES *********/
+  // const changeMsg = (msg) => {
+  //   setUserMsg(msg);
+  // };
 
   /********** ALERT ***********/
   const showAlert = (msg, time = 2000, page) => {
@@ -153,7 +170,7 @@ const App = (props) => {
       base_emotion_id: sessionStorage.getItem("baseEmotionId"),
       second_emotion_id: sessionStorage.getItem("secondEmotionId"),
       third_emotion_id: sessionStorage.getItem("thirdEmotionId"),
-      date: DateTime.now().toISO()
+      date: DateTime.now().toISO(),
     };
 
     axios
@@ -169,8 +186,15 @@ const App = (props) => {
       <div id="nav-wrapper">
         <NavBar user={user} showAlert={showAlert} />
       </div>
+      <div id="user-alerts" ref={alerts} className="hide"></div>
+      {!location.pathname.includes("auth") && <h1>ThoughtFlow</h1>}
       <Routes>
-        <Route path="/*" element={<Home user={user} showAlert={showAlert} />} />
+        <Route
+          path="/*"
+          element={
+            <Home user={user} showAlert={showAlert} />
+          }
+        />
         <Route
           path="/profile"
           element={
@@ -196,8 +220,7 @@ const App = (props) => {
           }
         ></Route>
       </Routes>
-
-      <div id="user-alerts" ref={alerts} className="hide"></div>
+      {/* {location.pathname !== "/auth/*" && <h1>ThoughtFlow</h1>} */}
     </div>
   );
 };

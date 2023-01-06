@@ -1,4 +1,5 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, Fragment } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const Feelings = (props) => {
@@ -8,28 +9,45 @@ const Feelings = (props) => {
   const [baseChoice, setBaseChoice] = useState();
   const [secondChoice, setSecondChoice] = useState();
   const [thirdChoice, setThirdChoice] = useState();
+  const [showEntry, setShowEntry] = useState(true);
 
   const base = useRef();
   const second = useRef();
   const third = useRef();
+  const cancel = useRef();
+
+  const navigate = useNavigate();
 
   useEffect(() => {
+    navigate('/');
     getBaseEmotions();
   }, []);
 
   useEffect(() => {
     getSecondEmotions();
-    // props.feeling(baseChoice);
+
+    if (baseChoice === 'default') {
+      second.current.classList.add("hide");
+      third.current.classList.add("hide");
+      cancel.current.classList.add("hide");
+    }
   }, [baseChoice]);
 
   useEffect(() => {
     getThirdEmotions();
-    // props.feeling(secondChoice);
+
+    // if (second.current) {
+    //   if (second.current.selectedIndex === 0) {
+    //     third.current.classList.add("hide");
+    //   }
+    // }
   }, [secondChoice]);
 
   useEffect(() => {
     getThirdEmotions();
-    props.feeling(thirdChoice);
+    if (thirdChoice) {
+      props.feeling(thirdChoice);
+    }
   }, [thirdChoice]);
 
   const getBaseEmotions = () => {
@@ -43,10 +61,14 @@ const Feelings = (props) => {
       base.current.selectedIndex = 0;
       alert(`Please Log In to create an entry`);
     } else {
-      sessionStorage.setItem('baseEmotionId', e.target.options[e.target.selectedIndex].id)
+      sessionStorage.setItem(
+        "baseEmotionId",
+        e.target.options[e.target.selectedIndex].id
+      );
       setBaseChoice(e.target.value);
-      second.current.classList.remove("hide");
     }
+    second.current.classList.remove("hide");
+    cancel.current.classList.remove("hide");
   };
 
   const getSecondEmotions = () => {
@@ -56,9 +78,16 @@ const Feelings = (props) => {
   };
 
   const getSecondChoice = (e) => {
-    sessionStorage.setItem('secondEmotionId', e.target.options[e.target.selectedIndex].id)
+    sessionStorage.setItem(
+      "secondEmotionId",
+      e.target.options[e.target.selectedIndex].id
+    );
     setSecondChoice(e.target.value);
-    third.current.classList.remove("hide");
+    if (e.target.value === "default") {
+      third.current.classList.add("hide");
+    } else {
+      third.current.classList.remove("hide");
+    }
   };
 
   const getThirdEmotions = () => {
@@ -68,21 +97,37 @@ const Feelings = (props) => {
   };
 
   const getThirdChoice = (e) => {
-    sessionStorage.setItem('thirdEmotionId', e.target.options[e.target.selectedIndex].id)
+    sessionStorage.setItem(
+      "thirdEmotionId",
+      e.target.options[e.target.selectedIndex].id
+    );
+    sessionStorage.setItem("feeling", e.target.value);
     setThirdChoice(e.target.value);
-    props.showHome();
+    // showEntry ? navigate("/entry") : navigate("/");
     base.current.selectedIndex = 0;
     second.current.classList.add("hide");
     third.current.classList.add("hide");
   };
 
+  const resetForm = () => {
+    setBaseChoice("default");
+    base.current.selectedIndex = 0;
+    sessionStorage.removeItem("baseEmotionId");
+    sessionStorage.removeItem("secondEmotionId");
+  };
+
   return (
-    <div>
+    <div id="feeling-container">
       <form action="#">
         <label htmlFor="base">
           <h2>What is your main vibe right now?</h2>
         </label>
-        <select name="base" id="base" ref={base} onChange={(e) => getBaseChoice(e)}>
+        <select
+          name="base"
+          id="base"
+          ref={base}
+          onChange={(e) => getBaseChoice(e)}
+        >
           <option value="default"></option>
           {baseEmotions.map((e) => (
             <option key={e.id} value={e.name} id={e.id}>
@@ -120,6 +165,15 @@ const Feelings = (props) => {
             ))}
           </select>
         </div>
+        <br />
+        <br />
+        <span id="feeling-cancel" className="hide" ref={cancel}>
+          <Link to="/">
+            <button type="button" onClick={resetForm}>
+              Cancel
+            </button>
+          </Link>
+        </span>
       </form>
     </div>
   );
