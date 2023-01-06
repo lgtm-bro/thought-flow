@@ -84,19 +84,6 @@ const Password = ({ pw, verify }) => {
 
   return (
     <Fragment>
-      {/* <label htmlFor="signup-password">
-        <span className="signup-label">Password: </span>
-        <input
-          type="password"
-          name="signup-password"
-          required
-          ref={forwardedRef}
-          onChange={setReqs}
-        />
-        <span className="eye" onClick={showPassword}>
-          <BiShow />
-        </span>
-      </label> */}
       <br />
       <br />
       <div>Your password should contain:</div>

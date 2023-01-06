@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { BiShow } from "react-icons/bi";
 import Password from "./Password.jsx";
 
-const Signup = ({signupUser, showAlert}) => {
+const Signup = ({ signupUser, showAlert }) => {
   const [pw, setPw] = useState("");
   const [pw2, setPw2] = useState("");
   const [pwVerified, setPwVerified] = useState(false);
@@ -59,11 +59,7 @@ const Signup = ({signupUser, showAlert}) => {
       return showAlert("Passwords do not match");
     }
 
-    signupUser(
-      name.current.value,
-      email.current.value,
-      password.current.value
-    );
+    signupUser(name.current.value, email.current.value, password.current.value);
     form.current.reset();
     navigate("/");
   };
@@ -85,13 +81,13 @@ const Signup = ({signupUser, showAlert}) => {
       >
         <label htmlFor="signup-email">
           <span className="signup-name">First Name: </span>
-          <input type="text" name="signup-name" ref={name} />
+          <input type="text" name="signup-name" required ref={name} />
         </label>
         <br />
         <br />
         <label htmlFor="signup-email">
           <span className="signup-label">Email: </span>
-          <input type="text" name="signup-email" ref={email} />
+          <input type="text" name="signup-email" required ref={email} />
         </label>
         <br />
         <br />
@@ -100,6 +96,7 @@ const Signup = ({signupUser, showAlert}) => {
           <input
             type="password"
             name="signup-password"
+            required
             ref={password}
             onChange={(e) => getPw(e, setPw)}
           />

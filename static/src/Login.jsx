@@ -23,14 +23,13 @@ const Login = (props) => {
     props.getUser(email.current.value, password.current.value);
   };
 
-
   return (
     <div id="login-wrapper" ref={login}>
       <h2>Please Log in</h2>
       <h4>
         Don't have account?
         <span className="form-link">
-          <Link to="/auth/signup" > Sign Up</Link>
+          <Link to="/auth/signup"> Sign Up</Link>
         </span>
       </h4>
       <form action="#" ref={form} onSubmit={loginUser}>
@@ -54,10 +53,12 @@ const Login = (props) => {
         </label>
         <br />
         <br />
-        <button type="button" onClick={props.cancelForm}>
-          Cancel
-        </button>
-        <input type="submit" value="Log in" />
+        <Link to="/">
+          <button type="button" >
+            Cancel
+          </button>
+        </Link>
+        <input type="submit" value="Login" />
       </form>
     </div>
   );

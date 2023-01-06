@@ -131,10 +131,10 @@ def create_post(user_id, date, entry, guided):
     return post
 
 
-def get_all_posts(user):
+def get_all_posts(user_id):
     """Return all posts for a user"""
     result = []
-    for p in Post.query.join(User).filter(User.name == user.lower().capitalize()).order_by(desc(Post.date)).all():
+    for p in Post.query.join(User).filter(User.id == user_id).order_by(desc(Post.date)).all():
         curr = p.__dict__
         del curr['_sa_instance_state']
         result.append(curr)
@@ -143,6 +143,7 @@ def get_all_posts(user):
 
 
 def update_post(id, entry):
+    # user = Post.query.join(User).filter()
     post = Post.query.filter(Post.id == id).update({
         Post.entry: entry
         })
@@ -214,14 +215,13 @@ def create_user_session(user_id, base_id, second_id, third_id, date):
     return user_session
 
 
-def get_user_sessions(user_id):
+def get_user_sessions(user_id=1000):
+
 
     sessions = UserSession.query.join(BaseEmotion).with_entities(BaseEmotion.name, func.count(UserSession.user_id))\
     .filter(UserSession.user_id == user_id).group_by(BaseEmotion.name).all()
 
-
     return sessions
-    # return {list(x) for x in sessions}
 
     # select base_emotion_id, count(user_id) from user_sessions where user_id = 2 group by base_emotion_id
 

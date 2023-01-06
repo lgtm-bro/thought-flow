@@ -17,7 +17,6 @@ const Profile = (props) => {
 
   const navigate = useNavigate();
 
-
   const showPassword = (fieldRef) => {
     if (fieldRef.current.type === "password") {
       fieldRef.current.type = "text";
@@ -100,7 +99,7 @@ const Profile = (props) => {
         <br />
         <label htmlFor="profile-password">Current Password</label>
         <br />
-        <input type="password" id="profile-password" ref={password} required />
+        <input type="password" id="profile-password" required ref={password} />
         <span className="eye" onClick={() => showPassword(password)}>
           <BiShow />
         </span>

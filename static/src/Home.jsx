@@ -32,6 +32,8 @@ const Home = ({ user, showAlert }) => {
   const navigate = useNavigate();
   const location = useLocation();
 
+  const userId = sessionStorage.getItem("userId");
+
   const config = {
     headers: {
       "Content-Type": "application/json",
@@ -40,18 +42,13 @@ const Home = ({ user, showAlert }) => {
   };
 
   useEffect(() => {
-    getPosts(user);
+    getPosts(userId);
     getMilestones(user);
     checkMsgStatus();
-
-    getUserSessions(sessionStorage.getItem("userId"))
-      .then(res => console.log(res.data))
-      .catch(err => console.log(err));
-
   }, []);
 
   useEffect(() => {
-    getPosts(user);
+    getPosts(userId);
     checkMsgStatus();
   }, [user]);
 
@@ -96,10 +93,10 @@ const Home = ({ user, showAlert }) => {
     navigate("/");
   };
 
-  const getPosts = (name) => {
-    if (name) {
+  const getPosts = (userId) => {
+    if (userId) {
       axios
-        .get(`/posts/${name}`)
+        .get(`/posts/${userId}`)
         .then((results) => setPosts(results.data))
         .catch((err) => console.log(err));
     } else {
@@ -119,7 +116,7 @@ const Home = ({ user, showAlert }) => {
       .post("/posts", post, config)
       .then((results) => {
         console.log(results.data);
-        getPosts(user);
+        getPosts(userId);
         navigate("/");
       })
       .catch((err) => console.log("POST err", err));
@@ -130,7 +127,10 @@ const Home = ({ user, showAlert }) => {
 
     axios
       .put(`/posts/update/${id}`, entry, config)
-      .then((res) => console.log(res.data))
+      .then((res) =>{
+        console.log(res.data);
+        getPosts(userId);
+      })
       .catch((err) => showAlert(err.response.data.msg));
   };
 
@@ -141,7 +141,7 @@ const Home = ({ user, showAlert }) => {
       .delete(`/posts/delete/${id}`)
       .then((results) => {
         console.log(results);
-        getPosts(user);
+        getPosts(userId);
       })
       .catch((err) => console.log(err));
   };
@@ -204,8 +204,8 @@ const Home = ({ user, showAlert }) => {
   const getUserSessions = async (userId) => {
     try {
       return await axios.get(`/sessions/${userId}`)
-    } catch(e) {
-      console.log(e)
+    } catch(err) {
+      console.log(err.response.data.msg)
     }
   }
 
@@ -240,10 +240,12 @@ const Home = ({ user, showAlert }) => {
           milestones={milestones}
           checkMsgStatus={checkMsgStatus}
           changeMsg={changeMsg}
+          getPosts={getPosts}
           deletePost={deletePost}
           updateEntry={updateEntry}
           updateMilestone={updateMilestone}
           deleteMilestone={deleteMilestone}
+          getUserSessions={getUserSessions}
         />
       </div>
         <ConfirmModal sendFeeling={sendFeeling} />

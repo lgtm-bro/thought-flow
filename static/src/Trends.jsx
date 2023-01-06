@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import {
   Chart as ChartJS,
   RadialLinearScale,
@@ -11,13 +11,34 @@ import { PolarArea } from "react-chartjs-2";
 
 ChartJS.register(RadialLinearScale, ArcElement, Tooltip, Title, Legend);
 
-const Trends = (props) => {
+const Trends = ({getUserSessions}) => {
+  const [keys, setKeys] = useState([]);
+  const [values, setValues] = useState([]);
+
+
+  useEffect(() => {
+    getSessions(sessionStorage.getItem("userId") || 0);
+  }, [])
+
+
+  const getSessions = (userId) => {
+    getUserSessions(userId)
+    .then(res => {
+      if (res) {
+        setKeys(Object.keys(res.data));
+        setValues(Object.values(res.data));
+      }
+    })
+    .catch(err => {console.log(err.response.data.msg)});
+  }
+
+
   const data = {
-    labels: ["Happy", "Anticipation", "Surprised", "Bad", "Fearful", "Angry", "Disgust", "Sad"],
+    labels: keys,
     datasets: [
       {
         label: "",
-        data: [12, 19, 3, 5, 2, 3, 1, 2],
+        data: values,
         backgroundColor: [
           "rgba(255, 99, 132, 0.5)",
           "rgba(54, 162, 235, 0.5)",
@@ -52,8 +73,11 @@ const Trends = (props) => {
 		}
   }
 
-
-  return (<PolarArea data={data} options={options} />)
+  if (sessionStorage.getItem("userId")) {
+    return (<PolarArea data={data} options={options} />)
+  } else {
+    return (<h4>Please login to view Trends</h4>)
+  }
 };
 
 export default Trends;

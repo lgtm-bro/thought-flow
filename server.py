@@ -133,11 +133,11 @@ def get_third_emotion(name):
 
 #********************POSTS********************
 
-@app.route('/posts/<user>')
-def get_all_posts(user):
+@app.route('/posts/<user_id>')
+def get_all_posts(user_id):
     """Retrieves all fields for all posts for a given user from the db and return them to the client"""
 
-    posts = crud.get_all_posts(user)
+    posts = crud.get_all_posts(user_id)
 
     return jsonify(posts)
 
@@ -172,6 +172,8 @@ def updatePost(id):
 
     if res:
         db.session.commit()
+        # print(stars, res.user_id)
+
         return jsonify({"success": True, "msg": "Post successfully updated"}), 200
 
     return jsonify({"success": False, "msg": "The post is not in our system"}), 400
@@ -290,6 +292,10 @@ def createSession():
 @app.route('/sessions/<user_id>')
 def get_user_sessions(user_id):
     """returns all sessions of the user with the given id grouped by base_emotion_id"""
+
+    print(stars, user_id)
+    if not user_id:
+        return jsonify({"success": False, "msg": "No user_id sent"}), 300
 
     sessions = crud.get_user_sessions(user_id)
 

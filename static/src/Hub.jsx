@@ -115,7 +115,7 @@ const Hub = (props) => {
             />
           }
         />
-        <Route path="/hub-trends" element={<Trends />} />
+        <Route path="/hub-trends" element={<Trends getUserSessions={props.getUserSessions} />} />
       </Routes>
     </Fragment>
   );

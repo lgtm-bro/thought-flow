@@ -2,36 +2,50 @@ import React, { useState, useEffect, useRef } from "react";
 import { DateTime } from "luxon";
 import { IoRemoveOutline, IoPencil } from "react-icons/io5";
 
-//need to handle case when page reloads with edited entry
+
 const Post = (props) => {
-  const [post, setPost] = useState(props.post.entry);
-  const date = DateTime.fromISO(props.post.date).toLocaleString("ff");
+  const [entry, setEntry] = useState(props.post.entry);
+  const [fullEntry, setFullEntry] = useState(props.post.entry);
+  const [entryArr, setEntryArr] = useState([]);
+  const [edited, setEdited] = useState(false);
 
   const postText = useRef();
-  const postContainer = useRef();
   const done = useRef();
-  let entryArr = post.split('\n\n');
+
+  const date = DateTime.fromISO(props.post.date).toLocaleString("ff");
 
   useEffect(() => {
-    entryArr = post.split('\n\n')
-  }, [post])
-
-  useEffect(() => {
-    if (post.length > 250) {
-      setPost(entry);
+    if (entry.length > 254) {
+      shortenEntry();
     }
   }, [])
 
+  useEffect(() => {
+    setEntryArr(entry.split('\n\n'));
 
-  let entry = props.post.entry.length > 250 ?
-                props.post.entry.slice(0, 250) + "..." :
-                props.post.entry;
+    if (edited) {
+      shortenEntry();
+      setEdited(false);
+    }
+  }, [entry])
+
+
+  const shortenEntry = () => {
+    if (entry.length > 250) {
+      setEntry(fullEntry.slice(0, 250) + "...");
+    }
+  }
 
   const expandEntry = (e) => {
-    if (post.length < 254) {
-      setPost(props.post.entry);
-    } else if (!postText.current.isContentEditable) {
-      setPost(entry);
+    console.log('ENTRY LEN', entry.length);
+    // console.log('ENTRY', entry);
+    console.log('FULL ENTRY LEN', fullEntry.length);
+    // console.log('FULL ENTRY', fullEntry);
+
+    if (entry.length < 254) {
+      setEntry(fullEntry);
+    } else if (entry.length >= 254 && !postText.current.isContentEditable){
+      setEntry(fullEntry.slice(0, 250) + "...")
     }
   };
 
@@ -42,13 +56,14 @@ const Post = (props) => {
   }
 
   const saveEdit = () => {
-    console.log(postText.current.value)
     props.updateEntry(props.post.id, postText.current.innerText);
-    setPost(props.post.entry);
+    setFullEntry(postText.current.innerText);
+    setEntry(postText.current.innerText);
+    setEdited(true);
     postText.current.contentEditable = false;
+
     done.current.classList.add("hide");
   }
-
 
   return (
     <div className="post-wrapper" >
@@ -58,7 +73,6 @@ const Post = (props) => {
         <span className="edit-icon icon" onClick={editPost}><IoPencil className="icon"/></span>
       </span>
       <div
-        ref={postContainer}
       >
         <div
           id={`post-${props.post.id}`}
