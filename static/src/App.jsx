@@ -13,6 +13,7 @@ import NavBar from "./NavBar.jsx";
 import Home from "./Home.jsx";
 import Profile from "./Profile.jsx";
 import About from "./About.jsx";
+import Contact from  "./Contact.jsx";
 import UserAuth from "./UserAuth.jsx";
 import Login from "./Login.jsx";
 import Signup from "./Signup.jsx";
@@ -44,9 +45,6 @@ const App = (props) => {
     };
   }, []);
 
-  // useEffect(() => {
-  //   if (!user) setUserMsg("Please create an account or login to get started")
-  // }, [])
 
   useEffect(() => {
     if (user) {
@@ -54,11 +52,6 @@ const App = (props) => {
       sessionStorage.setItem("email", email);
     }
   }, [user]);
-
-  // /******** USER MESSAGES *********/
-  // const changeMsg = (msg) => {
-  //   setUserMsg(msg);
-  // };
 
   /********** ALERT ***********/
   const showAlert = (msg, time = 2000, page) => {
@@ -75,6 +68,18 @@ const App = (props) => {
       }
     }, 2000);
   };
+
+   /********** CONTACT ***********/
+   const submitContactForm = () => {
+    const msg = {
+      email: "bowens.swe@gmail.com",
+      subject: "Testing",
+      body: "This is my test"
+  }
+    axios.post("/contact", msg, config)
+    .then(res => console.log(res.data))
+    .catch((err) => console.log(err.response.data.msg));
+   }
 
   /********** USER ***********/
   const getUser = (email, password) => {
@@ -207,6 +212,7 @@ const App = (props) => {
           }
         />
         <Route path="/about" element={<About />} />
+        <Route path="/contact" element={<Contact submitContactForm={submitContactForm} />} />
         <Route
           path="/auth/*"
           element={
@@ -218,7 +224,7 @@ const App = (props) => {
               signupUser={signupUser}
             />
           }
-        ></Route>
+        />
       </Routes>
       {/* {location.pathname !== "/auth/*" && <h1>ThoughtFlow</h1>} */}
     </div>

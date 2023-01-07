@@ -1,7 +1,12 @@
 """Server for the thought flow app"""
 
-from flask import (Flask, render_template, redirect, request, jsonify, flash, session, abort)
+from flask import (Flask, render_template, redirect, request, jsonify, flash, session, abort, make_response)
 from jinja2 import StrictUndefined
+import smtplib
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+
+# from flask_mail import Mail
 from random import choice
 import requests
 import os
@@ -78,8 +83,6 @@ def update_user(email):
     newPassword = request.json.get('newPassword')
     newEmail = request.json.get('newEmail')
 
-    # print(stars, name, email, currentPassword, newPassword, newEmail, stars)
-
     user = crud.get_user(email)
     if currentPassword != user['password']:
         return jsonify({"success": False, "msg": "The current password you've entered is incorrect."}), 401
@@ -129,6 +132,46 @@ def get_third_emotion(name):
     emotion = crud.get_third_emotion(name)
 
     return jsonify(emotion)
+
+
+#********************CONTACT********************
+@app.route('/contact', methods=['POST'])
+def submit_contact_form():
+    """Send a contact email from a user to the company email"""
+
+    # REQ DATA
+    mail_from = request.json.get('email')
+    mail_to = os.environ['CONTACT_MAIL']
+    subject = request.json.get('subject')
+    body = request.json.get('body')
+
+    # EMAIL HEADERS
+    mail = MIMEMultipart("alternative")
+    mail["Subject"] = subject
+    mail["From"] = mail_from
+    mail["To"] = mail_to
+
+    # EMAIL BODY
+    # msg = "<html><head></head><body>"
+    # msg += body
+    # msg += "</body></html>"
+    mail.attach(MIMEText(body, "html"))
+
+    # SEND MAIL
+    server = smtplib.SMTP("localhost", 1025)
+    # server.ehlo()
+    # server.starttls()
+    # server.ehlo()
+    # server.login('bowens.swe@gmail.com', 'Arlo@2014')
+
+    server.sendmail(mail_from, mail_to, mail.as_string())
+    server.quit()
+
+    # cmd to run second server:
+    #   python -m smtpd -n -c DebuggingServer localhost:1025
+
+    # HTTP RESPONSE
+    return jsonify({"success": True, "msg": "Your email has been sent "}), 201
 
 
 #********************POSTS********************
@@ -252,6 +295,7 @@ def delete_milestone(id):
     return jsonify({"success": False, "msg": "That milestone cannot be found"}), 400
 
 
+    #********************QUOTES********************
 
 @app.route('/quote/<keyword>')
 def getQuote(keyword):
@@ -267,6 +311,19 @@ def getQuote(keyword):
     quote = choice(quotes)
 
     return jsonify(quote)
+
+
+@app.route('/new-quote')
+def getQuote2():
+    """Retrieves a quote from an external API"""
+
+    res = requests.get('https://type.fit/api/quotes')
+    data = res.json()
+    quote = choice(data)
+
+    # print('***** QUOTES', data)
+
+    return jsonify(quote), 200
 
 
     #********************SESSIONS********************
@@ -307,4 +364,4 @@ def get_user_sessions(user_id):
 
 if __name__ =='__main__':
     connect_to_db(app)
-    app.run(host='0.0.0.0', debug=True)
+    app.run(host='0.0.0.0', port=5000,  debug=True)

@@ -28,6 +28,9 @@ const NavBar = ({user, showAlert}) => {
       <span id="nav-about" className="nav-link">
         <Link to="/about">About</Link>
       </span>
+      <span id="nav-contact" className="nav-link">
+        <Link to="/contact">Contact</Link>
+      </span>
       <span id="nav-login" className="nav-link">
         <Link to="/auth">{status}</Link>
       </span>

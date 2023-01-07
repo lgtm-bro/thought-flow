@@ -169,15 +169,19 @@ const Home = ({ user, showAlert }) => {
       .catch((err) => console.log(err));
   };
 
-  // const showMilestone = () => {
-  //   navigate("/milestone");
-  // };
-
   const getQuote = async (keyword = "inspirational") => {
     return await axios
       .get(`/quote/${keyword}`)
       .then((res) => res.data)
       .catch((err) => console.log(err));
+  };
+
+  const getQuote2 = async () => {
+    try {return await axios
+      .get('/new-quote', config)
+    } catch (err) {
+      console.log(err.response.data.msg)
+    }
   };
 
   const updateMilestone = (id, text) => {
@@ -232,7 +236,7 @@ const Home = ({ user, showAlert }) => {
             <Feelings user={user} showHome={showHome} feeling={getFeeling} />
           </div>
         )}
-      {/* {location.pathname === "/" && feeling && <Quote getQuote={getQuote} />} */}
+      {location.pathname === "/" && feeling && <Quote getQuote={getQuote2} />}
       <div id="hub-wrapper">
         <Hub
           feeling={feeling}
@@ -240,7 +244,6 @@ const Home = ({ user, showAlert }) => {
           milestones={milestones}
           checkMsgStatus={checkMsgStatus}
           changeMsg={changeMsg}
-          getPosts={getPosts}
           deletePost={deletePost}
           updateEntry={updateEntry}
           updateMilestone={updateMilestone}
@@ -277,7 +280,7 @@ const Home = ({ user, showAlert }) => {
           path="milestone"
           element={
             <MilestoneForm
-              getQuote={getQuote}
+              getQuote={getQuote2}
               submitMilestone={submitMilestone}
             />
           }

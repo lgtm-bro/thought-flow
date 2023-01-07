@@ -37,11 +37,6 @@ const Post = (props) => {
   }
 
   const expandEntry = (e) => {
-    console.log('ENTRY LEN', entry.length);
-    // console.log('ENTRY', entry);
-    console.log('FULL ENTRY LEN', fullEntry.length);
-    // console.log('FULL ENTRY', fullEntry);
-
     if (entry.length < 254) {
       setEntry(fullEntry);
     } else if (entry.length >= 254 && !postText.current.isContentEditable){

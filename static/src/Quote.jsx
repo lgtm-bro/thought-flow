@@ -2,27 +2,25 @@ import React, {useState, useEffect} from "react";
 // import { Link, useNavigate } from "react-router-dom";
 
 const Quote = (props) => {
-  const [quote, setQuote] = useState({body: '', author: ''});
+  const [quote, setQuote] = useState({"text": "", "author": ""});
 	const feeling = 'inspirational';
 
 	useEffect(() => {
-		props.getQuote(feeling)
-		.then(res => {
-			console.log('quote', res.body)
-			setQuote(res)
-		})
-		.catch(err => console.log(err))
-
+		props.getQuote()
+		.then(res => setQuote(res.data))
+		.catch(err => {console.log('ERROR:', err.response.data.msg)});
 	}, [])
+
+	// useEffect(( ) => {
+	// 	console.log(quote.text)
+	// 	console.log(quote.author)
+	// }, [quote])
 
 
 	return (
     <div id="quote-wrapper">
-      <h5>{quote.body}</h5>
+      <h5>{quote.text}</h5>
 			<h6>{quote.author}</h6>
-		<br /><br />
-		{/* <a href="#">Add an entry</a>
-        <a href="#">Add a milestone</a> */}
     </div>
   );
 };
