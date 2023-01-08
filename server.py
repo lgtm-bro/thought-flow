@@ -1,6 +1,6 @@
 """Server for the thought flow app"""
 
-from flask import (Flask, render_template, redirect, request, jsonify, flash, session, abort, make_response)
+from flask import (Flask, render_template, redirect, request, jsonify, flash, session, abort)
 from jinja2 import StrictUndefined
 import smtplib, ssl
 from email.message import EmailMessage
@@ -146,6 +146,8 @@ def submit_contact_form():
     body = request.json.get('body')
     user_name = request.json.get('name')
     user_email = request.json.get('email')
+    wants_copy = request.json.get('copy')
+
     port = os.environ['MAIL_PORT']
     pw = os.environ['GMAIL_PW']
     context = ssl.create_default_context()
@@ -154,15 +156,26 @@ def submit_contact_form():
     msg = EmailMessage()
     msg["Subject"] = subject
     msg["From"] = mail_from
-    msg["To"] = mail_to
+    msg["To"] = mail_from
 
     # EMAIL BODY
-    msg.set_content(f"A message from {user_name} at {user_email}:\n\n{body}")
+    msg.set_content(f"\nA message from {user_name} at {user_email}:\n\n{body}")
 
     # SEND MAIL
     with smtplib.SMTP_SSL("smtp.gmail.com", port, context=context) as server:
         server.login(mail_from, pw)
-        server.sendmail(mail_from, mail_to, msg.as_string())
+        server.sendmail(mail_from, mail_from, msg.as_string())
+
+        if wants_copy:
+            cp_msg = EmailMessage()
+            cp_msg["Subject"] = f"Re: {subject}"
+            cp_msg["From"] = mail_from
+            cp_msg["To"] = user_email
+            cp_body = f"\nHi {user_name.capitalize()},\n\nThank you for contacting thoughtflow. As requested, here is a copy of your message: \n\n\n{body}"
+            cp_msg.set_content(cp_body)
+
+            server.sendmail(mail_from, user_email, cp_msg.as_string())
+
         server.quit()
 
     # HTTP RESPONSE

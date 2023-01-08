@@ -29,7 +29,7 @@ const MilestoneBar = ({
   };
 
   return (
-    <Fragment>
+    <div id="milestone-bar-wrapper">
       <h4>
         So Far you have...
       </h4>
@@ -46,7 +46,7 @@ const MilestoneBar = ({
         deleteMilestone={deleteMilestone}/>
 
       ))}
-    </Fragment>
+    </div>
   );
 };
 

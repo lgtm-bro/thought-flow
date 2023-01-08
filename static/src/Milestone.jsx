@@ -19,7 +19,7 @@ const Milestone = ({ milestone, updateMilestone, deleteMilestone }) => {
   };
 
   return (
-    <div className="milestone-wrapper">
+    <div className="milestone">
       <span className="icon-container">
         <span className="delete-icon icon">
           <IoRemoveOutline

@@ -236,7 +236,7 @@ const Home = ({ user, showAlert }) => {
             <Feelings user={user} showHome={showHome} feeling={getFeeling} />
           </div>
         )}
-      {location.pathname === "/" && feeling && <Quote getQuote={getQuote2} />}
+      {(location.pathname.includes("hub") || location.pathname === "/") && feeling && <Quote getQuote={getQuote2} />}
       <div id="hub-wrapper">
         <Hub
           feeling={feeling}
