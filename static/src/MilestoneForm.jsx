@@ -4,7 +4,7 @@ import { IoRemoveOutline, IoPencil } from "react-icons/io5";
 
 import Quote from "./Quote.jsx";
 
-const MilestoneForm = (props) => {
+const MilestoneForm = ({submitMilestone, checkMsgStatus}) => {
   const [title, setTitle] = useState();
   const [details, setDetails] = useState();
 
@@ -16,8 +16,13 @@ const MilestoneForm = (props) => {
 
   const saveMilestone = (e) => {
     e.preventDefault();
-    props.submitMilestone(title, details);
+    submitMilestone(title, details);
   };
+
+  const cancelForm = () => {
+    checkMsgStatus();
+    navigate("/");
+  }
 
   return (
     <Fragment>
@@ -38,7 +43,7 @@ const MilestoneForm = (props) => {
             />
             <br />
             <br />
-            <button type="button" onClick={() => navigate("/")} >Cancel</button>
+            <button type="button" onClick={cancelForm} >Cancel</button>
             <input type="submit" value="Save Milestone" />
           </div>
         </form>

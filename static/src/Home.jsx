@@ -45,13 +45,16 @@ const Home = ({ user, showAlert }) => {
     getPosts(userId);
     getMilestones(user);
     checkMsgStatus();
-    console.log('HOME send to entry', sendToEntry)
   }, []);
 
   useEffect(() => {
     getPosts(userId);
     checkMsgStatus();
   }, [user]);
+
+  useEffect(() => {
+    checkMsgStatus();
+  }, [feeling]);
 
   /******** USER MESSAGES *********/
   const changeMsg = (
@@ -82,7 +85,7 @@ const Home = ({ user, showAlert }) => {
       changeMsg("Would like to write about it? ", true, "/entry");
       setFeeling(results.data.name);
       setFeelingScore(results.data.score);
-      if (sendToEntry) navigate('/entry')
+      if (sendToEntry) navigate("/entry");
     });
   };
 
@@ -99,7 +102,10 @@ const Home = ({ user, showAlert }) => {
     if (userId) {
       axios
         .get(`/posts/${userId}`)
-        .then((results) => setPosts(results.data))
+        .then((results) => {
+          setPosts(results.data);
+          checkMsgStatus();
+        })
         .catch((err) => console.log(err));
     } else {
       setPosts([]);
@@ -167,6 +173,7 @@ const Home = ({ user, showAlert }) => {
       .then((res) => {
         console.log(res.data);
         getMilestones(user);
+        checkMsgStatus();
         navigate("/");
       })
       .catch((err) => console.log(err));
@@ -228,6 +235,7 @@ const Home = ({ user, showAlert }) => {
             hasQuestion={userMsgQuestion}
             linkText={userMsgLinkText}
             path={userMsgPath}
+            changeMsg={changeMsg}
           />
         )}
       </div>
@@ -262,7 +270,7 @@ const Home = ({ user, showAlert }) => {
           />
         </div>
       )}
-      <ConfirmModal sendFeeling={setFeeling} />
+      <ConfirmModal sendFeeling={setFeeling} checkMsgStatus={checkMsgStatus} />
 
       <Routes>
         <Route
@@ -289,6 +297,7 @@ const Home = ({ user, showAlert }) => {
               feelingScore={feelingScore}
               submitEntry={submitEntry}
               setSendToEntry={setSendToEntry}
+              checkMsgStatus={checkMsgStatus}
             />
           }
         />
@@ -298,6 +307,7 @@ const Home = ({ user, showAlert }) => {
             <MilestoneForm
               getQuote={getQuote2}
               submitMilestone={submitMilestone}
+              checkMsgStatus={checkMsgStatus}
             />
           }
         />

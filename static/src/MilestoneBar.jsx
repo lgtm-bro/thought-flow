@@ -12,6 +12,7 @@ const MilestoneBar = ({
   feeling,
   updateMilestone,
   deleteMilestone,
+  changeMsg
 }) => {
   const milestoneText = useRef();
   const done = useRef();
@@ -28,13 +29,17 @@ const MilestoneBar = ({
     done.current.classList.add("hide");
   };
 
+  const updateFeelingMsg = () => {
+    changeMsg('', false)
+  }
+
   return (
     <div id="milestone-bar-wrapper">
       <h4>
         So Far you have...
       </h4>
         {!!sessionStorage.getItem('user') && <h5>
-          <span>
+          <span onClick={updateFeelingMsg}>
             <Link to="/milestone">
               <AiOutlinePlus />
               add a milestone

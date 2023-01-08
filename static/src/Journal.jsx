@@ -17,10 +17,13 @@ const Journal = ( {posts, feeling, changeMsg, deletePost, updateEntry, setSendTo
     }, [feeling])
 
     const sendFeelingMsg = () => {
-      if (!feeling) changeMsg(msg, false)
-        setSendToEntry(true)
+      if (!feeling) {
+        changeMsg(msg, false);
+        setSendToEntry(true);
+      } else {
+        changeMsg('', false);
+      }
     }
-
 
   return (
     <div id="journal-wrapper">

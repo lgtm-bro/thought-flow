@@ -25,22 +25,6 @@ const Hub = (props) => {
     navigate("/");
   }, []);
 
-  // const showJournal = () => {
-  //   if (tab !== "journal") {
-  //     journalEntries.current.classList.remove("hide");
-  //     milestoneEntries.current.classList.add("hide");
-  //     setTab("journal");
-  //   }
-  // };
-
-  // const showMilestones = () => {
-  //   if (tab !== "milestones") {
-  //     milestoneEntries.current.classList.remove("hide");
-  //     journalEntries.current.classList.add("hide");
-  //     setTab("milestones");
-  //   }
-  // };
-
   const sendFeelingMsg = (msg, hasQ, path = "/") => {
     props.changeMsg(msg, hasQ, path);
   };
@@ -65,7 +49,7 @@ const Hub = (props) => {
         <span
           id="hub-trends"
           className="nav-link"
-          onClick={props.checkMsgStatus}
+          onClick={() => props.checkMsgStatus('', false, '/hub-milestones')}
         >
           <Link to="/hub-trends">trends</Link>
         </span>
@@ -93,6 +77,7 @@ const Hub = (props) => {
               feeling={props.feeling}
               updateMilestone={props.updateMilestone}
               deleteMilestone={props.deleteMilestone}
+              changeMsg={props.changeMsg}
             />
           }
         />

@@ -1,7 +1,7 @@
 import React, {useState, useEffect, useRef} from "react";
 import { Link, useNavigate } from "react-router-dom";
 
-const ConfirmModal = ({ sendFeeling }) => {
+const ConfirmModal = ({ sendFeeling, checkMsgStatus }) => {
 	const msg = useRef();
 
 	const navigate = useNavigate();
@@ -14,6 +14,7 @@ const ConfirmModal = ({ sendFeeling }) => {
 			sessionStorage.removeItem("thirdEmotionId");
 			sessionStorage.removeItem("feeling");
 			sendFeeling(null);
+			checkMsgStatus();
 		}
 
 		e.target.checked = false;
