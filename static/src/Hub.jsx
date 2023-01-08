@@ -70,26 +70,6 @@ const Hub = (props) => {
           <Link to="/hub-trends">trends</Link>
         </span>
       </nav>
-      {/* <div id="journal-wrapper" ref={journalEntries}>
-        <Journal
-          posts={props.posts}
-          feeling={props.feeling}
-          deletePost={props.deletePost}
-          updateEntry={props.updateEntry}
-        />
-      </div> */}
-      {/* <div id="milestone-bar-wrapper" ref={milestoneEntries} className="hide">
-        <MilestoneBar
-          milestones={props.milestones}
-          feeling={props.feeling}
-          showMilestone={props.showMilestone}
-          updateMilestone={props.updateMilestone}
-          deleteMilestone={props.deleteMilestone}
-        />
-      </div>
-      <div id="trends-wrapper">
-        <Trends />
-      </div> */}
 
       <Routes>
         <Route
@@ -101,6 +81,7 @@ const Hub = (props) => {
               updateEntry={props.updateEntry}
               deletePost={props.deletePost}
               changeMsg={props.changeMsg}
+              setSendToEntry={props.setSendToEntry}
             />
           }
         />

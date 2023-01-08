@@ -4,7 +4,7 @@ import { Link, useNavigate, redirect } from "react-router-dom";
 import GuidedForm from "./GuidedForm.jsx";
 import SoloForm from "./SoloForm.jsx";
 
-const Entry = ({feeling, feelingScore, submitEntry}) => {
+const Entry = ({ feeling, feelingScore, submitEntry, setSendToEntry }) => {
   const [isGuided, setIsGuided] = useState();
   const [isSolo, setIsSolo] = useState();
   const [entry, setEntry] = useState("");
@@ -33,7 +33,8 @@ const Entry = ({feeling, feelingScore, submitEntry}) => {
   const reset = () => {
     setIsGuided(false);
     setIsSolo(false);
-    setEntry();
+    setSendToEntry(false);
+    setEntry('');
     solo_btn.current.checked = false;
     guided_btn.current.checked = false;
   };
@@ -45,7 +46,7 @@ const Entry = ({feeling, feelingScore, submitEntry}) => {
   const submitPost = (e) => {
     e.preventDefault();
     submitEntry(entry, isGuided);
-    setEntry();
+    setEntry('');
   };
 
   return (

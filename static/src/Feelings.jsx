@@ -9,7 +9,7 @@ const Feelings = (props) => {
   const [baseChoice, setBaseChoice] = useState();
   const [secondChoice, setSecondChoice] = useState();
   const [thirdChoice, setThirdChoice] = useState();
-  const [showEntry, setShowEntry] = useState(true);
+  // const [showEntry, setShowEntry] = useState(false);
 
   const base = useRef();
   const second = useRef();
@@ -21,6 +21,7 @@ const Feelings = (props) => {
   useEffect(() => {
     navigate('/');
     getBaseEmotions();
+    console.log('FEEL send to entry', props.sendToEntry)
   }, []);
 
   useEffect(() => {
@@ -35,18 +36,13 @@ const Feelings = (props) => {
 
   useEffect(() => {
     getThirdEmotions();
-
-    // if (second.current) {
-    //   if (second.current.selectedIndex === 0) {
-    //     third.current.classList.add("hide");
-    //   }
-    // }
   }, [secondChoice]);
 
   useEffect(() => {
     getThirdEmotions();
     if (thirdChoice) {
       props.feeling(thirdChoice);
+      // props.sendToEntry ? navigate("/entry") : navigate("/");
     }
   }, [thirdChoice]);
 
@@ -103,7 +99,6 @@ const Feelings = (props) => {
     );
     sessionStorage.setItem("feeling", e.target.value);
     setThirdChoice(e.target.value);
-    // showEntry ? navigate("/entry") : navigate("/");
     base.current.selectedIndex = 0;
     second.current.classList.add("hide");
     third.current.classList.add("hide");

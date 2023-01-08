@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Link, useNavigate, Outlet, useOutletContext } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AiOutlinePlus } from "react-icons/ai";
 
 import Post from "./Post.jsx";
 
-const Journal = ({posts, feeling, changeMsg, deletePost, updateEntry}) => {
+const Journal = ( {posts, feeling, changeMsg, deletePost, updateEntry, setSendToEntry }) => {
   const [msg, setMsg] = useState(null);
 
   const navigate = useNavigate();
@@ -14,10 +14,11 @@ const Journal = ({posts, feeling, changeMsg, deletePost, updateEntry}) => {
   useEffect(() => {
     feeling ? null :
     setMsg("First, let's indentify how you feel about this experience");
-    }, [])
+    }, [feeling])
 
     const sendFeelingMsg = () => {
       if (!feeling) changeMsg(msg, false)
+        setSendToEntry(true)
     }
 
 
