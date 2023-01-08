@@ -53,21 +53,21 @@ const Hub = (props) => {
           className="nav-link"
           onClick={props.checkMsgStatus}
         >
-          <Link to="/">Journal</Link>
+          <Link to="/">journal</Link>
         </span>
         <span
           id="hub-milestones"
           className="nav-link"
           onClick={props.checkMsgStatus}
         >
-          <Link to="/hub-milestones">Milestones</Link>
+          <Link to="/hub-milestones">milestones</Link>
         </span>
         <span
           id="hub-trends"
           className="nav-link"
           onClick={props.checkMsgStatus}
         >
-          <Link to="/hub-trends">Trends</Link>
+          <Link to="/hub-trends">trends</Link>
         </span>
       </nav>
       {/* <div id="journal-wrapper" ref={journalEntries}>

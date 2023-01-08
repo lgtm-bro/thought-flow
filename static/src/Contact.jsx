@@ -1,30 +1,73 @@
-import React from "react";
+import React, { useRef } from "react";
 
-const name = sessionStorage.getItem("user") || "Name";
-const email = sessionStorage.getItem("email") || "Email address";
+const userName = sessionStorage.getItem("user") || "Name";
+const userEmail = sessionStorage.getItem("email") || "Email address";
 
 const Contact = (props) => {
+  const form = useRef();
+  const name = useRef();
+  const email = useRef();
+  const subject = useRef();
+  const body = useRef();
 
-	const sendMsg = (e) => {
-		e.preventDefault();
-		props.submitContactForm();
-	}
+  const sendMsg = (e) => {
+    e.preventDefault();
+    const msg = {
+      name: name.current.value,
+      email: email.current.value,
+      subject: subject.current.value,
+      body: body.current.value,
+    };
+    props.submitContactForm(msg);
+    form.current.reset();
+  };
 
   return (
     <main>
-			<h3>Contact us</h3>
-      <form action="#" onSubmit={sendMsg}>
-        <input type="text" name="name" placeholder={name}/>
-				<br /><br />
-        <input type="text" name="email" placeholder={email}/>
-				<br /><br />
-        <input type="text" name="subject"placeholder="Subject"/>
-				<br /><br />
-        <textarea name="" id="contact-subject" cols="30" rows="10" placeholder="Message"></textarea>
-        <br /><br />
-				<input type="checkbox" name="send-copy"/>
-				<label htmlFor="send-copy">Send me a copy</label>
-				<br /><br />
+      <h3>Contact us</h3>
+      <form action="#" ref={form} onSubmit={sendMsg}>
+        <input
+          type="text"
+          name="name"
+          // required
+          defaultValue={userName}
+          ref={name}
+        />
+        <br />
+        <br />
+        <input
+          type="text"
+          name="email"
+          // required
+          defaultValue={userEmail}
+          ref={email}
+        />
+        <br />
+        <br />
+        <input
+          type="text"
+          name="subject"
+          required
+          placeholder="Subject"
+          ref={subject}
+        />
+        <br />
+        <br />
+        <textarea
+          name=""
+          id="contact-subject"
+          cols="30"
+          rows="10"
+          required
+          placeholder="Message"
+          ref={body}
+        ></textarea>
+        <br />
+        <br />
+        <input type="checkbox" name="send-copy" />
+        <label htmlFor="send-copy">Send me a copy</label>
+        <br />
+        <br />
         <input type="submit" value="SEND" />
       </form>
     </main>

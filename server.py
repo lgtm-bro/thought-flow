@@ -2,11 +2,10 @@
 
 from flask import (Flask, render_template, redirect, request, jsonify, flash, session, abort, make_response)
 from jinja2 import StrictUndefined
-import smtplib
-from email.mime.multipart import MIMEMultipart
-from email.mime.text import MIMEText
+import smtplib, ssl
+from email.message import EmailMessage
 
-# from flask_mail import Mail
+
 from random import choice
 import requests
 import os
@@ -135,43 +134,45 @@ def get_third_emotion(name):
 
 
 #********************CONTACT********************
+
 @app.route('/contact', methods=['POST'])
 def submit_contact_form():
     """Send a contact email from a user to the company email"""
 
     # REQ DATA
-    mail_from = request.json.get('email')
-    mail_to = os.environ['CONTACT_MAIL']
+    mail_from = os.environ['ADMIN_EMAIL']
+    mail_to = os.environ['CONTACT_EMAIL']
     subject = request.json.get('subject')
     body = request.json.get('body')
+    user_name = request.json.get('name')
+    user_email = request.json.get('email')
+    port = os.environ['MAIL_PORT']
+    pw = os.environ['GMAIL_PW']
+    context = ssl.create_default_context()
 
     # EMAIL HEADERS
-    mail = MIMEMultipart("alternative")
-    mail["Subject"] = subject
-    mail["From"] = mail_from
-    mail["To"] = mail_to
+    msg = EmailMessage()
+    msg["Subject"] = subject
+    msg["From"] = mail_from
+    msg["To"] = mail_to
 
     # EMAIL BODY
-    # msg = "<html><head></head><body>"
-    # msg += body
-    # msg += "</body></html>"
-    mail.attach(MIMEText(body, "html"))
+    msg.set_content(f"A message from {user_name} at {user_email}:\n\n{body}")
 
     # SEND MAIL
-    server = smtplib.SMTP("localhost", 1025)
-    # server.ehlo()
-    # server.starttls()
-    # server.ehlo()
-    # server.login('bowens.swe@gmail.com', 'Arlo@2014')
-
-    server.sendmail(mail_from, mail_to, mail.as_string())
-    server.quit()
-
-    # cmd to run second server:
-    #   python -m smtpd -n -c DebuggingServer localhost:1025
+    with smtplib.SMTP_SSL("smtp.gmail.com", port, context=context) as server:
+        server.login(mail_from, pw)
+        server.sendmail(mail_from, mail_to, msg.as_string())
+        server.quit()
 
     # HTTP RESPONSE
     return jsonify({"success": True, "msg": "Your email has been sent "}), 201
+
+
+    #TO TEST IN TERMINAL
+        # server = smtplib.SMTP("localhost", 1025)
+        # cmd to run second server:
+        #   python -m smtpd -n -c DebuggingServer localhost:1025
 
 
 #********************POSTS********************

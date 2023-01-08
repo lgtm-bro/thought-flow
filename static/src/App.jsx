@@ -70,12 +70,12 @@ const App = (props) => {
   };
 
    /********** CONTACT ***********/
-   const submitContactForm = () => {
-    const msg = {
-      email: "bowens.swe@gmail.com",
-      subject: "Testing",
-      body: "This is my test"
-  }
+   const submitContactForm = (msg) => {
+    // const msg = {
+    //   email: "bowens.swe@gmail.com",
+    //   subject: "Testing",
+    //   body: "This is my test"
+    // }
     axios.post("/contact", msg, config)
     .then(res => console.log(res.data))
     .catch((err) => console.log(err.response.data.msg));
@@ -192,7 +192,7 @@ const App = (props) => {
         <NavBar user={user} showAlert={showAlert} />
       </div>
       <div id="user-alerts" ref={alerts} className="hide"></div>
-      {!location.pathname.includes("auth") && <h1>ThoughtFlow</h1>}
+      {!location.pathname.includes("auth") && <h1>thoughtflow</h1>}
       <Routes>
         <Route
           path="/*"

@@ -7,7 +7,7 @@ import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 
 const NavBar = ({user, showAlert}) => {
-  let status = user ? "Sign Out" : "Log In";
+  let status = user ? "sign out" : "login";
   let profileLink = user ? "/profile" : "/";
 
   const checkUser = () => {
@@ -20,16 +20,16 @@ const NavBar = ({user, showAlert}) => {
   return (
     <nav className="topnav">
       <span id="nav-home" className="nav-link">
-        <Link to="/">Home</Link>
+        <Link to="/">home</Link>
       </span>
       <span id="nav-profile" className="nav-link" onClick={checkUser} >
-        <Link to={profileLink}>Profile</Link>
+        <Link to={profileLink}>profile</Link>
       </span>
       <span id="nav-about" className="nav-link">
-        <Link to="/about">About</Link>
+        <Link to="/about">about</Link>
       </span>
       <span id="nav-contact" className="nav-link">
-        <Link to="/contact">Contact</Link>
+        <Link to="/contact">contact us</Link>
       </span>
       <span id="nav-login" className="nav-link">
         <Link to="/auth">{status}</Link>
