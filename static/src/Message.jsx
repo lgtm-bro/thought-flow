@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Fragment } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 const Message = ({ msg, hasQuestion, linkText, path, changeMsg }) => {
@@ -10,7 +10,7 @@ const Message = ({ msg, hasQuestion, linkText, path, changeMsg }) => {
   // })
 
   return (
-    <div id="user-msg-container">
+    <Fragment>
       <span>{msg}</span>
       {hasQuestion && (
         <span
@@ -22,7 +22,7 @@ const Message = ({ msg, hasQuestion, linkText, path, changeMsg }) => {
           <Link to={path}>{linkText}</Link>
         </span>
       )}
-    </div>
+    </Fragment>
   );
 };
 

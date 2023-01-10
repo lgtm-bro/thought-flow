@@ -65,7 +65,7 @@ const Signup = ({ signupUser, showAlert }) => {
   };
 
   return (
-    <div id="signup-wrapper">
+    <div id="signup-wrapper" className="bg-light">
       <h2>Sign Up</h2>
       <h4>
         Already have an account?

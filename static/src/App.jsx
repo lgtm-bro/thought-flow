@@ -1,3 +1,4 @@
+import "bootstrap/dist/css/bootstrap.min.css";
 import React, { useEffect, useState, useRef, Fragment } from "react";
 import axios from "axios";
 import { DateTime } from "luxon";
@@ -187,12 +188,15 @@ const App = (props) => {
   };
 
   return (
-    <div id="app-wrapper">
-      <div id="nav-wrapper">
-        <NavBar user={user} showAlert={showAlert} />
-      </div>
+    <div id="app-container" className="container-fluid pt-2">
+      <header id="app-header" className="d-flex justify-content-between mt-5 px-5 py-4 shadow">
+        <h1 className="pl-5">thoughtflow</h1>
+        <div id="nav-wrapper">
+          <NavBar user={user} showAlert={showAlert} />
+        </div>
+      </header>
       <div id="user-alerts" ref={alerts} className="hide"></div>
-      {!location.pathname.includes("auth") && <h1>thoughtflow</h1>}
+      {/* {!location.pathname.includes("auth") && <h1>thoughtflow</h1>} */}
       <Routes>
         <Route
           path="/*"

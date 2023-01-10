@@ -18,7 +18,7 @@ const Quote = (props) => {
 
 
 	return (
-    <div id="quote-wrapper">
+    <div id="quote-wrapper" className="bg-light">
       <h5>{quote.text}</h5>
 			<h6>{quote.author}</h6>
     </div>

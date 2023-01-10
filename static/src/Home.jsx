@@ -254,7 +254,7 @@ const Home = ({ user, showAlert }) => {
       {(location.pathname.includes("hub") || location.pathname === "/") &&
         feeling && <Quote getQuote={getQuote2} />}
       {(location.pathname.includes("hub") || location.pathname === "/") && (
-        <div id="hub-wrapper">
+        <div id="hub-wrapper" className="bg-light">
           <Hub
             feeling={feeling}
             posts={posts}

@@ -31,28 +31,39 @@ const Hub = (props) => {
 
   return (
     <Fragment>
-      <nav id="hub-nav">
+      <nav id="hub-nav" className="navbar bg-light">
         <span
           id="hub-journal"
-          className="nav-link"
+          className="nav-link navbar-brand"
           onClick={props.checkMsgStatus}
         >
           <Link to="/">journal</Link>
         </span>
-        <span
-          id="hub-milestones"
-          className="nav-link"
-          onClick={props.checkMsgStatus}
+        {/* <button
+          className="navbar-toggler"
+          data-toggle="collapse"
+          data-target="hub-nav-menu"
         >
-          <Link to="/hub-milestones">milestones</Link>
-        </span>
-        <span
-          id="hub-trends"
-          className="nav-link"
-          onClick={() => props.checkMsgStatus('', false, '/hub-milestones')}
-        >
-          <Link to="/hub-trends">trends</Link>
-        </span>
+          <span className="navbar-toggler-icon"></span>
+        </button>
+        <div id="hub-nav-menu" className="collapse navbar-collapse">
+          <nav className="navbar-nav"> */}
+            <span
+            id="hub-milestones"
+            className="nav-link nav-item"
+            onClick={props.checkMsgStatus}
+          >
+            <Link to="/hub-milestones">milestones</Link>
+          </span>
+          <span
+            id="hub-trends"
+            className="nav-link nav-item"
+            onClick={() => props.checkMsgStatus('', false, '/hub-milestones')}
+          >
+            <Link to="/hub-trends">trends</Link>
+          </span>
+          {/* </nav>
+        </div> */}
       </nav>
 
       <Routes>

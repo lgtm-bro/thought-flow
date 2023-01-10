@@ -9,7 +9,6 @@ const Feelings = (props) => {
   const [baseChoice, setBaseChoice] = useState();
   const [secondChoice, setSecondChoice] = useState();
   const [thirdChoice, setThirdChoice] = useState();
-  // const [showEntry, setShowEntry] = useState(false);
 
   const base = useRef();
   const second = useRef();
@@ -21,7 +20,6 @@ const Feelings = (props) => {
   useEffect(() => {
     navigate('/');
     getBaseEmotions();
-    console.log('FEEL send to entry', props.sendToEntry)
   }, []);
 
   useEffect(() => {

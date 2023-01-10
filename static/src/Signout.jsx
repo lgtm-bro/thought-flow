@@ -8,7 +8,7 @@ const Signout = (props) => {
   };
 
   return (
-    <div id="signout-wrapper">
+    <form id="signout-form" className="bg-light">
       <h3>Are you sure you want to sign out?</h3>
       <button type="button" onClick={props.cancelForm} value="Cancel">
 				Cancel
@@ -16,7 +16,7 @@ const Signout = (props) => {
       <button type="button" value="Sign Out" onClick={signoutUser}>
 				Sign Out
 			</button>
-    </div>
+    </form>
   );
 };
 

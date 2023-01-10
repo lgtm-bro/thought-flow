@@ -1,7 +1,9 @@
 /******** ELEMENTS ********/
 body,
 html,
-#root {
+#root,
+#app-container {
+  color:rgb(96, 96, 96);
   width: 100%;
   height: 100%;
   margin: 0;
@@ -9,33 +11,43 @@ html,
   overflow: hidden;
 }
 
+#app-header {
+  /* display: flex;
+  justify-content: space-between; */
+  font-family: "Nunito";
+  font-weight: 600;
+  background-color: rgba(248, 249, 250, 0.494);
+  /* margin-top: 2em;
+  padding: 1em 2em 0 2em; */
+}
+
 h1 {
   text-align: center;
   clear: both;
-}
-
-a {
-  text-decoration: none;
+  color: rgb(47, 173, 211);
+  text-shadow: 2px 2px 2px #3f4040;
+  font-family: "Caveat";
+  font-size: 3.2em !important;
+  letter-spacing: .4rem;
+  /* position: fixed;
+  z-index: 10; */
 }
 
 .hide {
   display: none !important;
 }
 
-.nav-link {
-  margin: 0 15px;
-}
 
 .done_btn {
   display: block;
 }
 
-#app-wrapper, #home-wrapper {
+#app-container, #home-wrapper {
   margin: 0 auto;
 	height: 100%;
 }
 
-#app-wrapper {
+#root {
   background-image: linear-gradient(to bottom, #37aac973, rgb(255 248 206 / 34%) 50%, rgb(250 250 249 / 68%) 60%, rgb(255 248 206 / 26%)63%, #dfa17961 83%, #d2561163 93%, #d5020273 98%);
 }
 
@@ -54,10 +66,70 @@ a {
 }
 
 /******** NAV ********/
-#nav-wrapper {
-  float: right;
-  margin: 4% 35px 4% 0;
+
+.nav-link a {
+  text-decoration: none;
+  color:rgb(96, 96, 96);
+  font-size: 1.4rem;
+  margin: 0 8px;
 }
+
+.nav-link a:hover {
+  color:rgb(47, 173, 211);
+  font-size: 1.5rem;
+}
+
+#main-nav-menu {
+  /* position: fixed;
+  top: 91.2px; */
+  /* z-index: 10;
+  background-color: rgb(248,249,250); */
+}
+
+#app-nav-toggler {
+  position: fixed;
+  top: 95px;
+  right:25px;
+}
+
+/******** CONTACT ********/
+#contact-main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 3em;
+  width: 50%;
+  max-width: 600px;
+  height: 80%;
+  background-color: rgb(248,249,250);
+  border: 1px solid grey;
+  border-radius: 5px;
+}
+
+#contact-form{
+  margin-top: 2em;
+}
+
+#contact-form input, #contact-form textarea {
+  border: 1px solid grey;
+  border-radius: 5px;
+  padding: 5px;
+  padding-left: 10px;
+}
+
+#contact-form input[type=submit] {
+  width: 130px;
+  margin: 0 32%
+}
+
+#contact-form input[type=text] {
+  width: 100%;
+}
+
+#contact-form input[type=checkbox] {
+  margin: 0 15px;
+}
+
 
 /******** GREET ********/
 #greet-wrapper {
@@ -83,8 +155,7 @@ a {
   width: 43%;
   height: 20%;
   float: left;
-  background-color: white;
-
+  background-color: rgb(248,249,250);
 }
 
 /* *******ENTRY******* */
@@ -112,29 +183,28 @@ a {
   margin-top: 0;
 }
 
-/******** SIDEBAR ********/
+/******** HUB ********/
 #hub-wrapper {
   float: right;
 	margin: 0 5% 0 0;
   width: 40%;
+  min-width: 300px;
   height: 100%;
+  background-color: rgb(248,249,250);
 }
 
 #journal-wrapper {
   height: 68%;
   overflow-y: scroll;
-  background-color: white;
 }
 
 #milestone-bar-wrapper {
   height: 68%;
   overflow-y: scroll;
-  background-color: white;
 }
 
 #trends-wrapper {
   height: 68%;
-  background-color: white;
 }
 
 #journal-wrapper::-webkit-scrollbar {
@@ -160,7 +230,6 @@ a {
 /******** LOGIN ********/
 #login-wrapper,
 #signup-wrapper {
-  background-color: white;
   text-align: center;
   z-index: 5;
   position: fixed;
@@ -171,6 +240,7 @@ a {
   width: 450px;
   height: 300px;
   border: 1px solid black;
+  background-color: rgb(248,249,250);
 }
 
 .login-label {
@@ -218,6 +288,11 @@ a {
 }
 
 /******** SIGNOUT ********/
+#signout-form {
+  text-align: center;
+  background-color: rgb(248,249,250);
+}
+
 .signout-click {
   width: 375px !important;
   height: 200px !important;

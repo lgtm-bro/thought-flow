@@ -27,9 +27,9 @@ const Contact = (props) => {
   };
 
   return (
-    <main>
+    <main id="contact-main">
       <h3>contact us</h3>
-      <form action="#" ref={form} onSubmit={sendMsg}>
+      <form action="#" id="contact-form" ref={form} onSubmit={sendMsg}>
         <input
           type="text"
           name="name"
@@ -60,8 +60,8 @@ const Contact = (props) => {
         <textarea
           name=""
           id="contact-subject"
-          cols="30"
-          rows="10"
+          cols="40"
+          rows="4"
           required
           placeholder="Message"
           ref={body}
