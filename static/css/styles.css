@@ -8,29 +8,22 @@ html,
   height: 100%;
   margin: 0;
   padding: 0;
+  font-family: "Nunito";
   overflow: hidden;
 }
 
-#app-header {
-  /* display: flex;
-  justify-content: space-between; */
-  font-family: "Nunito";
-  font-weight: 600;
-  background-color: rgba(248, 249, 250, 0.494);
-  /* margin-top: 2em;
-  padding: 1em 2em 0 2em; */
+.form-input {
+  margin: 10px 0;
 }
 
-h1 {
-  text-align: center;
-  clear: both;
+.custom-link a {
+  text-decoration: none !important;
   color: rgb(47, 173, 211);
-  text-shadow: 2px 2px 2px #3f4040;
-  font-family: "Caveat";
-  font-size: 3.2em !important;
-  letter-spacing: .4rem;
-  /* position: fixed;
-  z-index: 10; */
+  margin-left: 5px;
+}
+
+.custom-link a:hover {
+  color: rgb(0, 124, 191);
 }
 
 .hide {
@@ -52,6 +45,7 @@ h1 {
 }
 
 /******** ALERTS ********/
+
 #user-alerts {
   font-size: 16px;
   width: 70%;
@@ -67,16 +61,41 @@ h1 {
 
 /******** NAV ********/
 
+#app-header {
+  /* display: flex;
+  justify-content: space-between; */
+  font-weight: 600;
+  background-color: rgba(248, 249, 250, 0.494);
+  /* margin-top: 2em;
+  padding: 1em 2em 0 2em; */
+}
+
+#nav-title {
+  color: rgb(232, 134, 134);
+  text-shadow: .75px .75px 1px #292a2a,
+              2.5px 0 1px rgb(168, 177, 177);
+  font-family: "Caveat";
+  font-size: 2em;
+  letter-spacing: .4rem;
+}
+
+#nav-home a {
+  text-decoration: none;
+}
+
 .nav-link a {
   text-decoration: none;
   color:rgb(96, 96, 96);
   font-size: 1.4rem;
   margin: 0 8px;
+  white-space: nowrap;
 }
 
 .nav-link a:hover {
-  color:rgb(47, 173, 211);
-  font-size: 1.5rem;
+  /* color:rgb(47, 173, 211); */
+  /* color:rgb(254, 254, 196) !important; */
+  color: rgb(232, 134, 134);
+  /* font-size: 1.5rem !important; */
 }
 
 #main-nav-menu {
@@ -87,53 +106,77 @@ h1 {
 }
 
 #app-nav-toggler {
-  position: fixed;
+  /* position: fixed;
   top: 95px;
-  right:25px;
+  right:25px; */
+  /* margin-left: 10px; */
 }
+
+
 
 /******** CONTACT ********/
+
 #contact-main {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 3em;
   width: 50%;
-  max-width: 600px;
-  height: 80%;
-  background-color: rgb(248,249,250);
-  border: 1px solid grey;
-  border-radius: 5px;
+  max-width: 500px;
+  min-width: 300px;
+  height: 400;
+  overflow-y: hidden;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
-#contact-form{
-  margin-top: 2em;
+#contact-main::-webkit-scrollbar {
+  display: none;
 }
 
-#contact-form input, #contact-form textarea {
-  border: 1px solid grey;
-  border-radius: 5px;
-  padding: 5px;
-  padding-left: 10px;
+#contact-title {
+  text-align: center;
 }
 
-#contact-form input[type=submit] {
-  width: 130px;
-  margin: 0 32%
+.form-check-input {
+  margin-right: 10px!important;
 }
 
-#contact-form input[type=text] {
-  width: 100%;
+.form-check-input:checked{
+  background-color: #37a9c9 !important;
+  border: 0;
 }
 
-#contact-form input[type=checkbox] {
-  margin: 0 15px;
+.form-check-input:focus, .form-check-input::after, .form-check-input:not(:disabled):not(.disabled):active:focus {
+  color: rgb(110, 107, 107);
+  outline: 0;
+  border: 0;
+  box-shadow: 0 0 0 0.1rem #a5f1ffb9 !important;
 }
 
+.form-btn-div {
+  text-align: center;
+}
+
+.form-btn {
+  margin: 5px;
+  background-color: #37a9c956 !important;
+}
 
 /******** GREET ********/
 #greet-wrapper {
   margin: 1% 5%;
+}
+
+#greeting-link a, #message-link a {
+  text-decoration: none;
+  color:rgb(232, 134, 134);
+  font-weight: bolder;
+  margin-left: 5px;
+}
+
+#greeting-link a {
+  font-size: 1.5em;
+}
+
+#message-link a:hover {
+  font-size: 1.3em;
 }
 
 /******** USER MSG ********/
@@ -188,19 +231,37 @@ h1 {
   float: right;
 	margin: 0 5% 0 0;
   width: 40%;
-  min-width: 300px;
+  min-width: 350px;
   height: 100%;
   background-color: rgb(248,249,250);
+}
+
+.hub-link {
+  font-size: 1.1rem;
+  margin: 0 4px;
 }
 
 #journal-wrapper {
   height: 68%;
   overflow-y: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
+
+#journal-wrapper::-webkit-scrollbar {
+  display: none;
+}
+
 
 #milestone-bar-wrapper {
   height: 68%;
   overflow-y: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+#milestone-bar-wrapper::-webkit-scrollbar {
+  display: none;
 }
 
 #trends-wrapper {
@@ -220,51 +281,39 @@ h1 {
   display: inline-block;
 }
 
-#progress-bar-wrapper {
-  float: left;
-  width: 0 35%;
-  height:80%;
-  margin: 1% 3%;
-}
-
 /******** LOGIN ********/
 #login-wrapper,
 #signup-wrapper {
-  text-align: center;
+  /* text-align: center;
   z-index: 5;
   position: fixed;
-  top: 30%;
+  top: 30%; */
   /* right: 35%; */
-  left: 30%;
-  margin: 0 auto;
-  width: 450px;
-  height: 300px;
-  border: 1px solid black;
-  background-color: rgb(248,249,250);
+  /* left: 30%; */
+  margin: auto;
+  height: 430px;
+  width: 50%;
+  max-width: 400px;
+  min-width: 300px;
 }
 
 .login-label {
   align-self: left;
 }
 
-.eye {
+#login-btn-div {
   position: relative;
-  right: 1.5em;
-  top: 3px;
-}
-
-#login-btn {
-  /* margin: 0 40%; */
+  top: 75px;
 }
 
 /******** SIGNUP ********/
-#signup-form {
+/* #signup-form {
   display: inline-block;
   text-align: left;
-}
+}*/
 
 #signup-wrapper {
-  height: 435px !important;
+  height: 535px !important;
 }
 
 #pass-reqs {
@@ -288,14 +337,8 @@ h1 {
 }
 
 /******** SIGNOUT ********/
-#signout-form {
-  text-align: center;
-  background-color: rgb(248,249,250);
-}
-
-.signout-click {
-  width: 375px !important;
-  height: 200px !important;
+#signout-container {
+  width: 50%;
 }
 
 /******** PROFILE ********/

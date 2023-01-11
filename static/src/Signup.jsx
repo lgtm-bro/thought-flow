@@ -65,65 +65,78 @@ const Signup = ({ signupUser, showAlert }) => {
   };
 
   return (
-    <div id="signup-wrapper" className="bg-light">
-      <h2>Sign Up</h2>
-      <h4>
-        Already have an account?
-        <span className="form-link">
-          <Link to="/auth/login"> Login</Link>
-        </span>
-      </h4>
+    <div id="signup-wrapper" className="form-control bg-light shadow">
+      <div id="signup-form-header" className="row text-center my-3">
+        <h4>Sign Up</h4>
+        <h5 className="form-text">
+          Already have an account?
+          <span className="custom-link">
+            <Link to="/auth"> login</Link>
+          </span>
+        </h5>
+      </div>
       <form
         action="#"
         id="signup-form"
+        className="form-group"
         ref={form}
         onSubmit={(e) => submitUserSignup(e)}
       >
-        <label htmlFor="signup-email">
-          <span className="signup-name">First Name: </span>
-          <input type="text" name="signup-name" required ref={name} />
-        </label>
-        <br />
-        <br />
-        <label htmlFor="signup-email">
-          <span className="signup-label">Email: </span>
-          <input type="text" name="signup-email" required ref={email} />
-        </label>
-        <br />
-        <br />
-        <label htmlFor="signup-password">
-          <span className="signup-label">Password: </span>
+        <input
+          type="text"
+          name="signup-name"
+          placeholder="first name"
+          className="form-input form-control"
+          required
+          ref={name}
+        />
+        <input
+          type="email"
+          name="signup-email"
+          placeholder="email"
+          className="form-input form-control"
+          required
+          ref={email}
+        />
+        <div className="input-group">
           <input
             type="password"
             name="signup-password"
+            placeholder="password"
+            className="form-control form-input"
             required
             ref={password}
             onChange={(e) => getPw(e, setPw)}
           />
-          <span className="eye" onClick={() => showPassword(password)}>
+          <span
+            className="input-group-text form-input"
+            onClick={() => showPassword(password)}
+          >
             <BiShow />
           </span>
-        </label>
-        <br />
-        <br />
-        <label htmlFor="signup-password-confirm">
-          <span className="signup-label">Confirm Password: </span>
+        </div>
+        <div className="input-group">
           <input
             type="password"
             name="signup-password-confirm"
+            placeholder="confirm password"
+            className="form-control form-input"
             ref={password2}
             onChange={(e) => getPw(e, setPw2)}
           />
-          <span className="eye" onClick={() => showPassword(password2)}>
+          <span
+            className="input-group-text form-input"
+            onClick={() => showPassword(password2)}
+          >
             <BiShow />
           </span>
-        </label>
+        </div>
         <Password pw={pw} verify={verifyPw} />
-        <div>
-          <button type="button" onClick={cancelSignup}>
+        <div className="form-btn-div">
+          <button type="button" className="btn form-btn" onClick={cancelSignup}>
             Cancel
           </button>
-          <input type="submit" value="Sign Up" id="signup-btn" />
+          <input type="submit" value="Sign Up" id="signup-btn" className="btn form-btn"/>
         </div>
       </form>
     </div>

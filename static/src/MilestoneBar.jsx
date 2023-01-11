@@ -39,7 +39,7 @@ const MilestoneBar = ({
         So Far you have...
       </h4>
         {!!sessionStorage.getItem('user') && <h5>
-          <span onClick={updateFeelingMsg}>
+          <span id="add-milestone" className="custom-link" onClick={updateFeelingMsg}>
             <Link to="/milestone">
               <AiOutlinePlus />
               add a milestone

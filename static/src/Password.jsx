@@ -84,8 +84,6 @@ const Password = ({ pw, verify }) => {
 
   return (
     <Fragment>
-      <br />
-      <br />
       <div>Your password should contain:</div>
       <ul id="pass-reqs">
         <li ref={lowerBox}>at least one lowercase letter</li>

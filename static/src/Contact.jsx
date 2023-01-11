@@ -1,15 +1,26 @@
-import React, { useRef, useEffect } from "react";
+import React, {useState, useRef, useEffect } from "react";
+import {useNavigate} from "react-router-dom";
 
-const userName = sessionStorage.getItem("user") || "Name";
-const userEmail = sessionStorage.getItem("email") || "Email address";
 
 const Contact = (props) => {
+  const [userName, setUserName] = useState(props.user);
+  const [userEmail, setUserEmail] = useState(props.email);
+
   const form = useRef();
   const name = useRef();
   const email = useRef();
   const subject = useRef();
   const body = useRef();
   const copy = useRef();
+
+  const navigate = useNavigate();
+
+  // useEffect(() => {
+  //   if (props.user) {
+  //     setUserName(props.user);
+  //     setUserEmail(props.email);
+  //   }
+  // }, [])
 
 
   const sendMsg = (e) => {
@@ -27,36 +38,35 @@ const Contact = (props) => {
   };
 
   return (
-    <main id="contact-main">
-      <h3>contact us</h3>
-      <form action="#" id="contact-form" ref={form} onSubmit={sendMsg}>
+    <main id="contact-main" className="container p-4 bg-light border rounded">
+      <h3 id="contact-title">contact us</h3>
+      <form action="#" id="contact-form" className="form-group p-4" ref={form} onSubmit={sendMsg}>
         <input
           type="text"
           name="name"
-          // required
+          required
           defaultValue={userName}
+          placeholder="Name"
           ref={name}
+          className="form-control form-input"
         />
-        <br />
-        <br />
         <input
-          type="text"
+          type="email"
           name="email"
-          // required
+          required
           defaultValue={userEmail}
+          placeholder="Email"
           ref={email}
+          className="form-control form-input"
         />
-        <br />
-        <br />
         <input
           type="text"
           name="subject"
           required
           placeholder="Subject"
           ref={subject}
+          className="form-control form-input"
         />
-        <br />
-        <br />
         <textarea
           name=""
           id="contact-subject"
@@ -65,14 +75,18 @@ const Contact = (props) => {
           required
           placeholder="Message"
           ref={body}
+          className="form-control"
         ></textarea>
-        <br />
-        <br />
-        <input type="checkbox" name="send-copy" ref={copy}/>
-        <label htmlFor="send-copy">Send me a copy</label>
-        <br />
-        <br />
-        <input type="submit" value="send" />
+        <div id ="contact-check" className="form-check form-input">
+        <input type="checkbox" name="send-copy" id="contact-check" className="form-check-input" ref={copy}/>
+        <label htmlFor="send-copy" className="form-label">Send me a copy</label>
+        </div>
+        <div className="form-btn-div">
+          <button type="button" id="contact-cancel" className="form-btn btn border" onClick={() => navigate("/")}>
+              Cancel
+            </button>
+          <input type="submit" value="send" className="form-btn btn border"/>
+        </div>
       </form>
     </main>
   );

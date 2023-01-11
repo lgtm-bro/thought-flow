@@ -42,10 +42,9 @@ const UserAuth = ({ user, getUser, showAlert, clear, signupUser }) => {
 
   return (
     <Fragment>
-      <Login getUser={getUser} cancelForm={cancelForm} />
       <Routes>
         <Route
-          path="login"
+          path="/"
           element={
             <Login
               getUser={getUser}

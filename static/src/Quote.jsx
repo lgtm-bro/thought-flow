@@ -11,14 +11,9 @@ const Quote = (props) => {
 		.catch(err => {console.log('ERROR:', err.response.data.msg)});
 	}, [])
 
-	// useEffect(( ) => {
-	// 	console.log(quote.text)
-	// 	console.log(quote.author)
-	// }, [quote])
-
 
 	return (
-    <div id="quote-wrapper" className="bg-light">
+    <div id="quote-wrapper" className="bg-light shadow mt-5 mx-5 p-4">
       <h5>{quote.text}</h5>
 			<h6>{quote.author}</h6>
     </div>

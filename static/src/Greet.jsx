@@ -12,7 +12,7 @@ const Greet = ({ user, feeling }) => {
     <Fragment>
       {user && <span className="greet-span">Hi {user}. </span>}
       {feeling && (
-        <span className="greet-span">
+        <span id="greeting-link" className="greet-span">
           <span>Today's vibe is </span>
           <span onClick={getNewFeeling}>
             <a href="#">

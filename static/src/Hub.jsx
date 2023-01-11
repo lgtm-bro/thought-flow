@@ -31,10 +31,10 @@ const Hub = (props) => {
 
   return (
     <Fragment>
-      <nav id="hub-nav" className="navbar bg-light">
+      <nav id="hub-nav" className="navbar bg-light flex-justify-evenly flex-nowrap">
         <span
           id="hub-journal"
-          className="nav-link navbar-brand"
+          className="nav-link hub-link navbar-item"
           onClick={props.checkMsgStatus}
         >
           <Link to="/">journal</Link>
@@ -50,14 +50,14 @@ const Hub = (props) => {
           <nav className="navbar-nav"> */}
             <span
             id="hub-milestones"
-            className="nav-link nav-item"
+            className="nav-link hub-link nav-item"
             onClick={props.checkMsgStatus}
           >
             <Link to="/hub-milestones">milestones</Link>
           </span>
           <span
             id="hub-trends"
-            className="nav-link nav-item"
+            className="nav-link hub-link nav-item"
             onClick={() => props.checkMsgStatus('', false, '/hub-milestones')}
           >
             <Link to="/hub-trends">trends</Link>

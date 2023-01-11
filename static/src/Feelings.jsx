@@ -113,7 +113,7 @@ const Feelings = (props) => {
     <div id="feeling-container">
       <form action="#">
         <label htmlFor="base">
-          <h2>What is your main vibe right now?</h2>
+          <h3>What is your main vibe right now?</h3>
         </label>
         <select
           name="base"

@@ -28,7 +28,7 @@ const Journal = ( {posts, feeling, changeMsg, deletePost, updateEntry, setSendTo
   return (
     <div id="journal-wrapper">
       {!!sessionStorage.getItem('user') && <h5>
-        <span id="add-entry" onClick={sendFeelingMsg}>
+        <span id="add-entry" className="custom-link" onClick={sendFeelingMsg}>
           <Link to={entryLink}><AiOutlinePlus/>add an entry</Link>
         </span>
       </h5>}

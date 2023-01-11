@@ -14,7 +14,7 @@ import NavBar from "./NavBar.jsx";
 import Home from "./Home.jsx";
 import Profile from "./Profile.jsx";
 import About from "./About.jsx";
-import Contact from  "./Contact.jsx";
+import Contact from "./Contact.jsx";
 import UserAuth from "./UserAuth.jsx";
 import Login from "./Login.jsx";
 import Signup from "./Signup.jsx";
@@ -46,7 +46,6 @@ const App = (props) => {
     };
   }, []);
 
-
   useEffect(() => {
     if (user) {
       sessionStorage.setItem("user", user);
@@ -70,17 +69,18 @@ const App = (props) => {
     }, 2000);
   };
 
-   /********** CONTACT ***********/
-   const submitContactForm = (msg) => {
+  /********** CONTACT ***********/
+  const submitContactForm = (msg) => {
     // const msg = {
     //   email: "bowens.swe@gmail.com",
     //   subject: "Testing",
     //   body: "This is my test"
     // }
-    axios.post("/contact", msg, config)
-    .then(res => console.log(res.data))
-    .catch((err) => console.log(err.response.data.msg));
-   }
+    axios
+      .post("/contact", msg, config)
+      .then((res) => console.log(res.data))
+      .catch((err) => console.log(err.response.data.msg));
+  };
 
   /********** USER ***********/
   const getUser = (email, password) => {
@@ -117,7 +117,7 @@ const App = (props) => {
         setEmail(results.data.email);
       })
       .catch((err) => {
-        navigate("/auth/login");
+        navigate("/auth");
         showAlert(err.response.data.msg);
       });
   };
@@ -189,21 +189,13 @@ const App = (props) => {
 
   return (
     <div id="app-container" className="container-fluid pt-2">
-      <header id="app-header" className="d-flex justify-content-between mt-5 px-5 py-4 shadow">
-        <h1 className="pl-5">thoughtflow</h1>
-        <div id="nav-wrapper">
-          <NavBar user={user} showAlert={showAlert} />
-        </div>
-      </header>
+      <div id="nav-wrapper" className="container-fluid flex-nowrap">
+        <NavBar user={user} showAlert={showAlert} />
+      </div>
       <div id="user-alerts" ref={alerts} className="hide"></div>
       {/* {!location.pathname.includes("auth") && <h1>thoughtflow</h1>} */}
       <Routes>
-        <Route
-          path="/*"
-          element={
-            <Home user={user} showAlert={showAlert} />
-          }
-        />
+        <Route path="/*" element={<Home user={user} showAlert={showAlert} />} />
         <Route
           path="/profile"
           element={
@@ -216,7 +208,16 @@ const App = (props) => {
           }
         />
         <Route path="/about" element={<About />} />
-        <Route path="/contact" element={<Contact submitContactForm={submitContactForm} />} />
+        <Route
+          path="/contact"
+          element={
+            <Contact
+              user={user}
+              email={email}
+              submitContactForm={submitContactForm}
+            />
+          }
+        />
         <Route
           path="/auth/*"
           element={

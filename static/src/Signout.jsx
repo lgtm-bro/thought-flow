@@ -1,22 +1,25 @@
 import React from "react";
 
 const Signout = (props) => {
-
   const signoutUser = () => {
     props.clear();
     props.cancelForm();
   };
 
   return (
-    <form id="signout-form" className="bg-light">
-      <h3>Are you sure you want to sign out?</h3>
-      <button type="button" onClick={props.cancelForm} value="Cancel">
-				Cancel
-			</button>
-      <button type="button" value="Sign Out" onClick={signoutUser}>
-				Sign Out
-			</button>
+    <div id="signout-container" className="container bg-light border shadow rounded text-center p-2">
+    <form id="signout-form" className="form-group bg-light">
+      <h3>sign out?</h3>
+      <div className="form-btn-div">
+        <button type="button" className="form-btn btn border" onClick={props.cancelForm} value="Cancel">
+          Cancel
+        </button>
+        <button type="button" value="Sign Out" className="form-btn btn border" onClick={signoutUser}>
+          Sign Out
+        </button>
+      </div>
     </form>
+    </div>
   );
 };
 

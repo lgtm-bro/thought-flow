@@ -24,41 +24,52 @@ const Login = (props) => {
   };
 
   return (
-    <div id="login-wrapper" ref={login}>
-      <h2>Please Log in</h2>
-      <h4>
-        Don't have account?
-        <span className="form-link">
-          <Link to="/auth/signup"> Sign Up</Link>
-        </span>
-      </h4>
-      <form action="#" ref={form} onSubmit={loginUser}>
-        <label htmlFor="login-email">
-          <span className="login-label">Email: </span>
-          <input type="text" name="login-email" required ref={email} />
-        </label>
-        <br />
-        <br />
-        <label htmlFor="login-password">
-          <span className="login-label">Password: </span>
+    <div id="login-wrapper" className="form-control bg-light shadow rounded" ref={login}>
+      <div id="login-form-header" className="row text-center my-3">
+        <h4 className="p-2">Please login</h4>
+        <h5 className="p-2 form-text">
+          Don't have account?
+          <span className="custom-link form-link">
+            <Link to="/auth/signup">sign up</Link>
+          </span>
+        </h5>
+      </div>
+      <form action="#" className="form-group" ref={form} onSubmit={loginUser}>
+        <input
+          type="email"
+          name="login-email"
+          placeholder="email"
+          className="form-input form-control"
+          required
+          ref={email}
+        />
+        <div id="login-password" className="input-group mb-3">
           <input
             type="password"
             name="login-password"
+            placeholder="password"
+            className="form-input form-control"
             required
             ref={password}
+            aria-label="login password"
+            aria-describedby="show-password-icon"
           />
-          <span className="eye" onClick={showPassword}>
+          <span
+            id="show-password-icon"
+            className="form-input input-group-text"
+            onClick={showPassword}
+          >
             <BiShow />
           </span>
-        </label>
-        <br />
-        <br />
-        <Link to="/">
-          <button type="button" >
-            Cancel
-          </button>
-        </Link>
-        <input type="submit" value="Login" />
+        </div>
+        <div id="login-btn-div" className="form-btn-div">
+          <Link to="/">
+            <button type="button" className="btn form-btn border px-4">
+              cancel
+            </button>
+          </Link>
+          <input type="submit" value="login " className="btn form-btn border px-4" />
+        </div>
       </form>
     </div>
   );
