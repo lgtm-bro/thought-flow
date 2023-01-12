@@ -32,6 +32,17 @@ const Home = ({ user, showAlert }) => {
   const navigate = useNavigate();
   const location = useLocation();
 
+  const emotionsColors = {
+    happy: "rgba(255, 99, 132, 0.5)",
+    anticipation: "rgba(54, 162, 235, 0.5)",
+    surprised: "rgba(255, 206, 86, 0.5)",
+    bad: "rgba(75, 192, 192, 0.5)",
+    fearful: "rgba(153, 102, 255, 0.5)",
+    angry: "rgba(255, 159, 64, 0.5)",
+    disgust: "rgba(192, 246, 163, 0.5)",
+    sad: "rgba(213, 245, 255, 0.8)",
+  };
+
   const userId = sessionStorage.getItem("userId");
 
   const config = {
@@ -224,7 +235,7 @@ const Home = ({ user, showAlert }) => {
   };
 
   return (
-    <div id="home-wrapper">
+    <div id="home-container">
       <div id="greet-wrapper">
         <Greet feeling={feeling} user={user} sendFeeling={setFeeling} />
       </div>
@@ -254,7 +265,7 @@ const Home = ({ user, showAlert }) => {
       {(location.pathname.includes("hub") || location.pathname === "/") &&
         feeling && <Quote getQuote={getQuote2} />}
       {(location.pathname.includes("hub") || location.pathname === "/") && (
-        <div id="hub-wrapper" className="bg-light shadow p-4">
+        <div id="hub-wrapper" className="bg-light shadow rounded">
           <Hub
             feeling={feeling}
             posts={posts}
@@ -278,10 +289,11 @@ const Home = ({ user, showAlert }) => {
           element={<ConfirmModal sendFeeling={setFeeling} />}
         />
         <Route
-          path="feelings"
+          path="/feelings"
           element={
             <Feelings
               user={user}
+              colors={emotionsColors}
               feeling={getFeeling}
               showAlert={showAlert}
               showHome={showHome}
@@ -290,7 +302,7 @@ const Home = ({ user, showAlert }) => {
           }
         />
         <Route
-          path="entry"
+          path="/entry/*"
           element={
             <Entry
               feeling={feeling}
@@ -302,7 +314,7 @@ const Home = ({ user, showAlert }) => {
           }
         />
         <Route
-          path="milestone"
+          path="/milestone"
           element={
             <MilestoneForm
               getQuote={getQuote2}
@@ -311,7 +323,7 @@ const Home = ({ user, showAlert }) => {
             />
           }
         />
-        <Route path="quote" element={<Quote />} />
+        <Route path="/quote" element={<Quote />} />
       </Routes>
     </div>
   );

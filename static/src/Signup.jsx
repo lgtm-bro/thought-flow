@@ -65,15 +65,15 @@ const Signup = ({ signupUser, showAlert }) => {
   };
 
   return (
-    <div id="signup-wrapper" className="form-control bg-light shadow">
-      <div id="signup-form-header" className="row text-center my-3">
-        <h4>Sign Up</h4>
-        <h5 className="form-text">
+    <div id="signup-wrapper" className="container bg-light p-4 my-5 shadow rounded">
+      <div id="signup-form-header" className="row text-center mt-3 mb-1">
+        <h2>sign up</h2>
+        <h3 className="form-text">
           Already have an account?
           <span className="custom-link">
-            <Link to="/auth"> login</Link>
+            <Link to="/auth">login</Link>
           </span>
-        </h5>
+        </h3>
       </div>
       <form
         action="#"
@@ -94,7 +94,7 @@ const Signup = ({ signupUser, showAlert }) => {
           type="email"
           name="signup-email"
           placeholder="email"
-          className="form-input form-control"
+          className="form-input form-control mt-3 mb-2"
           required
           ref={email}
         />
@@ -103,29 +103,29 @@ const Signup = ({ signupUser, showAlert }) => {
             type="password"
             name="signup-password"
             placeholder="password"
-            className="form-control form-input"
+            className="form-input form-control mt-2"
             required
             ref={password}
             onChange={(e) => getPw(e, setPw)}
           />
           <span
-            className="input-group-text form-input"
+            className="form-input input-group-text mt-2"
             onClick={() => showPassword(password)}
           >
             <BiShow />
           </span>
         </div>
-        <div className="input-group">
+        <div className="input-group my-3">
           <input
             type="password"
             name="signup-password-confirm"
             placeholder="confirm password"
-            className="form-control form-input"
+            className="form-input form-control"
             ref={password2}
             onChange={(e) => getPw(e, setPw2)}
           />
           <span
-            className="input-group-text form-input"
+            className="form-input input-group-text"
             onClick={() => showPassword(password2)}
           >
             <BiShow />

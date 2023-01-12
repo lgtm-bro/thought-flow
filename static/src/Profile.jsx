@@ -73,70 +73,86 @@ const Profile = (props) => {
   };
 
   return (
-    <div id="profile-wrapper">
-      <h2>Edit Profile</h2>
-      <form id="profile-form" ref={form} onSubmit={submitChanges}>
-        <label htmlFor="profile-name">Name</label>
-        <br />
+    <div id="profile-wrapper"
+      className="container justify-content-center p-4 my-3 my-md-5 shadow rounded"
+    >
+      <h2 className="text-center mb-3">edit profile</h2>
+      <form
+        id="profile-form"
+        className="form-group p-1"
+        ref={form}
+        onSubmit={submitChanges}
+      >
         <input
           type="text"
           defaultValue={props.user}
+          placeholder="name"
           required
+          className="profile-form-input form-control"
           onChange={(e) => setName(e.target.value)}
         />
-        <br />
-        <br />
-        <label htmlFor="profile-email">Email</label>
-        <br />
         <input
           type="text"
           id="profile-email"
           defaultValue={props.email}
+          placeholder="email"
           required
+          className="profile-form-input form-control"
           onChange={(e) => setEmail(e.target.value)}
         />
-        <br />
-        <br />
-        <label htmlFor="profile-password">Current Password</label>
-        <br />
-        <input type="password" id="profile-password" required ref={password} />
-        <span className="eye" onClick={() => showPassword(password)}>
-          <BiShow />
-        </span>
-        <br />
-        <br />
-        <label htmlFor="profile-new-password">New Password</label>
-        <br />
-        <input
-          type="password"
-          id="profile-new-password"
-          ref={newPassword}
-          placeholder="optional"
-          onChange={(e) => setNewPw(e.target.value)}
-        />
-        <span className="eye" onClick={() => showPassword(newPassword)}>
-          <BiShow />
-        </span>
-        <br />
-        <br />
-        <label htmlFor="profile-confirm-password">Confirm New Password</label>
-        <br />
-        <input
-          type="password"
-          id="profile-confirm-password"
-          ref={passwordConfirm}
-        />
-        <span className="eye" onClick={() => showPassword(passwordConfirm)}>
-          <BiShow />
-        </span>
+        <div className="input-group">
+          <input
+            type="password"
+            id="profile-password"
+            placeholder="current password"
+            className="profile-form-input form-control"
+            required
+            ref={password}
+          />
+          <span
+            className="profile-form-input input-group-text"
+            onClick={() => showPassword(password)}
+          >
+            <BiShow />
+          </span>
+        </div>
+        <div className="input-group">
+          <input
+            type="password"
+            id="profile-new-password"
+            className="profile-form-input form-control"
+            placeholder="new password (optional)"
+            ref={newPassword}
+            onChange={(e) => setNewPw(e.target.value)}
+          />
+          <span
+            className="profile-form-input input-group-text"
+            onClick={() => showPassword(newPassword)}
+          >
+            <BiShow />
+          </span>
+        </div>
+        <div className="input-group">
+          <input
+            type="password"
+            id="profile-confirm-password"
+            placeholder="confirm new password"
+            className="profile-form-input form-control"
+            ref={passwordConfirm}
+          />
+          <span
+            className="profile-form-input input-group-text"
+            onClick={() => showPassword(passwordConfirm)}
+          >
+            <BiShow />
+          </span>
+        </div>
         <Password pw={newPw} verify={verifyPw} />
-        <br />
-        <br />
-        <div id="profile-btns">
-          <button type="button" onClick={cancelForm}>
+        <div id="profile-btns" className="form-btn-div">
+          <button type="button" className="btn form-btn" onClick={cancelForm}>
             Cancel
           </button>
-          <input type="submit" value="Update Info" />
+          <input type="submit" value="Update Info" className="btn form-btn" />
         </div>
       </form>
     </div>

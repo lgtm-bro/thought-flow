@@ -12,8 +12,9 @@ html,
   overflow: hidden;
 }
 
+
 .form-input {
-  margin: 10px 0;
+  margin: 10px 0 !important;
 }
 
 .custom-link a {
@@ -35,9 +36,10 @@ html,
   display: block;
 }
 
-#app-container, #home-wrapper {
+#app-container, #home-container {
   margin: 0 auto;
 	height: 100%;
+  color:rgb(96, 96, 96);
 }
 
 #root {
@@ -61,21 +63,24 @@ html,
 
 /******** NAV ********/
 
-#app-header {
-  /* display: flex;
-  justify-content: space-between; */
-  font-weight: 600;
-  background-color: rgba(248, 249, 250, 0.494);
-  /* margin-top: 2em;
-  padding: 1em 2em 0 2em; */
+#nav-wrapper {
+  height: 100px;
+}
+
+#thought-span {
+  color: rgb(232, 134, 134);
+}
+
+#flow-span {
+  color: #fff;
 }
 
 #nav-title {
-  color: rgb(232, 134, 134);
   text-shadow: .75px .75px 1px #292a2a,
-              2.5px 0 1px rgb(168, 177, 177);
+              1px 0 1px rgb(168, 177, 177);
   font-family: "Caveat";
-  font-size: 2em;
+  font-weight: 700;
+  font-size: 2.5em;
   letter-spacing: .4rem;
 }
 
@@ -83,26 +88,29 @@ html,
   text-decoration: none;
 }
 
-.nav-link a {
+.navbar-link a {
   text-decoration: none;
+  font-weight: 900;
   color:rgb(96, 96, 96);
-  font-size: 1.4rem;
+  font-size: 1.6rem;
   margin: 0 8px;
   white-space: nowrap;
 }
 
-.nav-link a:hover {
+.navbar-link a:hover, .hub-link a:hover {
   /* color:rgb(47, 173, 211); */
   /* color:rgb(254, 254, 196) !important; */
   color: rgb(232, 134, 134);
-  /* font-size: 1.5rem !important; */
+}
+
+.mask-custom {
+  backdrop-filter: blur(7px);
+  background-image: linear-gradient(to bottom, #37a9c932, #37a9c927 30%, #37a9c917 50%, rgba(255, 248, 206, 0.067) 80%, rgba(250, 250, 249, 0.059)  99.9%);
+  /* background-color: rgba(255, 255, 255, 0.328); */
 }
 
 #main-nav-menu {
-  /* position: fixed;
-  top: 91.2px; */
-  /* z-index: 10;
-  background-color: rgb(248,249,250); */
+  width: 100%;
 }
 
 #app-nav-toggler {
@@ -112,8 +120,6 @@ html,
   /* margin-left: 10px; */
 }
 
-
-
 /******** CONTACT ********/
 
 #contact-main {
@@ -121,6 +127,7 @@ html,
   max-width: 500px;
   min-width: 300px;
   height: 400;
+  background-color: #fffdf4;
   overflow-y: hidden;
   -ms-overflow-style: none;
   scrollbar-width: none;
@@ -132,6 +139,10 @@ html,
 
 #contact-title {
   text-align: center;
+}
+
+#contact-check {
+  margin-right: 10px!important;
 }
 
 .form-check-input {
@@ -160,6 +171,7 @@ html,
 }
 
 /******** GREET ********/
+
 #greet-wrapper {
   margin: 1% 5%;
 }
@@ -185,7 +197,7 @@ html,
 }
 
 /******** FEELINGS ********/
-#feelings-wrapper, #entry-wrapper {
+#feelings-wrapper {
   display: inline-block;
   text-align: center;
   width: 45%;
@@ -203,6 +215,36 @@ html,
 
 /* *******ENTRY******* */
 
+#entry-container {
+  height: 100%;
+  width: 70%;
+  min-width: 355px;
+}
+
+#entry-full-form {
+  height: 66%;
+  min-height: 365;
+  overflow-y: hidden;
+  /* overflow-y: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none; */
+}
+
+/* #entry-full-form::-webkit-scrollbar {
+  display: none;
+} */
+
+
+.guided-label {
+  margin: 8px auto;
+  font-weight: bolder;
+  font-size: 1.1em;
+}
+
+.solo-label {
+  margin: 10px auto;
+  font-size: 1.3em;
+}
 
 /******** POST ********/
 .post-wrapper {
@@ -227,6 +269,7 @@ html,
 }
 
 /******** HUB ********/
+
 #hub-wrapper {
   float: right;
 	margin: 0 5% 0 0;
@@ -236,9 +279,13 @@ html,
   background-color: rgb(248,249,250);
 }
 
-.hub-link {
+.hub-link a {
+  text-decoration: none;
+  font-weight: 600;
+  color:rgb(96, 96, 96);
   font-size: 1.1rem;
   margin: 0 4px;
+  white-space: nowrap;
 }
 
 #journal-wrapper {
@@ -250,6 +297,13 @@ html,
 
 #journal-wrapper::-webkit-scrollbar {
   display: none;
+}
+
+#milestone-container {
+  width: 60%;
+  min-width: 310;
+  max-width: 450px;
+  height: 350px;
 }
 
 
@@ -282,23 +336,14 @@ html,
 }
 
 /******** LOGIN ********/
+
 #login-wrapper,
 #signup-wrapper {
-  /* text-align: center;
-  z-index: 5;
-  position: fixed;
-  top: 30%; */
-  /* right: 35%; */
-  /* left: 30%; */
   margin: auto;
   height: 430px;
   width: 50%;
   max-width: 400px;
   min-width: 300px;
-}
-
-.login-label {
-  align-self: left;
 }
 
 #login-btn-div {
@@ -307,10 +352,6 @@ html,
 }
 
 /******** SIGNUP ********/
-/* #signup-form {
-  display: inline-block;
-  text-align: left;
-}*/
 
 #signup-wrapper {
   height: 535px !important;
@@ -337,37 +378,32 @@ html,
 }
 
 /******** SIGNOUT ********/
+
 #signout-container {
-  width: 50%;
+  width: 30%;
+  min-width: 285px;
+  max-width: 350px;
+  height: 30%;
+  min-height: 175px;
+  margin: 100px auto;
+  padding: 3em;
+  background-color: #fff;
+}
+
+#signout-btn-div {
+  margin-top: 15%;
 }
 
 /******** PROFILE ********/
+
 #profile-wrapper {
-  text-align: center;
-  /* position: relative; */
-  /* top: 15%; */
-}
-
-#profile-form {
-  display: inline-block;
-  text-align: left;
   width: 50%;
-  margin: 5% 20%;
+  min-width: 301px;
+  min-width: 300px;
+  height: 400;
+  background-color: #fffdf4;
 }
 
-#profile-form > input[type=text], #profile-form > input[type=password] {
-  width: 75%;
-}
-
-#profile-form > #profile-form input, #profile-form label {
-  margin: 1% auto;
-}
-
-#profile-btns button {
-  margin: 0 1em;
-}
-
-#profile-btns {
-  width: 75%;
-  text-align: center;
+.profile-form-input {
+  margin: 7px 0;
 }

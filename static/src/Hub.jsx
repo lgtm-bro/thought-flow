@@ -31,7 +31,10 @@ const Hub = (props) => {
 
   return (
     <Fragment>
-      <nav id="hub-nav" className="navbar bg-light flex-justify-evenly flex-nowrap">
+      <nav
+        id="hub-nav"
+        className="navbar bg-light flex-justify-between flex-nowrap p-3 shadow rounded"
+      >
         <span
           id="hub-journal"
           className="nav-link hub-link navbar-item"
@@ -39,31 +42,20 @@ const Hub = (props) => {
         >
           <Link to="/">journal</Link>
         </span>
-        {/* <button
-          className="navbar-toggler"
-          data-toggle="collapse"
-          data-target="hub-nav-menu"
+        <span
+          id="hub-milestones"
+          className="nav-link hub-link nav-item"
+          onClick={props.checkMsgStatus}
         >
-          <span className="navbar-toggler-icon"></span>
-        </button>
-        <div id="hub-nav-menu" className="collapse navbar-collapse">
-          <nav className="navbar-nav"> */}
-            <span
-            id="hub-milestones"
-            className="nav-link hub-link nav-item"
-            onClick={props.checkMsgStatus}
-          >
-            <Link to="/hub-milestones">milestones</Link>
-          </span>
-          <span
-            id="hub-trends"
-            className="nav-link hub-link nav-item"
-            onClick={() => props.checkMsgStatus('', false, '/hub-milestones')}
-          >
-            <Link to="/hub-trends">trends</Link>
-          </span>
-          {/* </nav>
-        </div> */}
+          <Link to="/hub-milestones">milestones</Link>
+        </span>
+        <span
+          id="hub-trends"
+          className="nav-link hub-link nav-item"
+          onClick={() => props.checkMsgStatus("", false, "/hub-milestones")}
+        >
+          <Link to="/hub-trends">trends</Link>
+        </span>
       </nav>
 
       <Routes>
@@ -92,7 +84,10 @@ const Hub = (props) => {
             />
           }
         />
-        <Route path="/hub-trends" element={<Trends getUserSessions={props.getUserSessions} />} />
+        <Route
+          path="/hub-trends"
+          element={<Trends getUserSessions={props.getUserSessions} />}
+        />
       </Routes>
     </Fragment>
   );

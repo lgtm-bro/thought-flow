@@ -1,7 +1,7 @@
 import React from 'react';
 
 const About = () => (
-	<div id="about-wrapper">
+	<div id="about-container" className="container bg-light">
 		<h2>How to Use ThoughtFlow</h2>
 		<ol>
 			<li>Pinpoint the emotion that you are working through</li>

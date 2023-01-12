@@ -189,7 +189,7 @@ const App = (props) => {
 
   return (
     <div id="app-container" className="container-fluid pt-2">
-      <div id="nav-wrapper" className="container-fluid flex-nowrap">
+      <div id="nav-wrapper" className="container-fluid">
         <NavBar user={user} showAlert={showAlert} />
       </div>
       <div id="user-alerts" ref={alerts} className="hide"></div>

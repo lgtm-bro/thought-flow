@@ -6,13 +6,12 @@ import { IoRemoveOutline, IoPencil } from "react-icons/io5";
 
 import Milestone from "./Milestone.jsx";
 
-
 const MilestoneBar = ({
   milestones,
   feeling,
   updateMilestone,
   deleteMilestone,
-  changeMsg
+  changeMsg,
 }) => {
   const milestoneText = useRef();
   const done = useRef();
@@ -30,27 +29,41 @@ const MilestoneBar = ({
   };
 
   const updateFeelingMsg = () => {
-    changeMsg('', false)
-  }
+    changeMsg("", false);
+  };
 
   return (
-    <div id="milestone-bar-wrapper">
-      <h4>
-        So Far you have...
-      </h4>
-        {!!sessionStorage.getItem('user') && <h5>
-          <span id="add-milestone" className="custom-link" onClick={updateFeelingMsg}>
-            <Link to="/milestone">
-              <AiOutlinePlus />
-              add a milestone
-            </Link>
-          </span>
-        </h5>}
-      {milestones.map((m) => (
-        <Milestone key={m.id} milestone={m} updateMilestone={updateMilestone}
-        deleteMilestone={deleteMilestone}/>
-
-      ))}
+    <div id="milestone-bar-wrapper" className="p-4 pt-5">
+      {sessionStorage.getItem("userId") && (
+        <div>
+          {!!sessionStorage.getItem("user") && (
+            <h5>
+              <span
+                id="add-milestone"
+                className="custom-link"
+                onClick={updateFeelingMsg}
+              >
+                <Link to="/milestone">
+                  <AiOutlinePlus />
+                  add a milestone
+                </Link>
+              </span>
+            </h5>
+          )}
+          <h4>So Far you have...</h4>
+          {milestones.map((m) => (
+            <Milestone
+              key={m.id}
+              milestone={m}
+              updateMilestone={updateMilestone}
+              deleteMilestone={deleteMilestone}
+            />
+          ))}
+        </div>
+      )}
+      {!sessionStorage.getItem("userId") && (
+        <h5 className="text-center">please login to view milestones</h5>
+      )}
     </div>
   );
 };

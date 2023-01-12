@@ -1,5 +1,6 @@
-import React, { Fragment } from "react";
+import React, { useRef, Fragment } from "react";
 import { Link, Routes, Route } from "react-router-dom";
+import { AiOutlineMenu } from "react-icons/ai";
 
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
@@ -8,58 +9,74 @@ import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 
 const NavBar = ({ user, showAlert }) => {
+  const dropDownBtn = useRef();
+  const dropDown = useRef();
   let status = user ? "sign out" : "login";
   let profileLink = user ? "/profile" : "/";
+
+  const closeNav = () => {
+    if (dropDown.current.classList.contains("show")) {
+      dropDown.current.classList.remove("show");
+      dropDownBtn.current.classList.add("collapsed");
+      dropDownBtn.current.setAttribute("aria-expanded", false);
+    }
+  }
 
   const checkUser = () => {
     if (!user) {
       showAlert("You must Login to view Profile");
     }
+
+    closeNav();
   };
 
+
   return (
-    <nav className="navbar navbar-expand-md navbar-light">
-      <div className="container-fluid">
-      <span id="nav-home" className=" navbar-brand">
-                <Link to="/">
-                  <h1 id="nav-title" className=" justify-content-start navbar-brand">thoughtflow</h1>
-                </Link>
-              </span>
-        <button
-        id="app-nav-toggler"
-          className="navbar-toggler"
-          data-bs-toggle="collapse"
-          data-bs-target="#main-nav-menu"
-        >
-          <span className="navbar-toggler-icon"></span>
-        </button>
-        <div id="main-nav-menu" className="navbar-collapse collapse justify-content-end">
-          <ul className="navbar-nav">
-            {/* <li>
-              <span id="nav-home" className="nav-link navbar-item">
-                <Link to="/">home</Link>
-              </span>
-            </li> */}
-            <li
-              id="nav-profile"
-              className="nav-link nav-item"
-              onClick={checkUser}
-            >
-              <Link to={profileLink}>profile</Link>
-            </li>
-            <li id="nav-about" className="nav-link nav-item">
+  <nav className="navbar navbar-expand-lg navbar-light mask-custom fixed-top shadow-0 pt-3">
+    <div className="container-fluid justify-content-between px-4">
+      <span id="nav-home" className="navbar-brand" >
+        <Link to="/">
+          <h1
+            id="nav-title"
+            className="justify-content-start"
+          >
+            <span id="thought-span">thought</span><span id="flow-span">flow</span>
+          </h1>
+        </Link>
+      </span>
+      <button className="navbar-toggler" type="button" data-bs-toggle="collapse"
+        data-bs-target="#main-nav-menu" aria-controls="navbarSupportedContent" aria-expanded="false"
+        aria-label="Toggle navigation" ref={dropDownBtn}>
+          <AiOutlineMenu/>
+      </button>
+      <div className="collapse navbar-collapse justify-content-end" id="main-nav-menu" ref={dropDown}>
+        <ul className="navbar-nav ">
+          <li className="navbar-link nav-item" onClick={checkUser}>
+            <span className="navbar-link nav-link">
+            <Link to={profileLink}>profile</Link>
+            </span>
+          </li>
+          <li className="navbar-link nav-item" onClick={closeNav}>
+            <span className="nav-link">
               <Link to="/about">about</Link>
-            </li>
-            <li id="nav-contact" className="nav-link nav-item">
+            </span>
+          </li>
+          <li className="navbar-link nav-item" onClick={closeNav}>
+            <span className="nav-link">
               <Link to="/contact">contact us</Link>
-            </li>
-            <li id="nav-login" className="nav-link nav-item">
-              <Link to="/auth/">{status}</Link>
-            </li>
-          </ul>
-        </div>
+            </span>
+          </li>
+          <li className="navbar-link nav-item" onClick={closeNav}>
+            <span className="nav-link">
+            <Link to="/auth/">{status}</Link>
+            </span>
+          </li>
+        </ul>
       </div>
-    </nav>
+    </div>
+  </nav>
+
+
   );
 };
 

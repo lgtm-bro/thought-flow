@@ -46,7 +46,7 @@ const Trends = ({ getUserSessions }) => {
           "rgba(153, 102, 255, 0.5)",
           "rgba(255, 159, 64, 0.5)",
           "rgba(192, 246, 163, 0.5)",
-          "rgba(213, 245, 255, 0.8)",
+          "rgba(213, 245, 255, 0.8)"
         ],
         borderWidth: 1,
       },
@@ -73,12 +73,12 @@ const Trends = ({ getUserSessions }) => {
   };
 
   return (
-    <div id="trends-wrapper">
+    <div id="trends-wrapper" className="p-4 pt-5">
       {!!sessionStorage.getItem("userId") && (
         <PolarArea data={data} options={options} />
       )}
       {!sessionStorage.getItem("userId") && (
-        <h4>Please login to view Trends</h4>
+        <h5 className="text-center">please login to view your trends</h5>
       )}
     </div>
   );

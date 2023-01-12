@@ -7,10 +7,10 @@ const Signout = (props) => {
   };
 
   return (
-    <div id="signout-container" className="container bg-light border shadow rounded text-center p-2">
-    <form id="signout-form" className="form-group bg-light">
-      <h3>sign out?</h3>
-      <div className="form-btn-div">
+    <div id="signout-container" className="container border shadow rounded text-center">
+    <form id="signout-form" className="form-group">
+      <h3>Do you want to sign out?</h3>
+      <div id="signout-btn-div" className="form-btn-div">
         <button type="button" className="form-btn btn border" onClick={props.cancelForm} value="Cancel">
           Cancel
         </button>

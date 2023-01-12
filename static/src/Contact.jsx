@@ -38,8 +38,8 @@ const Contact = (props) => {
   };
 
   return (
-    <main id="contact-main" className="container p-4 bg-light border rounded">
-      <h3 id="contact-title">contact us</h3>
+    <main id="contact-main" className="container p-4 my-3 my-md-5 border rounded">
+      <h2 id="contact-title" className="text-center mb-3">contact us</h2>
       <form action="#" id="contact-form" className="form-group p-4" ref={form} onSubmit={sendMsg}>
         <input
           type="text"
@@ -57,7 +57,7 @@ const Contact = (props) => {
           defaultValue={userEmail}
           placeholder="Email"
           ref={email}
-          className="form-control form-input"
+          className="form-control form-input my-3"
         />
         <input
           type="text"
@@ -75,9 +75,9 @@ const Contact = (props) => {
           required
           placeholder="Message"
           ref={body}
-          className="form-control"
+          className="form-control my-3"
         ></textarea>
-        <div id ="contact-check" className="form-check form-input">
+        <div id ="contact-check-group" className="form-check form-input">
         <input type="checkbox" name="send-copy" id="contact-check" className="form-check-input" ref={copy}/>
         <label htmlFor="send-copy" className="form-label">Send me a copy</label>
         </div>

@@ -24,17 +24,17 @@ const Login = (props) => {
   };
 
   return (
-    <div id="login-wrapper" className="form-control bg-light shadow rounded" ref={login}>
+    <div id="login-wrapper" className="container bg-light p-4 my-5 shadow rounded" ref={login}>
       <div id="login-form-header" className="row text-center my-3">
-        <h4 className="p-2">Please login</h4>
-        <h5 className="p-2 form-text">
+        <h2 className="text-center mb-3">please login</h2>
+        <h3 className="pt-1 form-text">
           Don't have account?
           <span className="custom-link form-link">
             <Link to="/auth/signup">sign up</Link>
           </span>
-        </h5>
+        </h3>
       </div>
-      <form action="#" className="form-group" ref={form} onSubmit={loginUser}>
+      <form action="#" className="form-group p-2" ref={form} onSubmit={loginUser}>
         <input
           type="email"
           name="login-email"
@@ -43,7 +43,7 @@ const Login = (props) => {
           required
           ref={email}
         />
-        <div id="login-password" className="input-group mb-3">
+        <div id="login-password" className="input-group my-3">
           <input
             type="password"
             name="login-password"
@@ -68,7 +68,7 @@ const Login = (props) => {
               cancel
             </button>
           </Link>
-          <input type="submit" value="login " className="btn form-btn border px-4" />
+          <input type="submit" value="login" className="btn form-btn border px-4" />
         </div>
       </form>
     </div>

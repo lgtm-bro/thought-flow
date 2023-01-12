@@ -13,17 +13,17 @@ const SoloForm = ({ getEntry, submitEntry }) => {
   };
 
   return (
-    <Fragment>
-      <br />
-      <label htmlFor="solo_text">
-        <span className="prompt">Tell us about it...</span>
-        <br />
-        <textarea id="solo_text" required onChange={setEntry}></textarea>
+    <div className="container">
+      <label htmlFor="solo_text" className="solo-label form-label mb-3">
+        Tell us about it...
       </label>
-      <br />
-      <br />
-      {/* <button onClick={props.reset} >Cancel</button> */}
-    </Fragment>
+      <textarea
+        id="solo_text"
+        required
+        className="form-control p-5 mb-5"
+        onChange={setEntry}
+      ></textarea>
+    </div>
   );
 };
 
