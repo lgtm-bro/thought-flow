@@ -27,17 +27,15 @@ const Entry = ({
     }
   }, [feeling]);
 
-
   useEffect(() => {
     guided_btn.current.checked;
     getGuided();
   }, []);
 
   useEffect(() => {
-     (isSolo || isGuided) ?
-      container.current.style.height = "100%":
-      container.current.style.height = "50%"
-
+    isSolo || isGuided
+      ? (container.current.style.height = "100%")
+      : (container.current.style.height = "50%");
   }, [isSolo, isGuided]);
 
   const getGuided = () => {
@@ -68,10 +66,10 @@ const Entry = ({
   return (
     <main
       id="entry-container"
-      className="container justify-content-center text-center mt-5"
+      className="container justify-content-center text-center shadow rounded"
       ref={container}
     >
-      <div id="entry-full-form" className="container bg-light p-2 shadow rounded">
+      <div id="entry-full-form" className="container p-2">
         <h3 className=" mt-2">How do you want to flow today?</h3>
         <form action="#" id="entry-type" className="py-2 pb-1">
           <span id="entry-radio-guided" className="form-check-inline">
@@ -104,22 +102,24 @@ const Entry = ({
           </span>
         </form>
         <form id="post-form" className="form-group" onSubmit={submitPost}>
-          {isGuided && (
-            <GuidedForm
-              feeling={feeling}
-              feelingScore={feelingScore}
-              reset={reset}
-              getEntry={getEntry}
-              submitEntry={submitEntry}
-            />
-          )}
-          {isSolo && (
-            <SoloForm
-              reset={reset}
-              getEntry={getEntry}
-              submitEntry={submitEntry}
-            />
-          )}
+          <div id="entry-form">
+            {isGuided && (
+              <GuidedForm
+                feeling={feeling}
+                feelingScore={feelingScore}
+                reset={reset}
+                getEntry={getEntry}
+                submitEntry={submitEntry}
+              />
+            )}
+            {isSolo && (
+              <SoloForm
+                reset={reset}
+                getEntry={getEntry}
+                submitEntry={submitEntry}
+              />
+            )}
+          </div>
           <div id="entry-btn-div" className="form-btn-div">
             <Link to="/">
               <button type="button" className="btn form-btn" onClick={reset}>
@@ -130,14 +130,14 @@ const Entry = ({
           </div>
         </form>
       </div>
-
     </main>
   );
 };
 
 export default Entry;
 
-{/* <Routes>
+{
+  /* <Routes>
 <Route
   path="guided"
   element={
@@ -160,4 +160,5 @@ export default Entry;
     />
   }
 />
-</Routes> */}
+</Routes> */
+}

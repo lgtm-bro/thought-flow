@@ -65,7 +65,7 @@ const Signup = ({ signupUser, showAlert }) => {
   };
 
   return (
-    <div id="signup-wrapper" className="container bg-light p-4 my-5 shadow rounded">
+    <div id="signup-wrapper" className="container p-4 my-5 shadow rounded">
       <div id="signup-form-header" className="row text-center mt-3 mb-1">
         <h2>sign up</h2>
         <h3 className="form-text">
@@ -115,7 +115,7 @@ const Signup = ({ signupUser, showAlert }) => {
             <BiShow />
           </span>
         </div>
-        <div className="input-group my-3">
+        <div className="input-group ">
           <input
             type="password"
             name="signup-password-confirm"

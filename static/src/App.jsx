@@ -71,14 +71,12 @@ const App = (props) => {
 
   /********** CONTACT ***********/
   const submitContactForm = (msg) => {
-    // const msg = {
-    //   email: "bowens.swe@gmail.com",
-    //   subject: "Testing",
-    //   body: "This is my test"
-    // }
     axios
       .post("/contact", msg, config)
-      .then((res) => console.log(res.data))
+      .then((res) => {
+        showAlert('Your message has been sent', 2000, '/');
+        console.log(res.data);
+      })
       .catch((err) => console.log(err.response.data.msg));
   };
 
@@ -192,7 +190,7 @@ const App = (props) => {
       <div id="nav-wrapper" className="container-fluid">
         <NavBar user={user} showAlert={showAlert} />
       </div>
-      <div id="user-alerts" ref={alerts} className="hide"></div>
+      <div id="user-alerts" ref={alerts} className="hide shadow"></div>
       {/* {!location.pathname.includes("auth") && <h1>thoughtflow</h1>} */}
       <Routes>
         <Route path="/*" element={<Home user={user} showAlert={showAlert} />} />

@@ -33,7 +33,7 @@ const MilestoneBar = ({
   };
 
   return (
-    <div id="milestone-bar-wrapper" className="p-4 pt-5">
+    <div id="milestone-bar-wrapper" className="p-4">
       {sessionStorage.getItem("userId") && (
         <div>
           {!!sessionStorage.getItem("user") && (
@@ -50,7 +50,7 @@ const MilestoneBar = ({
               </span>
             </h5>
           )}
-          <h4>So Far you have...</h4>
+          <h4 className="pt-3">So Far you have...</h4>
           {milestones.map((m) => (
             <Milestone
               key={m.id}

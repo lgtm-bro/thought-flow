@@ -24,7 +24,7 @@ const Login = (props) => {
   };
 
   return (
-    <div id="login-wrapper" className="container bg-light p-4 my-5 shadow rounded" ref={login}>
+    <div id="login-wrapper" className="container p-4 my-5 shadow rounded" ref={login}>
       <div id="login-form-header" className="row text-center my-3">
         <h2 className="text-center mb-3">please login</h2>
         <h3 className="pt-1 form-text">

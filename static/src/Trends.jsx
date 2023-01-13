@@ -55,10 +55,10 @@ const Trends = ({ getUserSessions }) => {
 
   const options = {
     plugins: {
-      title: {
-        display: true,
-        text: "Feelings Frequency",
-      },
+      // title: {
+      //   display: true,
+      //   text: "Feelings Frequency",
+      // },
       legend: {
         display: true,
         position: "bottom",

@@ -27,7 +27,7 @@ const MilestoneForm = ({ submitMilestone, checkMsgStatus }) => {
   return (
     <div
       id="milestone-container"
-      className="container justify-content-center bg-light mt-5 p-4 border shadow"
+      className="container justify-content-center mt-5 p-4 border shadow"
     >
       <form action="#" className="form-group" onSubmit={saveMilestone}>
         <div id="milestone-text">

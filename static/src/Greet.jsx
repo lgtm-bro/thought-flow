@@ -1,26 +1,50 @@
 import React, { Fragment } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
-const Greet = ({ user, feeling }) => {
-	const navigate = useNavigate();
+import ConfirmModal from "./ConfirmModal.jsx";
 
-	const getNewFeeling = () => {
-		document.getElementById("confirm-wrapper").classList.remove("hide")
-	}
+const Greet = ({ user, feeling, sendFeeling, checkMsgStatus }) => {
+  const navigate = useNavigate();
 
-	return (
+
+
+  const showConfirm = () => {
+    document.getElementById("confirm-wrapper").classList.remove("hide");
+  };
+
+  return (
     <Fragment>
-      {user && <span className="greet-span">Hi {user}. </span>}
-      {feeling && (
-        <span id="greeting-link" className="greet-span">
-          <span>Today's vibe is </span>
-          <span onClick={getNewFeeling}>
-            <a href="#">
-              {feeling[0].toUpperCase() + feeling.substring(1)}
-            </a>
-          </span>
-        </span>
-      )}
+      <div id="greeting-msg-row" className="container-fluid">
+        <div id="greeting-msg">
+          {user && (
+            <div id="greet-span">
+              Hi {user}.{" "}
+            </div>
+          )}
+          {feeling && (
+            <span id="greeting-feeling" className="greet-span flex-nowrap">
+              <span>Today's vibe is </span>
+              <span
+                id="greeting-link"
+                className="greet-span py-3 pe-3"
+                onClick={showConfirm}
+              >
+                <a href="#" className="text-capitalize">
+                  {feeling}
+                  {/* {feeling[0].toUpperCase() + feeling.substring(1)} */}
+                </a>
+                <span
+                id="greet-info"
+                className="border border-secondary form-text text-center pb-2"
+              >
+                click to change
+              </span>
+              </span>
+            </span>
+          )}
+        </div>
+      </div>
+      <ConfirmModal sendFeeling={sendFeeling} checkMsgStatus={checkMsgStatus} />
     </Fragment>
   );
 };

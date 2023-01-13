@@ -104,6 +104,9 @@ const Home = ({ user, showAlert }) => {
     setFeeling(feeling);
   };
 
+  /********** GREETING ***********/
+
+
   /********** POST ENTRY ***********/
   const showHome = (el) => {
     navigate("/");
@@ -235,53 +238,59 @@ const Home = ({ user, showAlert }) => {
   };
 
   return (
-    <div id="home-container">
-      <div id="greet-wrapper">
-        <Greet feeling={feeling} user={user} sendFeeling={setFeeling} />
-      </div>
-      <div id="user-msg-wrapper">
-        {userMsg && (
-          <Message
-            msg={userMsg}
-            hasQuestion={userMsgQuestion}
-            linkText={userMsgLinkText}
-            path={userMsgPath}
-            changeMsg={changeMsg}
-          />
-        )}
-      </div>
-      {(location.pathname.includes("hub") || location.pathname === "/") &&
-        user &&
-        !feeling && (
-          <div id="feelings-wrapper">
-            <Feelings
+    <div id="home-container" className="mt-3">
+      <div id="home-all" className="row justify-content-evenly gx-5">
+        <div id="home-main" className="col-12 col-md-5 mt-5">
+          <div id="greet-wrapper" className="fs-5 my-3 mt-3">
+            <Greet
+              feeling={feeling}
               user={user}
-              showHome={showHome}
-              feeling={getFeeling}
-              sendToEntry={sendToEntry}
+              sendFeeling={setFeeling}
+              checkMsgStatus={checkMsgStatus}
+            />
+          </div>
+          <div id="user-msg-wrapper" className="my-3 fs-5 p-3 shadow rounded">
+            {userMsg && (
+              <Message
+                msg={userMsg}
+                hasQuestion={userMsgQuestion}
+                linkText={userMsgLinkText}
+                path={userMsgPath}
+                changeMsg={changeMsg}
+              />
+            )}
+          </div>
+          {(location.pathname.includes("hub") || location.pathname === "/") &&
+            user &&
+            !feeling && (
+              <Feelings
+                user={user}
+                showHome={showHome}
+                feeling={getFeeling}
+                sendToEntry={sendToEntry}
+              />
+            )}
+          {(location.pathname.includes("hub") || location.pathname === "/") &&
+            feeling && <Quote getQuote={getQuote2} />}
+        </div>
+        {(location.pathname.includes("hub") || location.pathname === "/") && (
+          <div id="hub-wrapper" className="col-12 col-md-6 shadow rounded">
+            <Hub
+              feeling={feeling}
+              posts={posts}
+              milestones={milestones}
+              checkMsgStatus={checkMsgStatus}
+              changeMsg={changeMsg}
+              deletePost={deletePost}
+              updateEntry={updateEntry}
+              updateMilestone={updateMilestone}
+              deleteMilestone={deleteMilestone}
+              getUserSessions={getUserSessions}
+              setSendToEntry={setSendToEntry}
             />
           </div>
         )}
-      {(location.pathname.includes("hub") || location.pathname === "/") &&
-        feeling && <Quote getQuote={getQuote2} />}
-      {(location.pathname.includes("hub") || location.pathname === "/") && (
-        <div id="hub-wrapper" className="bg-light shadow rounded">
-          <Hub
-            feeling={feeling}
-            posts={posts}
-            milestones={milestones}
-            checkMsgStatus={checkMsgStatus}
-            changeMsg={changeMsg}
-            deletePost={deletePost}
-            updateEntry={updateEntry}
-            updateMilestone={updateMilestone}
-            deleteMilestone={deleteMilestone}
-            getUserSessions={getUserSessions}
-            setSendToEntry={setSendToEntry}
-          />
-        </div>
-      )}
-      <ConfirmModal sendFeeling={setFeeling} checkMsgStatus={checkMsgStatus} />
+      </div>
 
       <Routes>
         <Route

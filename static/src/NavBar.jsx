@@ -32,7 +32,7 @@ const NavBar = ({ user, showAlert }) => {
 
 
   return (
-  <nav className="navbar navbar-expand-lg navbar-light mask-custom fixed-top shadow-0 pt-3">
+  <nav className="navbar navbar-expand-lg navbar-light mask-custom fixed-top me-auto shadow-0 pt-3">
     <div className="container-fluid justify-content-between px-4">
       <span id="nav-home" className="navbar-brand" >
         <Link to="/">
@@ -49,24 +49,24 @@ const NavBar = ({ user, showAlert }) => {
         aria-label="Toggle navigation" ref={dropDownBtn}>
           <AiOutlineMenu/>
       </button>
-      <div className="collapse navbar-collapse justify-content-end" id="main-nav-menu" ref={dropDown}>
-        <ul className="navbar-nav ">
-          <li className="navbar-link nav-item" onClick={checkUser}>
+      <div className="collapse navbar-collapse" id="main-nav-menu" ref={dropDown}>
+        <ul className="navbar-nav ms-auto">
+          <li className="navbar-link nav-item ms-auto" onClick={checkUser}>
             <span className="navbar-link nav-link">
             <Link to={profileLink}>profile</Link>
             </span>
           </li>
-          <li className="navbar-link nav-item" onClick={closeNav}>
+          <li className="navbar-link nav-item ms-auto" onClick={closeNav}>
             <span className="nav-link">
               <Link to="/about">about</Link>
             </span>
           </li>
-          <li className="navbar-link nav-item" onClick={closeNav}>
+          <li className="navbar-link nav-item ms-auto" onClick={closeNav}>
             <span className="nav-link">
               <Link to="/contact">contact us</Link>
             </span>
           </li>
-          <li className="navbar-link nav-item" onClick={closeNav}>
+          <li className="navbar-link nav-item ms-auto" onClick={closeNav}>
             <span className="nav-link">
             <Link to="/auth/">{status}</Link>
             </span>

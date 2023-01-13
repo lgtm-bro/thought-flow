@@ -34,7 +34,7 @@ const Journal = ({
   };
 
   return (
-    <div id="journal-wrapper" className="p-4 pt-5">
+    <div id="journal-wrapper" className="p-4">
       {!!sessionStorage.getItem("userId") && (
         <div>
           <h5>

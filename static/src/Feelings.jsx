@@ -10,6 +10,7 @@ const Feelings = (props) => {
   const [secondChoice, setSecondChoice] = useState();
   const [thirdChoice, setThirdChoice] = useState();
 
+  const container = useRef();
   const base = useRef();
   const second = useRef();
   const third = useRef();
@@ -24,11 +25,15 @@ const Feelings = (props) => {
 
   useEffect(() => {
     getSecondEmotions();
+    (!!baseChoice) ?
+    container.current.style.height = "60%":
+    container.current.style.height = "30%";
 
     if (baseChoice === 'default') {
       second.current.classList.add("hide");
       third.current.classList.add("hide");
       cancel.current.classList.add("hide");
+      container.current.style.height = "30%";
     }
   }, [baseChoice]);
 
@@ -40,9 +45,9 @@ const Feelings = (props) => {
     getThirdEmotions();
     if (thirdChoice) {
       props.feeling(thirdChoice);
-      // props.sendToEntry ? navigate("/entry") : navigate("/");
     }
   }, [thirdChoice]);
+
 
   const getBaseEmotions = () => {
     axios
@@ -110,7 +115,7 @@ const Feelings = (props) => {
   };
 
   return (
-    <div id="feeling-container">
+    <div id="feelings-wrapper" className="container border rounded" ref={container}>
       <form action="#">
         <label htmlFor="base">
           <h3>What is your main vibe right now?</h3>

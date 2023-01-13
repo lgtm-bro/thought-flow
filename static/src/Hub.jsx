@@ -33,7 +33,7 @@ const Hub = (props) => {
     <Fragment>
       <nav
         id="hub-nav"
-        className="navbar bg-light flex-justify-between flex-nowrap p-3 shadow rounded"
+        className="navbar flex-justify-between flex-nowrap p-3 shadow rounded"
       >
         <span
           id="hub-journal"
