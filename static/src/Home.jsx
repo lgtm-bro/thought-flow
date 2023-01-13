@@ -84,9 +84,9 @@ const Home = ({ user, showAlert }) => {
     if (feeling) {
       changeMsg("Would like to write about it? ", true, "/entry");
     } else if (user) {
-      changeMsg("First things, first. How are you feeling?");
+      changeMsg("How are you feeling?");
     } else {
-      changeMsg("Please create an account or login to get started");
+      changeMsg("create an account or login to get started");
     }
   };
 
@@ -105,7 +105,6 @@ const Home = ({ user, showAlert }) => {
   };
 
   /********** GREETING ***********/
-
 
   /********** POST ENTRY ***********/
   const showHome = (el) => {
@@ -239,26 +238,37 @@ const Home = ({ user, showAlert }) => {
 
   return (
     <div id="home-container" className="mt-3">
-      <div id="home-all" className="row justify-content-evenly gx-5">
-        <div id="home-main" className="col-12 col-md-5 mt-5">
-          <div id="greet-wrapper" className="fs-5 my-3 mt-3">
-            <Greet
-              feeling={feeling}
-              user={user}
-              sendFeeling={setFeeling}
-              checkMsgStatus={checkMsgStatus}
-            />
-          </div>
-          <div id="user-msg-wrapper" className="my-3 fs-5 p-3 shadow rounded">
-            {userMsg && (
-              <Message
-                msg={userMsg}
-                hasQuestion={userMsgQuestion}
-                linkText={userMsgLinkText}
-                path={userMsgPath}
-                changeMsg={changeMsg}
+      <div
+        id="home-all"
+        className="row justify-content-evenly justify-content-lg-around gx-5 gx-lg-0"
+      >
+        <div
+          id="home-main"
+          className="col-12 col-md-5 col-lg-4 mt-0 mt-md-5 ms-md-3 ms-lg-4"
+        >
+          <div id="msg-center" className="p-3 mt-3 mx-auto shadow-sm rounded">
+            <div id="greet-wrapper" className="fs-5 my-1 pe-md-5 pe-lg-1">
+              <Greet
+                feeling={feeling}
+                user={user}
+                sendFeeling={setFeeling}
+                checkMsgStatus={checkMsgStatus}
               />
-            )}
+            </div>
+            <div
+              id="user-msg-wrapper"
+              className="my-1 fs-6 fs-5 ps-3 text-center text-md-start"
+            >
+              {userMsg && (
+                <Message
+                  msg={userMsg}
+                  hasQuestion={userMsgQuestion}
+                  linkText={userMsgLinkText}
+                  path={userMsgPath}
+                  changeMsg={changeMsg}
+                />
+              )}
+            </div>
           </div>
           {(location.pathname.includes("hub") || location.pathname === "/") &&
             user &&
@@ -274,7 +284,10 @@ const Home = ({ user, showAlert }) => {
             feeling && <Quote getQuote={getQuote2} />}
         </div>
         {(location.pathname.includes("hub") || location.pathname === "/") && (
-          <div id="hub-wrapper" className="col-12 col-md-6 shadow rounded">
+          <div
+            id="hub-wrapper"
+            className="col-12 col-md-6 mx-5 ms-md-0 me-md-5 shadow rounded"
+          >
             <Hub
               feeling={feeling}
               posts={posts}

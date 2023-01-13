@@ -19,17 +19,17 @@ const Feelings = (props) => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    navigate('/');
+    navigate("/");
     getBaseEmotions();
   }, []);
 
   useEffect(() => {
     getSecondEmotions();
-    (!!baseChoice) ?
-    container.current.style.height = "60%":
-    container.current.style.height = "30%";
+    !!baseChoice
+      ? (container.current.style.height = "60%")
+      : (container.current.style.height = "30%");
 
-    if (baseChoice === 'default') {
+    if (baseChoice === "default") {
       second.current.classList.add("hide");
       third.current.classList.add("hide");
       cancel.current.classList.add("hide");
@@ -47,7 +47,6 @@ const Feelings = (props) => {
       props.feeling(thirdChoice);
     }
   }, [thirdChoice]);
-
 
   const getBaseEmotions = () => {
     axios
@@ -115,11 +114,14 @@ const Feelings = (props) => {
   };
 
   return (
-    <div id="feelings-wrapper" className="container border rounded" ref={container}>
-      <form action="#">
-        <label htmlFor="base">
-          <h3>What is your main vibe right now?</h3>
-        </label>
+    <div
+      id="feelings-wrapper"
+      className="container mt-4 pt-3 border rounded"
+      ref={container}
+    >
+      <form action="#" id="feelings-form">
+        <h5>my main vibe is:</h5>
+        <span className="feel-select">
         <select
           name="base"
           id="base"
@@ -133,10 +135,10 @@ const Feelings = (props) => {
             </option>
           ))}
         </select>
+        </span>
         <div ref={second} id="second-container" className="hide">
-          <label htmlFor="second">
-            <h2>Because I am feeling:</h2>
-          </label>
+          <h5>because I am feeling:</h5>
+          <span className="feel-select">
           <select
             name="second"
             id="second"
@@ -149,11 +151,11 @@ const Feelings = (props) => {
               </option>
             ))}
           </select>
+          </span>
         </div>
         <div ref={third} id="third-container" className="hide">
-          <label htmlFor="third">
-            <h2>And a little...</h2>
-          </label>
+          <h5>and a little...</h5>
+          <span className="feel-select">
           <select name="third" id="third" onChange={(e) => getThirdChoice(e)}>
             <option value="default"></option>
             {thirdEmotions.map((e) => (
@@ -162,12 +164,13 @@ const Feelings = (props) => {
               </option>
             ))}
           </select>
+          </span>
         </div>
         <br />
         <br />
         <span id="feeling-cancel" className="hide" ref={cancel}>
           <Link to="/">
-            <button type="button" onClick={resetForm}>
+            <button type="button" className="btn form-btn mx-auto" onClick={resetForm}>
               Cancel
             </button>
           </Link>

@@ -76,7 +76,7 @@ const Profile = (props) => {
     <div id="profile-wrapper"
       className="container justify-content-center p-4 my-3 my-md-5 shadow rounded"
     >
-      <h2 className="text-center mb-3">edit profile</h2>
+      <h2 className="text-center mb-3">profile</h2>
       <form
         id="profile-form"
         className="form-group p-1"
@@ -150,9 +150,9 @@ const Profile = (props) => {
         <Password pw={newPw} verify={verifyPw} />
         <div id="profile-btns" className="form-btn-div">
           <button type="button" className="btn form-btn" onClick={cancelForm}>
-            Cancel
+            cancel
           </button>
-          <input type="submit" value="Update Info" className="btn form-btn" />
+          <input type="submit" value="update" className="btn form-btn" />
         </div>
       </form>
     </div>

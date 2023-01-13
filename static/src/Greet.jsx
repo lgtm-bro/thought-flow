@@ -25,7 +25,7 @@ const Greet = ({ user, feeling, sendFeeling, checkMsgStatus }) => {
             <span id="greeting-feeling" className="greet-span flex-nowrap">
               <span>Today's vibe is </span>
               <span
-                id="greeting-link"
+                id="greet-link"
                 className="greet-span py-3 pe-3"
                 onClick={showConfirm}
               >

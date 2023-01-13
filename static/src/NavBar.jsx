@@ -44,29 +44,29 @@ const NavBar = ({ user, showAlert }) => {
           </h1>
         </Link>
       </span>
-      <button className="navbar-toggler" type="button" data-bs-toggle="collapse"
+      <button id="navbar-toggler" className="navbar-toggler" type="button" data-bs-toggle="collapse"
         data-bs-target="#main-nav-menu" aria-controls="navbarSupportedContent" aria-expanded="false"
         aria-label="Toggle navigation" ref={dropDownBtn}>
           <AiOutlineMenu/>
       </button>
       <div className="collapse navbar-collapse" id="main-nav-menu" ref={dropDown}>
         <ul className="navbar-nav ms-auto">
-          <li className="navbar-link nav-item ms-auto" onClick={checkUser}>
+          <li className="navbar-link nav-item ms-auto pe-5" onClick={checkUser}>
             <span className="navbar-link nav-link">
             <Link to={profileLink}>profile</Link>
             </span>
           </li>
-          <li className="navbar-link nav-item ms-auto" onClick={closeNav}>
+          <li className="navbar-link nav-item ms-auto pe-5" onClick={closeNav}>
             <span className="nav-link">
               <Link to="/about">about</Link>
             </span>
           </li>
-          <li className="navbar-link nav-item ms-auto" onClick={closeNav}>
+          <li className="navbar-link nav-item ms-auto pe-5" onClick={closeNav}>
             <span className="nav-link">
               <Link to="/contact">contact us</Link>
             </span>
           </li>
-          <li className="navbar-link nav-item ms-auto" onClick={closeNav}>
+          <li className="navbar-link nav-item ms-auto pe-5" onClick={closeNav}>
             <span className="nav-link">
             <Link to="/auth/">{status}</Link>
             </span>
