@@ -31,12 +31,28 @@ const MilestoneBar = ({
     changeMsg("", false);
   };
 
-
   return (
-    <div id="milestone-bar-wrapper" className="p-4">
+    <div id="milestone-bar-wrapper" className="padding-2">
       {!!sessionStorage.getItem("user") && (
         <div>
-          <h5>
+          <div id="add-entry" className="custom-link">
+          <Link to="/milestone">
+            <button
+              type="button"
+              id="add-entry"
+              className="custom-link btn hub-btn flex-end"
+              onClick={updateFeelingMsg}
+            >
+              <span className="badge hub-icon ">
+                  <AiOutlinePlus />
+
+              </span>
+              <span id="add-entry-btn">milestone</span>
+            </button>
+            </Link>
+          </div>
+
+          {/* <h5>
             <span
               id="add-milestone"
               className="custom-link"
@@ -47,8 +63,8 @@ const MilestoneBar = ({
                 add a milestone
               </Link>
             </span>
-          </h5>
-          <h4 className="pt-3">So Far you have...</h4>
+          </h5> */}
+          <h5 className="pt-3 ps-3 fs-5 mt-3">So Far you have...</h5>
           {milestones.map((m) => (
             <Milestone
               key={m.id}

@@ -240,14 +240,14 @@ const Home = ({ user, showAlert }) => {
     <div id="home-container" className="mt-3">
       <div
         id="home-all"
-        className="row justify-content-evenly justify-content-lg-around gx-5 gx-lg-0"
+        className="row justify-content-evenly justify-content-lg-around gx-2 gx-lg-0"
       >
         <div
           id="home-main"
           className="col-12 col-md-5 col-lg-4 mt-0 mt-md-5 ms-md-3 ms-lg-4"
         >
           {(location.pathname.includes("hub") || location.pathname === "/") &&
-            <div id="msg-center" className="p-3 mt-3 mx-auto shadow-sm rounded">
+            <div id="msg-center" className="p-3 ps-2 mt-3 mx-auto shadow-sm rounded">
             <div id="greet-wrapper" className="fs-5 my-1 pe-md-5 pe-lg-1">
               <Greet
                 feeling={feeling}

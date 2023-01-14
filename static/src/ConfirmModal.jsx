@@ -25,7 +25,7 @@ const ConfirmModal = ({ sendFeeling, checkMsgStatus }) => {
   return (
     <div
       id="confirm-wrapper"
-      className="hide container fs-6  text-center shadow rounded"
+      className="hide container fs-6 p-2 text-center shadow rounded"
       ref={msg}
     >
       <h6 className="">Do you want to change your emotion?</h6>

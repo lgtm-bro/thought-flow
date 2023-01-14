@@ -34,35 +34,40 @@ const Journal = ({
   };
 
   return (
-    <div id="journal-wrapper" className="p-4">
-      {!!sessionStorage.getItem("userId") && (
-        <div>
-          <h5>
-            <span
-              id="add-entry"
-              className="custom-link"
-              onClick={sendFeelingMsg}
-            >
-              <Link to={entryLink}>
-                <AiOutlinePlus />
-                add an entry
-              </Link>
-            </span>
-          </h5>
-          {posts.map((p) => (
-            <Post
-              post={p}
-              key={p.id}
-              id={p.id}
-              deletePost={deletePost}
-              updateEntry={updateEntry}
-            />
-          ))}
-        </div>
-      )}
-      {!sessionStorage.getItem("userId") && (
-        <h5 className="text-center">please login to view your journal</h5>
-      )}
+    <div id="journal-container rounded border">
+      <div id="add-entry" className="custom-link">
+       <Link to={entryLink}>
+        <button
+          type="button"
+          id="add-entry"
+          className="custom-link btn hub-btn flex-end"
+          onClick={sendFeelingMsg}
+        >
+          <span className="badge hub-icon">
+              <AiOutlinePlus />
+          </span>
+          <span id="add-entry-btn">entry</span>
+        </button>
+        </Link>
+      </div>
+      <div id="journal-wrapper" className="p-2 px-3 mt-3 rounded">
+        {!!sessionStorage.getItem("userId") && (
+          <div>
+            {posts.map((p) => (
+              <Post
+                post={p}
+                key={p.id}
+                id={p.id}
+                deletePost={deletePost}
+                updateEntry={updateEntry}
+              />
+            ))}
+          </div>
+        )}
+        {!sessionStorage.getItem("userId") && (
+          <h5 className="text-center">please login to view your journal</h5>
+        )}
+      </div>
     </div>
   );
 };

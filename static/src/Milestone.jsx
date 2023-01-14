@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, Fragment } from "react";
-import { AiOutlinePlus } from "react-icons/ai";
+import { AiOutlinePlus, AiFillDelete } from "react-icons/ai";
 import { IoRemoveOutline, IoPencil } from "react-icons/io5";
 
 const Milestone = ({ milestone, updateMilestone, deleteMilestone }) => {
@@ -19,23 +19,24 @@ const Milestone = ({ milestone, updateMilestone, deleteMilestone }) => {
   };
 
   return (
-    <div className="milestone container">
-      <span className="icon-container">
-        <span className="delete-icon icon">
+    <div className="milestone card border-0 border-bottom border-top my-4 px-4">
+      <div className="icon-container card-subtitle justify-content-end">
+        <span className="delete-icon icon card-link">
           <IoRemoveOutline
             className="icon"
             onClick={() => deleteMilestone(milestone.id)}
           />
         </span>
-        <span className="edit-icon icon" onClick={editMilestone}>
+        <span className="edit-icon icon card-link" onClick={editMilestone}>
           <IoPencil className="icon" />
         </span>
-      </span>
-      <div className="milestone_text" ref={milestoneText}>{milestone.title}</div>
+      </div>
+      <h6 className="milestone_text card-title py-2" ref={milestoneText}>{milestone.title}</h6>
       <button
         value="Done"
+        id="ms-done-btn"
+        className="done_btn hide btn form-btn"
         ref={done}
-        className="done_btn hide"
         onClick={() => saveEdit(milestone.id)}
       >
         Done
