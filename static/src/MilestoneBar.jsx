@@ -22,7 +22,6 @@ const MilestoneBar = ({
   };
 
   const saveEdit = (id) => {
-    console.log(milestoneText.current.innerText);
     updateMilestone(id, milestoneText.current.innerText);
     milestoneText.current.contentEditable = false;
     done.current.classList.add("hide");
@@ -32,24 +31,23 @@ const MilestoneBar = ({
     changeMsg("", false);
   };
 
+
   return (
     <div id="milestone-bar-wrapper" className="p-4">
-      {sessionStorage.getItem("userId") && (
+      {!!sessionStorage.getItem("user") && (
         <div>
-          {!!sessionStorage.getItem("user") && (
-            <h5>
-              <span
-                id="add-milestone"
-                className="custom-link"
-                onClick={updateFeelingMsg}
-              >
-                <Link to="/milestone">
-                  <AiOutlinePlus />
-                  add a milestone
-                </Link>
-              </span>
-            </h5>
-          )}
+          <h5>
+            <span
+              id="add-milestone"
+              className="custom-link"
+              onClick={updateFeelingMsg}
+            >
+              <Link to="/milestone">
+                <AiOutlinePlus />
+                add a milestone
+              </Link>
+            </span>
+          </h5>
           <h4 className="pt-3">So Far you have...</h4>
           {milestones.map((m) => (
             <Milestone

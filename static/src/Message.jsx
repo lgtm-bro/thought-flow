@@ -17,15 +17,13 @@ const Message = ({ msg, hasQuestion, linkText, path, changeMsg }) => {
 
   return (
     <Fragment>
-      <span id="message-msg" className="" ref={msgSpan}>
+      <span id="message-msg" ref={msgSpan}>
         {msg}
       </span>
       {hasQuestion && (
         <span
           id="message-link"
-          onClick={() => {
-            changeMsg();
-          }}
+          onClick={changeMsg}
         >
           <Link to={path}>{linkText}</Link>
         </span>

@@ -325,9 +325,13 @@ html,
 /******** FEELINGS ********/
 
 #feelings-wrapper {
-  background-color: #fffdf9e9;
   min-height: 150px;
-  max-height: 70vh;
+  max-height: 75vh;
+}
+
+#feelings-form {
+  background-color: #fffdf9e9;
+  min-height: 200px;
 }
 
 #feelings-form .feel-select {
@@ -335,13 +339,28 @@ html,
   justify-content: center;
   padding-top: 5px;
   margin-left: 1em;
-  /* padding-right: 50px; */
+}
+
+#feelings-form .feel-select select {
+  flex-basis: 50%;
+}
+
+#feelings-form .feel-select select option {
+  background-color: red;
+}
+
+#feeling-cancel {
+  display: flex;
+  justify-content: center;
 }
 
 #feelings-form h5 {
   margin-top: .8em;
   margin-left: 2em;
 }
+
+
+
 
 /******** QUOTE ********/
 
@@ -651,3 +670,35 @@ html,
   backdrop-filter: blur(7px);
   z-index: 10;
 }
+
+.happy {
+  color: #ff80ab;
+}
+
+.anticipation {
+  color: #4db6ac;
+}
+
+.surprised {
+  color: #f4ff81;
+}
+
+.bad {
+  color: #ffcc80;
+}
+
+.fearful {
+  color: #b39ddb;
+}
+
+.angry {
+  color: #ff8a80;
+}
+
+.disgust {
+  color: #a5d6a7;
+}
+
+.sad{
+   color: #40c4ff;
+  }

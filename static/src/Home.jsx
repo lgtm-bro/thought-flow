@@ -32,15 +32,15 @@ const Home = ({ user, showAlert }) => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const emotionsColors = {
-    happy: "rgba(255, 99, 132, 0.5)",
-    anticipation: "rgba(54, 162, 235, 0.5)",
-    surprised: "rgba(255, 206, 86, 0.5)",
-    bad: "rgba(75, 192, 192, 0.5)",
-    fearful: "rgba(153, 102, 255, 0.5)",
-    angry: "rgba(255, 159, 64, 0.5)",
-    disgust: "rgba(192, 246, 163, 0.5)",
-    sad: "rgba(213, 245, 255, 0.8)",
+  const emotionColors = {
+    happy: "#ff80ab",
+    anticipation: "#4db6ac",
+    surprised: "#f4ff81",
+    bad: "#ffcc80",
+    fearful: "#b39ddb",
+    angry: "#ff8a80",
+    disgust: "#a5d6a7",
+    sad: "#40c4ff"
   };
 
   const userId = sessionStorage.getItem("userId");
@@ -246,7 +246,8 @@ const Home = ({ user, showAlert }) => {
           id="home-main"
           className="col-12 col-md-5 col-lg-4 mt-0 mt-md-5 ms-md-3 ms-lg-4"
         >
-          <div id="msg-center" className="p-3 mt-3 mx-auto shadow-sm rounded">
+          {(location.pathname.includes("hub") || location.pathname === "/") &&
+            <div id="msg-center" className="p-3 mt-3 mx-auto shadow-sm rounded">
             <div id="greet-wrapper" className="fs-5 my-1 pe-md-5 pe-lg-1">
               <Greet
                 feeling={feeling}
@@ -269,7 +270,7 @@ const Home = ({ user, showAlert }) => {
                 />
               )}
             </div>
-          </div>
+          </div>}
           {(location.pathname.includes("hub") || location.pathname === "/") &&
             user &&
             !feeling && (
@@ -292,6 +293,7 @@ const Home = ({ user, showAlert }) => {
               feeling={feeling}
               posts={posts}
               milestones={milestones}
+              emotionColors = {emotionColors}
               checkMsgStatus={checkMsgStatus}
               changeMsg={changeMsg}
               deletePost={deletePost}
@@ -315,7 +317,7 @@ const Home = ({ user, showAlert }) => {
           element={
             <Feelings
               user={user}
-              colors={emotionsColors}
+              colors={emotionColors}
               feeling={getFeeling}
               showAlert={showAlert}
               showHome={showHome}
