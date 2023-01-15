@@ -22,7 +22,7 @@ import Signup from "./Signup.jsx";
 const App = (props) => {
   const [user, setUser] = useState(sessionStorage.getItem("user"));
   const [email, setEmail] = useState(sessionStorage.getItem("email"));
-  // const [userMsg, setUserMsg] = useState();
+  const [smallScreen, setSmallScreen] = useState();
 
   const login = useRef();
   const profile = useRef();
@@ -38,9 +38,17 @@ const App = (props) => {
     },
   };
 
-  useEffect(() => {
-    window.addEventListener("beforeunload", submitSession);
 
+  // useEffect(() => {
+  //   window.addEventListener('resize', checkResize);
+  //   return () => {
+  //     window.removeEventListener('resize', checkResize);
+  //   };
+  // }, []);
+
+  useEffect(() => {
+    setSmallScreen(document.documentElement.clientWidth < 768)
+    window.addEventListener("beforeunload", submitSession);
     return () => {
       window.removeEventListener("beforeunload", submitSession);
     };
@@ -52,6 +60,27 @@ const App = (props) => {
       sessionStorage.setItem("email", email);
     }
   }, [user]);
+
+  const checkResize = () => {
+    if (smallScreen) {
+      if (document.documentElement.clientWidth > 767) {
+        setSmallScreen(false);
+
+        const app = document.getElementById('app-container');
+        app.scrollTo({
+          top: 0,
+          left: 0,
+          behavior: 'smooth',
+        });
+      }
+    } else {
+      if (document.documentElement.clientWidth < 768) {
+        setSmallScreen(true)
+      }
+    }
+  }
+
+  window.addEventListener('resize', checkResize);
 
   /********** ALERT ***********/
   const showAlert = (msg, time = 2000, page) => {

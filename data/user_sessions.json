@@ -1,0 +1,345 @@
+[
+    {
+        "user_id": 11,
+        "base_emotion_id": 1,
+        "second_emotion_id": 4,
+        "third_emotion_id": 8,
+        "date": "2022-12-19 15:48:48.0"
+    },
+    {
+        "user_id": 11,
+        "base_emotion_id": 1,
+        "second_emotion_id": 6,
+        "third_emotion_id": 13,
+        "date": "2022-12-19 15:48:48.0"
+    },
+    {
+        "user_id": 11,
+        "base_emotion_id": 1,
+        "second_emotion_id": 7,
+        "third_emotion_id": 14,
+        "date": "2022-12-19 15:48:48.0"
+    },
+    {
+        "user_id": 11,
+        "base_emotion_id": 1,
+        "second_emotion_id": 3,
+        "third_emotion_id": 6,
+        "date": "2022-12-19 15:48:48.0"
+    },
+    {
+        "user_id": 11,
+        "base_emotion_id": 4,
+        "second_emotion_id": 22,
+        "third_emotion_id": 43,
+        "date": "2022-12-19 15:48:48.0"
+    },
+    {
+        "user_id": 11,
+        "base_emotion_id": 4,
+        "second_emotion_id": 19,
+        "third_emotion_id": 37,
+        "date": "2022-12-19 15:48:48.0"
+    },
+    {
+        "user_id": 11,
+        "base_emotion_id": 4,
+        "second_emotion_id": 18,
+        "third_emotion_id": 39,
+        "date": "2022-12-19 15:48:48.0"
+    },
+    {
+        "user_id": 11,
+        "base_emotion_id": 3,
+        "second_emotion_id": 16,
+        "third_emotion_id": 33,
+        "date": "2022-12-19 15:48:48.0"
+    },
+    {
+        "user_id": 11,
+        "base_emotion_id": 3,
+        "second_emotion_id": 15,
+        "third_emotion_id": 29,
+        "date": "2022-12-19 15:48:48.0"
+    },
+    {
+        "user_id": 11,
+        "base_emotion_id": 7,
+        "second_emotion_id": 39,
+        "third_emotion_id": 78,
+        "date": "2022-12-19 15:48:48.0"
+    },
+    {
+        "user_id": 11,
+        "base_emotion_id": 7,
+        "second_emotion_id": 40,
+        "third_emotion_id": 80,
+        "date": "2022-12-19 15:48:48.0"
+    },
+    {
+        "user_id": 11,
+        "base_emotion_id": 8,
+        "second_emotion_id": 42,
+        "third_emotion_id": 83,
+        "date": "2022-12-19 15:48:48.0"
+    },
+    {
+        "user_id": 11,
+        "base_emotion_id": 8,
+        "second_emotion_id": 47,
+        "third_emotion_id": 93,
+        "date": "2022-12-19 15:48:48.0"
+    },
+    {
+        "user_id": 11,
+        "base_emotion_id": 8,
+        "second_emotion_id": 46,
+        "third_emotion_id": 92,
+        "date": "2022-12-19 15:48:48.0"
+    },
+    {
+        "user_id": 11,
+        "base_emotion_id": 1,
+        "second_emotion_id": 4,
+        "third_emotion_id": 8,
+        "date": "2022-12-19 15:48:48.0"
+    },
+    {
+        "user_id": 11,
+        "base_emotion_id": 6,
+        "second_emotion_id": 30,
+        "third_emotion_id": 59,
+        "date": "2022-12-19 15:48:48.0"
+    },
+    {
+        "user_id": 11,
+        "base_emotion_id": 6,
+        "second_emotion_id": 35,
+        "third_emotion_id": 70,
+        "date": "2022-12-19 15:48:48.0"
+    },
+    {
+        "user_id": 11,
+        "base_emotion_id": 2,
+        "second_emotion_id": 11,
+        "third_emotion_id": 21,
+        "date": "2022-12-19 15:48:48.0"
+    },
+    {
+        "user_id": 11,
+        "base_emotion_id": 2,
+        "second_emotion_id": 14,
+        "third_emotion_id": 28,
+        "date": "2022-12-19 15:48:48.0"
+    },
+    {
+        "user_id": 11,
+        "base_emotion_id": 2,
+        "second_emotion_id": 14,
+        "third_emotion_id": 28,
+        "date": "2022-12-19 15:48:48.0"
+    },
+    {
+        "user_id": 11,
+        "base_emotion_id": 1,
+        "second_emotion_id": 4,
+        "third_emotion_id": 8,
+        "date": "2022-12-19 15:48:48.0"
+    },
+    {
+        "user_id": 11,
+        "base_emotion_id": 1,
+        "second_emotion_id": 5,
+        "third_emotion_id": 9,
+        "date": "2022-12-19 15:48:48.0"
+    },
+    {
+        "user_id": 2,
+        "base_emotion_id": 5,
+        "second_emotion_id": 23,
+        "third_emotion_id": 45,
+        "date": "2022-12-19 15:48:48.0"
+    },
+    {
+        "user_id": 2,
+        "base_emotion_id": 5,
+        "second_emotion_id": 24,
+        "third_emotion_id": 48,
+        "date": "2022-12-19 15:48:48.0"
+    },
+    {
+        "user_id": 2,
+        "base_emotion_id": 6,
+        "second_emotion_id": 30,
+        "third_emotion_id": 60,
+        "date": "2022-12-19 15:48:48.0"
+    },
+    {
+        "user_id": 2,
+        "base_emotion_id": 4,
+        "second_emotion_id": 20,
+        "third_emotion_id": 40,
+        "date": "2022-12-19 15:48:48.0"
+    },
+    {
+        "user_id": 2,
+        "base_emotion_id": 4,
+        "second_emotion_id": 20,
+        "third_emotion_id": 40,
+        "date": "2022-12-19 15:48:48.0"
+    },
+    {
+        "user_id": 2,
+        "base_emotion_id": 4,
+        "second_emotion_id": 22,
+        "third_emotion_id": 44,
+        "date": "2022-12-19 15:48:48.0"
+    },
+    {
+        "user_id": 11,
+        "base_emotion_id": 1,
+        "second_emotion_id": 4,
+        "third_emotion_id": 8,
+        "date": "2022-12-19 15:48:48.0"
+    },
+    {
+        "user_id": 11,
+        "base_emotion_id": 3,
+        "second_emotion_id": 16,
+        "third_emotion_id": 33,
+        "date": "2022-12-19 15:48:48.0"
+    },
+    {
+        "user_id": 11,
+        "base_emotion_id": 3,
+        "second_emotion_id": 15,
+        "third_emotion_id": 29,
+        "date": "2022-12-19 15:48:48.0"
+    },
+    {
+        "user_id": 11,
+        "base_emotion_id": 7,
+        "second_emotion_id": 39,
+        "third_emotion_id": 78,
+        "date": "2022-12-19 15:48:48.0"
+    },
+    {
+        "user_id": 11,
+        "base_emotion_id": 7,
+        "second_emotion_id": 40,
+        "third_emotion_id": 80,
+        "date": "2022-12-19 15:48:48.0"
+    },
+    {
+        "user_id": 11,
+        "base_emotion_id": 8,
+        "second_emotion_id": 42,
+        "third_emotion_id": 83,
+        "date": "2022-12-19 15:48:48.0"
+    },
+    {
+        "user_id": 11,
+        "base_emotion_id": 8,
+        "second_emotion_id": 47,
+        "third_emotion_id": 93,
+        "date": "2022-12-19 15:48:48.0"
+    },
+    {
+        "user_id": 11,
+        "base_emotion_id": 8,
+        "second_emotion_id": 46,
+        "third_emotion_id": 92,
+        "date": "2022-12-19 15:48:48.0"
+    },
+    {
+        "user_id": 1,
+        "base_emotion_id": 3,
+        "second_emotion_id": 15,
+        "third_emotion_id": 29,
+        "date": "2022-12-19 15:48:48.0"
+    },
+    {
+        "user_id": 1,
+        "base_emotion_id": 7,
+        "second_emotion_id": 39,
+        "third_emotion_id": 78,
+        "date": "2022-12-19 15:48:48.0"
+    },
+    {
+        "user_id": 2,
+        "base_emotion_id": 5,
+        "second_emotion_id": 24,
+        "third_emotion_id": 48,
+        "date": "2022-12-19 15:48:48.0"
+    },
+    {
+        "user_id": 3,
+        "base_emotion_id": 6,
+        "second_emotion_id": 30,
+        "third_emotion_id": 60,
+        "date": "2022-12-19 15:48:48.0"
+    },
+    {
+        "user_id": 3,
+        "base_emotion_id": 4,
+        "second_emotion_id": 20,
+        "third_emotion_id": 40,
+        "date": "2022-12-19 15:48:48.0"
+    },
+    {
+        "user_id": 5,
+        "base_emotion_id": 1,
+        "second_emotion_id": 4,
+        "third_emotion_id": 8,
+        "date": "2022-12-19 15:48:48.0"
+    },
+    {
+        "user_id": 5,
+        "base_emotion_id": 6,
+        "second_emotion_id": 30,
+        "third_emotion_id": 59,
+        "date": "2022-12-19 15:48:48.0"
+    },
+    {
+        "user_id": 6,
+        "base_emotion_id": 3,
+        "second_emotion_id": 15,
+        "third_emotion_id": 29,
+        "date": "2022-12-19 15:48:48.0"
+    },
+    {
+        "user_id": 6,
+        "base_emotion_id": 7,
+        "second_emotion_id": 39,
+        "third_emotion_id": 78,
+        "date": "2022-12-19 15:48:48.0"
+    },
+    {
+        "user_id": 7,
+        "base_emotion_id": 4,
+        "second_emotion_id": 18,
+        "third_emotion_id": 39,
+        "date": "2022-12-19 15:48:48.0"
+    },
+    {
+        "user_id": 7,
+        "base_emotion_id": 3,
+        "second_emotion_id": 16,
+        "third_emotion_id": 33,
+        "date": "2022-12-19 15:48:48.0"
+    },
+    {
+        "user_id": 8,
+        "base_emotion_id": 5,
+        "second_emotion_id": 24,
+        "third_emotion_id": 48,
+        "date": "2022-12-19 15:48:48.0"
+    },
+    {
+        "user_id": 8,
+        "base_emotion_id": 6,
+        "second_emotion_id": 30,
+        "third_emotion_id": 60,
+        "date": "2022-12-19 15:48:48.0"
+    }
+]

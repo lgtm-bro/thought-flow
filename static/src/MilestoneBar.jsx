@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 
 import { AiOutlinePlus } from "react-icons/ai";
 import { IoRemoveOutline, IoPencil } from "react-icons/io5";
+import { FaPlus } from "react-icons/fa";
 
 import Milestone from "./Milestone.jsx";
 
@@ -32,49 +33,36 @@ const MilestoneBar = ({
   };
 
   return (
-    <div id="milestone-bar-wrapper" className="padding-2">
-      {!!sessionStorage.getItem("user") && (
-        <div>
-          <div id="add-entry" className="custom-link">
-          <Link to="/milestone">
-            <button
-              type="button"
-              id="add-entry"
-              className="custom-link btn hub-btn flex-end"
-              onClick={updateFeelingMsg}
-            >
-              <span className="badge hub-icon ">
-                  <AiOutlinePlus />
-
-              </span>
-              <span id="add-entry-btn">milestone</span>
-            </button>
-            </Link>
-          </div>
-
-          {/* <h5>
-            <span
-              id="add-milestone"
-              className="custom-link"
-              onClick={updateFeelingMsg}
-            >
-              <Link to="/milestone">
-                <AiOutlinePlus />
-                add a milestone
-              </Link>
+    <div id="milestone-bar-container rounded border">
+      <div className="add-entry mt-4">
+        <Link to="/milestone">
+          <button
+            type="button"
+            className="custom-link hub-btn py-1 px-5"
+            onClick={updateFeelingMsg}
+          >
+            <span className=" hub-icon">
+              <FaPlus />
             </span>
-          </h5> */}
-          <h5 className="pt-3 ps-3 fs-5 mt-3">So Far you have...</h5>
-          {milestones.map((m) => (
-            <Milestone
-              key={m.id}
-              milestone={m}
-              updateMilestone={updateMilestone}
-              deleteMilestone={deleteMilestone}
-            />
-          ))}
+            <span className="add-btn">milestone</span>
+          </button>
+        </Link>
+      </div>
+      {/* <h5 className="py-2 ps-3 fs-5 d-block">So Far you have...</h5> */}
+        <div id="milestone-bar-wrapper" className="px-2 rounded-bottom border-top border-1">
+          {!!sessionStorage.getItem("user") && (
+            <div id="milestone-list">
+              {milestones.map((m) => (
+                <Milestone
+                  key={m.id}
+                  milestone={m}
+                  updateMilestone={updateMilestone}
+                  deleteMilestone={deleteMilestone}
+                />
+              ))}
+            </div>
+          )}
         </div>
-      )}
       {!sessionStorage.getItem("userId") && (
         <h5 className="text-center">please login to view milestones</h5>
       )}

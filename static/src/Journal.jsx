@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AiOutlinePlus } from "react-icons/ai";
+import { FaPlus } from "react-icons/fa";
 
 import Post from "./Post.jsx";
 
@@ -35,22 +36,21 @@ const Journal = ({
 
   return (
     <div id="journal-container rounded border">
-      <div id="add-entry" className="custom-link">
+      <div className="add-entry mt-4">
        <Link to={entryLink}>
         <button
           type="button"
-          id="add-entry"
-          className="custom-link btn hub-btn flex-end"
+          className="custom-link hub-btn py-1 px-5"
           onClick={sendFeelingMsg}
         >
-          <span className="badge hub-icon">
-              <AiOutlinePlus />
+          <span className=" hub-icon">
+              <FaPlus />
           </span>
-          <span id="add-entry-btn">entry</span>
+          <span className="add-btn">entry</span>
         </button>
         </Link>
       </div>
-      <div id="journal-wrapper" className="p-2 px-3 mt-3 rounded">
+      <div id="journal-wrapper" className="px-3 rounded">
         {!!sessionStorage.getItem("userId") && (
           <div>
             {posts.map((p) => (

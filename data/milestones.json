@@ -26,5 +26,25 @@
     {
         "user_id": 3,
         "title": "Apologized to my sister"
+    },
+    {
+        "user_id": 11,
+        "title": "I stepped out of my comfort zone"
+    },
+    {
+        "user_id": 11,
+        "title": "I took a moment of stillness to reflect"
+    },
+    {
+        "user_id": 11,
+        "title": "I spoke up for myself"
+    },
+    {
+        "user_id": 11,
+        "title": "I opened up to my friend about my feelings"
+    },
+    {
+        "user_id": 11,
+        "title": "I accepted a situation that made me uncomfortable"
     }
 ]

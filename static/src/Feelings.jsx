@@ -26,14 +26,14 @@ const Feelings = (props) => {
   useEffect(() => {
     getSecondEmotions();
     !!baseChoice
-      ? (container.current.style.height = "60%")
-      : (container.current.style.height = "30%");
+      ? (container.current.style.height = "80%")
+      : (container.current.style.height = "50%");
 
     if (baseChoice === "default") {
       second.current.classList.add("hide");
       third.current.classList.add("hide");
       cancel.current.classList.add("hide");
-      container.current.style.height = "30%";
+      container.current.style.height = "50%";
     }
   }, [baseChoice]);
 
@@ -116,15 +116,16 @@ const Feelings = (props) => {
   return (
     <div
       id="feelings-wrapper"
-      className="container mt-4 pt-3"
+      className="container px-0 pt-3 "
       ref={container}
     >
-      <form action="#" id="feelings-form" size="3" className="form-select border rounded">
+      <form action="#" id="feelings-form" className="form rounded mt-2 mt-md-3 pt-2 shadow-sm">
         <h5>my main vibe is:</h5>
         <span className="feel-select">
         <select
           name="base"
           id="base"
+          className="form-select"
           ref={base}
           onChange={(e) => getBaseChoice(e)}
         >
@@ -142,6 +143,7 @@ const Feelings = (props) => {
           <select
             name="second"
             id="second"
+            className="form-select"
             onChange={(e) => getSecondChoice(e)}
           >
             <option value="default"></option>
@@ -156,7 +158,7 @@ const Feelings = (props) => {
         <div ref={third} id="third-container" className="hide">
           <h5>and a little...</h5>
           <span className="feel-select">
-          <select name="third" id="third" onChange={(e) => getThirdChoice(e)}>
+          <select name="third" id="third" className="form-select" onChange={(e) => getThirdChoice(e)}>
             <option value="default"></option>
             {thirdEmotions.map((e) => (
               <option key={e.id} value={e.name} id={e.id}>
@@ -166,11 +168,9 @@ const Feelings = (props) => {
           </select>
           </span>
         </div>
-        <br />
-        <br />
         <div id="feeling-cancel" className="hide" ref={cancel}>
           <Link to="/">
-            <button type="button" className="btn form-btn mx-auto" onClick={resetForm}>
+            <button type="button" className="btn form-btn mx-auto my-4" onClick={resetForm}>
               Cancel
             </button>
           </Link>

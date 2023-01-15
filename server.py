@@ -335,8 +335,6 @@ def getQuote2():
     data = res.json()
     quote = choice(data)
 
-    # print('***** QUOTES', data)
-
     return jsonify(quote), 200
 
 

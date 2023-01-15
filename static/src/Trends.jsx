@@ -11,9 +11,10 @@ import { PolarArea } from "react-chartjs-2";
 
 ChartJS.register(RadialLinearScale, ArcElement, Tooltip, Title, Legend);
 
-const Trends = ({ getUserSessions }) => {
-  const [keys, setKeys] = useState([]);
+const Trends = ({ getUserSessions, emotionColors }) => {
+  const [emotions, setEmotions] = useState([]);
   const [values, setValues] = useState([]);
+  const [colors, setColors] = useState([]);
 
   useEffect(() => {
     getSessions(sessionStorage.getItem("userId") || 0);
@@ -23,8 +24,10 @@ const Trends = ({ getUserSessions }) => {
     getUserSessions(userId)
       .then((res) => {
         if (res) {
-          setKeys(Object.keys(res.data));
+          const keys = Object.keys(res.data);
+          setEmotions(keys);
           setValues(Object.values(res.data));
+          setColors(keys.map((em) => emotionColors[em]));
         }
       })
       .catch((err) => {
@@ -33,21 +36,22 @@ const Trends = ({ getUserSessions }) => {
   };
 
   const data = {
-    labels: keys,
+    labels: emotions,
     datasets: [
       {
         label: "",
         data: values,
-        backgroundColor: [
-          "rgba(255, 99, 132, 0.5)",
-          "rgba(54, 162, 235, 0.5)",
-          "rgba(255, 206, 86, 0.5)",
-          "rgba(75, 192, 192, 0.5)",
-          "rgba(153, 102, 255, 0.5)",
-          "rgba(255, 159, 64, 0.5)",
-          "rgba(192, 246, 163, 0.5)",
-          "rgba(213, 245, 255, 0.8)"
-        ],
+        backgroundColor: colors,
+        // [
+        //   "rgba(255, 99, 132, 0.5)",
+        //   "rgba(54, 162, 235, 0.5)",
+        //   "rgba(255, 206, 86, 0.5)",
+        //   "rgba(75, 192, 192, 0.5)",
+        //   "rgba(153, 102, 255, 0.5)",
+        //   "rgba(255, 159, 64, 0.5)",
+        //   "rgba(192, 246, 163, 0.5)",
+        //   "rgba(213, 245, 255, 0.8)",
+        // ],
         borderWidth: 1,
       },
     ],
@@ -55,25 +59,30 @@ const Trends = ({ getUserSessions }) => {
 
   const options = {
     plugins: {
-      // title: {
-      //   display: true,
-      //   text: "Feelings Frequency",
-      // },
+      title: {
+        display: true,
+        font: {
+          family: "Nunito",
+          size: 24,
+        },
+        text: "your main vibes",
+      },
       legend: {
         display: true,
-        position: "bottom",
+        position: "left",
         labels: {
           font: {
-            size: 10,
+            size: 11,
           },
-          usePointStyle: true,
+        usePointStyle: true,
         },
       },
+      circular: false,
     },
   };
 
   return (
-    <div id="trends-wrapper" className="p-4 pt-5">
+    <div id="trends-wrapper" className="p-4 py-2 rounded">
       {!!sessionStorage.getItem("userId") && (
         <PolarArea data={data} options={options} />
       )}

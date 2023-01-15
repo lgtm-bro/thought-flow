@@ -33,14 +33,14 @@ const Home = ({ user, showAlert }) => {
   const location = useLocation();
 
   const emotionColors = {
-    happy: "#ff80ab",
-    anticipation: "#4db6ac",
-    surprised: "#f4ff81",
-    bad: "#ffcc80",
-    fearful: "#b39ddb",
-    angry: "#ff8a80",
-    disgust: "#a5d6a7",
-    sad: "#40c4ff"
+    happy: "#ffd07380",
+    anticipation: "#ffb6bd7e",
+    surprised: "#fffa947e",
+    bad: "#44a5ff78",
+    fearful: "#cda7e781",
+    angry: "#ed6b5a7e",
+    disgust: "#96e7b680",
+    sad: "#85d5e97b"
   };
 
   const userId = sessionStorage.getItem("userId");
@@ -247,7 +247,7 @@ const Home = ({ user, showAlert }) => {
           className="col-12 col-md-5 col-lg-4 mt-0 mt-md-5 ms-md-3 ms-lg-4"
         >
           {(location.pathname.includes("hub") || location.pathname === "/") &&
-            <div id="msg-center" className="p-3 ps-2 mt-3 mx-auto shadow-sm rounded">
+            <div id="msg-center" className="p-3 ps-2 mt-5 mt-md-3 mx-auto shadow-sm rounded">
             <div id="greet-wrapper" className="fs-5 my-1 pe-md-5 pe-lg-1">
               <Greet
                 feeling={feeling}
@@ -287,7 +287,7 @@ const Home = ({ user, showAlert }) => {
         {(location.pathname.includes("hub") || location.pathname === "/") && (
           <div
             id="hub-wrapper"
-            className="col-12 col-md-6 mx-5 ms-md-0 me-md-5 shadow rounded"
+            className="col-12 col-md-6 mb-5 mx-5 ms-md-0 me-md-5 shadow rounded"
           >
             <Hub
               feeling={feeling}

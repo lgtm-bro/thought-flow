@@ -1,8 +1,8 @@
 import React from "react";
 
 const About = () => (
-  <div id="about-container" className="container-fluid rounded my-4 px-2">
-    <h2 id="about-title" className="position-sticky display-6 pt-3 pb-1 ps-5">how to use thoughtflow</h2>
+  <div id="about-container" className="container-fluid rounded px-2">
+    <h2 id="about-title" className="position-sticky display-6 pt-5 pb-2 ps-5">how to use thoughtflow</h2>
     <ol className="lead ms-5 px-2">
       <li>Pinpoint the emotion that you are feeling</li>
       <li>Choose if you would like guided prompts</li>

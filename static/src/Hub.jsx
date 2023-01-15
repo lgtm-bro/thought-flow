@@ -29,19 +29,22 @@ const Hub = (props) => {
   const activeTab = (e) => {
     let parent, child;
 
-    e.target.text ?
-      (parent = e.target.parentNode, child = e.target):
-      (parent= e.target, child = e.target.firstChild);
+    // e.target.text ?
+    //   (parent = e.target.parentNode, child = e.target):
+    //   (parent= e.target, child = e.target.firstChild);
 
-      parent.classList.add("active");
-      child.style.color = activeColor;
+    parent = e.target.parentNode;
+    child = e.target;
 
-      hubTabs.forEach(t => {
-        if (parent !== t.current) {
-          t.current.classList.remove("active");
-          t.current.children[0].style.color = deactiveColor;
-        }
-      })
+    parent.classList.add("active");
+    child.style.color = activeColor;
+
+    hubTabs.forEach(t => {
+      if (parent !== t.current) {
+        t.current.classList.remove("active");
+        t.current.children[0].style.color = deactiveColor;
+      }
+    })
 
     props.checkMsgStatus();
   }

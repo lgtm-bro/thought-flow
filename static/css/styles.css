@@ -3,14 +3,15 @@ body,
 html,
 #root,
 #app-container {
-  color: #606060;
   width: 100%;
   height: 100%;
   margin: 0;
   padding: 0;
+  color: #606060;
   font-family: "Nunito";
   letter-spacing: 1px;
   overflow: hidden;
+  scroll-behavior: smooth;
 }
 
 /*
@@ -25,35 +26,39 @@ html,
   margin: 10px 0 !important;
 }
 
-#add-entry {
+.add-entry {
   display:flex;
   justify-content: center;
-  margin-right: 15px;
 }
 
 .icon-container {
   display:flex;
   justify-content: center;
-  margin-right: 15px;
+}
+
+.hub-icon {
+  text-decoration: none !important;
+  color: white;
+  font-size: 1.2em;
+  font-weight: 700;
+  padding-right: 5px;
+}
+
+.custom-link {
+  color: #606060;
+  font-weight: 900;
+  border: 1px solid transparent;
+  border-radius: 0.375rem;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15),0 1px 1px rgba(0, 0, 0, 0.075);
+  margin: 5px 0 20px 0;
 }
 
 .custom-link a {
   text-decoration: none !important;
 }
 
-.hub-icon {
-  text-decoration: none !important;
-  color: white;
-  font-size: 1.5em;
-  font-weight: 700;
-}
-
-.custom-link a:hover {
-  color: rgb(0, 124, 191);
-}
-
-#add-entry-btn {
-
+.custom-link:hover {
+  color: rgb(255, 255, 255);
 }
 
 .hide {
@@ -354,13 +359,21 @@ html,
 /******** FEELINGS ********/
 
 #feelings-wrapper {
-  min-height: 150px;
-  max-height: 75vh;
+  height: 100%;
+  width: 100%;
+  margin-top: 1.5rem;
+  background-color: transparent;
+  /* min-height: 150px;
+  max-height: 75vh; */
 }
 
 #feelings-form {
-  background-color: #fffdf9e9;
+  margin: 0 auto;
   min-height: 200px;
+  width: 90%;
+  background-color: #fffdf9b8;
+  /* background-image: linear-gradient( #fffdf956, #fffdf956, #fffdf956) !important;
+  backdrop-filter: blur(7px); */
 }
 
 #feelings-form .feel-select {
@@ -488,19 +501,17 @@ html,
 }
 
 .hub-btn {
-  /* margin: 7px; */
-
   background-color: #37a9c956 !important;
 }
 
-#journal-container {
+#journal-container, #milestone-bar-container {
   width: 100%;
   height: 100%;
   background-color: #fffdf9e9;
 }
 
 #journal-wrapper {
-  height: 57vh;
+  height: 420px;
   overflow-y: scroll;
   -ms-overflow-style: none;
   scrollbar-width: none;
@@ -519,12 +530,12 @@ html,
   width: 60%;
   min-width: 310;
   max-width: 450px;
-  height: 350px;
+  /* height: 350px; */
   background-color: #fffdf9e9;
 }
 
 #milestone-bar-wrapper {
-  height: 72vh;
+  height: 372px;
   background-color: #fffdf9e9;
   overflow-y: scroll;
   -ms-overflow-style: none;
@@ -536,8 +547,18 @@ html,
 }
 
 #trends-wrapper {
-  height: 72vh;
+  height: 493px;
   background-color: #fffdf9e9;
+}
+
+#graph-container {
+  position: relative;
+  height: 99%;
+  width: 99%;
+}
+
+#graph {
+  margin: 0;
 }
 
 .milestone-text {
@@ -624,16 +645,18 @@ html,
   backdrop-filter: blur(7px);
   background-image: linear-gradient(
     to bottom,
-    #ffffffe3,
-    #fdfdfdc5 50%,
-    #fffffe9e 60%,
-    #fefefe91 63%,
-    #ffffff2f 83%,
-    #ffffff24 93%,
-    #ffffff08 98%
+    #fffffff6,
+    #fdfdfdec 50%,
+    #fffffed5 60%,
+    #fefefeb7 63%,
+    #ffffff9b 83%,
+    #ffffff83 93%,
+    #ffffff47 98%
   );
-  height: 77%;
-  width: 85%;
+  height: 75%;
+  width: 70%;
+  max-width: 850px;
+  margin-top: 65px;
   overflow-y: scroll;
   -ms-overflow-style: none;
   scrollbar-width: none;
@@ -667,8 +690,7 @@ html,
 
 #about-container ul li {
   list-style-type: none;
-  font-weight: 900;
-  line-height: 1.25em;
+  line-height: 1.5em;
 }
 
 #about-container ul li:before {
@@ -714,33 +736,110 @@ html,
 }
 
 .happy {
-  color: #ff80ab;
+  color: #ffd07380;
 }
 
 .anticipation {
-  color: #4db6ac;
+  color: #ffb6bd7e;
 }
 
 .surprised {
-  color: #f4ff81;
+  color: #fffa947e;
 }
 
 .bad {
-  color: #ffcc80;
+  color: #44a5ff78;
 }
 
 .fearful {
-  color: #b39ddb;
+  color: #cda7e781;
 }
 
 .angry {
-  color: #ff8a80;
+  color: #ed6b5a7e;
 }
 
 .disgust {
-  color: #a5d6a7;
+  color: #96e7b680;
 }
 
 .sad{
-   color: #40c4ff;
+   color: #85d5e97b;
+}
+ /* happy: "#ffd07380",
+  anticipation: "#ffb6bd7e",
+  surprised: "#fffa947e",
+  bad: "#44a5ff78",
+  fearful: "#cda7e781",
+  angry: "#ed6b5a7e",
+  disgust: "#96e7b680",
+  sad: "#85d5e97b" */
+
+
+  @media (max-width: 715px) {
+    #msg-center {
+      width: 90%;
+    }
+
+    #feelings-form {
+      width: 75%;
+    }
   }
+
+@media (max-width: 767px) {
+  #app-container {
+    height:100%;
+    width: 102%;
+    padding-right: 2%;
+    overflow-y: scroll;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  #app-container::-webkit-scrollbar {
+    display: none;
+  }
+
+#msg-center {
+  width: 65%;
+}
+
+#feelings-wrapper {
+  margin-top: 0.5rem;
+}
+
+  #hub-wrapper {
+    width: 75%;
+   }
+
+   #quote-wrapper {
+    width: 70%;
+   }
+}
+
+@media (max-width: 991px) {
+  #about-container {
+    width: 90%;
+    margin-top: 25px;
+  }
+}
+
+/* .colors {
+  color: #ffd07380;
+  color: #ffb6bd7e;
+  color: #fffa947e;
+  color: #44a5ff78;
+  color: #cda7e781;
+  color: #ed6b5a7e;
+  color: #96e7b680;
+  color: #85d5e97b;
+  } */
+
+  /* happy: "##ffd07380",
+  anticipation: "#ffb6bd7e",
+  surprised: "#fffa947e",
+  bad: "#44a5ff78",
+  fearful: "#cda7e781",
+  angry: "#ed6b5a7e",
+  disgust: "#96e7b680",
+  sad: "#85d5e97b" */

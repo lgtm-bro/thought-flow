@@ -63,7 +63,7 @@ const Post = (props) => {
       <div className="card-body">
         <div className="row justify-content-between">
         <h5 className="post-date card-title col">{date}</h5>
-        <h6 className="icon-container card-subtitle col-2 col-md-3 col-lg-2">
+        <h6 className="icon-container card-subtitle col-2 col-md-3 col-lg-2 pe-3 pe-md-1">
           <span className="delete-icon icon card-link mx-1">
             <IoRemoveOutline
               className="icon"

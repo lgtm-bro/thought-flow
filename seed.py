@@ -69,8 +69,17 @@ def seed_posts(post_data):
 
     model.db.session.commit()
 
+def seed_user_sessions(session_data):
+    for s in session_data:
+        user_id, base_id, second_id, third_id, date = s.values()
+        user_session = crud.create_user_session(user_id, base_id, second_id, third_id, date)
+        model.db.session.add(user_session)
+
+    model.db.session.commit()
+
 
 seed_data('data/feelingsWheel.json', seed_feelings)
 seed_data('data/users.json', seed_users)
 seed_data('data/milestones.json', seed_milestones)
 seed_data('data/posts.json', seed_posts)
+seed_data('data/user_sessions.json', seed_user_sessions)

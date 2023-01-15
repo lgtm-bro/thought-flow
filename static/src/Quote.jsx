@@ -14,7 +14,9 @@ const Quote = (props) => {
 				setAuthor(res.data.author || "Unknown");
 			})
       .catch((err) => {
-        console.log("ERROR:", err.response.data.msg);
+        console.log("ERROR:", err);
+        setQuote("We can only learn to love by loving.")
+        setAuthor("Iris Murdoch");
       });
   }, []);
 
@@ -24,7 +26,7 @@ const Quote = (props) => {
       className="p-4 my-4 mx-auto shadow-sm rounded flex-column justify-content-center"
     >
       <h5 className="blockquote">{quote}</h5>
-      <h6 className="blockquote-footer my-5">{author}</h6>
+      <h6 className="blockquote-footer mt-2">{author}</h6>
     </div>
   );
 };

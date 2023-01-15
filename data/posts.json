@@ -76,5 +76,41 @@
         "date": "2022-12-08T21:19:21",
         "entry": "Praesent aliquet, ante id aliquam convalis, sapien enim posuere turpis, non ullamcorper metus enim nec justo. Suspendisse vitae mi euismod, dapibus urna sit amet, varius erat. Aliquam porta sem turpis. Etiam commodo arcu ut ligula vulputate, id scelerisque nunc bibendum. Aliquam erat volutpat. Nullam sit amet nisl dictum, eleifend erat sed, molestie augue. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Aliquam erat volutpat.",
         "guided": false
+    },
+    {
+        "user_id": 11,
+        "date": "2022-12-08T21:19:21",
+        "entry": "I am feeling sad because people around me are experiencing tragedy and I can’t help. I am resisting this so it makes me feel uneasy a lot.",
+         "guided": false
+    },
+    {
+        "user_id": 11,
+        "date": "2022-01-18T21:19:21",
+        "entry": "I am feeling anxious because I have a lot to do and am not sure if I can get it all done. I feel like I have too much on my plate, but don’t want to give any of it up or let anyone down. I need to prioritize my time better.",
+        "guided": false
+    },
+    {
+        "user_id": 11,
+        "date": "2021-03-16T21:19:21",
+        "entry": "I am worried that my kids are making choices that aren’t good for them. I don’t want to be overbearing, but I also don’t wan them to face the consequences of bad choices. I try t talk to them about it, but I don’t know if they are taking me seriously.",
+        "guided": false
+    },
+    {
+        "user_id": 11,
+        "date": "2022-02-13T21:19:21",
+        "entry": "I am feeling accomplished today. I had a great talk with my son today and I think that we had a connection. He told me about some things he is dealing with and asked for advice I feel like he is moving in the right direction.",
+        "guided": false
+    },
+    {
+        "user_id": 11,
+        "date": "2022-05-08T21:19:21",
+        "entry": "I am excited. I got a promotion at work and cannot wait to get started.  Think that I can make a big impact in this role and feel valued.",
+        "guided": false
+    },
+    {
+        "user_id": 11,
+        "date": "2022-05-18T21:19:21",
+        "entry": "I am feeling uneasy. I have a big decision to make and I know that people will be disappoint no matter what I choose. I feel like I am being selfish if I choose what is best for me, but I also know that I need to think about myself sometimes too.",
+        "guided": false
     }
 ]

@@ -34,7 +34,7 @@ const Entry = ({
 
   useEffect(() => {
     isSolo || isGuided
-      ? (container.current.style.height = "100%")
+      ? (container.current.style.height = "70%")
       : (container.current.style.height = "50%");
   }, [isSolo, isGuided]);
 
@@ -69,7 +69,7 @@ const Entry = ({
       className="container justify-content-center text-center shadow rounded"
       ref={container}
     >
-      <div id="entry-full-form" className="container p-2">
+      <div id="entry-full-form" className="container p-2 mt-1 mt-sm-3">
         <h3 className=" mt-2">How do you want to flow today?</h3>
         <form action="#" id="entry-type" className="py-2 pb-1">
           <span id="entry-radio-guided" className="form-check-inline">

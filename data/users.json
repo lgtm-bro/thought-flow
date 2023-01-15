@@ -48,5 +48,10 @@
 		"name": "Jenny",
 		"email": "jenn@gmail.com",
 		"password": "Passit"
+	},
+	{
+		"name": "Imogene",
+		"email": "idgyrose@gmail.com",
+		"password": "Pass"
 	}
 ]
