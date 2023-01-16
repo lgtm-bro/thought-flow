@@ -12,6 +12,7 @@ const Journal = ({
   deletePost,
   updateEntry,
   setSendToEntry,
+  setCurrPost
 }) => {
   const [msg, setMsg] = useState(null);
 
@@ -60,6 +61,7 @@ const Journal = ({
                 id={p.id}
                 deletePost={deletePost}
                 updateEntry={updateEntry}
+                setCurrPost={setCurrPost}
               />
             ))}
           </div>

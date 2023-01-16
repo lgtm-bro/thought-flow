@@ -11,7 +11,7 @@ import {
 
 import Greet from "./Greet.jsx";
 import Message from "./Message.jsx";
-import ConfirmModal from "./ConfirmModal.jsx";
+// import ConfirmModal from "./ConfirmModal.jsx";
 import Feelings from "./Feelings.jsx";
 import Entry from "./Entry.jsx";
 import Hub from "./Hub.jsx";
@@ -71,7 +71,7 @@ const Home = ({ user, showAlert }) => {
   const changeMsg = (
     msg,
     hasQuestion = false,
-    path = "!",
+    path = "/",
     linkText = "Yes"
   ) => {
     setUserMsg(msg);
@@ -186,25 +186,11 @@ const Home = ({ user, showAlert }) => {
       .then((res) => {
         console.log(res.data);
         getMilestones(user);
-        checkMsgStatus();
-        navigate("/");
+        // updateTab('milestones');
+        navigate("/hub-milestones");
+
       })
       .catch((err) => console.log(err));
-  };
-
-  const getQuote = async (keyword = "inspirational") => {
-    return await axios
-      .get(`/quote/${keyword}`)
-      .then((res) => res.data)
-      .catch((err) => console.log(err));
-  };
-
-  const getQuote2 = async () => {
-    try {
-      return await axios.get("/new-quote", config);
-    } catch (err) {
-      console.log(err.response.data.msg);
-    }
   };
 
   const updateMilestone = (id, text) => {
@@ -225,6 +211,23 @@ const Home = ({ user, showAlert }) => {
         getMilestones(user);
       })
       .catch((err) => console.log(err));
+  };
+
+  /********** QUOTES ***********/
+
+  const getQuote = async (keyword = "inspirational") => {
+    return await axios
+      .get(`/quote/${keyword}`)
+      .then((res) => res.data)
+      .catch((err) => console.log(err));
+  };
+
+  const getQuote2 = async () => {
+    try {
+      return await axios.get("/new-quote", config);
+    } catch (err) {
+      console.log(err.response.data.msg);
+    }
   };
 
   /********** USER SESSIONS ***********/
@@ -266,7 +269,6 @@ const Home = ({ user, showAlert }) => {
                   hasQuestion={userMsgQuestion}
                   linkText={userMsgLinkText}
                   path={userMsgPath}
-                  changeMsg={changeMsg}
                 />
               )}
             </div>
@@ -293,7 +295,8 @@ const Home = ({ user, showAlert }) => {
               feeling={feeling}
               posts={posts}
               milestones={milestones}
-              emotionColors = {emotionColors}
+              emotionColors={emotionColors}
+              // hubTab={hubTab}
               checkMsgStatus={checkMsgStatus}
               changeMsg={changeMsg}
               deletePost={deletePost}
@@ -308,10 +311,10 @@ const Home = ({ user, showAlert }) => {
       </div>
 
       <Routes>
-        <Route
+        {/* <Route
           path="/confirm"
           element={<ConfirmModal sendFeeling={setFeeling} />}
-        />
+        /> */}
         <Route
           path="/feelings"
           element={

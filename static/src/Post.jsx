@@ -1,6 +1,9 @@
 import React, { useState, useEffect, useRef } from "react";
 import { DateTime } from "luxon";
 import { IoRemoveOutline, IoPencil } from "react-icons/io5";
+import { AiOutlineEdit, AiOutlineClose } from "react-icons/ai";
+
+import ConfirmDelete from "./ConfirmDelete.jsx";
 
 const Post = (props) => {
   const [entry, setEntry] = useState(props.post.entry);
@@ -58,22 +61,33 @@ const Post = (props) => {
     done.current.classList.add("hide");
   };
 
+  const showConfirmDelete = () => {
+    // props.setCurrPost(id);
+    document.getElementById(`post-delete-container-${props.post.id}`).classList.remove('hide');
+  };
+
   return (
     <div className="post-wrapper card my-3">
       <div className="card-body">
+      <ConfirmDelete
+        delete={props.deletePost}
+        entryId={props.post.id}
+        type="post"
+        page="/"
+      />
         <div className="row justify-content-between">
-        <h5 className="post-date card-title col">{date}</h5>
-        <h6 className="icon-container card-subtitle col-2 col-md-3 col-lg-2 pe-3 pe-md-1">
-          <span className="delete-icon icon card-link mx-1">
-            <IoRemoveOutline
-              className="icon"
-              onClick={() => props.deletePost(props.post.id)}
-            />
-          </span>
-          <span className="edit-icon icon card-link" onClick={editPost}>
-            <IoPencil className="icon mx-1" />
-          </span>
-        </h6>
+          <h5 className="post-date card-title col">{date}</h5>
+          <h6 className="icon-container card-subtitle col-2 col-md-3 col-lg-2 pe-3 pe-md-1">
+            <span className="edit-icon icon card-link" onClick={editPost}>
+              <AiOutlineEdit className="icon" />
+            </span>
+            <span className="delete-icon icon card-link">
+              <AiOutlineClose
+                className="icon"
+                onClick={showConfirmDelete}
+              />
+            </span>
+          </h6>
         </div>
         <div>
           <div
@@ -88,44 +102,18 @@ const Post = (props) => {
               <p key={i}>{p}</p>
             ))}
           </div>
-          <button value="Done" ref={done} className="hide btn form-btn" onClick={saveEdit}>
+          <button
+            value="Done"
+            ref={done}
+            className="hide btn form-btn"
+            onClick={saveEdit}
+          >
             Done
           </button>
         </div>
       </div>
     </div>
   );
-
-  //   <div className="post-wrapper" >
-  //     <span className="post-date">{date}</span>
-  //     <span className="icon-container">
-  //       <span className="delete-icon icon"><IoRemoveOutline className="icon" onClick={() => props.deletePost(props.post.id)}/></span>
-  //       <span className="edit-icon icon" onClick={editPost}><IoPencil className="icon"/></span>
-  //     </span>
-  //     <div
-  //     >
-  //       <div
-  //         id={`post-${props.post.id}`}
-  //         contentEditable="false"
-  //         ref={postText}
-  //         onClick={expandEntry}
-  //         suppressContentEditableWarning={true}
-  //       >
-  //         {entryArr.map((p, i) =>
-  //           <p key={i}>{p}</p>
-  //         )}
-  //       </div>
-  //       <button
-  //         value="Done"
-  //         ref={done}
-  //         className="hide"
-  //         onClick={saveEdit}
-  //       >
-  //         Done
-  //       </button>
-  //     </div>
-  //   </div>
-  // );
 };
 
 export default Post;

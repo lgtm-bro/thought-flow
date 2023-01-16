@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef, Fragment } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
-const ConfirmModal = ({ sendFeeling, checkMsgStatus }) => {
+const ConfirmFeeling = ({ sendFeeling, checkMsgStatus }) => {
   const msg = useRef();
 
   const navigate = useNavigate();
@@ -55,4 +55,4 @@ const ConfirmModal = ({ sendFeeling, checkMsgStatus }) => {
   );
 };
 
-export default ConfirmModal;
+export default ConfirmFeeling;

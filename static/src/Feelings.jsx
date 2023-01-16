@@ -51,7 +51,7 @@ const Feelings = (props) => {
   const getBaseEmotions = () => {
     axios
       .get("/base_emotions")
-      .then((results) => {console.log(results.data); setBaseEmotions(results.data)});
+      .then((results) => setBaseEmotions(results.data));
   };
 
   const getBaseChoice = (e) => {
@@ -116,10 +116,10 @@ const Feelings = (props) => {
   return (
     <div
       id="feelings-wrapper"
-      className="container px-0 pt-3 "
+      className="container-fluid "
       ref={container}
     >
-      <form action="#" id="feelings-form" className="form rounded mt-2 mt-md-3 pt-2 shadow-sm">
+      <form action="#" id="feelings-form" className="form rounded mt-2 mt-md-1 pt-2 shadow-sm">
         <h5>my main vibe is:</h5>
         <span className="feel-select">
         <select

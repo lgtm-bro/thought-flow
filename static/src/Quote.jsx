@@ -23,7 +23,7 @@ const Quote = (props) => {
   return (
     <div
       id="quote-wrapper"
-      className="p-4 my-4 mx-auto shadow-sm rounded flex-column justify-content-center"
+      className="p-4 my-4 mt-md-5 mx-auto shadow-sm rounded"
     >
       <h5 className="blockquote">{quote}</h5>
       <h6 className="blockquote-footer mt-2">{author}</h6>

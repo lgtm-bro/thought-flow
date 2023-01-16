@@ -83,16 +83,16 @@ const Password = ({ pw, verify }) => {
 
 
   return (
-    <Fragment>
-      <div>Your password should contain:</div>
-      <ul id="pass-reqs">
+    <div id="password-container">
+      <div className="ps-3 py-2">Your password should contain:</div>
+      <ul id="pass-reqs" className="ps-5 ms-5">
         <li ref={lowerBox}>at least one lowercase letter</li>
         <li ref={upperBox}>at least one uppercase letter</li>
         <li ref={numBox}>at least one number</li>
         <li ref={symbolBox}>at least one special character</li>
         <li ref={lenBox}>at least eight characters</li>
       </ul>
-    </Fragment>
+    </div>
   );
 };
 

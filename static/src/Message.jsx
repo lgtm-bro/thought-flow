@@ -1,7 +1,7 @@
 import React, { Fragment, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 
-const Message = ({ msg, hasQuestion, linkText, path, changeMsg }) => {
+const Message = ({ msg, hasQuestion, linkText, path }) => {
   const msgSpan = useRef();
 
   useEffect(() => {
@@ -23,7 +23,6 @@ const Message = ({ msg, hasQuestion, linkText, path, changeMsg }) => {
       {hasQuestion && (
         <span
           id="message-link"
-          onClick={changeMsg}
         >
           <Link to={path}>{linkText}</Link>
         </span>

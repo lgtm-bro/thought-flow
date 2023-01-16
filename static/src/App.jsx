@@ -20,16 +20,17 @@ import Login from "./Login.jsx";
 import Signup from "./Signup.jsx";
 
 const App = (props) => {
+  const navigate = useNavigate();
+  const location = useLocation();
+
   const [user, setUser] = useState(sessionStorage.getItem("user"));
   const [email, setEmail] = useState(sessionStorage.getItem("email"));
   const [smallScreen, setSmallScreen] = useState();
+  const [hubTab, setHubTab] = useState(location.pathname.slice(5) || 'journal');
 
   const login = useRef();
   const profile = useRef();
   const alerts = useRef();
-
-  const navigate = useNavigate();
-  const location = useLocation();
 
   const config = {
     headers: {
@@ -40,14 +41,16 @@ const App = (props) => {
 
 
   // useEffect(() => {
-  //   window.addEventListener('resize', checkResize);
-  //   return () => {
-  //     window.removeEventListener('resize', checkResize);
-  //   };
-  // }, []);
+  //   console.log('pathname', location.pathname);
+  //   setHubTab(location.pathname.slice(5) || 'journal');
+  // }, [location.pathname]);
 
   useEffect(() => {
-    setSmallScreen(document.documentElement.clientWidth < 768)
+    console.log(hubTab)
+  }, [hubTab])
+
+  useEffect(() => {
+    setSmallScreen(document.documentElement.clientWidth < 768);
     window.addEventListener("beforeunload", submitSession);
     return () => {
       window.removeEventListener("beforeunload", submitSession);
@@ -81,6 +84,10 @@ const App = (props) => {
   }
 
   window.addEventListener('resize', checkResize);
+
+  const updateTab = (tab) => {
+    setHubTab(tab);
+  }
 
   /********** ALERT ***********/
   const showAlert = (msg, time = 2000, page) => {
@@ -220,9 +227,8 @@ const App = (props) => {
         <NavBar user={user} showAlert={showAlert} />
       </div>
       <div id="user-alerts" ref={alerts} className="hide shadow"></div>
-      {/* {!location.pathname.includes("auth") && <h1>thoughtflow</h1>} */}
       <Routes>
-        <Route path="/*" element={<Home user={user} showAlert={showAlert} />} />
+        <Route path="/*" element={<Home user={user} showAlert={showAlert}/>} />
         <Route
           path="/profile"
           element={
@@ -258,7 +264,6 @@ const App = (props) => {
           }
         />
       </Routes>
-      {/* {location.pathname !== "/auth/*" && <h1>ThoughtFlow</h1>} */}
     </div>
   );
 };

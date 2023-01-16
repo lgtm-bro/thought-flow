@@ -73,8 +73,8 @@ const Profile = (props) => {
   };
 
   return (
-    <div id="profile-wrapper"
-      className="container justify-content-center p-4 my-3 my-md-5 shadow rounded"
+    <div id="profile-container"
+      className="container-fluid mx-med-auto p-4 my-3 my-md-5 shadow rounded"
     >
       <h2 className="text-center mb-3">profile</h2>
       <form

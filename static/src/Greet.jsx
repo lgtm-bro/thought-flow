@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
-import ConfirmModal from "./ConfirmModal.jsx";
+import ConfirmFeeling from "./ConfirmFeeling.jsx";
 
 const Greet = ({ user, feeling, sendFeeling, checkMsgStatus }) => {
   const navigate = useNavigate();
@@ -36,7 +36,7 @@ const Greet = ({ user, feeling, sendFeeling, checkMsgStatus }) => {
           </span>
         )}
       </div>
-      <ConfirmModal sendFeeling={sendFeeling} checkMsgStatus={checkMsgStatus} />
+      <ConfirmFeeling sendFeeling={sendFeeling} checkMsgStatus={checkMsgStatus} />
     </div>
   );
 };

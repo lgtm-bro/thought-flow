@@ -27,7 +27,7 @@ const GuidedForm = (props) => {
 
   const getEmbracing = () => {
     setIsEmbracing(embracing.current.checked);
-    navigate("/entry/prompt2");
+    // navigate("/entry/prompt2");
   };
 
   const getPrompt = (e, prompt, func) => {
@@ -66,51 +66,51 @@ const GuidedForm = (props) => {
     : "What would it feel like to embrace them?";
 
   return (
-    <div id="guided-container" className="container px-5 mr-5">
-      {/* <div id="prompt1" className="container">
-      <label htmlFor="prompt1" className="guided-label form-label">
-        What experience or event {prompt1Key} you to feel {props.feeling}?
-      </label>
-      <textarea
-        id="prompt1"
-        className="form-control"
-        required
-        onChange={(e) => getPrompt(e, prompt1, setPrompt1)}
-      ></textarea>
-      <label htmlFor="posture" className="guided-label form-label d-block">
-        Are you embracing or resisting these feelings?
-      </label>
-      <span id="entry-embracing-radio" className="form-check-inline">
-        <input
-          type="radio"
-          name="posture"
-          value="embracing"
-          id="embracing"
-          className="form-check-input"
-          ref={embracing}
-          onChange={getEmbracing}
-          onKeyDown={checkKey}
-        />
-        <label htmlFor="embracing" className="form-check-label">
-          Embracing
+    <div id="guided-container" className="container px-3 mr-5">
+      <div id="prompt1" className="container">
+        <label htmlFor="prompt1" className="guided-label form-label">
+          What experience or event {prompt1Key} you to feel {props.feeling}?
         </label>
-      </span>
-      <span id="entry-resisting-radio" className="form-check-inline">
-        <input
-          type="radio"
-          name="posture"
-          value="resisting"
-          id="resisting"
-          className="form-check-input"
-          ref={resisting}
-          onChange={getEmbracing}
-        />
-        <label htmlFor="resisting" className="form-check-label">
-          Resisting
+        <textarea
+          id="prompt1"
+          className="form-control"
+          required
+          onChange={(e) => getPrompt(e, prompt1, setPrompt1)}
+        ></textarea>
+        <label htmlFor="posture" className="guided-label form-label d-block">
+          Are you embracing or resisting these feelings?
         </label>
-      </span>
-      </div> */}
-      {/* {showPrompt2 && (
+        <span id="entry-embracing-radio" className="form-check-inline">
+          <input
+            type="radio"
+            name="posture"
+            value="embracing"
+            id="embracing"
+            className="form-check-input"
+            ref={embracing}
+            onChange={getEmbracing}
+            onKeyDown={checkKey}
+          />
+          <label htmlFor="embracing" className="form-check-label">
+            Embracing
+          </label>
+        </span>
+        <span id="entry-resisting-radio" className="form-check-inline">
+          <input
+            type="radio"
+            name="posture"
+            value="resisting"
+            id="resisting"
+            className="form-check-input"
+            ref={resisting}
+            onChange={getEmbracing}
+          />
+          <label htmlFor="resisting" className="form-check-label">
+            Resisting
+          </label>
+        </span>
+      </div>
+      {showPrompt2 && (
         <div id="guided-form-part2">
           <label htmlFor="prompt2" className="guided-label form-label">
             {postureQuestion}
@@ -131,9 +131,9 @@ const GuidedForm = (props) => {
             onChange={(e) => getPrompt(e, prompt3, setPrompt3)}
           ></textarea>
         </div>
-      )} */}
+      )}
 
-      <Routes>
+      {/* <Routes>
         <Route
           path="/"
           element={
@@ -213,7 +213,7 @@ const GuidedForm = (props) => {
             </div>
           }
         />
-      </Routes>
+      </Routes> */}
     </div>
   );
 };

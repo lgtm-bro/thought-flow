@@ -209,7 +209,7 @@ html,
 }
 
 .form-check-input:checked {
-  background-color: #37a9c9 !important;
+  background-color: #e88686 !important;
   border: 0;
 }
 
@@ -291,15 +291,15 @@ html,
 }
 
 #msg-center {
-  width: 85%;
+  width: 90%;
   background-image: linear-gradient( #fffdf95f, #e8e4db6b, #f8e7c65e);
   background-image: linear-gradient( #fffdf956, #fffdf956, #fffdf956);
   backdrop-filter: blur(7px);
 }
 
 .test {
-  -webkit-animation: 1.5s highlight 800ms 1 normal forwards;
-          animation: 1.5s highlight 800ms 1 normal forwards;
+  -webkit-animation: 2s highlight 200ms 1 normal forwards;
+          animation: 2s highlight 200ms 1 normal forwards;
   background-color: none;
   background: linear-gradient(90deg, #ffd0bfb6 50%, transparent 50%);
   background-size: 200% 100%;
@@ -342,6 +342,7 @@ html,
   animation-iteration-count: 1;
   animation-direction: forward;
 }
+c 1.5s highlight 800ms 1 normal forwards;
 
 @keyframes highlight {
   0% {
@@ -369,8 +370,8 @@ html,
 
 #feelings-form {
   margin: 0 auto;
-  min-height: 200px;
-  width: 90%;
+  min-height: 367px;
+  width: 94%;
   background-color: #fffdf9b8;
   /* background-image: linear-gradient( #fffdf956, #fffdf956, #fffdf956) !important;
   backdrop-filter: blur(7px); */
@@ -408,7 +409,7 @@ html,
 
 #quote-wrapper {
   /* background-color: #fffdf9e9; */
-  width: 80%;
+  width: 90%;
   /* backdrop-filter: blur(7px); */
   background-image: linear-gradient(
     to bottom,
@@ -426,13 +427,14 @@ html,
 
 #entry-container {
   height: 100%;
-  width: 70%;
+  width: 80%;
   min-width: 355px;
+  max-width: 600px;
   background-color: #fffdf9e9;
 }
 
 #entry-full-form {
-  height: 90%;
+  /* height: 90%; */
   min-height: 365;
   overflow-y: hidden;
   /* overflow-y: scroll;
@@ -461,6 +463,10 @@ html,
 
 /******** POST ********/
 
+#post-wrapper {
+  position: relative;
+}
+
 .card-link:hover {
   cursor: pointer;
   visibility: visible;
@@ -472,6 +478,7 @@ html,
 /******** HUB ********/
 
 #hub-wrapper {
+  position: relative;
   min-width: 350px;
   max-width: 560px;
   height: 100%;
@@ -489,19 +496,29 @@ html,
   white-space: nowrap;
 }
 
-#hub-journal a {
+/* #hub-journal a {
   color: #e88686;
-}
+} */
 
 #hub-nav {
   width: 100%;
-  height: 3em;
+  height: 3.3em;
   margin-bottom: 15px;
-  background-color: #fffdf9e9;
+  background-color: #fffdf9e9 !important;
 }
 
 .hub-btn {
   background-color: #37a9c956 !important;
+}
+
+/* const activeColor = "#e88686";
+  const activeBg = "#37a9c926";
+  const defaultColor = "#606060";
+  const defaultBg = "#fffdf9e9"; */
+
+.hub-active {
+  background-color: #fef2ddfa !important;
+  color: #e88686 !important;
 }
 
 #journal-container, #milestone-bar-container {
@@ -535,7 +552,7 @@ html,
 }
 
 #milestone-bar-wrapper {
-  height: 372px;
+  height: 420px;
   background-color: #fffdf9e9;
   overflow-y: scroll;
   -ms-overflow-style: none;
@@ -611,15 +628,15 @@ html,
 /******** SIGNOUT ********/
 
 #signout-container {
-  width: 30%;
-  min-width: 285px;
-  max-width: 350px;
-  height: 30%;
+  width: 45%;
+  min-width: 308px;
+  max-width: 450px;
+  height: 40%;
   min-height: 175px;
   margin: 100px auto;
-  padding: 3em;
   background-color: #fffdf9e9;
 }
+
 
 #signout-btn-div {
   margin-top: 15%;
@@ -627,10 +644,10 @@ html,
 
 /******** PROFILE ********/
 
-#profile-wrapper {
-  width: 50%;
-  min-width: 301px;
-  min-width: 300px;
+#profile-container {
+  width: 60%;
+  min-width: 350px;
+  max-width: 450px;
   height: 400;
   background-color: #fffdf9e9;
 }
@@ -653,7 +670,7 @@ html,
     #ffffff83 93%,
     #ffffff47 98%
   );
-  height: 75%;
+  height: 70%;
   width: 70%;
   max-width: 850px;
   margin-top: 65px;
@@ -722,7 +739,7 @@ html,
   font-weight: 900;
 }
 
-/******** CONFIRM ********/
+/******** CONFIRM FEELING ********/
 
 #confirm-wrapper {
   position: absolute;
@@ -734,6 +751,27 @@ html,
   backdrop-filter: blur(7px);
   z-index: 10;
 }
+
+/******** CONFIRM POST ********/
+.delete-container {
+  position: absolute;
+  top: 14%;
+  left: 0;
+  height: 80px;
+  /* width: 70%; */
+  background-color: #fef0dfe6;
+  z-index: 10;
+}
+
+/******** CONFIRM MILESTONE ********/
+
+.milestone .delete-container {
+  width: 70%;
+  left: 14%;
+}
+
+
+/******** COLORS ********/
 
 .happy {
   color: #ffd07380;
@@ -776,13 +814,15 @@ html,
   sad: "#85d5e97b" */
 
 
+  /******** MEDIA QUERIES ********/
+
   @media (max-width: 715px) {
     #msg-center {
       width: 90%;
     }
 
     #feelings-form {
-      width: 75%;
+      width: 77%;
     }
   }
 
@@ -800,20 +840,24 @@ html,
     display: none;
   }
 
-#msg-center {
-  width: 65%;
-}
+  #msg-center {
+    width: 65%;
+  }
 
-#feelings-wrapper {
-  margin-top: 0.5rem;
-}
+  #feelings-form {
+    width: 67%;
+  }
+
+  #feelings-wrapper {
+    margin-top: 1rem;
+  }
 
   #hub-wrapper {
-    width: 75%;
+    width: 70%;
    }
 
    #quote-wrapper {
-    width: 70%;
+    width: 65%;
    }
 }
 
