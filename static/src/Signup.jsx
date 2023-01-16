@@ -70,7 +70,7 @@ const Signup = ({ signupUser, showAlert }) => {
         <h2>sign up</h2>
         <h3 className="form-text">
           Already have an account?
-          <span className="custom-link">
+          <span className="auth-link ms-2">
             <Link to="/auth">login</Link>
           </span>
         </h3>

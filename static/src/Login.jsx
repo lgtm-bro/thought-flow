@@ -29,7 +29,7 @@ const Login = (props) => {
         <h2 className="text-center mb-3">please login</h2>
         <h3 className="pt-1 form-text">
           Don't have account?
-          <span className="custom-link form-link">
+          <span className="auth-link ms-2">
             <Link to="/auth/signup">sign up</Link>
           </span>
         </h3>

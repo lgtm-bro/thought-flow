@@ -48,7 +48,6 @@ const MilestoneBar = ({
           </button>
         </Link>
       </div>
-      {/* <h5 className="py-2 ps-3 fs-5 d-block">So Far you have...</h5> */}
         <div id="milestone-bar-wrapper" className="px-2 rounded-bottom border-top border-1">
           {!!sessionStorage.getItem("user") && (
             <div id="milestone-list">

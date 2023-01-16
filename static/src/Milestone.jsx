@@ -26,7 +26,7 @@ const Milestone = ({ milestone, updateMilestone, deleteMilestone }) => {
   };
 
   return (
-    <div className="milestone card border-0 rounded-0 border-bottom my-2 px-4">
+    <div className="milestone card border-0 rounded-0 border-bottom my-1 px-4">
       <div className="card-body">
         <ConfirmDelete
           delete={deleteMilestone}
@@ -36,7 +36,7 @@ const Milestone = ({ milestone, updateMilestone, deleteMilestone }) => {
         />
         <div className="row justify-content-around">
           <h6
-            className="milestone_text card-title col-10 py-4"
+            className="milestone_text card-title col-10 py-3"
             ref={milestoneText}
           >
             {milestone.title}

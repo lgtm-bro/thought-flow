@@ -283,11 +283,7 @@ html,
 /******** USER MSG ********/
 
 #user-msg-wrapper {
-  min-height: 1em;
-  /* background-color: #fffdf98a; */
-  /* background-image: linear-gradient( #fffdf95f, #e8e4db6b, #f8e7c65e);
-  background-image: linear-gradient( #fffdf956, #fffdf956, #fffdf956);
-  backdrop-filter: blur(7px); */
+  min-height: 3em;
 }
 
 #msg-center {
@@ -317,45 +313,6 @@ html,
     background-position: 0 0;
   }
 }
-
-
-/* .test mark{
-  position: relative;
-}
-.test::before {
-  white-space: pre;
-}
-
-.test:after mark{
-  content: "";
-  display: inline-block;
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  z-index: -1; /* Place the pseudo element right under the content */
-  /* top: 0;
-  left: 0;
-  background-color: none;
-  background: linear-gradient(to top, #ff9191 50%, white 50%);
-  animation-name: highlight;
-  animation-duration: 0.75s;
-  animation-iteration-count: 1;
-  animation-direction: forward;
-}
-c 1.5s highlight 800ms 1 normal forwards;
-
-@keyframes highlight {
-  0% {
-    width: 0;
-    opacity: 0;
-  }
-
-  50% {
-    width: 100%;
-    opacity: 1;
-  }
-
-} */
 
 /******** FEELINGS ********/
 
@@ -402,9 +359,6 @@ c 1.5s highlight 800ms 1 normal forwards;
   margin-left: 2em;
 }
 
-
-
-
 /******** QUOTE ********/
 
 #quote-wrapper {
@@ -425,29 +379,11 @@ c 1.5s highlight 800ms 1 normal forwards;
 
 /* *******ENTRY******* */
 
-#entry-container {
-  height: 100%;
+#entry-get-flow, #entry-content {
   width: 80%;
   min-width: 355px;
   max-width: 600px;
   background-color: #fffdf9e9;
-}
-
-#entry-full-form {
-  /* height: 90%; */
-  min-height: 365;
-  overflow-y: hidden;
-  /* overflow-y: scroll;
-  -ms-overflow-style: none;
-  scrollbar-width: none; */
-}
-
-/* #entry-full-form::-webkit-scrollbar {
-  display: none;
-} */
-
-#entry-form {
-  min-height: 15vh;
 }
 
 .guided-label {
@@ -496,13 +432,9 @@ c 1.5s highlight 800ms 1 normal forwards;
   white-space: nowrap;
 }
 
-/* #hub-journal a {
-  color: #e88686;
-} */
-
 #hub-nav {
   width: 100%;
-  height: 3.3em;
+  height: 3.5em;
   margin-bottom: 15px;
   background-color: #fffdf9e9 !important;
 }
@@ -587,11 +519,14 @@ c 1.5s highlight 800ms 1 normal forwards;
 #login-wrapper,
 #signup-wrapper {
   margin: auto;
-  height: 430px;
   width: 50%;
   max-width: 400px;
   min-width: 300px;
   background-color: #fffdf9e9;
+}
+
+#login-wrapper {
+  height: 430px;
 }
 
 #login-btn-div {
@@ -599,10 +534,21 @@ c 1.5s highlight 800ms 1 normal forwards;
   top: 75px;
 }
 
+.auth-link a {
+  text-decoration: none;
+  color: #37a9c9 !important;
+  font-weight: 900;
+  font-size: 1.3em;
+}
+
+.auth-link a:hover {
+  color: #e88686 !important;
+}
+
 /******** SIGNUP ********/
 
 #signup-wrapper {
-  height: 525px !important;
+  height: 550px;
 }
 
 #pass-reqs {
@@ -670,10 +616,10 @@ c 1.5s highlight 800ms 1 normal forwards;
     #ffffff83 93%,
     #ffffff47 98%
   );
-  height: 70%;
-  width: 70%;
-  max-width: 850px;
-  margin-top: 65px;
+  height: 78%;
+  width: 80%;
+  max-width: 1050px;
+  margin-top: 35px;
   overflow-y: scroll;
   -ms-overflow-style: none;
   scrollbar-width: none;
@@ -816,6 +762,14 @@ c 1.5s highlight 800ms 1 normal forwards;
 
   /******** MEDIA QUERIES ********/
 
+  @media (min-width: 991px) {
+    #about-container {
+      width: 90%;
+      /* height: 70%;
+      margin-top: 25px; */
+    }
+  }
+
   @media (max-width: 715px) {
     #msg-center {
       width: 90%;
@@ -861,12 +815,35 @@ c 1.5s highlight 800ms 1 normal forwards;
    }
 }
 
-@media (max-width: 991px) {
-  #about-container {
-    width: 90%;
-    margin-top: 25px;
+  #app-container::-webkit-scrollbar {
+    display: none;
+  }
+
+@media (max-width: 578px) {
+  #entry-container {
+    /* height: 83% !important; */
+    min-width: 350px;
   }
 }
+
+@media (max-width: 680px) {
+  #signup-wrapper {
+    height: 560px;
+    width: 97%;
+  }
+}
+
+@media (max-height: 715px) {
+  #app-container {
+    height:100%;
+    width: 102%;
+    padding-right: 2%;
+    overflow-y: scroll;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
 
 /* .colors {
   color: #ffd07380;

@@ -50,23 +50,23 @@ const NavBar = ({ user, showAlert }) => {
           <AiOutlineMenu/>
       </button>
       <div className="collapse navbar-collapse" id="main-nav-menu" ref={dropDown}>
-        <ul className="navbar-nav ms-auto">
-          <li className="navbar-link nav-item ms-auto pe-5" onClick={checkUser}>
+        <ul className="navbar-nav ms-auto text-center pe-4">
+          <li className="navbar-link nav-item ms-auto pe-2" onClick={checkUser}>
             <span className="navbar-link nav-link">
             <Link to={profileLink}>profile</Link>
             </span>
           </li>
-          <li className="navbar-link nav-item ms-auto pe-5" onClick={closeNav}>
+          <li className="navbar-link nav-item ms-auto pe-2" onClick={closeNav}>
             <span className="nav-link">
               <Link to="/about">about</Link>
             </span>
           </li>
-          <li className="navbar-link nav-item ms-auto pe-5" onClick={closeNav}>
+          <li className="navbar-link nav-item ms-auto pe-2" onClick={closeNav}>
             <span className="nav-link">
               <Link to="/contact">contact us</Link>
             </span>
           </li>
-          <li className="navbar-link nav-item ms-auto pe-5" onClick={closeNav}>
+          <li className="navbar-link nav-item ms-auto pe-2" onClick={closeNav}>
             <span className="nav-link">
             <Link to="/auth/">{status}</Link>
             </span>

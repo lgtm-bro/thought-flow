@@ -26,6 +26,7 @@ const GuidedForm = (props) => {
   }, [prompt1, prompt2, prompt3]);
 
   const getEmbracing = () => {
+    // props.expandForm();
     setIsEmbracing(embracing.current.checked);
     // navigate("/entry/prompt2");
   };
