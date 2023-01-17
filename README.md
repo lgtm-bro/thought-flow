@@ -17,7 +17,7 @@ A few things you can do on thoughtflow:
 * Record breakthroughs and accomplishments
 * Read, edit, and delete past journal entries and milestones
 * See your past feelings entries displayed in a trends chart
-* Take control of your feelings and grow in your relationships 😏
+* Take control of your feelings and grow in your relationships
 
 ## Technologies
 * Python: 3.8
@@ -54,12 +54,3 @@ A few things you can do on thoughtflow:
 * GMAIL_PW - [gmail app password](https://support.google.com/accounts/answer/185833?hl=en) for ADMIN_EMAIL
 * MAIL_PORT - set to gmail SMTP port (465)
 * API_TOKEN - [favqs.com API key](https://favqs.com/api_keys)
-
-
-
-
-
-
-
-
-
