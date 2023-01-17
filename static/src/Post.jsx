@@ -46,9 +46,14 @@ const Post = (props) => {
   };
 
   const editPost = (e) => {
-    postText.current.contentEditable = true;
-    expandEntry();
-    done.current.classList.remove("hide");
+    if (postText.current.isContentEditable){
+      postText.current.contentEditable = false;
+      done.current.classList.add("hide");
+    } else {
+      postText.current.contentEditable = true;
+      expandEntry();
+      done.current.classList.remove("hide");
+    }
   };
 
   const saveEdit = () => {
@@ -57,12 +62,10 @@ const Post = (props) => {
     setEntry(postText.current.innerText);
     setEdited(true);
     postText.current.contentEditable = false;
-
     done.current.classList.add("hide");
   };
 
   const showConfirmDelete = () => {
-    // props.setCurrPost(id);
     document.getElementById(`post-delete-container-${props.post.id}`).classList.remove('hide');
   };
 
@@ -108,7 +111,7 @@ const Post = (props) => {
             className="hide btn form-btn"
             onClick={saveEdit}
           >
-            Done
+            done
           </button>
         </div>
       </div>

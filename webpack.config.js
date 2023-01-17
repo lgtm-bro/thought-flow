@@ -30,8 +30,5 @@ module.exports = {
         use: ['style-loader', 'css-loader'],
       }
     ]
-  },
-  // resolve: {
-  //   extensions: ['.js', '.json', '.wasm'], // Add your extensions here.
-  // }
+  }
 }

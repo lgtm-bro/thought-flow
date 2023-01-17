@@ -10,8 +10,13 @@ const Milestone = ({ milestone, updateMilestone, deleteMilestone }) => {
   const done = useRef();
 
   const editMilestone = (e) => {
-    milestoneText.current.contentEditable = true;
-    done.current.classList.remove("hide");
+    if (milestoneText.current.isContentEditable) {
+      milestoneText.current.contentEditable = false;
+      done.current.classList.add("hide");
+    } else {
+      milestoneText.current.contentEditable = true;
+      done.current.classList.remove("hide");
+    }
   };
 
   const saveEdit = (id) => {
@@ -60,7 +65,7 @@ const Milestone = ({ milestone, updateMilestone, deleteMilestone }) => {
         ref={done}
         onClick={() => saveEdit(milestone.id)}
       >
-        Done
+        done
       </button>
       </div>
     </div>

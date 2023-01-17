@@ -168,7 +168,7 @@ def create_milestone(user_id, title):
 def get_all_milestones(user):
     """Return all milestones for a user"""
     result = []
-    for m in Milestone.query.join(User).filter(User.name == user.lower().capitalize()).order_by(Milestone.id).all():
+    for m in Milestone.query.join(User).filter(User.name == user.lower().capitalize()).order_by(desc(Milestone.id)).all():
         curr = m.__dict__
         del curr['_sa_instance_state']
         result.append(curr)
@@ -190,18 +190,6 @@ def delete_milestone(id):
     """Deletes a milestone record from the db"""
 
     return Milestone.query.filter(Milestone.id == id).delete()
-
-
-
-
-# ********PROMPT********
-
-# def create_prompt(level, category, msg):
-#     """Create and return a guiding prompt."""
-
-#     prompt = Prompt(level=level, category=category, msg=msg)
-
-#     return prompt
 
 
 # ********USER_SESSION********

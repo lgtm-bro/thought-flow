@@ -71,7 +71,7 @@ const Home = ({ user, showAlert }) => {
     msg,
     hasQuestion = false,
     path = "/",
-    linkText = "Yes"
+    linkText = " yes"
   ) => {
     setUserMsg(msg);
     setUserMsgQuestion(hasQuestion);
@@ -85,19 +85,19 @@ const Home = ({ user, showAlert }) => {
     }
 
     if (sessionStorage.getItem('milestone') && !sessionStorage.getItem('trend')){
-      changeMsg("Check out your trends");
+      changeMsg("check out your trends");
     }
 
     if (sessionStorage.getItem('entry') && !sessionStorage.getItem('milestone')){
-      changeMsg("Do you have a milestone to record?");
+      changeMsg("do you have a milestone to record?", true, "/milestone");
     }
 
     if (feeling && !sessionStorage.getItem('entry')) {
-      changeMsg("Would you like to write about it? ", true, "/entry");
+      changeMsg("would you like to write about it? ", true, "/entry");
     }
 
     if (user && !feeling) {
-      changeMsg("How are you feeling?");
+      changeMsg("how are you feeling?");
     }
 
     if (!user) {

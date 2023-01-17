@@ -124,7 +124,7 @@ const Feelings = (props) => {
       ref={container}
     >
       <form action="#" id="feelings-form" className="form rounded mt-2 mt-md-1 pt-2 shadow-sm">
-        <h5>My big emotion is:</h5>
+        <h5 className="fst-italic">my big emotion is:</h5>
         <div className="feel-select">
         <select
           name="base"
@@ -142,7 +142,7 @@ const Feelings = (props) => {
         </select>
         </div>
         <div ref={second} id="second-container" className="hide">
-          <h5>because I am feeling:</h5>
+          <h5 className="fst-italic">because I am feeling:</h5>
           <span className="feel-select">
           <select
             name="second"
@@ -160,7 +160,7 @@ const Feelings = (props) => {
           </span>
         </div>
         <div ref={third} id="third-container" className="hide">
-          <h5>and a little...</h5>
+          <h5 className="fst-italic">and a little...</h5>
           <span className="feel-select">
           <select name="third" id="third" className="feelings-select form-select" onChange={(e) => getThirdChoice(e)}>
             <option value="default" className="feeling-option"></option>
@@ -175,7 +175,7 @@ const Feelings = (props) => {
         <div id="feeling-cancel" className="hide" ref={cancel}>
           <Link to="/">
             <button type="button" className="btn form-btn mx-auto my-4" onClick={resetForm}>
-              Cancel
+              cancel
             </button>
           </Link>
         </div>

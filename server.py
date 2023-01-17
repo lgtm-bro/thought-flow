@@ -141,7 +141,7 @@ def submit_contact_form():
 
     # REQ DATA
     mail_from = os.environ['ADMIN_EMAIL']
-    mail_to = os.environ['CONTACT_EMAIL']
+    # mail_to = os.environ['CONTACT_EMAIL']
     subject = request.json.get('subject')
     body = request.json.get('body')
     user_name = request.json.get('name')
