@@ -3,48 +3,6 @@
 from sqlalchemy import desc, func
 from model import User, BaseEmotion, SecondEmotion, ThirdEmotion, Post, Milestone, UserSession, connect_to_db, db
 
-# ********USER********
-
-def create_user(name, email, password):
-    """Create and return a new user."""
-
-    name = name.strip().lower().capitalize()
-    email= email.lower()
-    user = User(name=name, email=email, password=password)
-
-    return user
-
-def get_user(email):
-    """Finds a user by email and returns it"""
-
-    res = User.query.filter(User.email == email).first()
-    if res:
-        u = res.__dict__
-        del u['_sa_instance_state']
-        return u
-
-    return False
-
-def get_user_id(name):
-    user = User.query.filter(User.name == name).first()
-
-    if user:
-        return user.id
-
-    return None
-
-def update_user_info(name, email, newEmail, newPassword, currentPassword):
-    user = User.query.filter(User.email == email).update({
-            User.name: name,
-            User.email: newEmail or email,
-            User.password: newPassword or currentPassword
-        })
-
-    if user:
-        return user
-
-    return False
-
 
 # ********BASE_EMOTION********
 
@@ -121,6 +79,52 @@ def get_third_emotion(name):
     return {}
 
 
+# ********USER********
+
+def create_user(name, email, password):
+    """Create and return a new user."""
+
+    name = name.strip().lower().capitalize()
+    email = email.lower()
+    user = User(name=name, email=email, password=password)
+
+    return user
+
+
+def get_user(email):
+    """Finds a user by email and returns it"""
+
+    res = User.query.filter(User.email == email).first()
+    if res:
+        u = res.__dict__
+        del u['_sa_instance_state']
+        return u
+
+    return False
+
+
+def get_user_id(name):
+    user = User.query.filter(User.name == name).first()
+
+    if user:
+        return user.id
+
+    return None
+
+
+def update_user_info(name, email, newEmail, newPassword, currentPassword):
+    user = User.query.filter(User.email == email).update({
+        User.name: name,
+        User.email: newEmail or email,
+        User.password: newPassword or currentPassword
+    })
+
+    if user:
+        return user
+
+    return False
+
+
 # ********POST********
 
 def create_post(user_id, date, entry, guided):
@@ -146,7 +150,7 @@ def update_post(id, entry):
     # user = Post.query.join(User).filter()
     post = Post.query.filter(Post.id == id).update({
         Post.entry: entry
-        })
+    })
 
     return post
 
@@ -181,7 +185,7 @@ def update_milestone(id, text):
 
     milestone = Milestone.query.filter(Milestone.id == id).update({
         Milestone.title: text
-        })
+    })
 
     return milestone
 
@@ -198,21 +202,19 @@ def create_user_session(user_id, base_id, second_id, third_id, date):
     """Create and return a user session."""
 
     user_session = UserSession(user_id=user_id, base_emotion_id=base_id, second_emotion_id=second_id,
-    third_emotion_id=third_id, date=date)
+                               third_emotion_id=third_id, date=date)
 
     return user_session
 
 
 def get_user_sessions(user_id=1000):
 
-
     sessions = UserSession.query.join(BaseEmotion).with_entities(BaseEmotion.name, func.count(UserSession.user_id))\
-    .filter(UserSession.user_id == user_id).group_by(BaseEmotion.name).all()
+        .filter(UserSession.user_id == user_id).group_by(BaseEmotion.name).all()
 
     return sessions
 
     # select base_emotion_id, count(user_id) from user_sessions where user_id = 2 group by base_emotion_id
-
 
 
 if __name__ == '__main__':

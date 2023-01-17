@@ -5,24 +5,6 @@ from flask_sqlalchemy import SQLAlchemy
 
 db = SQLAlchemy()
 
-class User(db.Model):
-    """A user"""
-
-    __tablename__ = "users"
-
-    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    name = db.Column(db.String(40), nullable=False)
-    email = db.Column(db.String(50), nullable=False, unique=True)
-    password = db.Column(db.String(30), nullable=False)
-
-
-    posts = db.relationship("Post", back_populates="user")
-    milestones = db.relationship("Milestone", back_populates="user")
-    user_sessions = db.relationship("UserSession", back_populates="user")
-
-    def __repr__(self):
-        return f"<User id={self.id} name={self.name}>"
-
 
 class BaseEmotion(db.Model):
     """A general emotion identified by the user"""
@@ -33,9 +15,10 @@ class BaseEmotion(db.Model):
     name = db.Column(db.String(20), nullable=False)
     score = db.Column(db.Integer, nullable=False)
 
-    second_emotions = db.relationship("SecondEmotion", back_populates="base_emotion")
-    user_sessions = db.relationship("UserSession", back_populates="base_emotion")
-
+    second_emotions = db.relationship(
+        "SecondEmotion", back_populates="base_emotion")
+    user_sessions = db.relationship(
+        "UserSession", back_populates="base_emotion")
 
     def __repr__(self):
         return f"<BaseEmotion id={self.id} name={self.name}>"
@@ -53,10 +36,12 @@ class SecondEmotion(db.Model):
                                 db.ForeignKey('base_emotions.id'),
                                 nullable=False)
 
-    base_emotion = db.relationship("BaseEmotion", back_populates="second_emotions")
-    third_emotions = db.relationship("ThirdEmotion", back_populates="second_emotion")
-    user_sessions = db.relationship("UserSession", back_populates="second_emotion")
-
+    base_emotion = db.relationship(
+        "BaseEmotion", back_populates="second_emotions")
+    third_emotions = db.relationship(
+        "ThirdEmotion", back_populates="second_emotion")
+    user_sessions = db.relationship(
+        "UserSession", back_populates="second_emotion")
 
     def __repr__(self):
         return f"<SecondEmotion id={self.id} name={self.name}>"
@@ -74,12 +59,31 @@ class ThirdEmotion(db.Model):
                                   db.ForeignKey('second_emotions.id'),
                                   nullable=False)
 
-    second_emotion = db.relationship("SecondEmotion", back_populates="third_emotions")
-    user_sessions = db.relationship("UserSession", back_populates="third_emotion")
-
+    second_emotion = db.relationship(
+        "SecondEmotion", back_populates="third_emotions")
+    user_sessions = db.relationship(
+        "UserSession", back_populates="third_emotion")
 
     def __repr__(self):
         return f"<BaseEmotion id={self.id} name={self.name}>"
+
+
+class User(db.Model):
+    """A user"""
+
+    __tablename__ = "users"
+
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    name = db.Column(db.String(40), nullable=False)
+    email = db.Column(db.String(50), nullable=False, unique=True)
+    password = db.Column(db.String(30), nullable=False)
+
+    posts = db.relationship("Post", back_populates="user")
+    milestones = db.relationship("Milestone", back_populates="user")
+    user_sessions = db.relationship("UserSession", back_populates="user")
+
+    def __repr__(self):
+        return f"<User id={self.id} name={self.name}>"
 
 
 class Post(db.Model):
@@ -122,19 +126,22 @@ class UserSession(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     base_emotion_id = db.Column(db.Integer, db.ForeignKey('base_emotions.id'))
-    second_emotion_id = db.Column(db.Integer, db.ForeignKey('second_emotions.id'))
-    third_emotion_id = db.Column(db.Integer, db.ForeignKey('third_emotions.id'))
+    second_emotion_id = db.Column(
+        db.Integer, db.ForeignKey('second_emotions.id'))
+    third_emotion_id = db.Column(
+        db.Integer, db.ForeignKey('third_emotions.id'))
     date = db.Column(db.DateTime, nullable=False)
 
-
     user = db.relationship("User", back_populates="user_sessions")
-    base_emotion = db.relationship("BaseEmotion", back_populates="user_sessions")
-    second_emotion = db.relationship("SecondEmotion", back_populates="user_sessions")
-    third_emotion = db.relationship("ThirdEmotion", back_populates="user_sessions")
+    base_emotion = db.relationship(
+        "BaseEmotion", back_populates="user_sessions")
+    second_emotion = db.relationship(
+        "SecondEmotion", back_populates="user_sessions")
+    third_emotion = db.relationship(
+        "ThirdEmotion", back_populates="user_sessions")
 
     def __repr__(self):
         return f"<UserSession id={self.id} date={self.date}>"
-
 
 
 def connect_to_db(flask_app, db_uri="postgresql:///thoughts", echo=False):

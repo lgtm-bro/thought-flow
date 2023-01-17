@@ -12,7 +12,7 @@ This app allows a user to indentify their emotions and write about them. The use
 
 ## Features
 A few things you can do on thoughtflow:
-* Identify and narrow down big feelings
+* Identify and narrow down big feelings based on the feelings wheel
 * Write about a feeling with guided prompts or in free form
 * Record breakthroughs and accomplishments
 * Read, edit, and delete past journal entries and milestones
@@ -20,17 +20,17 @@ A few things you can do on thoughtflow:
 * Take control of your feelings and grow in your relationships
 
 ## Technologies
-* Python: 3.8
-* Flask: 2.0
-* Flask-SQLAlchemy: 2.5
-* PostgreSQL: 14.5
-* React: 18.2
-* Webpack: 5.74
-* Babel: 7.18
-* React-chartjs-2: 5.1
-* Luxon: 3.1
-* React-icons: 4.7
-* Bootstrap: 5.2
+    Python: 3.8
+    Flask: 2.0
+    Flask-SQLAlchemy: 2.5
+    PostgreSQL: 14.5
+    React: 18.2
+    Webpack: 5.74
+    Babel: 7.18
+    React-chartjs-2: 5.1
+    Luxon: 3.1
+    React-icons: 4.7
+    Bootstrap: 5.2
 
 ## Setup
 ### To run this project, install it locally:
