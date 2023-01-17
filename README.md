@@ -11,15 +11,13 @@ An introduction to thought journaling
 This app allows a user to indentify their emotions and write about them. The user's entries are stored and aggregated for their later reference.
 
 ## Features
-* The feelings wheel section helps the user to identify and narrow down big feelings
-* An inspirational quote replaces the feelings wheel section once the user identifies their feeling
-* The message board greets the user, displays their current feeling, and guides the user through the app
-* The user can change their current feeling by clicking on it in the message board
-* The journal entry form allows the user to write about a feeling with guided prompts or in free form
-* The milestone form allow the user to record breakthroughs and accomplishments along their journey
-* The info hub displays the user's past journal entries, milestones, and a trend chart with a history of the user's past feelings
-* The contact page allows the user to contact site admin and optionally recieve a copy of the message
-* The profile page allows the user to view and change their personal data
+A few things you can do on thoughtflow:
+* Identify and narrow down big feelings
+* Write about a feeling with guided prompts or in free form
+* Record breakthroughs and accomplishments
+* Read, edit, and delete past journal entries and milestones
+* See your past feelings entries displayed in a trends chart
+* Take control of your feelings and grow in your relationships 😏
 
 ## Technologies
 * Python: 3.8
@@ -35,7 +33,7 @@ This app allows a user to indentify their emotions and write about them. The use
 * Bootstrap: 5.2
 
 ## Setup
-#### To run this project, install it locally:
+### To run this project, install it locally:
      $ cd ../thought-flow
 
      In one terminal (Node):
@@ -47,14 +45,18 @@ This app allows a user to indentify their emotions and write about them. The use
         $ source env/bin/activate
         $ pip3 install -r requirements.txt
         $ source secrets.sh
-        $ python3 seed.py   *to prepopulate with seed data*
+        $ python3 seed.py (to prepopulate with seed data)
         $ python3 server.py
 
-     Note: You will need a secrets.sh file in the root directory with the following variables:
-         * ADMIN_EMAIL - email address to recieve messages
-         * GMAIL_PW - special password obtained from google auth for ADMIN_EMAIL
-         * MAIL_PORT - set to gmail SMTP port (465)
-         * API_TOKEN - favqs.com API key (https://favqs.com/api_keys)
+
+### Development Keys:
+* ADMIN_EMAIL - email address to recieve messages
+* GMAIL_PW - [gmail app password](https://support.google.com/accounts/answer/185833?hl=en) for ADMIN_EMAIL
+* MAIL_PORT - set to gmail SMTP port (465)
+* API_TOKEN - [favqs.com API key](https://favqs.com/api_keys)
+
+
+
 
 
 
