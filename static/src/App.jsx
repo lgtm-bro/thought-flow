@@ -26,7 +26,7 @@ const App = (props) => {
   const [user, setUser] = useState(sessionStorage.getItem("user"));
   const [email, setEmail] = useState(sessionStorage.getItem("email"));
   const [smallScreen, setSmallScreen] = useState();
-  const [hubTab, setHubTab] = useState(location.pathname.slice(5) || 'journal');
+  const [hubTab, setHubTab] = useState(location.pathname.slice(5) || "journal");
 
   const login = useRef();
   const profile = useRef();
@@ -39,15 +39,14 @@ const App = (props) => {
     },
   };
 
-
   // useEffect(() => {
   //   console.log('pathname', location.pathname);
   //   setHubTab(location.pathname.slice(5) || 'journal');
   // }, [location.pathname]);
 
   useEffect(() => {
-    console.log(hubTab)
-  }, [hubTab])
+    console.log(hubTab);
+  }, [hubTab]);
 
   useEffect(() => {
     setSmallScreen(document.documentElement.clientWidth < 768);
@@ -69,25 +68,25 @@ const App = (props) => {
       if (document.documentElement.clientWidth > 767) {
         setSmallScreen(false);
 
-        const app = document.getElementById('app-container');
+        const app = document.getElementById("app-container");
         app.scrollTo({
           top: 0,
           left: 0,
-          behavior: 'smooth',
+          behavior: "smooth",
         });
       }
     } else {
       if (document.documentElement.clientWidth < 768) {
-        setSmallScreen(true)
+        setSmallScreen(true);
       }
     }
-  }
+  };
 
-  window.addEventListener('resize', checkResize);
+  window.addEventListener("resize", checkResize);
 
   const updateTab = (tab) => {
     setHubTab(tab);
-  }
+  };
 
   /********** ALERT ***********/
   const showAlert = (msg, time = 2000, page) => {
@@ -110,7 +109,7 @@ const App = (props) => {
     axios
       .post("/contact", msg, config)
       .then((res) => {
-        showAlert('Your message has been sent', 2000, '/');
+        showAlert("Your message has been sent", 2000, "/");
         console.log(res.data);
       })
       .catch((err) => console.log(err.response.data.msg));
@@ -149,7 +148,7 @@ const App = (props) => {
         console.log("results", results.data);
         setUser(results.data.user);
         setEmail(results.data.email);
-        sessionStorage.setItem('userId', results.data.id)
+        sessionStorage.setItem("userId", results.data.id);
       })
       .catch((err) => {
         navigate("/auth");
@@ -229,18 +228,7 @@ const App = (props) => {
       </div>
       <div id="user-alerts" ref={alerts} className="hide shadow"></div>
       <Routes>
-        <Route path="/*" element={<Home user={user} showAlert={showAlert}/>} />
-        <Route
-          path="/profile"
-          element={
-            <Profile
-              user={user}
-              email={email}
-              updateProfile={updateProfile}
-              showAlert={showAlert}
-            />
-          }
-        />
+        <Route path="/*" element={<Home user={user} showAlert={showAlert} />} />
         <Route path="/about" element={<About />} />
         <Route
           path="/contact"
@@ -249,6 +237,17 @@ const App = (props) => {
               user={user}
               email={email}
               submitContactForm={submitContactForm}
+            />
+          }
+        />
+        <Route
+          path="/profile"
+          element={
+            <Profile
+              user={user}
+              email={email}
+              updateProfile={updateProfile}
+              showAlert={showAlert}
             />
           }
         />

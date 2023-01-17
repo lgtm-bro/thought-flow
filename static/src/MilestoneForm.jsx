@@ -26,7 +26,7 @@ const MilestoneForm = ({ submitMilestone, checkMsgStatus }) => {
 
   return (
     <div
-      id="milestone-container"
+      id="milestone-form-container"
       className="container justify-content-center mt-5 p-4 border shadow"
     >
       <form action="#" className="form-group" onSubmit={saveMilestone}>
@@ -46,9 +46,9 @@ const MilestoneForm = ({ submitMilestone, checkMsgStatus }) => {
           />
           <div className="form-btn-div mt-5">
             <button type="button" className="btn form-btn" onClick={cancelForm}>
-              Cancel
+              cancel
             </button>
-            <input type="submit" value="Save Milestone" className="btn form-btn"/>
+            <input type="submit" value="save" className="btn form-btn px-4"/>
           </div>
         </div>
       </form>

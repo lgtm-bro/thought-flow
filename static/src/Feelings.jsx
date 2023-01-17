@@ -124,7 +124,7 @@ const Feelings = (props) => {
       ref={container}
     >
       <form action="#" id="feelings-form" className="form rounded mt-2 mt-md-1 pt-2 shadow-sm">
-        <h5>my main vibe is:</h5>
+        <h5>My big emotion is:</h5>
         <div className="feel-select">
         <select
           name="base"

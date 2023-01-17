@@ -15,14 +15,6 @@ const Contact = (props) => {
 
   const navigate = useNavigate();
 
-  // useEffect(() => {
-  //   if (props.user) {
-  //     setUserName(props.user);
-  //     setUserEmail(props.email);
-  //   }
-  // }, [])
-
-
   const sendMsg = (e) => {
     e.preventDefault();
     const msg = {

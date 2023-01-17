@@ -92,8 +92,8 @@ const GuidedForm = (props) => {
             onChange={getEmbracing}
             onKeyDown={checkKey}
           />
-          <label htmlFor="embracing" className="form-check-label">
-            Embracing
+          <label htmlFor="embracing" className="form-check-label fw-bold">
+            embracing
           </label>
         </span>
         <span id="entry-resisting-radio" className="form-check-inline">
@@ -106,8 +106,8 @@ const GuidedForm = (props) => {
             ref={resisting}
             onChange={getEmbracing}
           />
-          <label htmlFor="resisting" className="form-check-label">
-            Resisting
+          <label htmlFor="resisting" className="form-check-label fw-bold">
+            resisting
           </label>
         </span>
       </div>

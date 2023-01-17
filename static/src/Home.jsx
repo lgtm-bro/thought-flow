@@ -11,7 +11,6 @@ import {
 
 import Greet from "./Greet.jsx";
 import Message from "./Message.jsx";
-// import ConfirmModal from "./ConfirmModal.jsx";
 import Feelings from "./Feelings.jsx";
 import Entry from "./Entry.jsx";
 import Hub from "./Hub.jsx";
@@ -119,8 +118,6 @@ const Home = ({ user, showAlert }) => {
   const sendFeeling = (feeling) => {
     setFeeling(feeling);
   };
-
-  /********** GREETING ***********/
 
   /********** POST ENTRY ***********/
   const showHome = (el) => {
@@ -231,7 +228,6 @@ const Home = ({ user, showAlert }) => {
   };
 
   /********** QUOTES ***********/
-
   const getQuote = async (keyword = "inspirational") => {
     return await axios
       .get(`/quote/${keyword}`)
@@ -327,10 +323,6 @@ const Home = ({ user, showAlert }) => {
       </div>
 
       <Routes>
-        {/* <Route
-          path="/confirm"
-          element={<ConfirmModal sendFeeling={setFeeling} />}
-        /> */}
         <Route
           path="/feelings"
           element={

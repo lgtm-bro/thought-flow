@@ -33,26 +33,24 @@ const EntryContent = ({
             <GuidedForm
               feeling={feeling}
               feelingScore={feelingScore}
-              reset={reset}
               getEntry={getEntry}
               submitEntry={submitEntry}
             />
           )}
           {isSolo && (
             <SoloForm
-              reset={reset}
               getEntry={getEntry}
               submitEntry={submitEntry}
             />
           )}
         </div>
-        <div id="entry-btn-div" className="form-btn-div">
+        <div id="entry-btn-div" className="form-btn-div mt-4">
           <Link to="/entry">
-            <button type="button" className="btn form-btn">
-              Back
+            <button type="button" className="btn form-btn" onClick={reset}>
+              back
             </button>
           </Link>
-          <input type="submit" value="Let it go" className="btn form-btn" />
+          <input type="submit" value="let it go" className="btn form-btn" />
         </div>
       </form>
     </div>

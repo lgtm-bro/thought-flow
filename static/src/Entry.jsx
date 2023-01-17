@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, Fragment } from "react";
-import { Routes, Route, Link, useNavigate, redirect } from "react-router-dom";
+import { Routes, Route, Link, useNavigate } from "react-router-dom";
 
 import EntryContent from "./EntryContent.jsx";
 
@@ -38,21 +38,26 @@ const Entry = ({
     }
   }, [isSolo, isGuided]);
 
-  const getGuided = () => {
+  const getGuided = (e) => {
+    if (e) console.log(e.target)
     if (guided_btn.current) setIsGuided(guided_btn.current.checked);
     if (solo_btn.current) setIsSolo(solo_btn.current.checked);
-    setShowForm();
+    setShowForm(null);
   };
 
   const reset = () => {
     setIsGuided(false);
     setIsSolo(false);
-    setSendToEntry(false);
-    checkMsgStatus();
-    setEntry("");
     if (solo_btn.current) solo_btn.current.checked = false;
     if (guided_btn.current) guided_btn.current.checked = false;
   };
+
+  const canceForm = () => {
+    reset();
+    setSendToEntry(false);
+    checkMsgStatus();
+    setEntry("");
+  }
 
   const goBack = () => {
     setIsGuided(false);
@@ -94,9 +99,10 @@ const Entry = ({
                     className="form-check-input"
                     ref={guided_btn}
                     onChange={getGuided}
+                    onClick={getGuided}
                   />
-                  <label htmlFor="guided" className="form-check-label">
-                    Guided
+                  <label htmlFor="guided" className="form-check-label fw-bold">
+                    guided
                   </label>
                 </span>
                 <span id="entry-radio-solo" className=".form-check-inline">
@@ -108,9 +114,10 @@ const Entry = ({
                     className="form-check-input"
                     ref={solo_btn}
                     onChange={getGuided}
+                    onClick={getGuided}
                   />
-                  <label htmlFor="solo" className="form-check-label">
-                    Solo
+                  <label htmlFor="solo" className="form-check-label fw-bold">
+                    solo
                   </label>
                 </span>
               </form>
@@ -119,9 +126,9 @@ const Entry = ({
                   <button
                     type="button"
                     className="btn form-btn px-5"
-                    onClick={reset}
+                    onClick={canceForm}
                   >
-                    Cancel
+                    cancel
                   </button>
                 </Link>
               </div>
@@ -138,6 +145,7 @@ const Entry = ({
               isGuided={isGuided}
               isSolo={isSolo}
               reset={reset}
+              canceForm={canceForm}
               getEntry={getEntry}
               submitEntry={submitEntry}
               submitPost={submitPost}

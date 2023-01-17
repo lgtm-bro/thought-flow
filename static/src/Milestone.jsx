@@ -53,16 +53,16 @@ const Milestone = ({ milestone, updateMilestone, deleteMilestone }) => {
             </span>
           </span>
         </div>
-      </div>
       <button
         value="Done"
         id="ms-done-btn"
-        className="done_btn hide btn form-btn"
+        className="hide btn form-btn"
         ref={done}
         onClick={() => saveEdit(milestone.id)}
       >
         Done
       </button>
+      </div>
     </div>
   );
 };

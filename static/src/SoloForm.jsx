@@ -1,6 +1,6 @@
 import React, { Fragment, useState, useEffect, useRef } from "react";
 
-const SoloForm = ({ getEntry, submitEntry }) => {
+const SoloForm = ({ getEntry, submitEntry, reset }) => {
   const form = useRef();
 
   const submitPost = (e, entry, isGuided) => {
@@ -13,14 +13,16 @@ const SoloForm = ({ getEntry, submitEntry }) => {
   };
 
   return (
-    <div className="container">
+    <div className="container-fluid px-5 me-5">
       <label htmlFor="solo_text" className="solo-label form-label mb-3">
-        Tell us about it...
+        tell us about it...
       </label>
       <textarea
+        rows="5"
+        cols="8"
         id="solo_text"
+        className="form-control"
         required
-        className="form-control p-5 mb-5"
         onChange={setEntry}
       ></textarea>
     </div>
