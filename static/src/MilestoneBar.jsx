@@ -34,37 +34,42 @@ const MilestoneBar = ({
 
   return (
     <div id="milestone-bar-container rounded border">
-      <div className="add-entry mt-4">
-        <Link to="/milestone">
-          <button
-            type="button"
-            className="custom-link hub-btn py-1 px-5"
-            onClick={updateFeelingMsg}
-          >
-            <span className=" hub-icon">
-              <FaPlus />
-            </span>
-            <span className="add-btn">milestone</span>
-          </button>
-        </Link>
-      </div>
-        <div id="milestone-bar-wrapper" className="px-2 rounded-bottom border-top border-1">
-          {!!sessionStorage.getItem("user") && (
-            <div id="milestone-list">
-              {milestones.map((m) => (
-                <Milestone
-                  key={m.id}
-                  milestone={m}
-                  updateMilestone={updateMilestone}
-                  deleteMilestone={deleteMilestone}
-                />
-              ))}
-            </div>
-          )}
+      {!!sessionStorage.getItem("userId") && (
+        <div className="add-entry mt-4 border-bottom border-1">
+          <Link to="/milestone">
+            <button
+              type="button"
+              className="custom-link hub-btn py-1 px-5"
+              onClick={updateFeelingMsg}
+            >
+              <span className=" hub-icon">
+                <FaPlus />
+              </span>
+              <span className="add-btn">milestone</span>
+            </button>
+          </Link>
         </div>
-      {!sessionStorage.getItem("userId") && (
-        <h5 className="text-center">please login to view milestones</h5>
       )}
+      <div
+        id="milestone-bar-wrapper"
+        className="px-2 rounded-bottom"
+      >
+        {!!sessionStorage.getItem("user") && (
+          <div id="milestone-list">
+            {milestones.map((m) => (
+              <Milestone
+                key={m.id}
+                milestone={m}
+                updateMilestone={updateMilestone}
+                deleteMilestone={deleteMilestone}
+              />
+            ))}
+          </div>
+        )}
+        {!sessionStorage.getItem("userId") && (
+          <h5 className="text-center py-2">please login to view milestones</h5>
+        )}
+      </div>
     </div>
   );
 };

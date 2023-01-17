@@ -149,6 +149,7 @@ const App = (props) => {
         console.log("results", results.data);
         setUser(results.data.user);
         setEmail(results.data.email);
+        sessionStorage.setItem('userId', results.data.id)
       })
       .catch((err) => {
         navigate("/auth");

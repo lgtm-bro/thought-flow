@@ -47,31 +47,27 @@ const Hub = (props) => {
 
     if (e) {
       parent = e.target.parentNode;
-      child = e.target;
     } else {
       parent = el;
-      child = parent.firstChild;
+
     }
 
     parent.classList.add("active", "hub-active");
-    // parent.style.background = activeBg;
-    // child.style.color = activeColor;
 
     hubTabs.forEach((t) => {
       if (parent !== t.current) {
         t.current.classList.remove("active", "hub-active");
-        // t.current.style.background = defaultBg;
-        // t.current.children[0].style.color = defaultColor;
       }
     });
 
     props.checkMsgStatus();
 
-    /****** logic to account for outside clicks *******/
-      // e.target.text ?
-    //   (parent = e.target.parentNode, child = e.target):
-    //   (parent= e.target, child = e.target.firstChild);
   };
+
+  const recordTrendClick = (e) => {
+    if (sessionStorage.getItem("user")) sessionStorage.setItem("trend", true)
+    changeActiveTab(e);
+  }
 
   const sendFeelingMsg = (msg, hasQ, path = "/") => {
     props.changeMsg(msg, hasQ, path);
@@ -101,8 +97,8 @@ const Hub = (props) => {
           id="hub-trends"
           className="hub-link nav-link"
           ref={trends}
-          onClick={changeActiveTab}
-          // onClick={() => props.checkMsgStatus("", false, "/hub-milestones")}
+          onClick={recordTrendClick}
+          // onClick={changeActiveTab}
         >
           <Link to="/hub-trends">trends</Link>
         </span>

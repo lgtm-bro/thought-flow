@@ -70,7 +70,7 @@ def signup_user():
 
     print(stars, new_user.name)
 
-    return jsonify({"success": True, "user": new_user.name, "email": new_user.email, "msg": "User successfully created"}), 201
+    return jsonify({"success": True, "user": new_user.name, "email": new_user.email, "id": new_user.id, "msg": "User successfully created"}), 201
 
 
 @app.route('/update_user/<email>', methods=['PUT'])

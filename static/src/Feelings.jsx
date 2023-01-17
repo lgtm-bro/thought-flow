@@ -63,6 +63,10 @@ const Feelings = (props) => {
         "baseEmotionId",
         e.target.options[e.target.selectedIndex].id
       );
+      sessionStorage.setItem(
+        "baseEmotion",
+        e.target.options[e.target.selectedIndex].value
+      );
       setBaseChoice(e.target.value);
     }
     second.current.classList.remove("hide");
@@ -121,34 +125,34 @@ const Feelings = (props) => {
     >
       <form action="#" id="feelings-form" className="form rounded mt-2 mt-md-1 pt-2 shadow-sm">
         <h5>my main vibe is:</h5>
-        <span className="feel-select">
+        <div className="feel-select">
         <select
           name="base"
           id="base"
-          className="form-select"
+          className="feelings-select form-select"
           ref={base}
           onChange={(e) => getBaseChoice(e)}
         >
-          <option value="default"></option>
+          <option id="base-default" value="default" className="feeling-option"></option>
           {baseEmotions.map((e) => (
-            <option key={e.id} value={e.name} id={e.id} className={`${e.name}`}>
+            <option key={e.id} value={e.name} id={e.id} className={`feeling-option ${e.name}`}>
               {e.name}
             </option>
           ))}
         </select>
-        </span>
+        </div>
         <div ref={second} id="second-container" className="hide">
           <h5>because I am feeling:</h5>
           <span className="feel-select">
           <select
             name="second"
             id="second"
-            className="form-select"
+            className="feelings-select form-select"
             onChange={(e) => getSecondChoice(e)}
           >
-            <option value="default"></option>
+            <option value="default" className="feeling-option"></option>
             {secondEmotions.map((e) => (
-              <option key={e.id} value={e.name} id={e.id}>
+              <option key={e.id} value={e.name} id={e.id} className="feeling-option">
                 {e.name}
               </option>
             ))}
@@ -158,10 +162,10 @@ const Feelings = (props) => {
         <div ref={third} id="third-container" className="hide">
           <h5>and a little...</h5>
           <span className="feel-select">
-          <select name="third" id="third" className="form-select" onChange={(e) => getThirdChoice(e)}>
-            <option value="default"></option>
+          <select name="third" id="third" className="feelings-select form-select" onChange={(e) => getThirdChoice(e)}>
+            <option value="default" className="feeling-option"></option>
             {thirdEmotions.map((e) => (
-              <option key={e.id} value={e.name} id={e.id}>
+              <option key={e.id} value={e.name} id={e.id} className="feeling-option">
                 {e.name}
               </option>
             ))}

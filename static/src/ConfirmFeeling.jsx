@@ -19,6 +19,7 @@ const ConfirmFeeling = ({ sendFeeling, checkMsgStatus }) => {
 
     e.target.checked = false;
     msg.current.classList.add("hide");
+    document.getElementById("greet-info").classList.remove("hide");
     navigate("/");
   };
 

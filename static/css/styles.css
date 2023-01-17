@@ -242,7 +242,7 @@ html,
   text-decoration: none;
   color: #e88686;
   font-weight: bolder;
-  font-size: 1.1em;
+  font-size: 1.15em;
   margin-left: 1px;
 }
 
@@ -251,6 +251,7 @@ html,
 }
 
 #greeting-feeling {
+  font-size: .90em;
   display: inline-block;
   min-width: 340px;
 }
@@ -258,8 +259,8 @@ html,
 #greet-info {
   visibility: hidden;
   position: absolute;
-  top: -8px;
-  left: -35px;
+  top: -7px;
+  left: -15px;
   z-index: 10;
   height: 20px;
   width: 110px;
@@ -275,9 +276,8 @@ html,
   visibility: visible;
 }
 
-#message-link a:hover, #greet-link a:hover {
-  color: #37a9c9;
-  transform: translate(0, -10px);
+#message-link a:hover, #emotion-link:hover {
+  color: #37a9c9 !important;
 }
 
 /******** USER MSG ********/
@@ -345,10 +345,6 @@ html,
   flex-basis: 50%;
 }
 
-#feelings-form .feel-select select option {
-  background-color: red;
-}
-
 #feeling-cancel {
   display: flex;
   justify-content: center;
@@ -357,6 +353,13 @@ html,
 #feelings-form h5 {
   margin-top: .8em;
   margin-left: 2em;
+}
+
+.feelings-select {
+  color: #606060 !important;
+  background-color: #caf5ff38 !important;
+  font-size: 1.1em!important;
+  font-weight: 700 !important;
 }
 
 /******** QUOTE ********/
@@ -418,6 +421,7 @@ html,
   min-width: 350px;
   max-width: 560px;
   height: 100%;
+  min-height: 564px;
   padding: 0;
   margin-top: 2em;
   background-color: #fffdf9e9;
@@ -471,18 +475,6 @@ html,
   display: none;
 }
 
-.milestone {
-  background-color: #fffdf9e9!important;
-}
-
-#milestone-container {
-  width: 60%;
-  min-width: 310;
-  max-width: 450px;
-  /* height: 350px; */
-  background-color: #fffdf9e9;
-}
-
 #milestone-bar-wrapper {
   height: 420px;
   background-color: #fffdf9e9;
@@ -493,6 +485,18 @@ html,
 
 #milestone-bar-wrapper::-webkit-scrollbar {
   display: none;
+}
+
+.milestone {
+  background-color: #fffdf9e9!important;
+}
+
+#milestone-container {
+  width: 60%;
+  min-width: 310;
+  max-width: 450px;
+  /* height: 350px; */
+  background-color: #fffdf9e9;
 }
 
 #trends-wrapper {
@@ -689,7 +693,7 @@ html,
 
 #confirm-wrapper {
   position: absolute;
-  top: -60%;
+  top: -70%;
   left: 45%;
   height: 75px;
   width: 200px;
@@ -719,36 +723,43 @@ html,
 
 /******** COLORS ********/
 
+.emotion {
+  font-size: 1.2em !important;
+  font-weight: 900;
+  /* text-shadow: 0.5px 0.5px 0 #838686 !important; */
+  text-shadow: 1px 1px 5px #ffffff !important;
+}
+
 .happy {
-  color: #ffd07380;
+  color: #ec8900 !important;
 }
 
 .anticipation {
-  color: #ffb6bd7e;
+  color: #f86877 !important;
 }
 
 .surprised {
-  color: #fffa947e;
+  color: #ebb800 !important;
 }
 
 .bad {
-  color: #44a5ff78;
+  color: #0486ff !important;
 }
 
 .fearful {
-  color: #cda7e781;
+  color: #a765d3 !important;
 }
 
 .angry {
-  color: #ed6b5a7e;
+  color: #ea604e !important;
 }
 
 .disgust {
-  color: #96e7b680;
+  color: #00cb51 !important;
 }
 
 .sad{
-   color: #85d5e97b;
+   color: #00b6e3 !important;
 }
  /* happy: "#ffd07380",
   anticipation: "#ffb6bd7e",

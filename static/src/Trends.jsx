@@ -82,7 +82,7 @@ const Trends = ({ getUserSessions, emotionColors }) => {
   };
 
   return (
-    <div id="trends-wrapper" className="p-4 py-2 rounded">
+    <div id="trends-wrapper" className="p-4 pt-2 rounded">
       {!!sessionStorage.getItem("userId") && (
         <PolarArea data={data} options={options} />
       )}

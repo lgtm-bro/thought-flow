@@ -12,7 +12,7 @@ const Journal = ({
   deletePost,
   updateEntry,
   setSendToEntry,
-  setCurrPost
+  setCurrPost,
 }) => {
   const [msg, setMsg] = useState(null);
 
@@ -36,24 +36,29 @@ const Journal = ({
   };
 
   return (
-    <div id="journal-container rounded border">
-      <div className="add-entry mt-4">
-       <Link to={entryLink}>
-        <button
-          type="button"
-          className="custom-link hub-btn py-1 px-5"
-          onClick={sendFeelingMsg}
-        >
-          <span className=" hub-icon">
-              <FaPlus />
-          </span>
-          <span className="add-btn">entry</span>
-        </button>
-        </Link>
-      </div>
-      <div id="journal-wrapper" className="px-3 rounded">
+    <div id="journal-container" className="px-2 rounded-bottom" >
+      {!!sessionStorage.getItem("userId") && (
+        <div className="add-entry mt-4 border-bottom border-1">
+          <Link to={entryLink}>
+            <button
+              type="button"
+              className="custom-link hub-btn py-1 px-5"
+              onClick={sendFeelingMsg}
+            >
+              <span className=" hub-icon">
+                <FaPlus />
+              </span>
+              <span className="add-btn">entry</span>
+            </button>
+          </Link>
+        </div>
+      )}
+      <div
+        id="journal-wrapper"
+        className="px-3 rounded"
+      >
         {!!sessionStorage.getItem("userId") && (
-          <div>
+          <div id="entries-list">
             {posts.map((p) => (
               <Post
                 post={p}
@@ -61,13 +66,12 @@ const Journal = ({
                 id={p.id}
                 deletePost={deletePost}
                 updateEntry={updateEntry}
-                setCurrPost={setCurrPost}
               />
             ))}
           </div>
         )}
         {!sessionStorage.getItem("userId") && (
-          <h5 className="text-center">please login to view your journal</h5>
+          <h5 className="text-center py-2">please login to view your journal</h5>
         )}
       </div>
     </div>

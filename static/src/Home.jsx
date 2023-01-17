@@ -81,12 +81,28 @@ const Home = ({ user, showAlert }) => {
   };
 
   const checkMsgStatus = () => {
-    if (feeling) {
-      changeMsg("Would like to write about it? ", true, "/entry");
-    } else if (user) {
+    if (user && sessionStorage.getItem('trend')) {
+      changeMsg(" ");
+    }
+
+    if (sessionStorage.getItem('milestone') && !sessionStorage.getItem('trend')){
+      changeMsg("Check out your trends");
+    }
+
+    if (sessionStorage.getItem('entry') && !sessionStorage.getItem('milestone')){
+      changeMsg("Do you have a milestone to record?");
+    }
+
+    if (feeling && !sessionStorage.getItem('entry')) {
+      changeMsg("Would you like to write about it? ", true, "/entry");
+    }
+
+    if (user && !feeling) {
       changeMsg("How are you feeling?");
-    } else {
-      changeMsg("create an account or login to get started");
+    }
+
+    if (!user) {
+      changeMsg("Create an account or login to get started");
     }
   };
 
@@ -136,6 +152,7 @@ const Home = ({ user, showAlert }) => {
     axios
       .post("/posts", post, config)
       .then((results) => {
+        sessionStorage.setItem("entry", true);
         console.log(results.data);
         getPosts(userId);
         setSendToEntry(false);
@@ -185,8 +202,8 @@ const Home = ({ user, showAlert }) => {
       .post(`/milestones/${user}`, { title }, config)
       .then((res) => {
         console.log(res.data);
+        sessionStorage.setItem("milestone", true);
         getMilestones(user);
-        // updateTab('milestones');
         navigate("/hub-milestones");
 
       })
@@ -250,7 +267,7 @@ const Home = ({ user, showAlert }) => {
           className="col-12 col-md-5 col-lg-4 mt-0 mt-md-5 ms-md-3 ms-lg-4"
         >
           {(location.pathname.includes("hub") || location.pathname === "/") &&
-            <div id="msg-center" className="p-3 ps-2 mt-5 mt-md-3 mx-auto shadow-sm rounded">
+            <div id="msg-center" className="p-3 ps-1 ps-lg-2 mt-5 mt-md-3 mx-auto shadow-sm rounded">
             <div id="greet-wrapper" className="fs-5 my-1 pe-md-5 pe-lg-1">
               <Greet
                 feeling={feeling}
@@ -296,7 +313,6 @@ const Home = ({ user, showAlert }) => {
               posts={posts}
               milestones={milestones}
               emotionColors={emotionColors}
-              // hubTab={hubTab}
               checkMsgStatus={checkMsgStatus}
               changeMsg={changeMsg}
               deletePost={deletePost}

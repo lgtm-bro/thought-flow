@@ -1,13 +1,16 @@
-import React, { Fragment } from "react";
+import React, { useRef, Fragment } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 import ConfirmFeeling from "./ConfirmFeeling.jsx";
 
 const Greet = ({ user, feeling, sendFeeling, checkMsgStatus }) => {
+  const info = useRef();
+
   const navigate = useNavigate();
 
   const showConfirm = () => {
     document.getElementById("confirm-wrapper").classList.remove("hide");
+    info.current.classList.add('hide');
   };
 
   return (
@@ -19,16 +22,17 @@ const Greet = ({ user, feeling, sendFeeling, checkMsgStatus }) => {
             <span>Today's vibe is </span>
             <span
               id="greet-link"
-              className="greet-span py-3 pe-3"
+              className={`greet-span py-3 pe-3 ${sessionStorage.getItem("baseEmotion")}`}
               onClick={showConfirm}
             >
-              <a href="#" className="text-capitalize">
+              <a href="#" id="emotion-link" className={`emotion ${sessionStorage.getItem("baseEmotion")}`}>
                 {feeling}
                 {/* {feeling[0].toUpperCase() + feeling.substring(1)} */}
               </a>
               <span
                 id="greet-info"
                 className="border border-secondary form-text text-center pb-2"
+                ref={info}
               >
                 click to change
               </span>
