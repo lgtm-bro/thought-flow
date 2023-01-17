@@ -48,18 +48,18 @@ const Profile = (props) => {
     e.preventDefault();
 
     if (!validateEmail(email)) {
-      return props.showAlert("Please enter a valid email");
+      return props.showAlert("please enter a valid email");
     }
 
     if (newPw) {
       if (!pwVerified) {
         return props.showAlert(
-          "Please make sure that your new password meets all requirements"
+          "please make sure that your new password meets all requirements"
         );
       }
 
       if (!checkPasswords()) {
-        return props.showAlert("The new passwords don't match");
+        return props.showAlert("the new passwords don't match");
       }
 
       props.updateProfile(name, email, password.current.value, newPw);
@@ -69,7 +69,6 @@ const Profile = (props) => {
 
     setNewPw("");
     form.current.reset();
-    navigate("/");
   };
 
   return (

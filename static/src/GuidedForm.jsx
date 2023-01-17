@@ -26,9 +26,7 @@ const GuidedForm = (props) => {
   }, [prompt1, prompt2, prompt3]);
 
   const getEmbracing = () => {
-    // props.expandForm();
     setIsEmbracing(embracing.current.checked);
-    // navigate("/entry/prompt2");
   };
 
   const getPrompt = (e, prompt, func) => {
@@ -133,88 +131,6 @@ const GuidedForm = (props) => {
           ></textarea>
         </div>
       )}
-
-      {/* <Routes>
-        <Route
-          path="/"
-          element={
-            <div id="prompt1" className="container">
-              <label htmlFor="prompt1" className="guided-label form-label">
-                What experience or event {prompt1Key} you to feel{" "}
-                {props.feeling}?
-              </label>
-              <textarea
-                id="prompt1"
-                className="form-control"
-                required
-                onChange={(e) => getPrompt(e, prompt1, setPrompt1)}
-              ></textarea>
-              <label
-                htmlFor="posture"
-                className="guided-label form-label d-block"
-              >
-                Are you embracing or resisting these feelings?
-              </label>
-              <div className="my-3">
-                <span id="entry-embracing-radio" className="form-check-inline">
-                  <input
-                    type="radio"
-                    name="posture"
-                    value="embracing"
-                    id="embracing"
-                    className="form-check-input"
-                    ref={embracing}
-                    onChange={getEmbracing}
-                    onKeyDown={checkKey}
-                  />
-                  <label htmlFor="embracing" className="form-check-label">
-                    Embracing
-                  </label>
-                </span>
-                <span id="entry-resisting-radio" className="form-check-inline">
-                  <input
-                    type="radio"
-                    name="posture"
-                    value="resisting"
-                    id="resisting"
-                    className="form-check-input"
-                    ref={resisting}
-                    onChange={getEmbracing}
-                  />
-                  <label htmlFor="resisting" className="form-check-label">
-                    Resisting
-                  </label>
-                </span>
-              </div>
-            </div>
-          }
-        />
-        <Route
-          path="/prompt2"
-          element={
-            <div id="guided-form-part2">
-              <label htmlFor="prompt2" className="guided-label form-label">
-                {postureQuestion}
-              </label>
-              <textarea
-                id="prompt2"
-                className="form-control"
-                required
-                onChange={(e) => getPrompt(e, prompt2, setPrompt2)}
-              ></textarea>
-              <label htmlFor="prompt3" className="guided-label form-label">
-                What other insights or emotions would you like to share about
-                this experience?
-              </label>
-              <textarea
-                id="prompt3"
-                className="form-control"
-                onChange={(e) => getPrompt(e, prompt3, setPrompt3)}
-              ></textarea>
-            </div>
-          }
-        />
-      </Routes> */}
     </div>
   );
 };

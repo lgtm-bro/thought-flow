@@ -101,7 +101,7 @@ const Home = ({ user, showAlert }) => {
     }
 
     if (!user) {
-      changeMsg("Create an account or login to get started");
+      changeMsg("create an account or login to get started");
     }
   };
 
@@ -330,7 +330,7 @@ const Home = ({ user, showAlert }) => {
               user={user}
               colors={emotionColors}
               feeling={getFeeling}
-              showAlert={showAlert}
+              // showAlert={showAlert}
               showHome={showHome}
               sendToEntry={sendToEntry}
             />

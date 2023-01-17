@@ -38,7 +38,7 @@ const Contact = (props) => {
           name="name"
           required
           defaultValue={userName}
-          placeholder="Name"
+          placeholder="name"
           ref={name}
           className="form-control form-input"
         />
@@ -47,7 +47,7 @@ const Contact = (props) => {
           name="email"
           required
           defaultValue={userEmail}
-          placeholder="Email"
+          placeholder="email"
           ref={email}
           className="form-control form-input my-3"
         />
@@ -55,7 +55,7 @@ const Contact = (props) => {
           type="text"
           name="subject"
           required
-          placeholder="Subject"
+          placeholder="subject"
           ref={subject}
           className="form-control form-input"
         />
@@ -65,17 +65,17 @@ const Contact = (props) => {
           cols="40"
           rows="4"
           required
-          placeholder="Message"
+          placeholder="message"
           ref={body}
           className="form-control my-3"
         ></textarea>
         <div id ="contact-check-group" className="form-check form-input">
         <input type="checkbox" name="send-copy" id="contact-check" className="form-check-input" ref={copy}/>
-        <label htmlFor="send-copy" className="form-label">Send me a copy</label>
+        <label htmlFor="send-copy" className="form-label">send me a copy</label>
         </div>
         <div className="form-btn-div">
           <button type="button" id="contact-cancel" className="form-btn btn border" onClick={() => navigate("/")}>
-              Cancel
+              cancel
             </button>
           <input type="submit" value="send" className="form-btn btn border"/>
         </div>

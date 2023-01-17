@@ -179,7 +179,7 @@ def submit_contact_form():
         server.quit()
 
     # HTTP RESPONSE
-    return jsonify({"success": True, "msg": "Your email has been sent "}), 201
+    return jsonify({"success": True, "msg": "your email has been sent "}), 201
 
 
     #TO TEST IN TERMINAL

@@ -39,14 +39,6 @@ const App = (props) => {
     },
   };
 
-  // useEffect(() => {
-  //   console.log('pathname', location.pathname);
-  //   setHubTab(location.pathname.slice(5) || 'journal');
-  // }, [location.pathname]);
-
-  useEffect(() => {
-    console.log(hubTab);
-  }, [hubTab]);
 
   useEffect(() => {
     setSmallScreen(document.documentElement.clientWidth < 768);
@@ -89,7 +81,7 @@ const App = (props) => {
   };
 
   /********** ALERT ***********/
-  const showAlert = (msg, time = 2000, page) => {
+  const showAlert = (msg, page, time = 2000) => {
     if (alerts.current) {
       alerts.current.classList.remove("hide");
       alerts.current.textContent = msg;
@@ -101,7 +93,7 @@ const App = (props) => {
         alerts.current.classList.add("hide");
         if (page) navigate(page);
       }
-    }, 2000);
+    }, time);
   };
 
   /********** CONTACT ***********/
@@ -109,7 +101,7 @@ const App = (props) => {
     axios
       .post("/contact", msg, config)
       .then((res) => {
-        showAlert("Your message has been sent", 2000, "/");
+        showAlert("Your message has been sent", "/");
         console.log(res.data);
       })
       .catch((err) => console.log(err.response.data.msg));
@@ -125,7 +117,7 @@ const App = (props) => {
         setEmail(email);
         navigate("/");
       })
-      .catch((err) => showAlert(err.response.data.msg, 6000));
+      .catch((err) => showAlert(err.response.data.msg, null, 5000));
   };
 
   const updateUser = (user) => {
@@ -149,10 +141,11 @@ const App = (props) => {
         setUser(results.data.user);
         setEmail(results.data.email);
         sessionStorage.setItem("userId", results.data.id);
+        navigate("/");
       })
       .catch((err) => {
-        navigate("/auth");
-        showAlert(err.response.data.msg);
+        // navigate("/auth");
+        return showAlert(err.response.data.msg, "/auth", 3000);
       });
   };
 
@@ -195,6 +188,7 @@ const App = (props) => {
         if (profEmail) {
           setEmail(profEmail);
         }
+        navigate("/");
       })
       .catch((err) => showAlert(err.response.data.msg));
   };

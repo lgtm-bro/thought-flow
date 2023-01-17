@@ -24,7 +24,7 @@ const NavBar = ({ user, showAlert }) => {
 
   const checkUser = () => {
     if (!user) {
-      showAlert("You must Login to view Profile");
+      showAlert("you must login to view your profile");
     }
 
     closeNav();

@@ -48,7 +48,7 @@ const UserAuth = ({ user, getUser, showAlert, clear, signupUser }) => {
           element={
             <Login
               getUser={getUser}
-              showAlert={showAlert}
+              // showAlert={showAlert}
               cancelForm={cancelForm}
             />
           }

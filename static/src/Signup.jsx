@@ -61,7 +61,6 @@ const Signup = ({ signupUser, showAlert }) => {
 
     signupUser(name.current.value, email.current.value, password.current.value);
     form.current.reset();
-    navigate("/");
   };
 
   return (

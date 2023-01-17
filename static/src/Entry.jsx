@@ -39,7 +39,6 @@ const Entry = ({
   }, [isSolo, isGuided]);
 
   const getGuided = (e) => {
-    if (e) console.log(e.target)
     if (guided_btn.current) setIsGuided(guided_btn.current.checked);
     if (solo_btn.current) setIsSolo(solo_btn.current.checked);
     setShowForm(null);
@@ -57,7 +56,7 @@ const Entry = ({
     setSendToEntry(false);
     checkMsgStatus();
     setEntry("");
-  }
+  };
 
   const goBack = () => {
     setIsGuided(false);
@@ -135,7 +134,6 @@ const Entry = ({
             </div>
           }
         />
-
         <Route
           path="/form/*"
           element={
@@ -158,23 +156,3 @@ const Entry = ({
 };
 
 export default Entry;
-
-// const expandForm = () => {
-//   if (window.matchMedia("(max-width: 578px)").matches) {
-//     console.log("small screen");
-//     container.current.style.height = "87%";
-//   } else {
-//     container.current.style.height = "75%";
-//   }
-
-//   window
-//     .matchMedia("(max-width: 578px)")
-//     .addEventListener("change", (event) => {
-//       if (event.matches) {
-//         container.current.style.height = "87%";
-//       } else {
-//         container.current.style.height = "75%";
-//       }
-//     });
-// };
-
