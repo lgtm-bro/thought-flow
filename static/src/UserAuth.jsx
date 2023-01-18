@@ -1,6 +1,5 @@
-import React, { useState, useRef, Fragment } from "react";
-import { Route, Link, Routes, useNavigate } from "react-router-dom";
-import { BiShow } from "react-icons/bi";
+import React, { useState, Fragment } from "react";
+import { Route, Routes, useNavigate } from "react-router-dom";
 
 import Signup from "./Signup.jsx";
 import Signout from "./Signout.jsx";
@@ -20,7 +19,6 @@ const UserAuth = ({ user, getUser, showAlert, clear, signupUser }) => {
     navigate("/auth/signup");
   };
 
-
   if (user) {
     return (
       <Fragment>
@@ -28,12 +26,7 @@ const UserAuth = ({ user, getUser, showAlert, clear, signupUser }) => {
         <Routes>
           <Route
             path="signout"
-            element={
-              <Signout
-                cancelForm={cancelForm}
-                clear={clear}
-              />
-            }
+            element={<Signout cancelForm={cancelForm} clear={clear} />}
           />
         </Routes>
       </Fragment>

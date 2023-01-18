@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, Fragment } from "react";
+import React, { useState, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { BiShow } from "react-icons/bi";
 import Password from "./Password.jsx";
@@ -135,7 +135,12 @@ const Signup = ({ signupUser, showAlert }) => {
           <button type="button" className="btn form-btn" onClick={cancelSignup}>
             Cancel
           </button>
-          <input type="submit" value="Sign Up" id="signup-btn" className="btn form-btn"/>
+          <input
+            type="submit"
+            value="Sign Up"
+            id="signup-btn"
+            className="btn form-btn"
+          />
         </div>
       </form>
     </div>

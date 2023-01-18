@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useRef, Fragment } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import React, { useRef } from "react";
+import { useNavigate } from "react-router-dom";
 
 const ConfirmFeeling = ({ sendFeeling, checkMsgStatus }) => {
   const msg = useRef();
@@ -13,6 +13,7 @@ const ConfirmFeeling = ({ sendFeeling, checkMsgStatus }) => {
       sessionStorage.removeItem("secondEmotionId");
       sessionStorage.removeItem("thirdEmotionId");
       sessionStorage.removeItem("feeling");
+      sessionStorage.removeItem("entry");
       sendFeeling(null);
       checkMsgStatus();
     }
@@ -29,7 +30,7 @@ const ConfirmFeeling = ({ sendFeeling, checkMsgStatus }) => {
       className="hide container fs-6 p-2 text-center shadow rounded"
       ref={msg}
     >
-      <h6 className="">Do you want to change your emotion?</h6>
+      <h6 className="">do you want to change your emotion?</h6>
       <form action="#" className="form-check-inline">
         <input
           type="radio"
@@ -39,7 +40,7 @@ const ConfirmFeeling = ({ sendFeeling, checkMsgStatus }) => {
           onChange={getConfirm}
         />
         <label htmlFor="confirm" className="form-check-label">
-          Yes
+          yes
         </label>
         <input
           type="radio"
@@ -49,7 +50,7 @@ const ConfirmFeeling = ({ sendFeeling, checkMsgStatus }) => {
           onChange={getConfirm}
         />
         <label htmlFor="confirm" className="form-check-label">
-          No
+          no
         </label>
       </form>
     </div>

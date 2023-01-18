@@ -85,7 +85,7 @@ def create_user(name, email, password):
     """Create and return a new user."""
 
     name = name.strip().lower().capitalize()
-    email = email.lower()
+    email = email.strip().lower()
     user = User(name=name, email=email, password=password)
 
     return user
@@ -94,7 +94,7 @@ def create_user(name, email, password):
 def get_user(email):
     """Finds a user by email and returns it"""
 
-    res = User.query.filter(User.email == email).first()
+    res = User.query.filter(User.email == email.strip().lower()).first()
     if res:
         u = res.__dict__
         del u['_sa_instance_state']
@@ -207,7 +207,7 @@ def create_user_session(user_id, base_id, second_id, third_id, date):
     return user_session
 
 
-def get_user_sessions(user_id=1000):
+def get_user_sessions(user_id):
 
     sessions = UserSession.query.join(BaseEmotion).with_entities(BaseEmotion.name, func.count(UserSession.user_id))\
         .filter(UserSession.user_id == user_id).group_by(BaseEmotion.name).all()

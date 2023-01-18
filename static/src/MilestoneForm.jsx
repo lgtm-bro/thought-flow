@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useRef, Fragment } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { IoRemoveOutline, IoPencil } from "react-icons/io5";
 
 import Quote from "./Quote.jsx";
@@ -42,13 +42,12 @@ const MilestoneForm = ({ submitMilestone, checkMsgStatus }) => {
             className="form-input form-control mt-4"
             required
             onChange={(e) => getInput(e, setTitle)}
-            // ref={title}
           />
           <div className="form-btn-div mt-5">
             <button type="button" className="btn form-btn" onClick={cancelForm}>
               cancel
             </button>
-            <input type="submit" value="save" className="btn form-btn px-4"/>
+            <input type="submit" value="save" className="btn form-btn px-4" />
           </div>
         </div>
       </form>

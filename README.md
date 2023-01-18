@@ -24,7 +24,7 @@ A few things you can do on thoughtflow:
   <br/><br/>
    <img src="/assets/thoughtflow_hub.gif" width="404" height="296"/><br/><br/>
 
-## Technologies
+## Tech Stack
     Python: 3.8
     Flask: 2.0
     Flask-SQLAlchemy: 2.5

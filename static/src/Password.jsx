@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, Fragment } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { BiShow } from "react-icons/bi";
 
 const Password = ({ pw, verify }) => {
@@ -14,7 +14,6 @@ const Password = ({ pw, verify }) => {
   let numBox = useRef();
   let symbolBox = useRef();
   let lenBox = useRef();
-
 
   useEffect(() => {
     if (isUpper) {
@@ -64,9 +63,9 @@ const Password = ({ pw, verify }) => {
     setIsLen(pw.length > 7);
   }, [pw]);
 
-	useEffect(() => {
-		validatePass();
-	}, [isUpper, isLower, isNum, isSymbol, isLen])
+  useEffect(() => {
+    validatePass();
+  }, [isUpper, isLower, isNum, isSymbol, isLen]);
 
   const checkUpper = /(?=.*[A-Z]).+/;
   const checkLower = /(?=.*[a-z]).+/;
@@ -74,13 +73,12 @@ const Password = ({ pw, verify }) => {
   const checkSymbol = /(?=.*[!@#$%^&*]).+/;
 
   const validatePass = () => {
-    if ((isUpper && isLower && isNum && isSymbol && isLen)) {
+    if (isUpper && isLower && isNum && isSymbol && isLen) {
       verify(true);
     } else {
       verify(false);
     }
   };
-
 
   return (
     <div id="password-container">

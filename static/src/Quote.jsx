@@ -1,21 +1,19 @@
 import React, { useState, useEffect } from "react";
-// import { Link, useNavigate } from "react-router-dom";
 
 const Quote = (props) => {
   const [quote, setQuote] = useState("");
-	const [author, setAuthor] = useState("");
+  const [author, setAuthor] = useState("");
   const feeling = "inspirational";
 
   useEffect(() => {
     props
       .getQuote()
       .then((res) => {
-				setQuote(res.data.text);
-				setAuthor(res.data.author || "Unknown");
-			})
+        setQuote(res.data.text);
+        setAuthor(res.data.author || "Unknown");
+      })
       .catch((err) => {
-        console.log("ERROR:", err);
-        setQuote("We can only learn to love by loving.")
+        setQuote("We can only learn to love by loving.");
         setAuthor("Iris Murdoch");
       });
   }, []);

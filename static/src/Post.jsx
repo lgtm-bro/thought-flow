@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
 import { DateTime } from "luxon";
-import { IoRemoveOutline, IoPencil } from "react-icons/io5";
 import { AiOutlineEdit, AiOutlineClose } from "react-icons/ai";
 
 import ConfirmDelete from "./ConfirmDelete.jsx";
@@ -46,7 +45,7 @@ const Post = (props) => {
   };
 
   const editPost = (e) => {
-    if (postText.current.isContentEditable){
+    if (postText.current.isContentEditable) {
       postText.current.contentEditable = false;
       done.current.classList.add("hide");
     } else {
@@ -57,27 +56,33 @@ const Post = (props) => {
   };
 
   const saveEdit = () => {
-    props.updateEntry(props.post.id, postText.current.innerText);
-    setFullEntry(postText.current.innerText);
-    setEntry(postText.current.innerText);
-    setEdited(true);
-    postText.current.contentEditable = false;
-    done.current.classList.add("hide");
+    if (postText.current.innerText) {
+      props.updateEntry(props.post.id, postText.current.innerText);
+      setFullEntry(postText.current.innerText);
+      setEntry(postText.current.innerText);
+      setEdited(true);
+      postText.current.contentEditable = false;
+      done.current.classList.add("hide");
+    } else {
+      props.deletePost(props.post.id);
+    }
   };
 
   const showConfirmDelete = () => {
-    document.getElementById(`post-delete-container-${props.post.id}`).classList.remove('hide');
+    document
+      .getElementById(`post-delete-container-${props.post.id}`)
+      .classList.remove("hide");
   };
 
   return (
     <div className="post-wrapper card my-3">
       <div className="card-body">
-      <ConfirmDelete
-        delete={props.deletePost}
-        entryId={props.post.id}
-        type="post"
-        page="/"
-      />
+        <ConfirmDelete
+          delete={props.deletePost}
+          entryId={props.post.id}
+          type="post"
+          page="/"
+        />
         <div className="row justify-content-between">
           <h5 className="post-date card-title col">{date}</h5>
           <h6 className="icon-container card-subtitle col-2 col-md-3 col-lg-2 pe-3 pe-md-1">
@@ -85,10 +90,7 @@ const Post = (props) => {
               <AiOutlineEdit className="icon" />
             </span>
             <span className="delete-icon icon card-link">
-              <AiOutlineClose
-                className="icon"
-                onClick={showConfirmDelete}
-              />
+              <AiOutlineClose className="icon" onClick={showConfirmDelete} />
             </span>
           </h6>
         </div>

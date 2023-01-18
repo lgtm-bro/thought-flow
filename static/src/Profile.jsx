@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, Fragment } from "react";
+import React, { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { BiShow } from "react-icons/bi";
 
@@ -72,7 +72,8 @@ const Profile = (props) => {
   };
 
   return (
-    <div id="profile-container"
+    <div
+      id="profile-container"
       className="container-fluid mx-med-auto p-4 my-3 my-md-5 shadow rounded"
     >
       <h2 className="text-center mb-3">profile</h2>

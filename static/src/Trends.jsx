@@ -31,7 +31,7 @@ const Trends = ({ getUserSessions, emotionColors }) => {
         }
       })
       .catch((err) => {
-        console.log(err.response.data.msg);
+        console.log('');
       });
   };
 

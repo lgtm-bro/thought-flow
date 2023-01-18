@@ -1,10 +1,10 @@
-import React, { useEffect, useState, useRef, Fragment } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { DateTime } from "luxon";
 import {
   Route,
-  Link,
   Routes,
+  Link,
   useNavigate,
   useLocation,
 } from "react-router-dom";
@@ -39,7 +39,7 @@ const Home = ({ user, showAlert }) => {
     fearful: "#cda7e781",
     angry: "#ed6b5a7e",
     disgust: "#96e7b680",
-    sad: "#85d5e97b"
+    sad: "#85d5e97b",
   };
 
   const userId = sessionStorage.getItem("userId");
@@ -67,6 +67,7 @@ const Home = ({ user, showAlert }) => {
   }, [feeling]);
 
   /******** USER MESSAGES *********/
+
   const changeMsg = (
     msg,
     hasQuestion = false,
@@ -80,19 +81,25 @@ const Home = ({ user, showAlert }) => {
   };
 
   const checkMsgStatus = () => {
-    if (user && sessionStorage.getItem('trend')) {
+    if (user && sessionStorage.getItem("trend")) {
       changeMsg(" ");
     }
 
-    if (sessionStorage.getItem('milestone') && !sessionStorage.getItem('trend')){
+    if (
+      sessionStorage.getItem("milestone") &&
+      !sessionStorage.getItem("trend")
+    ) {
       changeMsg("check out your trends");
     }
 
-    if (sessionStorage.getItem('entry') && !sessionStorage.getItem('milestone')){
+    if (
+      sessionStorage.getItem("entry") &&
+      !sessionStorage.getItem("milestone")
+    ) {
       changeMsg("do you have a milestone to record?", true, "/milestone");
     }
 
-    if (feeling && !sessionStorage.getItem('entry')) {
+    if (feeling && !sessionStorage.getItem("entry")) {
       changeMsg("would you like to write about it? ", true, "/entry");
     }
 
@@ -106,6 +113,7 @@ const Home = ({ user, showAlert }) => {
   };
 
   /********** FEELINGS ***********/
+
   const getFeeling = (f) => {
     axios.get(`/third_emotion/${f}`).then((results) => {
       changeMsg("Would like to write about it? ", true, "/entry");
@@ -120,6 +128,7 @@ const Home = ({ user, showAlert }) => {
   };
 
   /********** POST ENTRY ***********/
+
   const showHome = (el) => {
     navigate("/");
   };
@@ -132,7 +141,7 @@ const Home = ({ user, showAlert }) => {
           setPosts(results.data);
           checkMsgStatus();
         })
-        .catch((err) => console.log(err));
+        .catch((err) => console.log(''));
     } else {
       setPosts([]);
     }
@@ -150,12 +159,11 @@ const Home = ({ user, showAlert }) => {
       .post("/posts", post, config)
       .then((results) => {
         sessionStorage.setItem("entry", true);
-        console.log(results.data);
         getPosts(userId);
         setSendToEntry(false);
         navigate("/");
       })
-      .catch((err) => console.log("POST err", err));
+      .catch((err) => console.log(''));
   };
 
   const updateEntry = (id, newEntry) => {
@@ -164,31 +172,31 @@ const Home = ({ user, showAlert }) => {
     axios
       .put(`/posts/update/${id}`, entry, config)
       .then((res) => {
-        console.log(res.data);
         getPosts(userId);
       })
       .catch((err) => showAlert(err.response.data.msg));
   };
 
   /********** JOURNAL ***********/
+
   const deletePost = (id) => {
     // const data = { data: { id } }
     axios
       .delete(`/posts/delete/${id}`)
       .then((results) => {
-        console.log(results);
         getPosts(userId);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.log(''));
   };
 
   /********** MILESTONES ***********/
+
   const getMilestones = (name) => {
     if (name) {
       axios
         .get(`/milestones/${name}`)
         .then((results) => setMilestones(results.data))
-        .catch((err) => console.log(err));
+        .catch((err) => console.log(''));
     } else {
       setMilestones([]);
     }
@@ -198,33 +206,29 @@ const Home = ({ user, showAlert }) => {
     axios
       .post(`/milestones/${user}`, { title }, config)
       .then((res) => {
-        console.log(res.data);
         sessionStorage.setItem("milestone", true);
         getMilestones(user);
         navigate("/hub-milestones");
-
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.log(''));
   };
 
   const updateMilestone = (id, text) => {
     axios
       .put(`/milestone/${id}`, { text }, config)
       .then((res) => {
-        console.log(res.data);
         getMilestones(user);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.log(''));
   };
 
   const deleteMilestone = (id) => {
     axios
       .delete(`/milestone/${id}`)
       .then((res) => {
-        console.log(res.data);
         getMilestones(user);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.log(''));
   };
 
   /********** QUOTES ***********/
@@ -232,14 +236,14 @@ const Home = ({ user, showAlert }) => {
     return await axios
       .get(`/quote/${keyword}`)
       .then((res) => res.data)
-      .catch((err) => console.log(err));
+      .catch((err) => console.log(''));
   };
 
   const getQuote2 = async () => {
     try {
       return await axios.get("/new-quote", config);
     } catch (err) {
-      console.log(err.response.data.msg);
+      console.log('');
     }
   };
 
@@ -248,7 +252,7 @@ const Home = ({ user, showAlert }) => {
     try {
       return await axios.get(`/sessions/${userId}`);
     } catch (err) {
-      console.log(err.response.data.msg);
+      return {data: []}
     }
   };
 
@@ -262,38 +266,40 @@ const Home = ({ user, showAlert }) => {
           id="home-main"
           className="col-12 col-md-5 col-lg-4 mt-0 mt-md-5 ms-md-3 ms-lg-4"
         >
-          {(location.pathname.includes("hub") || location.pathname === "/") &&
-            <div id="msg-center" className="p-3 ps-1 ps-lg-2 mt-5 mt-md-3 mx-auto shadow-sm rounded">
-            <div id="greet-wrapper" className="fs-5 my-1 pe-md-5 pe-lg-1">
-              <Greet
-                feeling={feeling}
-                user={user}
-                sendFeeling={setFeeling}
-                checkMsgStatus={checkMsgStatus}
-              />
-            </div>
+          {(location.pathname.includes("hub") || location.pathname === "/") && (
             <div
-              id="user-msg-wrapper"
-              className="my-1 fs-6 fs-5 ps-3 text-center text-md-start"
+              id="msg-center"
+              className="p-3 ps-1 ps-lg-2 mt-5 mt-md-3 mx-auto shadow-sm rounded"
             >
-              {userMsg && (
-                <Message
-                  msg={userMsg}
-                  hasQuestion={userMsgQuestion}
-                  linkText={userMsgLinkText}
-                  path={userMsgPath}
+              <div id="greet-wrapper" className="fs-5 my-1 pe-md-5 pe-lg-1">
+                <Greet
+                  feeling={feeling}
+                  user={user}
+                  sendFeeling={setFeeling}
+                  checkMsgStatus={checkMsgStatus}
                 />
-              )}
+              </div>
+              <div
+                id="user-msg-wrapper"
+                className="my-1 fs-6 fs-5 ps-3 text-center text-md-start"
+              >
+                {userMsg && (
+                  <Message
+                    msg={userMsg}
+                    hasQuestion={userMsgQuestion}
+                    linkText={userMsgLinkText}
+                    path={userMsgPath}
+                  />
+                )}
+              </div>
             </div>
-          </div>}
+          )}
           {(location.pathname.includes("hub") || location.pathname === "/") &&
             user &&
             !feeling && (
               <Feelings
                 user={user}
-                showHome={showHome}
                 feeling={getFeeling}
-                sendToEntry={sendToEntry}
               />
             )}
           {(location.pathname.includes("hub") || location.pathname === "/") &&
@@ -330,9 +336,7 @@ const Home = ({ user, showAlert }) => {
               user={user}
               colors={emotionColors}
               feeling={getFeeling}
-              // showAlert={showAlert}
-              showHome={showHome}
-              sendToEntry={sendToEntry}
+              showAlert={showAlert}
             />
           }
         />

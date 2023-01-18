@@ -1,17 +1,14 @@
-import React, { Fragment, useState, useEffect, useRef } from "react";
-import { Route, Routes, useNavigate } from "react-router-dom";
+import React, { useState, useEffect, useRef } from "react";
 
 const GuidedForm = (props) => {
-  const embracing = useRef();
-  const resisting = useRef();
-
   const [prompt1, setPrompt1] = useState("");
   const [prompt2, setPrompt2] = useState("");
   const [prompt3, setPrompt3] = useState("");
   const [isEmbracing, setIsEmbracing] = useState();
   const [showPrompt2, setShowPrompt2] = useState(false);
 
-  const navigate = useNavigate();
+  const embracing = useRef();
+  const resisting = useRef();
 
   useEffect(() => {
     if (isEmbracing !== undefined) {

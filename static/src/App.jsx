@@ -1,5 +1,5 @@
 import "bootstrap/dist/css/bootstrap.min.css";
-import React, { useEffect, useState, useRef, Fragment } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import axios from "axios";
 import { DateTime } from "luxon";
 import {
@@ -16,8 +16,6 @@ import Profile from "./Profile.jsx";
 import About from "./About.jsx";
 import Contact from "./Contact.jsx";
 import UserAuth from "./UserAuth.jsx";
-import Login from "./Login.jsx";
-import Signup from "./Signup.jsx";
 
 const App = (props) => {
   const navigate = useNavigate();
@@ -28,8 +26,6 @@ const App = (props) => {
   const [smallScreen, setSmallScreen] = useState();
   const [hubTab, setHubTab] = useState(location.pathname.slice(5) || "journal");
 
-  const login = useRef();
-  const profile = useRef();
   const alerts = useRef();
 
   const config = {
@@ -38,7 +34,6 @@ const App = (props) => {
       "Access-Control-Allow-Origin": "*",
     },
   };
-
 
   useEffect(() => {
     setSmallScreen(document.documentElement.clientWidth < 768);
@@ -81,6 +76,7 @@ const App = (props) => {
   };
 
   /********** ALERT ***********/
+
   const showAlert = (msg, page, time = 2000) => {
     if (alerts.current) {
       alerts.current.classList.remove("hide");
@@ -97,17 +93,16 @@ const App = (props) => {
   };
 
   /********** CONTACT ***********/
+
   const submitContactForm = (msg) => {
     axios
       .post("/contact", msg, config)
-      .then((res) => {
-        showAlert("Your message has been sent", "/");
-        console.log(res.data);
-      })
-      .catch((err) => console.log(err.response.data.msg));
+      .then((res) => showAlert("your message has been sent", "/"))
+      .catch((err) => showAlert("our system is down\nplease try again later", "/"));
   };
 
   /********** USER ***********/
+
   const getUser = (email, password) => {
     axios
       .get(`/users/${email}?password=${password}`)
@@ -131,36 +126,30 @@ const App = (props) => {
   };
 
   /******** LOGIN / SIGNUP ********/
+
   const signupUser = (name, email, password) => {
     const user = { name: name, email: email, password: password };
 
     axios
       .post("/signup", user, config)
       .then((results) => {
-        console.log("results", results.data);
         setUser(results.data.user);
         setEmail(results.data.email);
         sessionStorage.setItem("userId", results.data.id);
         navigate("/");
       })
-      .catch((err) => {
-        // navigate("/auth");
-        return showAlert(err.response.data.msg, "/auth", 3000);
-      });
+      .catch((err) => showAlert(err.response.data.msg, "/auth", 3000));
   };
 
   /********** SIGNOUT ***********/
+
   const signOut = () => {
     submitSession();
     updateUser("");
   };
 
-  /********** POSTS ***********/
-  const retrievePosts = (posts) => {
-    setPosts(posts);
-  };
-
   /********** PROFILE ***********/
+
   const updateProfile = (name, profEmail, cp, np) => {
     let userInfo;
 
@@ -183,7 +172,6 @@ const App = (props) => {
     axios
       .put(`/update_user/${email}`, userInfo, config)
       .then((res) => {
-        console.log(res);
         setUser(name);
         if (profEmail) {
           setEmail(profEmail);
@@ -193,9 +181,10 @@ const App = (props) => {
       .catch((err) => showAlert(err.response.data.msg));
   };
 
+  /********** USER SESSIONS ***********/
+
   const submitSession = () => {
     if (!sessionStorage.getItem("baseEmotionId")) {
-      console.log("not enough session data");
       return;
     }
 
@@ -209,10 +198,8 @@ const App = (props) => {
 
     axios
       .post(`/sessions`, session, config)
-      .then((results) => {
-        console.log("results", results.data);
-      })
-      .catch((err) => console.log(err));
+      .then((results) => true)
+      .catch((err) => false);
   };
 
   return (

@@ -1,21 +1,16 @@
 import React, { useState, useRef, useEffect, Fragment } from "react";
-import {
-  Route,
-  Link,
-  Routes,
-  useNavigate,
-  useLocation,
-} from "react-router-dom";
+import { Route, Routes, Link, useLocation } from "react-router-dom";
 
 import Journal from "./Journal.jsx";
 import MilestoneBar from "./MilestoneBar.jsx";
 import Trends from "./Trends.jsx";
 
 const Hub = (props) => {
-  const navigate = useNavigate();
   const location = useLocation();
 
-  const [currTab, setCurrTab] = useState(location.pathname.slice(5) || 'journal');
+  const [currTab, setCurrTab] = useState(
+    location.pathname.slice(5) || "journal"
+  );
 
   const journalEntries = useRef();
   const milestoneEntries = useRef();
@@ -32,15 +27,13 @@ const Hub = (props) => {
     "First, let's indentify how you feel about this experience ";
 
   useEffect(() => {
-    setCurrTab(location.pathname.slice(5) || 'journal');
-  }, [location.pathname])
+    setCurrTab(location.pathname.slice(5) || "journal");
+  }, [location.pathname]);
 
   useEffect(() => {
-    let tab =
-      hubTabs.find(t => t.current.innerText === currTab);
-    changeActiveTab(null, tab.current)
+    let tab = hubTabs.find((t) => t.current.innerText === currTab);
+    changeActiveTab(null, tab.current);
   }, [currTab]);
-
 
   const changeActiveTab = (e, el) => {
     let parent, child;
@@ -49,7 +42,6 @@ const Hub = (props) => {
       parent = e.target.parentNode;
     } else {
       parent = el;
-
     }
 
     parent.classList.add("active", "hub-active");
@@ -61,18 +53,16 @@ const Hub = (props) => {
     });
 
     props.checkMsgStatus();
-
   };
 
   const recordTrendClick = (e) => {
-    if (sessionStorage.getItem("user")) sessionStorage.setItem("trend", true)
+    if (sessionStorage.getItem("user")) sessionStorage.setItem("trend", true);
     changeActiveTab(e);
-  }
+  };
 
   const sendFeelingMsg = (msg, hasQ, path = "/") => {
     props.changeMsg(msg, hasQ, path);
   };
-
 
   return (
     <Fragment>
@@ -98,7 +88,6 @@ const Hub = (props) => {
           className="hub-link nav-link"
           ref={trends}
           onClick={recordTrendClick}
-          // onClick={changeActiveTab}
         >
           <Link to="/hub-trends">trends</Link>
         </span>

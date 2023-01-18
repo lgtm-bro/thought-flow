@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, Fragment } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
@@ -118,63 +118,91 @@ const Feelings = (props) => {
   };
 
   return (
-    <div
-      id="feelings-wrapper"
-      className="container-fluid "
-      ref={container}
-    >
-      <form action="#" id="feelings-form" className="form rounded mt-2 mt-md-1 pt-2 shadow-sm">
-        <h5 className="fst-italic">my big emotion is:</h5>
+    <div id="feelings-wrapper" className="container-fluid " ref={container}>
+      <form
+        action="#"
+        id="feelings-form"
+        className="form rounded mt-2 mt-md-1 pt-2 shadow-sm"
+      >
+        <h5 className="fst-italic">my main feeling is:</h5>
         <div className="feel-select">
-        <select
-          name="base"
-          id="base"
-          className="feelings-select form-select"
-          ref={base}
-          onChange={(e) => getBaseChoice(e)}
-        >
-          <option id="base-default" value="default" className="feeling-option"></option>
-          {baseEmotions.map((e) => (
-            <option key={e.id} value={e.name} id={e.id} className={`feeling-option ${e.name}`}>
-              {e.name}
-            </option>
-          ))}
-        </select>
-        </div>
-        <div ref={second} id="second-container" className="hide">
-          <h5 className="fst-italic">because I am feeling:</h5>
-          <span className="feel-select">
           <select
-            name="second"
-            id="second"
+            name="base"
+            id="base"
             className="feelings-select form-select"
-            onChange={(e) => getSecondChoice(e)}
+            ref={base}
+            onChange={(e) => getBaseChoice(e)}
           >
-            <option value="default" className="feeling-option"></option>
-            {secondEmotions.map((e) => (
-              <option key={e.id} value={e.name} id={e.id} className="feeling-option">
+            <option
+              id="base-default"
+              value="default"
+              className="feeling-option"
+            ></option>
+            {baseEmotions.map((e) => (
+              <option
+                key={e.id}
+                value={e.name}
+                id={e.id}
+                className={`feeling-option ${e.name}`}
+              >
                 {e.name}
               </option>
             ))}
           </select>
+        </div>
+        <div ref={second} id="second-container" className="hide">
+          <h5 className="fst-italic">because I am feeling:</h5>
+          <span className="feel-select">
+            <select
+              name="second"
+              id="second"
+              className="feelings-select form-select"
+              onChange={(e) => getSecondChoice(e)}
+            >
+              <option value="default" className="feeling-option"></option>
+              {secondEmotions.map((e) => (
+                <option
+                  key={e.id}
+                  value={e.name}
+                  id={e.id}
+                  className="feeling-option"
+                >
+                  {e.name}
+                </option>
+              ))}
+            </select>
           </span>
         </div>
         <div ref={third} id="third-container" className="hide">
           <h5 className="fst-italic">and a little...</h5>
           <span className="feel-select">
-          <select name="third" id="third" className="feelings-select form-select" onChange={(e) => getThirdChoice(e)}>
-            <option value="default" className="feeling-option"></option>
-            {thirdEmotions.map((e) => (
-              <option key={e.id} value={e.name} id={e.id} className="feeling-option">
-                {e.name}
-              </option>
-            ))}
-          </select>
+            <select
+              name="third"
+              id="third"
+              className="feelings-select form-select"
+              onChange={(e) => getThirdChoice(e)}
+            >
+              <option value="default" className="feeling-option"></option>
+              {thirdEmotions.map((e) => (
+                <option
+                  key={e.id}
+                  value={e.name}
+                  id={e.id}
+                  className="feeling-option"
+                >
+                  {e.name}
+                </option>
+              ))}
+            </select>
           </span>
         </div>
         <div id="feeling-cancel" className="hide" ref={cancel}>
           <Link to="/">
-            <button type="button" className="btn form-btn mx-auto my-4" onClick={resetForm}>
+            <button
+              type="button"
+              className="btn form-btn mx-auto my-4"
+              onClick={resetForm}
+            >
               cancel
             </button>
           </Link>

@@ -1,10 +1,7 @@
-import React, { useState, useEffect, useRef, Fragment } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
-import { AiOutlinePlus } from "react-icons/ai";
-import { IoRemoveOutline, IoPencil } from "react-icons/io5";
 import { FaPlus } from "react-icons/fa";
-
 import Milestone from "./Milestone.jsx";
 
 const MilestoneBar = ({
@@ -14,20 +11,6 @@ const MilestoneBar = ({
   deleteMilestone,
   changeMsg,
 }) => {
-  const milestoneText = useRef();
-  const done = useRef();
-
-  const editMilestone = (e) => {
-    milestoneText.current.contentEditable = true;
-    done.current.classList.remove("hide");
-  };
-
-  const saveEdit = (id) => {
-    updateMilestone(id, milestoneText.current.innerText);
-    milestoneText.current.contentEditable = false;
-    done.current.classList.add("hide");
-  };
-
   const updateFeelingMsg = () => {
     changeMsg("", false);
   };
@@ -50,10 +33,7 @@ const MilestoneBar = ({
           </Link>
         </div>
       )}
-      <div
-        id="milestone-bar-wrapper"
-        className="px-2 rounded-bottom"
-      >
+      <div id="milestone-bar-wrapper" className="px-2 rounded-bottom">
         {!!sessionStorage.getItem("user") && (
           <div id="milestone-list">
             {milestones.map((m) => (

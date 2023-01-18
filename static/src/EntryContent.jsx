@@ -37,12 +37,7 @@ const EntryContent = ({
               submitEntry={submitEntry}
             />
           )}
-          {isSolo && (
-            <SoloForm
-              getEntry={getEntry}
-              submitEntry={submitEntry}
-            />
-          )}
+          {isSolo && <SoloForm getEntry={getEntry} submitEntry={submitEntry} />}
         </div>
         <div id="entry-btn-div" className="form-btn-div mt-4">
           <Link to="/entry">

@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useRef, Fragment } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import React, { useRef } from "react";
+import { useNavigate } from "react-router-dom";
 
 const DeletePost = (props) => {
   const msg = useRef();
@@ -9,10 +9,8 @@ const DeletePost = (props) => {
   const getConfirm = (e) => {
     let answer = e.target.value;
     if (answer === "yes") {
-        props.delete(props.entryId)
-        // navigate(props.page);
+      props.delete(props.entryId);
     }
-    // props.setCurrPost(null);
     e.target.checked = false;
     msg.current.classList.add("hide");
     navigate(props.page);
@@ -24,7 +22,7 @@ const DeletePost = (props) => {
       className="delete-container hide container fs-6 p-2 text-center shadow rounded"
       ref={msg}
     >
-      <h6 className="">Do you want to delete this entry?</h6>
+      <h6 className="">do you want to delete this entry?</h6>
       <form action="#" className="form-check-inline">
         <input
           type="radio"
@@ -34,7 +32,7 @@ const DeletePost = (props) => {
           onChange={getConfirm}
         />
         <label htmlFor="confirm" className="form-check-label">
-          Yes
+          yes
         </label>
         <input
           type="radio"
@@ -44,7 +42,7 @@ const DeletePost = (props) => {
           onChange={getConfirm}
         />
         <label htmlFor="confirm" className="form-check-label">
-          No
+          no
         </label>
       </form>
     </div>

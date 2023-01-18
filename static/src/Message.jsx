@@ -21,9 +21,7 @@ const Message = ({ msg, hasQuestion, linkText, path }) => {
         {msg}
       </span>
       {hasQuestion && (
-        <span
-          id="message-link"
-        >
+        <span id="message-link">
           <Link to={path}>{linkText}</Link>
         </span>
       )}
@@ -33,7 +31,7 @@ const Message = ({ msg, hasQuestion, linkText, path }) => {
 
 Message.defaultProps = {
   hasQuestion: false,
-  linkText: "Yes!",
+  linkText: "yes",
   path: "/",
 };
 

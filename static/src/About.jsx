@@ -29,10 +29,10 @@ const About = () => (
     </ol>
     <h2 className="display-6 my-1 ps-3 ps-md-5">why this works</h2>
     <p className="lead ms-4 ms-md-5 px-1 px-md-2">
-      Exploring and analyzing your feelings through journaling is a Congnitive
+      Exploring and studing your feelings through journaling is a Congnitive
       Behavioral Therapy(CBT) technique used to give patients an effective way
       to cope with overwhelming emotions. The regular practice of keeping a
-      Feeling Journal can help you to identify patterns and triggers that lead
+      Thought Journal can help you to identify patterns and triggers that lead
       to reoccuring emotions.
     </p>
     <div id="about-footer" className="ms-4 ms-md-5 px-1 px-md-2">

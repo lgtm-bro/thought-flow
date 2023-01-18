@@ -253,8 +253,8 @@ def delete_milestone(id):
 
     return jsonify({"success": False, "msg": "That milestone cannot be found"}), 400
 
-
     # ********************QUOTES********************
+
 
 @app.route('/quote/<keyword>')
 def getQuote(keyword):
@@ -363,14 +363,13 @@ def createSession():
 def get_user_sessions(user_id):
     """returns all sessions of the user with the given id grouped by base_emotion_id"""
 
-    print(stars, user_id)
     if not user_id:
         return jsonify({"success": False, "msg": "No user_id sent"}), 300
 
     sessions = crud.get_user_sessions(user_id)
 
     if sessions:
-        return jsonify(dict(sessions))
+        return jsonify(dict(sessions)), 200
 
     return jsonify({"success": False, "msg": "Cannot find sessions for that user"}), 400
 

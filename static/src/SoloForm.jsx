@@ -1,4 +1,4 @@
-import React, { Fragment, useState, useEffect, useRef } from "react";
+import React, { useRef } from "react";
 
 const SoloForm = ({ getEntry, submitEntry, reset }) => {
   const form = useRef();

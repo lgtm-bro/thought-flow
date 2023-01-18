@@ -1,14 +1,10 @@
 import React, { useState, useRef } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { BiShow } from "react-icons/bi";
 
 const Login = (props) => {
   const email = useRef();
   const password = useRef();
-  const form = useRef();
-  const login = useRef();
-
-  const navigate = useNavigate();
 
   const showPassword = () => {
     if (password.current.type === "password") {
@@ -24,7 +20,7 @@ const Login = (props) => {
   };
 
   return (
-    <div id="login-wrapper" className="container p-4 my-5 shadow rounded" ref={login}>
+    <div id="login-wrapper" className="container p-4 my-5 shadow rounded">
       <div id="login-form-header" className="row text-center my-3">
         <h2 className="text-center mb-3">please login</h2>
         <h3 className="pt-1 form-text">
@@ -34,7 +30,7 @@ const Login = (props) => {
           </span>
         </h3>
       </div>
-      <form action="#" className="form-group p-2" ref={form} onSubmit={loginUser}>
+      <form action="#" className="form-group p-2" onSubmit={loginUser}>
         <input
           type="email"
           name="login-email"
@@ -68,7 +64,11 @@ const Login = (props) => {
               cancel
             </button>
           </Link>
-          <input type="submit" value="login" className="btn form-btn border px-4" />
+          <input
+            type="submit"
+            value="login"
+            className="btn form-btn border px-4"
+          />
         </div>
       </form>
     </div>

@@ -1,6 +1,5 @@
-import React, { useState, useEffect, useRef } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { AiOutlinePlus } from "react-icons/ai";
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { FaPlus } from "react-icons/fa";
 
 import Post from "./Post.jsx";
@@ -15,8 +14,6 @@ const Journal = ({
   setCurrPost,
 }) => {
   const [msg, setMsg] = useState(null);
-
-  const navigate = useNavigate();
 
   let entryLink = feeling ? "/entry" : "/";
 
@@ -36,7 +33,7 @@ const Journal = ({
   };
 
   return (
-    <div id="journal-container" className="px-2 rounded-bottom" >
+    <div id="journal-container" className="px-2 rounded-bottom">
       {!!sessionStorage.getItem("userId") && (
         <div className="add-entry mt-4 border-bottom border-1">
           <Link to={entryLink}>
@@ -53,10 +50,7 @@ const Journal = ({
           </Link>
         </div>
       )}
-      <div
-        id="journal-wrapper"
-        className="px-3 rounded"
-      >
+      <div id="journal-wrapper" className="px-3 rounded">
         {!!sessionStorage.getItem("userId") && (
           <div id="entries-list">
             {posts.map((p) => (
@@ -71,7 +65,9 @@ const Journal = ({
           </div>
         )}
         {!sessionStorage.getItem("userId") && (
-          <h5 className="text-center py-2">please login to view your journal</h5>
+          <h5 className="text-center py-2">
+            please login to view your journal
+          </h5>
         )}
       </div>
     </div>

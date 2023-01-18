@@ -1,6 +1,5 @@
-import React, { useState, useEffect, useRef, Fragment } from "react";
+import React, { useRef, useEffect } from "react";
 import { AiOutlinePlus, AiFillDelete } from "react-icons/ai";
-import { IoRemoveOutline, IoPencil } from "react-icons/io5";
 import { AiOutlineEdit, AiOutlineClose } from "react-icons/ai";
 
 import ConfirmDelete from "./ConfirmDelete.jsx";
@@ -20,14 +19,19 @@ const Milestone = ({ milestone, updateMilestone, deleteMilestone }) => {
   };
 
   const saveEdit = (id) => {
-    console.log(milestoneText.current.innerText);
-    updateMilestone(id, milestoneText.current.innerText);
-    milestoneText.current.contentEditable = false;
-    done.current.classList.add("hide");
+    if (milestoneText.current.innerText) {
+      updateMilestone(id, milestoneText.current.innerText);
+      milestoneText.current.contentEditable = false;
+      done.current.classList.add("hide");
+    } else {
+      deleteMilestone(id);
+    }
   };
 
   const showConfirmDelete = () => {
-    document.getElementById(`ms-delete-container-${milestone.id}`).classList.remove('hide');
+    document
+      .getElementById(`ms-delete-container-${milestone.id}`)
+      .classList.remove("hide");
   };
 
   return (
@@ -58,15 +62,15 @@ const Milestone = ({ milestone, updateMilestone, deleteMilestone }) => {
             </span>
           </span>
         </div>
-      <button
-        value="Done"
-        id="ms-done-btn"
-        className="hide btn form-btn"
-        ref={done}
-        onClick={() => saveEdit(milestone.id)}
-      >
-        done
-      </button>
+        <button
+          value="Done"
+          id="ms-done-btn"
+          className="hide btn form-btn"
+          ref={done}
+          onClick={() => saveEdit(milestone.id)}
+        >
+          done
+        </button>
       </div>
     </div>
   );
