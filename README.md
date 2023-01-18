@@ -22,7 +22,7 @@ A few things you can do on thoughtflow:
 * Read, edit, and delete past journal entries and milestones
 * See your past feelings entries displayed in a trends chart
   <br/><br/>
-   <img src="/assets/thoughtflow_hub.gif" width="404" height="296"/>
+   <img src="/assets/thoughtflow_hub.gif" width="404" height="296"/><br/><br/>
 
 ## Technologies
     Python: 3.8
