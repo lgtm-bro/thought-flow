@@ -19,6 +19,12 @@ A few things you can do on thoughtflow:
 * See your past feelings entries displayed in a trends chart
 * Take control of your feelings and grow in your relationships
 
+![](https://github.com/orbonnie/thought-flow/blob/main/assets/thoughtflow_feelings.gif)
+
+![](https://github.com/orbonnie/thought-flow/blob/main/assets/thoughtflow_entry.gif)
+
+![](https://github.com/orbonnie/thought-flow/blob/main/assets/thoughtflow_hub.gif)
+
 ## Technologies
     Python: 3.8
     Flask: 2.0
