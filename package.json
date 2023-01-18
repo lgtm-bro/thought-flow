@@ -3,7 +3,10 @@
   "version": "1.0.0",
   "main": "",
   "scripts": {
-    "build": "webpack --watch --progress --config webpack.config.js"
+    "dev": "webpack --watch --progress --config webpack.config.js",
+    "build": "webpack --progress --config webpack.config.js",
+    "compress": "tar -zcvf thought-flow.tar.gz static",
+    "decompress": "tar -xf thought-flow.tar.gz static"
   },
   "dependencies": {
     "@babel/core": "^7.18.10",
