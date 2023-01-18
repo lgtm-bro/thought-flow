@@ -17,13 +17,12 @@ A few things you can do on thoughtflow:
 * Record breakthroughs and accomplishments
 * Read, edit, and delete past journal entries and milestones
 * See your past feelings entries displayed in a trends chart
-* Take control of your feelings and grow in your relationships
 
-![](https://github.com/orbonnie/thought-flow/blob/main/assets/thoughtflow_feelings.gif)
+<img src="/assets/thoughtflow_feelings.gif" width="404" height="296"/>
 
-![](https://github.com/orbonnie/thought-flow/blob/main/assets/thoughtflow_entry.gif)
+<img src="/assets/thoughtflow_entry.gif" width="404" height="296"/>
 
-![](https://github.com/orbonnie/thought-flow/blob/main/assets/thoughtflow_hub.gif)
+<img src="/assets/thoughtflow_hub.gif" width="404" height="296"/>
 
 ## Technologies
     Python: 3.8
