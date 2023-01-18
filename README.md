@@ -13,12 +13,15 @@ This app allows a user to indentify their emotions and write about them. The use
 ## Features
 A few things you can do on thoughtflow:
 * Identify and narrow down big feelings based on the feelings wheel
-  <img src="/assets/thoughtflow_feelings.gif" width="404" height="296"/>
+  <br/>
+  <img src="/assets/thoughtflow_feelings.gif" width="404" height="296"/><br/>
 * Write about a feeling with guided prompts or in free form
-  <img src="/assets/thoughtflow_entry.gif" width="404" height="296"/>
+  <br/>
+  <img src="/assets/thoughtflow_entry.gif" width="404" height="296"/><br/>
 * Record breakthroughs and accomplishments
 * Read, edit, and delete past journal entries and milestones
 * See your past feelings entries displayed in a trends chart
+  <br/>
    <img src="/assets/thoughtflow_hub.gif" width="404" height="296"/>
 
 ## Technologies
