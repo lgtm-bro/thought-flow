@@ -9,7 +9,7 @@ import crud
 import model
 import server
 
-os.system('dropdb thoughts')
+os.system('dropdb thoughts --if-exists')
 os.system('createdb thoughts')
 
 model.connect_to_db(server.app)
