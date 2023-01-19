@@ -14,7 +14,7 @@ const Signup = ({ signupUser, showAlert }) => {
   const password2 = useRef();
   const form = useRef();
 
-  const emailCheck = /^[a-zA-Z]\w+@\w+\.\w{2,4}/;
+  const emailCheck = /^[a-zA-Z][\w\.+\-\']+@[\w.]+\.\w{2,4}/;
   const navigate = useNavigate();
 
   const getPw = (e, method) => {

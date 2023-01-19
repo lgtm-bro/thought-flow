@@ -39,9 +39,9 @@ const Profile = (props) => {
     return newPassword.current.value === passwordConfirm.current.value;
   };
 
-  const validateEmail = (e) => {
-    const emailCheck = /^[a-zA-Z]\w+@\w+\.\w{2,4}/;
-    return emailCheck.test(e);
+  const validateEmail = (em) => {
+    const emailCheck = /^[a-zA-Z][\w\.+\-\']+@[\w.]+\.\w{2,4}/;
+    return emailCheck.test(em);
   };
 
   const submitChanges = (e) => {

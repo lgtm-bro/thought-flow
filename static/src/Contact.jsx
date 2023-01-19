@@ -15,8 +15,15 @@ const Contact = (props) => {
 
   const navigate = useNavigate();
 
+  const emailCheck = /^[a-zA-Z][\w\.+\-\']+@[\w.]+\.\w{2,4}/;
+
   const sendMsg = (e) => {
     e.preventDefault();
+
+    if (!emailCheck.test(email.current.value)) {
+      return props.showAlert("please enter a valid email");
+    }
+
     const msg = {
       name: name.current.value,
       email: email.current.value,

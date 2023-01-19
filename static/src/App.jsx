@@ -217,6 +217,7 @@ const App = (props) => {
             <Contact
               user={user}
               email={email}
+              showAlert={showAlert}
               submitContactForm={submitContactForm}
             />
           }
