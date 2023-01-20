@@ -772,9 +772,14 @@ radio:hover {
 }
 
 
-@media (max-width: 400px) {
+@media (max-width: 414px) {
   #msg-center, #feelings-wrapper, #quote-wrapper, #hub-wrapper {
     width: 90%;
+  }
+
+  #navbar {
+    background-color: #fafaf961;
+    backdrop-filter: blur(7px);
   }
 }
 
