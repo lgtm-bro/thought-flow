@@ -782,6 +782,12 @@ radio:hover {
     background-color: #cfe8e8bd;
     backdrop-filter: blur(7px);
   }
+
+  .hub-link a {
+    font-size: 0.9rem;
+    margin: 0;
+
+  }
 }
 
 @media (max-height: 715px) {
