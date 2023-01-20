@@ -24,6 +24,10 @@ html {
   height: 100%;
 }
 
+#app-container {
+  overflow-x: hidden;
+}
+
 #root {
   background-image: linear-gradient(
     to bottom,
@@ -754,16 +758,23 @@ radio:hover {
     display: none;
   }
 
+@media (max-width: 680px) {
+  #signup-wrapper {
+    height: 560px;
+    width: 97%;
+  }
+}
+
 @media (max-width: 578px) {
   #entry-container {
     min-width: 350px;
   }
 }
 
-@media (max-width: 680px) {
-  #signup-wrapper {
-    height: 560px;
-    width: 97%;
+
+@media (max-width: 400px) {
+  #msg-center, #feelings-wrapper, #quote-wrapper, #hub-wrapper {
+    width: 90%;
   }
 }
 
