@@ -98,8 +98,8 @@
         "sub_feelings": [{"name": "panicky", "score": -6}, {"name": "rushed", "score": -6}]
       },
 			{
-        "feeling": {"name": "uneasy", "score": -4},
-        "sub_feelings": [{"name": "tense", "score": -6}, {"name": "uncomfortable", "score": -6}]
+        "feeling": {"name": "uncomfortable", "score": -4},
+        "sub_feelings": [{"name": "tense", "score": -6}, {"name": "uneasy", "score": -6}]
       },
 			{
         "feeling": {"name": "tired", "score": -4},
