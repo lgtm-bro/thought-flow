@@ -24,6 +24,7 @@ def seed_data(file, func):
     func(data)
 
 def seed_feelings(feeling_data):
+    third_feels_list = []
     for f in feeling_data:
         name, score = f['base'].values()
         base = crud.create_base_emotion(name, score)
@@ -36,9 +37,14 @@ def seed_feelings(feeling_data):
             model.db.session.commit()
             for third_feeling in second_feeling['sub_feelings']:
                 t_name, t_score = third_feeling.values()
-                third = crud.create_third_emotion(t_name, t_score, second.id)
-                model.db.session.add(third)
-            model.db.session.commit()
+                if t_name not in third_feels_list:
+                    third_feels_list.append(t_name)
+                    third = crud.create_third_emotion(t_name, t_score, second.id)
+                    model.db.session.add(third)
+                    model.db.session.commit()
+
+    print(third_feels_list)
+    model.db.session.commit()
 
     model.db.session.commit()
 
