@@ -118,7 +118,7 @@ const Feelings = (props) => {
   };
 
   return (
-    <div id="feelings-wrapper" className="container-fluid " ref={container}>
+    <div id="feelings-wrapper" className="container-fluid px-1" ref={container}>
       <form
         action="#"
         id="feelings-form"

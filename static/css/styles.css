@@ -182,7 +182,7 @@ html {
   color: #e88686;
 }
 
-.mask-custom {
+#navbar {
   backdrop-filter: blur(7px);
   background-image: linear-gradient(
     to bottom,
@@ -481,7 +481,7 @@ radio:hover {
 #feelings-form {
   margin: 0 auto;
   min-height: 367px;
-  width: 94%;
+  width: 100%;
   background-color: #fffdf9b8;
 }
 
@@ -714,7 +714,7 @@ radio:hover {
       width: 90%;
     }
 
-    #feelings-form {
+    #feelings-wrapper {
       width: 77%;
     }
   }
@@ -737,12 +737,9 @@ radio:hover {
     width: 65%;
   }
 
-  #feelings-form {
-    width: 67%;
-  }
-
   #feelings-wrapper {
     margin-top: 1rem;
+    width: 67%;
   }
 
   #hub-wrapper {
@@ -775,6 +772,10 @@ radio:hover {
 @media (max-width: 414px) {
   #msg-center, #feelings-wrapper, #quote-wrapper, #hub-wrapper {
     width: 90%;
+  }
+
+  #feelings-form {
+    width: 100%;
   }
 
   #navbar {
