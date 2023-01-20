@@ -25,7 +25,7 @@ const NavBar = ({ user, showAlert }) => {
   };
 
   return (
-    <nav id="navbar" className="navbar navbar-expand-lg navbar-light mask-custom fixed-top me-auto shadow-0 pt-3">
+    <nav id="navbar" className="navbar navbar-expand-lg navbar-light fixed-top me-auto shadow-0 pt-3">
       <div className="container-fluid justify-content-between px-4">
         <span id="nav-home" className="navbar-brand">
           <Link to="/">
