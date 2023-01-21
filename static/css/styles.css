@@ -359,7 +359,6 @@ radio:hover {
 }
 
 #pass-reqs li {
-  font-family:" Zapf Dingbats";
   text-align: left;
   font-size: 0.8em;
   list-style-type: "\2610   ";
@@ -716,16 +715,6 @@ radio:hover {
     }
   }
 
-  @media (max-width: 715px) {
-    #msg-center {
-      width: 90%;
-    }
-
-    #feelings-wrapper {
-      width: 77%;
-    }
-  }
-
 @media (max-width: 767px) {
   #app-container {
     height:100%;
@@ -760,11 +749,21 @@ radio:hover {
    #journal-wrapper, #milestone-wrapper, #trends-wrapper {
     height: 420px;
    }
+
 }
 
-  #app-container::-webkit-scrollbar {
-    display: none;
+
+
+
+@media (max-width: 715px) {
+  #msg-center {
+    width: 90%;
   }
+
+  #feelings-wrapper {
+    width: 77%;
+  }
+}
 
 @media (max-width: 680px) {
   #signup-wrapper {
@@ -797,7 +796,10 @@ radio:hover {
   .hub-link a {
     font-size: 0.9rem;
     margin: 0;
+  }
 
+  .checked::marker {
+    content: "\2705   ";
   }
 }
 
