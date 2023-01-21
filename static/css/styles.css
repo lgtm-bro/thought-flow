@@ -359,6 +359,7 @@ radio:hover {
 }
 
 #pass-reqs li {
+  font-family:" Zapf Dingbats";
   text-align: left;
   font-size: 0.8em;
   list-style-type: "\2610   ";
@@ -370,8 +371,9 @@ radio:hover {
 
 .checked::marker {
   /* content: "✓   "; */
-  content: "✔&#fe0e   ";
+  content: "\2714 \fe0e   ";
   color: green;
+  font-weight: 900;
 }
 
 /******** SIGNOUT ********/
