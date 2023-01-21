@@ -260,7 +260,7 @@ const Home = ({ user, showAlert }) => {
     <div id="home-container" className="mt-3">
       <div
         id="home-all"
-        className="row justify-content-evenly justify-content-lg-around gx-2 gx-lg-0"
+        className="row justify-content-evenly justify-content-lg-around gx-2 gx-lg-0 mx-lg-5"
       >
         <div
           id="home-main"

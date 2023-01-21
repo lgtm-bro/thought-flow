@@ -10,7 +10,7 @@ html,
   color: #606060;
   font-family: "Nunito";
   letter-spacing: 1px;
-  /* overflow: hidden; */
+  overflow: hidden;
 }
 
 body,
@@ -24,9 +24,9 @@ html {
   height: 100%;
 }
 
-#app-container {
+/* #app-container {
   overflow-x: hidden;
-}
+} */
 
 #root {
   background-image: linear-gradient(
@@ -369,7 +369,8 @@ radio:hover {
 }
 
 .checked::marker {
-  content: "✓   ";
+  /* content: "✓   "; */
+  content: "\2713   ";
   color: green;
 }
 
@@ -442,7 +443,7 @@ radio:hover {
 }
 
 #msg-center {
-  width: 90%;
+  width: 98%;
   background-image: linear-gradient( #fffdf956, #fffdf956, #fffdf956);
   backdrop-filter: blur(7px);
 }
@@ -584,6 +585,7 @@ radio:hover {
 .add-entry {
   display:flex;
   justify-content: center;
+  height: 64px;
 }
 
 .icon-container {
@@ -591,14 +593,15 @@ radio:hover {
   justify-content: center;
 }
 
-#journal-container, #milestone-bar-container {
+#journal-container, #hub-content, #milestone-bar-container {
   width: 100%;
   height: 100%;
   background-color: #fffdf9e9;
+  overflow: hidden;
 }
 
 #journal-wrapper {
-  height: 420px;
+  height: 55vh;
   overflow-y: scroll;
   -ms-overflow-style: none;
   scrollbar-width: none;
@@ -610,7 +613,7 @@ radio:hover {
 }
 
 #milestone-bar-wrapper {
-  height: 420px;
+  height: 55vh;
   background-color: #fffdf9e9;
   overflow-y: scroll;
   -ms-overflow-style: none;
@@ -637,8 +640,9 @@ radio:hover {
 }
 
 #trends-wrapper {
-  height: 493px;
+  height: 55vh;
   background-color: #fffdf9e9;
+  margin-top: 86px;
 }
 
 /******** POST ********/
@@ -734,20 +738,24 @@ radio:hover {
   }
 
   #msg-center {
-    width: 65%;
+    width: 80%;
   }
 
   #feelings-wrapper {
     margin-top: 1rem;
-    width: 67%;
+    width: 80%;
   }
 
   #hub-wrapper {
-    width: 70%;
+    width: 82%;
    }
 
    #quote-wrapper {
-    width: 65%;
+    width: 80%;
+   }
+
+   #journal-wrapper, #milestone-wrapper, #trends-wrapper {
+    height: 420px;
    }
 }
 
@@ -790,7 +798,7 @@ radio:hover {
   }
 }
 
-@media (max-height: 715px) {
+@media (max-height: 735px) {
   #app-container {
     height:100%;
     width: 102%;
@@ -798,6 +806,12 @@ radio:hover {
     overflow-y: scroll;
     -ms-overflow-style: none;
     scrollbar-width: none;
+  }
+}
+
+@media (min-height: 1015px) {
+  #home-all{
+    margin-top: 8%;
   }
 }
 
