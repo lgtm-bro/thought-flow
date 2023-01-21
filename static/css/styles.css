@@ -371,6 +371,7 @@ radio:hover {
 
 .checked::marker {
   /* content: "✓   "; */
+  content: "√  ";
   content: "\2714 \fe0e   ";
   color: green;
   font-weight: 900;
