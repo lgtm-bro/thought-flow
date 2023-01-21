@@ -370,7 +370,7 @@ radio:hover {
 
 .checked::marker {
   /* content: "✓   "; */
-  content: "✔\fe0e   ";
+  content: "✔&#fe0e   ";
   color: green;
 }
 
