@@ -25,10 +25,10 @@ const Journal = ({
 
   const sendFeelingMsg = () => {
     if (!feeling) {
-      changeMsg(msg, false);
+      changeMsg(msg, "feelings-form");
       setSendToEntry(true);
     } else {
-      changeMsg("", false);
+      changeMsg("");
     }
   };
 
@@ -39,6 +39,7 @@ const Journal = ({
           <Link to={entryLink}>
             <button
               type="button"
+              id="add-entry-btn"
               className="custom-link hub-btn py-1 px-5"
               onClick={sendFeelingMsg}
             >

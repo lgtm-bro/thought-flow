@@ -6,11 +6,11 @@ const Message = ({ msg, hasQuestion, linkText, path }) => {
 
   useEffect(() => {
     if (msg && msgSpan.current) {
-      msgSpan.current.classList.add("test");
+      msgSpan.current.classList.add("highlight");
     }
     setTimeout(() => {
       if (msgSpan.current) {
-        msgSpan.current.classList.remove("test");
+        msgSpan.current.classList.remove("highlight");
       }
     }, 3000);
   }, [msg]);

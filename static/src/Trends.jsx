@@ -82,12 +82,16 @@ const Trends = ({ getUserSessions, emotionColors }) => {
   };
 
   return (
-    <div id="trends-wrapper" className="p-4 pt-2 rounded">
+    <div id="trends-wrapper" className="pt-2 rounded">
       {!!sessionStorage.getItem("userId") && (
-        <PolarArea data={data} options={options} />
+        <div id="graph-wrapper">
+          <PolarArea data={data} options={options} id="graph"/>
+        </div>
       )}
       {!sessionStorage.getItem("userId") && (
-        <h5 className="text-center">please login to view your trends</h5>
+        <div id="trends-msg" className="text-center">
+          <h5 className="text-center">please login to view your trends</h5>
+        </div>
       )}
     </div>
   );

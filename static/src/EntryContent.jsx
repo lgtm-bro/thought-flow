@@ -14,6 +14,7 @@ const EntryContent = ({
   submitEntry,
   submitPost,
 }) => {
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -41,11 +42,11 @@ const EntryContent = ({
         </div>
         <div id="entry-btn-div" className="form-btn-div mt-4">
           <Link to="/entry">
-            <button type="button" className="btn form-btn" onClick={reset}>
+            <button type="button" className="btn form-btn px-5" onClick={reset}>
               back
             </button>
           </Link>
-          <input type="submit" value="let it go" className="btn form-btn" />
+          <input type="submit" value="save" className="btn form-btn px-5" />
         </div>
       </form>
     </div>

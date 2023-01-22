@@ -132,14 +132,14 @@ const Signup = ({ signupUser, showAlert }) => {
         </div>
         <Password pw={pw} verify={verifyPw} />
         <div className="form-btn-div">
-          <button type="button" className="btn form-btn" onClick={cancelSignup}>
+          <button type="button" className="btn form-btn px-5" onClick={cancelSignup}>
             Cancel
           </button>
           <input
             type="submit"
             value="Sign Up"
             id="signup-btn"
-            className="btn form-btn"
+            className="btn form-btn px-5"
           />
         </div>
       </form>

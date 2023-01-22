@@ -12,7 +12,7 @@ const MilestoneBar = ({
   changeMsg,
 }) => {
   const updateFeelingMsg = () => {
-    changeMsg("", false);
+    changeMsg("");
   };
 
   return (
@@ -22,6 +22,7 @@ const MilestoneBar = ({
           <Link to="/milestone">
             <button
               type="button"
+              id="add-ms-btn"
               className="custom-link hub-btn py-1 px-5"
               onClick={updateFeelingMsg}
             >

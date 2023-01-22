@@ -1,10 +1,17 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import { AiOutlineClose } from "react-icons/ai";
 
 const About = () => (
   <div
     id="about-container"
     className="container-fluid rounded ps-2 pe-3 pe-lg-5 pb-5"
   >
+    <Link to="/">
+      <span id="about-close">
+        <AiOutlineClose />
+      </span>
+    </Link>
     <h2
       id="about-title"
       className="position-sticky display-6 pt-5 pb-2 ps-3 ps-md-5"

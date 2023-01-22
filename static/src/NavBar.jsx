@@ -5,7 +5,7 @@ import { AiOutlineMenu } from "react-icons/ai";
 const NavBar = ({ user, showAlert }) => {
   const dropDownBtn = useRef();
   const dropDown = useRef();
-  let status = user ? "sign out" : "login";
+  let status = user ? "sign out" : "login / sign up";
   let profileLink = user ? "/profile" : "/";
 
   const closeNav = () => {
@@ -82,7 +82,7 @@ const NavBar = ({ user, showAlert }) => {
               className="navbar-link nav-item ms-auto pe-2"
               onClick={closeNav}
             >
-              <span className="nav-link">
+              <span id="navbar-login" className="nav-link">
                 <Link to="/auth/">{status}</Link>
               </span>
             </li>

@@ -13,20 +13,11 @@ html,
   overflow: hidden;
 }
 
-body,
-html {
-   overflow: hidden;
-}
-
 #app-container,
 #home-container {
   margin: 0 auto;
   height: 100%;
 }
-
-/* #app-container {
-  overflow-x: hidden;
-} */
 
 #root {
   background-image: linear-gradient(
@@ -211,6 +202,7 @@ html {
 /******** ABOUT ********/
 
 #about-container {
+  position: relative;
   backdrop-filter: blur(7px);
   background-image: linear-gradient(
     to bottom,
@@ -233,6 +225,20 @@ html {
 
 #about-container::-webkit-scrollbar {
   display: none;
+}
+
+#about-close {
+  font-size: 1.4em;
+  color: #606060;
+  text-decoration: none;
+  position: fixed;
+  top: 18px;
+  right: 30px;
+  z-index: 12;
+}
+
+#about-close:hover {
+  color: #2fadd3;
 }
 
 #about-title {
@@ -445,19 +451,17 @@ radio:hover {
 }
 
 #msg-center {
-  width: 98%;
   background-image: linear-gradient( #fffdf956, #fffdf956, #fffdf956);
   backdrop-filter: blur(7px);
 }
 
-.test {
+.highlight {
   -webkit-animation: 2s highlight 200ms 1 normal forwards;
           animation: 2s highlight 200ms 1 normal forwards;
   background-color: none;
   background: linear-gradient(90deg, #ffffc2df 50%, transparent 50%);
   background-size: 200% 100%;
   background-position: 100% 0;
-  /* #ffd0bf8a */
 }
 
 @-webkit-keyframes highlight {
@@ -532,7 +536,6 @@ radio:hover {
 /******** QUOTE ********/
 
 #quote-wrapper {
-  width: 90%;
   background-image: linear-gradient(
     to bottom,
     #fffdf9d5,
@@ -555,7 +558,7 @@ radio:hover {
   min-height: 564px;
   padding: 0;
   margin-top: 2em;
-  background-color: #fffdf9e9;
+  background-color: #fffdf9;
 }
 
 #hub-nav {
@@ -644,7 +647,19 @@ radio:hover {
 #trends-wrapper {
   height: 55vh;
   background-color: #fffdf9e9;
-  margin-top: 86px;
+  margin: 30px 0 56px 0;
+}
+
+#graph {
+  margin: 1px auto;
+  width: 80%;
+}
+
+#trends-msg {
+  width: 94%;
+  position: absolute;
+  top: 71px;
+  z-index: 15;
 }
 
 /******** POST ********/
@@ -729,21 +744,12 @@ radio:hover {
     display: none;
   }
 
-  #msg-center {
-    width: 80%;
-  }
-
-  #feelings-wrapper {
-    margin-top: 1rem;
+  #home-main {
     width: 80%;
   }
 
   #hub-wrapper {
     width: 82%;
-   }
-
-   #quote-wrapper {
-    width: 80%;
    }
 
    #journal-wrapper, #milestone-wrapper, #trends-wrapper {
@@ -756,12 +762,8 @@ radio:hover {
 
 
 @media (max-width: 715px) {
-  #msg-center {
+  #home-main {
     width: 90%;
-  }
-
-  #feelings-wrapper {
-    width: 77%;
   }
 }
 
@@ -780,12 +782,8 @@ radio:hover {
 
 
 @media (max-width: 414px) {
-  #msg-center, #feelings-wrapper, #quote-wrapper, #hub-wrapper {
-    width: 90%;
-  }
-
-  #feelings-form {
-    width: 100%;
+  #home-main {
+    width: 92%;
   }
 
   #navbar {
@@ -799,11 +797,12 @@ radio:hover {
   }
 
   .checked::marker {
-    content: "\2705   ";
+    content: "X  ";
+    color: green;
   }
 }
 
-@media (max-height: 735px) {
+@media (max-height: 722px) {
   #app-container {
     height:100%;
     width: 102%;

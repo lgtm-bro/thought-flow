@@ -124,7 +124,7 @@ const Feelings = (props) => {
         id="feelings-form"
         className="form rounded mt-2 mt-md-1 pt-2 shadow-sm"
       >
-        <h5 className="fst-italic">my main feeling is:</h5>
+        <h5 className="fst-italic">my main vibe is:</h5>
         <div className="feel-select">
           <select
             name="base"

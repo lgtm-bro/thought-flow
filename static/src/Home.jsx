@@ -308,7 +308,7 @@ const Home = ({ user, showAlert }) => {
         {(location.pathname.includes("hub") || location.pathname === "/") && (
           <div
             id="hub-wrapper"
-            className="col-12 col-md-6 mb-5 mx-5 ms-md-0 me-md-5 shadow rounded"
+            className="col-12 col-md-5 mb-5 mx-5 ms-md-0 me-md-5 shadow rounded"
           >
             <Hub
               feeling={feeling}

@@ -92,7 +92,7 @@ const Hub = (props) => {
           <Link to="/hub-trends">trends</Link>
         </span>
       </nav>
-      <div id="hub-content" className="container-fluid">
+      <div id="hub-content" className="container-fluid rounded">
         <Routes>
           <Route
             path="/"
