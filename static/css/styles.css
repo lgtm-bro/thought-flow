@@ -228,12 +228,12 @@ html,
 }
 
 #about-close {
-  font-size: 1.4em;
+  font-size: .8em;
   color: #606060;
   text-decoration: none;
   position: fixed;
-  top: 18px;
-  right: 30px;
+  top: 20px;
+  right: 10px;
   z-index: 12;
 }
 
