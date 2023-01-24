@@ -9,14 +9,11 @@ import crud
 import model
 import server
 
-# os.system('dropdb thoughts --if-exists')
-# os.system('createdb thoughts')
+os.system('dropdb thoughts --if-exists')
+os.system('createdb thoughts')
 
 model.connect_to_db(server.app)
 model.db.create_all()
-
-# with open('data/feelingsWheel.json') as fw:
-#     data= json.loads(fw.read())
 
 def seed_data(file, func):
     with open(file) as fw:
@@ -76,8 +73,8 @@ def seed_user_sessions(session_data):
     model.db.session.commit()
 
 
-# seed_data('data/feelingsWheel.json', seed_feelings)
-# seed_data('data/users.json', seed_users)
-# seed_data('data/milestones.json', seed_milestones)
-# seed_data('data/posts.json', seed_posts)
+seed_data('data/feelingsWheel.json', seed_feelings)
+seed_data('data/users.json', seed_users)
+seed_data('data/milestones.json', seed_milestones)
+seed_data('data/posts.json', seed_posts)
 seed_data('data/user_sessions.json', seed_user_sessions)
