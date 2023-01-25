@@ -1,14 +1,16 @@
 # thoughtflow - a journaling app
-An introduction to thought journaling
+An introduction to thought journaling\
+[thought-flow.com](https://thought-flow-com)
 
 ## Table of contents
 * [General info](#general-info)
 * [Features](#features)
-* [Technologies](#technologies)
+* [Technologies](#tech-stack)
 * [Setup](#setup)
 
 ## General info
-This app allows a user to indentify their emotions and write about them. The user's entries are stored and aggregated for their later reference.
+This app allows a user to indentify their emotions and write about them.\
+The user's entries are stored and aggregated for their later reference.
 
 ## Features
 A few things you can do on thoughtflow:
