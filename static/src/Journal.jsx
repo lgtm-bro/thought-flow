@@ -25,7 +25,7 @@ const Journal = ({
 
   const sendFeelingMsg = () => {
     if (!feeling) {
-      changeMsg(msg, "feelings-form");
+      changeMsg(msg, false, "feelings-form");
       setSendToEntry(true);
     } else {
       changeMsg("");

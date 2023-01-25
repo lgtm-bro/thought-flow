@@ -60,14 +60,14 @@ const Login = (props) => {
         </div>
         <div id="login-btn-div" className="form-btn-div">
           <Link to="/">
-            <button type="button" className="btn form-btn border px-5">
+            <button type="button" className="btn form-btn border px-4 px-lg-5">
               cancel
             </button>
           </Link>
           <input
             type="submit"
             value="login"
-            className="btn form-btn border px-5"
+            className="btn form-btn border px-4 px-lg-5"
           />
         </div>
       </form>

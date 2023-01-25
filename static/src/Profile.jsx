@@ -149,10 +149,10 @@ const Profile = (props) => {
         </div>
         <Password pw={newPw} verify={verifyPw} />
         <div id="profile-btns" className="form-btn-div">
-          <button type="button" className="btn form-btn px-5" onClick={cancelForm}>
+          <button type="button" className="btn form-btn px-4 px-lg-5" onClick={cancelForm}>
             cancel
           </button>
-          <input type="submit" value="update" className="btn form-btn px-5" />
+          <input type="submit" value="update" className="btn form-btn px-4 px-lg-5" />
         </div>
       </form>
     </div>

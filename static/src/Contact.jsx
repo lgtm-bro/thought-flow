@@ -81,10 +81,10 @@ const Contact = (props) => {
         <label htmlFor="send-copy" className="form-label">send me a copy</label>
         </div>
         <div className="form-btn-div">
-          <button type="button" id="contact-cancel" className="form-btn btn border px-5" onClick={() => navigate("/")}>
+          <button type="button" id="contact-cancel" className="form-btn btn border px-4 px-lg-5" onClick={() => navigate("/")}>
               cancel
             </button>
-          <input type="submit" value="send" className="form-btn btn border px-5"/>
+          <input type="submit" value="send" className="form-btn btn border px-4 px-lg-5"/>
         </div>
       </form>
     </main>

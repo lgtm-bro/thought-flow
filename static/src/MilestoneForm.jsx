@@ -44,10 +44,10 @@ const MilestoneForm = ({ submitMilestone, checkMsgStatus }) => {
             onChange={(e) => getInput(e, setTitle)}
           />
           <div className="form-btn-div mt-5">
-            <button type="button" className="btn form-btn" onClick={cancelForm}>
+            <button type="button" className="btn form-btn px-4 px-lg-5" onClick={cancelForm}>
               cancel
             </button>
-            <input type="submit" value="save" className="btn form-btn px-4" />
+            <input type="submit" value="save" className="btn form-btn px-4 px-lg-5" />
           </div>
         </div>
       </form>

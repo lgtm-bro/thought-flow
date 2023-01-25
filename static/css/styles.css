@@ -385,7 +385,7 @@ radio:hover {
 /******** SIGNOUT ********/
 
 #signout-container {
-  width: 45%;
+  width: 50%;
   min-width: 308px;
   max-width: 450px;
   height: 40%;
@@ -730,6 +730,12 @@ radio:hover {
     }
   }
 
+  @media (max-width: 991px) {
+    #signout-container {
+      width: 80%;
+    }
+  }
+
 @media (max-width: 767px) {
   #app-container {
     height:100%;
@@ -757,8 +763,6 @@ radio:hover {
    }
 
 }
-
-
 
 
 @media (max-width: 715px) {
