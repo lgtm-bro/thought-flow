@@ -205,7 +205,7 @@ const Home = ({ user, email, showAlert }) => {
 
   const submitMilestone = (title) => {
     axios
-      .post(`/milestones/${user}`, { title }, config)
+      .post(`/milestones/${email}`, { title }, config)
       .then((res) => {
         sessionStorage.setItem("milestone", true);
         getMilestones(user);

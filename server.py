@@ -198,11 +198,11 @@ def delete_post(id):
 
 # ********************MILESTONES********************
 
-@app.route('/milestones/<user>', methods=['POST'])
-def addMilestone(user):
+@app.route('/milestones/<email>', methods=['POST'])
+def addMilestone(email):
     """Creates a new milestone record in the db for a given user"""
 
-    user_id = crud.get_user_id(user)
+    user_id = crud.get_user_id(email)
     title = request.json.get('title')
 
     if user_id:
