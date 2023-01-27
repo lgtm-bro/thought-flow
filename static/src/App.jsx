@@ -209,7 +209,7 @@ const App = (props) => {
       </div>
       <div id="user-alerts" ref={alerts} className="hide shadow"></div>
       <Routes>
-        <Route path="/*" element={<Home user={user} showAlert={showAlert} />} />
+        <Route path="/*" element={<Home user={user} email={email} showAlert={showAlert} />} />
         <Route path="/about" element={<About />} />
         <Route
           path="/contact"

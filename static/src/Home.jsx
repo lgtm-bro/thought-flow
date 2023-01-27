@@ -17,7 +17,7 @@ import Hub from "./Hub.jsx";
 import MilestoneForm from "./MilestoneForm.jsx";
 import Quote from "./Quote.jsx";
 
-const Home = ({ user, showAlert }) => {
+const Home = ({ user, email, showAlert }) => {
   const [feeling, setFeeling] = useState(sessionStorage.getItem("feeling"));
   const [feelingScore, setFeelingScore] = useState();
   const [posts, setPosts] = useState([]);
@@ -150,9 +150,10 @@ const Home = ({ user, showAlert }) => {
   const submitEntry = (entry, guided) => {
     const post = {
       user: user,
+      email: email,
       date: DateTime.now().toISO(),
       entry: entry,
-      guided: guided,
+      guided: guided
     };
 
     axios

@@ -103,8 +103,8 @@ def get_user(email):
     return False
 
 
-def get_user_id(name):
-    user = User.query.filter(User.name == name).first()
+def get_user_id(email):
+    user = User.query.filter(User.email == email).first()
 
     if user:
         return user.id

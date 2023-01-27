@@ -141,11 +141,12 @@ def submit_post():
     """Creates a new post record in the db for a given user"""
 
     user = request.json.get('user')
+    email = request.json.get('email')
     date = request.json.get('date')
     entry = request.json.get('entry')
     guided = request.json.get('guided')
 
-    user_id = crud.get_user_id(user)
+    user_id = crud.get_user_id(email)
 
     if user_id:
         new_post = crud.create_post(user_id, date, entry, guided)
