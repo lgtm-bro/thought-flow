@@ -84,9 +84,7 @@ const Trends = ({ getUserSessions, emotionColors }) => {
   return (
     <div id="trends-wrapper" className="pt-2 rounded">
       {!!sessionStorage.getItem("userId") && (
-        <div id="graph-wrapper">
-          <PolarArea data={data} options={options} id="graph"/>
-        </div>
+        <PolarArea data={data} options={options} id="graph"/>
       )}
       {!sessionStorage.getItem("userId") && (
         <div id="trends-msg" className="text-center">
